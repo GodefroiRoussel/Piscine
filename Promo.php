@@ -1,5 +1,5 @@
 //fonctions d'accès a la base de données du type Promo 
-
+<?php
 function getClef($promo){
 	//donnée: une promo 
 	//résuluat : la clef Promo permettant de s'authentifier dans une promo 
@@ -69,21 +69,36 @@ function creerPromo($clef,$departement,$eleves){
 	global $pdo;
 	
 	$req=$pdo->prepare('INSERT INTO Promos(clef,departement,eleves) VALUE (?,?,?)');
-	$req=array($clef,$departement,$eleves); 
+	$req=execute(array($clef,$departement,$eleves)); 
 	
 
 }	
 
-function ajoutEleve($promo,$eleve){
-	//donnée : une promo et l'élève à ajouter 
+function ajoutEleve($codepromo,$eleve){
+	//donnée : la clef de la promo et l'élève à ajouter 
 	//résultat : la promo avec l'élève ajouté 
-//to be continued
 
-
-
-
-
+	global $pdo;
+	 $req=$pdo->prepare('INSERT INTO (SELECT * FROM promos WHERE clefpromo=?) VALUES eleve=?');
+	 $req=execute(array($codepromo);
+	 
+	 
+	}
+	
+function testMail($codepromo,$email){
+	//donnée : code promo et eleve 
+	//resultat : bool true si l'élève appartient a la promo, false sinon 
+	
+	global $pdo;
+	$req->prepare('SELECT COUNT(*) FROM (SELECT * FROM promos WHERE clefpromo=?) WHERE mail=?');
+	$req=execute(array($codepromo,$email));
+	$count=$req-fetch();
+	if(count>0){return true;}
+	else{return false;}
+	
+	
+	
 }
 	
-	
+?>	
 	
