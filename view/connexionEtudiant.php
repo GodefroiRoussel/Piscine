@@ -30,6 +30,7 @@
 			</form>
 		</section>
 		<?php
+		include_once("../model/proposition.php");
 		$propositions = getAllProposition();
 		?>
 		<div id="interim">
