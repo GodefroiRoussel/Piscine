@@ -32,21 +32,7 @@ function getResultat($idEleve,$idFiche){
 	}
 
 
-function premierTest($ideleve,$clefpromo){
-	//donnée : id de l'élève et la clef de la promo a laquelle il appartient
-	//résultat : bool, true si l'élève a déjà fait un vrai test, false sinon
-
-	global $pdo;
-	$req=$pdo->prepare('SELECT premiertest FROM (SELECT * FROM promos WHERE codepromo=?) WHERE ideleve=?');
-	$req->execute(array($clefpromo,$ideleve));
-	$premiertest=$req->fetchAll();
-
-	return $premiertest;
-
-}
-
-
-function getPremierTest($idEleve){
+function premierTest($idEleve){
 	global $pdo;
 	$req=$pdo->prepare('SELECT premierTest FROM Etudiant WHERE idEleve=?');
 	$req->execute(array($idEleve));
