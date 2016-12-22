@@ -15,6 +15,18 @@ function getNumProposition($proposition){
 
 }
 
+function getAllProposition()
+{
+    global $pdo;
+
+
+    $req = $pdo->prepare('SELECT id, description, idGroup, idFiche FROM proposition');
+    $req->execute();
+    $propositions = $req->fetchAll();
+
+    return $propositions;
+}
+
 function getContenuProposition($idProposition){
     //recoit la proposition
     //retourne le texte de la proposition
