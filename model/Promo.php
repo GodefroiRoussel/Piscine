@@ -32,18 +32,17 @@ function getDepartement($promo){
 
 }
 
-function getmoyResultat($promo){
-		//donnée : une promo
-		//resultat : un resultat correspondant a la moyenne de la promo
-
+function getMoyResultatPromo($codePromo){
+	//donnée: une promo
+	//résultat : la clef Promo permettant de s'authentifier dans une promo
 	global $pdo;
-	$req=$pdo->prepare('SELECT moyResultat FROM promos WHERE promo=?');
-	$req->execute(array($promo));
-	$moyResultat=$req->fetch();
 
-	return $moyResultat;
+	$req=$pdo->prepare('SELECT AVG(score) FROM correspondre, etudiant e WHERE e.id=idEtudiant AND e.codePromo=? GROUP BY idFiche');
+	$req->execute(array($codePromo));
+	$resultats=$req->fetchAll();
 
-	}
+	return $resultats;
+}
 
 
 function getEleves($promo){
