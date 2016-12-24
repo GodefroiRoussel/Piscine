@@ -2,12 +2,13 @@
 //fonctions du type proposition
 
 
+//Surement inutile
 function getNumProposition($proposition){
     //Recoit la proposition
     //Retourne le num de proposition
     global $pdo;
 
-    $req = $pdo->prepare('SELECT num FROM GroupeDeProposition WHERE proposition=? ');
+    $req = $pdo->prepare('SELECT num FROM proposition WHERE description=? ');
     $req = execute(array($proposition));
     $num=$req->fetch();
 
@@ -15,6 +16,7 @@ function getNumProposition($proposition){
 
 }
 
+/* Je pense que cette fonction sera inutile
 function getAllProposition()
 {
     global $pdo;
@@ -26,6 +28,7 @@ function getAllProposition()
 
     return $propositions;
 }
+*/
 
 function getContenuProposition($idProposition){
     //recoit la proposition
@@ -33,7 +36,7 @@ function getContenuProposition($idProposition){
     global $pdo;
 
     //$req=$pdo->prepare('SELECT contenu FROM (SELECT GroupeDeProposition FROM GroupeDePropositions WHERE NumGroupPos= WHERE proposition=?')
-    $req=$pdo->prepare('SELECT contenu FROM Proposition WHERE numGrpProp=?')
+    $req=$pdo->prepare('SELECT description FROM proposition WHERE id=?')
     $req->execute(array($idProposition))
     $contenu=$req->fetch();
 
@@ -41,18 +44,36 @@ function getContenuProposition($idProposition){
 
 }
 
+// Je ne sais plus ce que doit faire cette fonction
 function getTypeAssoc($proposition){
 	global $pdo;
 
-	$req=$pdo->prepare('SELECT type FROM GroupeDeProposition WHERE proposition=?')
-    $req->execute(array($proposition))
-    $type=$req->fetch();
+	$req=$pdo->prepare('SELECT type FROM groupeprop WHERE proposition=?')
+  $req->execute(array($proposition))
+  $type=$req->fetch();
 
-    return $type;
+  return $type;
 
 
 }
 
+function modifProposition($idP,$newCont){
+
+
+	global $pdo;
+	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE idP= :id')
+	$req->execute(array(
+    'newDesc' => $newCont,
+    'id' => $idP
+    ));
+
+  $proposition= $req->fetch();
+
+
+  return $proposition;
+}
+
+/* normalement fonction inutile
 function creerProposition($num,$contenu,$typeAssoc){
     //reçoit num un entier comprit entre 1 et 6 et un contenu (phrase de la proposition) de type string
     //insert la proposition dans la base de donnees
@@ -60,12 +81,9 @@ function creerProposition($num,$contenu,$typeAssoc){
 
     global $pdo;
 
-    $req=$pdo->prepare('INSERT INTO GroupeDeProposition(num, contenu) VALUES (?,?,?)');
+    $req=$pdo->prepare('INSERT INTO groupeprop (num, contenu) VALUES (?,?,?)');
     $red->execute(array($num,$contenu,$typeAssoc));
-
-
-
-
 }
+*/
 
 ?>
