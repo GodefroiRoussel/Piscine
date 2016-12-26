@@ -12,10 +12,18 @@ function getMail($idEtudiant){
 	$mail=$req->fetch();
 
 	return $mail;
+}
 
+function existeEtudiant($email,$password,$promo){
+		global $pdo;
 
+		$bool=false;
+		$req=$pdo->prepare('SELECT id FROM etudiant WHERE email=? AND password=? AND codePromo=?');
+		$req->execute(array($email,$password,$promo));
+		$id=$req->fetch();
 
-	}
+		return $id;
+}
 
 function getAllResultat($idetudiant){
 	//donnée : id de l'élève
@@ -28,8 +36,7 @@ function getAllResultat($idetudiant){
 
 	return $resultat;
 
-
-	}
+}
 
 
 function premierTest($idetudiant){

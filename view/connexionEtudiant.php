@@ -9,7 +9,6 @@
 	</head>
 	<body>
 		<?php
-
 			//Connexion à la bdd
 			require("../model/connexionBD.php");
 		?>
@@ -17,7 +16,7 @@
 			<form action="PageEtudiant.php" method="post">
 				<p>
 					<em>Adresse universitaire : </em>
-					<input type="text" name="prenomNom" placeholder="prenom.nom"/>
+					<input type="text" name="email" placeholder="prenom.nom"/>
 					<em>@etu.umontpellier.fr</em>
 				</p>
 				<p>

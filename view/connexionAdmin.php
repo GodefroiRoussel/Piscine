@@ -10,11 +10,11 @@
 			<form action="PageAdmin.php" method="post">
 				<p>
 					<em>Adresse mail : </em>
-					<input type="text" name="adresse"/>
+					<input type="text" name="email"/>
 				</p>
 				<p>
 					<em>Mot de passe : </em>
-					<input type="text" name="MotDePasse" />
+					<input type="text" name="password" />
 				</p>
 				<p>
 					<input type="submit" value="Connexion" />
