@@ -1,6 +1,8 @@
 <?php
   require_once('../vendor/autoload.php');
   require_once('../model/token.php');
+  require_once('../model/connexionBD.php');
+  require_once('../model/etudiant.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -10,7 +12,7 @@
    if(!isset($_COOKIE["token"])){
 
             // On le redirige vers la connexion étudiant
-            echo "Tu n'as pas de cookie";
+            header('Location:connexionEtudiant.controller.php');
     }
     else{
       //On décode le token
@@ -19,25 +21,24 @@
 
       //On vérifie que c'est un token valide
       if (verificationToken($decoded_array)){
-        //On fait les choses
-        include_once('../view/pageAdmin.php');
+        if($decoded_array['role']==="etudiant"){
+          $email=getMail($decoded_array['id']);
+          $array=explode(".",$email);
+          $prenom=$array[0];
+          $array=explode("@",$array[1]);
+          $nom=$array[0];
+
+          include('../view/pageEtudiant.php');
+        }
+        else{
+          echo "On vous redirige <br/>";
+        }
+
       }
 
       else {
-        echo gettype($decoded_array['id']);
+
         echo "Mauvais token, veuillez vous reconnecter<br/>";
-        echo $decoded_array["iss"];
-        echo "   vs  ".$_SERVER['HTTP_HOST'];
-          echo "<br/>Résultat : ".$decoded_array['iss']==$_SERVER['HTTP_HOST']."<br/>";
-        echo "<br/>---------------------------<br/>";
-        echo $decoded_array["exp"];
-        echo "   vs  ".time();
-        echo "<br/>---------------------------<br/>";
-        echo  $decoded_array["id"];
-        echo "   vs  0";
-        //echo $_COOKIE["id"];
-        echo "<br/>---------------------------<br/>";
-        echo $decoded_array["role"];
-        echo "   vs  0";
+
       }
     }

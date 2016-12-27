@@ -11,7 +11,7 @@ function getMail($idEtudiant){
 	$req->execute(array($idEtudiant));
 	$mail=$req->fetch();
 
-	return $mail;
+	return $mail[0];
 }
 
 function existeEtudiant($email,$password,$promo){

@@ -36,8 +36,8 @@ function getContenuProposition($idProposition){
     global $pdo;
 
     //$req=$pdo->prepare('SELECT contenu FROM (SELECT GroupeDeProposition FROM GroupeDePropositions WHERE NumGroupPos= WHERE proposition=?')
-    $req=$pdo->prepare('SELECT description FROM proposition WHERE id=?')
-    $req->execute(array($idProposition))
+    $req=$pdo->prepare('SELECT description FROM proposition WHERE id=?');
+    $req->execute(array($idProposition));
     $contenu=$req->fetch();
 
     return $contenu;
@@ -48,8 +48,8 @@ function getContenuProposition($idProposition){
 function getTypeAssoc($proposition){
 	global $pdo;
 
-	$req=$pdo->prepare('SELECT type FROM groupeprop WHERE proposition=?')
-  $req->execute(array($proposition))
+	$req=$pdo->prepare('SELECT type FROM groupeprop WHERE proposition=?');
+  $req->execute(array($proposition));
   $type=$req->fetch();
 
   return $type;
@@ -61,7 +61,7 @@ function modifProposition($idP,$newCont){
 
 
 	global $pdo;
-	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE idP= :id')
+	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE idP= :id');
 	$req->execute(array(
     'newDesc' => $newCont,
     'id' => $idP

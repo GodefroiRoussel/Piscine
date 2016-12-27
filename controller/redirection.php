@@ -16,7 +16,7 @@
         if (verificationToken($decoded_array)){
           //Si c'est un étudiant on le redirige sur la page pageEtudiant.php
           if ($decoded_array["role"]==="etudiant"){
-            header('Location:view/pageEtudiant.php');
+            header('Location:controller/pageEtudiant.controller.php');
           }//endif
           //Sinon on le redirige sur la page pageAdmin.php
           else{

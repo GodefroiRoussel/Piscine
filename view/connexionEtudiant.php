@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test de Hollande</title>
 		<link rel="stylesheet" href="style.css" />
-
-
 	</head>
+
 	<body>
-		<?php
-		
-			//Si un utilisateur n'est pas connecté
-			if (!isset($_COOKIE["token"])){
-		?>
 		<section>
 			<form action="../controller/loginEtudiant.controller.php" method="post">
 				<p>
@@ -33,13 +28,6 @@
 				</p>
 			</form>
 		</section>
-
-	<?php
-}
-
-	else {
-			include('controller/redirection.php');
-	}//endelse
-	?>
 	</body>
+
 </html>

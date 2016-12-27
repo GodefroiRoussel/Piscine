@@ -29,8 +29,6 @@
                     //On définit le token contenant les différentes informations.
                     $token = array(
                         "iss" => $_SERVER['HTTP_HOST'],
-                        //"iat" => time(),
-                        //"nbf" => time() +10,
                         "exp" => time() + $validity_time,
                         "id" => $id,
                         "role" => "etudiant"
@@ -42,6 +40,7 @@
 
                     //On conserve le token dans un cookie pour faciliter le passage des paramètres d'une page à une autre sans devoir utiliser des posts entre chaque page.
                     setcookie("token", $jwt, time()+$validity_time,"/", null, false, true);
+                    header('Location:pageEtudiant.controller.php');
                 }
                 else{
                   echo ("ERREUR : tu as rentré un mauvais login/mot de passe");
@@ -54,6 +53,3 @@
     else {
         echo ("ERREUR : tu es déjà connecté");
     }
-
-
-  include_once('../view/pageEtudiant.php');

@@ -6,11 +6,11 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<hearder>
-		<p> Bienvenue <?php echo $_POST['email']; ?></p>
+		<p> Bienvenue <?php echo $prenom." ".$nom; ?></p>
 	</hearder>
 	<body>
 		<div>
-			<a href="../controller/pageEtudiant.controller.php" class="btn btn-info">Passer le vrai Test</a>
+			<a href="../Formulaire/formulaire.php" class="btn btn-info">Passer le vrai Test</a>
 		</div>
 		<br />
 		<div>
