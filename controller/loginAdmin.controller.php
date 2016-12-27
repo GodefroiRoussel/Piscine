@@ -1,12 +1,12 @@
 <?php
   require_once('../vendor/autoload.php');
-  require_once('../model/Etudiant.php');
+	require_once("../model/connexionBD.php");
+  require_once('../model/Admin.php');
   use \Firebase\JWT\JWT;
 
   //Sécurisation des données saisies
   $email = htmlspecialchars ($_POST['email']);
   $password = htmlspecialchars ($_POST['passwd']);
-  $clefPromo = htmlspecialchars ($_POST['clefPromo']);
 
 
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
@@ -17,10 +17,10 @@
    if(!isset($_COOKIE["token"])){
             //On vérifie que les champs ne soient pas vide et non null.
             // A vérifier si ça marche toujours en passant par les variables
-            if(isset($_POST['email']) && isset($_POST['clefPromo']) && isset($_POST['passwd']) && !empty($_POST['email']) && !empty($_POST['passwd']) && !empty($_POST['clefPromo'])){
+            if(isset($_POST['email']) && isset($_POST['passwd']) && !empty($_POST['email']) && !empty($_POST['passwd']) ){
                 //On crypte le mot de passe avec un "grain de sel"
                 $password = crypt($password,$keyCryptage);
-                $id=existeEtudiant($email, $password, $clefPromo);
+                $id=existeAdmin($email, $password);
                 //On vérifie que le login existe dans la table et que les informations soient exactes. (BD.password==passwd && BD.email==email)
                 if ($id>0){
                     //On définit le token contenant les différentes informations.
@@ -30,7 +30,7 @@
                         "iat" => time(),
                         "nbf" => time() +10,
                         "id" => $id,
-                        "role" => "etudiant"
+                        "role" => "admin"
                     );
 
                     $jwt = JWT::encode($token, $key);
@@ -54,4 +54,4 @@
     }
 
 
-  include_once('../view/pageEtudiant.php');
+  include_once('../view/pageAdmin.php');

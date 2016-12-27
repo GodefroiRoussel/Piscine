@@ -13,11 +13,15 @@
 			require("../model/connexionBD.php");
 		?>
 		<section>
-			<form action="PageEtudiant.php" method="post">
+			<form action="../controller/loginEtudiant.controller.php" method="post">
 				<p>
 					<em>Adresse universitaire : </em>
 					<input type="text" name="email" placeholder="prenom.nom"/>
 					<em>@etu.umontpellier.fr</em>
+				</p>
+				<p>
+					<em>Mot de passe (initialement le même que la clefPromo) : </em>
+					<input type="password" name="passwd" />
 				</p>
 				<p>
 					<em>Clef de la promo : </em>
@@ -29,7 +33,7 @@
 			</form>
 		</section>
 		<?php
-		include_once("../model/proposition.php");
+		/*include_once("../model/proposition.php");
 		$propositions = getAllProposition();
 		?>
 		<div id="interim">
@@ -50,7 +54,7 @@
 							<td><?php echo $proposition['idGroup'];?></td>
 							<td><?php echo $proposition['idFiche']; ?> € par mois</td>
 						</tr>
-					<?php } ?>
+					<?php } */?>
 				</table>
 			</div>
 	</body>

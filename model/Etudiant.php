@@ -57,7 +57,7 @@ function resetpremierTest($idetudiant){
 	//résultat: réinitialise le premierTest de l'élève à false
 
 	global $pdo;
-	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?')
+	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');
 	$req->execute(array($idetudiant));
 
 	$etudiant=$req->fetch();

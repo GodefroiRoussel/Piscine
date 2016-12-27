@@ -6,16 +6,15 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<hearder>
-		<p> Bienvenue <?php echo $_POST['prenomNom']; ?></p>
+		<p> Bienvenue <?php echo $_POST['email']; ?></p>
 	</hearder>
 	<body>
 		<div>
-			<a href="VraiTest.php" class="btn btn-info">Passer le vrai Test</a> 
+			<a href="VraiTest.php" class="btn btn-info">Passer le vrai Test</a>
 		</div>
 		<br />
 		<div>
-			<a href="TestEssai.php" class=btn btn-info">Faire un essai</a>
+			<a href="TestEssai.php" class="btn btn-info">Faire un essai</a>
 		</div>
 	</body>
 </html>
-

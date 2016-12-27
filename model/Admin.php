@@ -1,6 +1,6 @@
+<?php
 //fonctions d'accès à la base de données du compte administrateur
 
-<?php
 
 function getmdp($IdAdmin){
 	//donnée: l'admin concerné
@@ -14,6 +14,16 @@ function getmdp($IdAdmin){
 	return $mdp;
 
 
+}
+
+function existeAdmin($email,$password){
+		global $pdo;
+
+		$req=$pdo->prepare('SELECT id FROM admin WHERE email=? AND password=?');
+		$req->execute(array($email,$password));
+		$id=$req->fetch();
+
+		return $id;
 }
 
 function creerAdmin($nomdeCompte,$mdp){
