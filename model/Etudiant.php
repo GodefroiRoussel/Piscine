@@ -17,12 +17,11 @@ function getMail($idEtudiant){
 function existeEtudiant($email,$password,$promo){
 		global $pdo;
 
-		$bool=false;
 		$req=$pdo->prepare('SELECT id FROM etudiant WHERE email=? AND password=? AND codePromo=?');
 		$req->execute(array($email,$password,$promo));
 		$id=$req->fetch();
 
-		return $id;
+		return $id[0];
 }
 
 function getAllResultat($idetudiant){

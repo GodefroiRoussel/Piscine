@@ -8,7 +8,7 @@
      *             à nouveau un token valide sans connaître la clé secrète de chiffrement et les paramètres nécessaire à la création du token.
      */
     $roles= array("etudiant", "admin");
-    return $decoded_array['iss']==$_SERVER['HTTP_HOST'] && $decoded_array['exp'] > time() && $decoded_array['id']>0 && in_array($decoded_array['role'],$roles)
+    return $decoded_array['iss']==$_SERVER['HTTP_HOST'] && $decoded_array['exp'] > time() && $decoded_array['id']>0 && in_array($decoded_array['role'],$roles);
   }
 
 ?>

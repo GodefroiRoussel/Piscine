@@ -23,7 +23,7 @@
                 $id=existeAdmin($email, $password);
                 //On vérifie que le login existe dans la table et que les informations soient exactes. (BD.password==passwd && BD.email==email)
                 if ($id>0){
-                    //On définit le token contenant les différentes informations.
+                    //On définit le token contenant les différentes informations. C'est un tableau.
                     $token = array(
                         "iss" => "http://example.org",
                         "aud" => "http://example.com",
@@ -39,7 +39,7 @@
                     /*$decoded = JWT::decode($jwt, $key, array('HS256'));
                     $decoded_array = (array) $decoded;
                     */
-                    setcookie("token", $jwt, time()+$validity_time);
+                    setcookie("token", $jwt, time()+$validity_time,"/", null, false, true);
                 }
                 else{
                   echo ("ERREUR : tu as rentré un mauvais login/mot de passe");
