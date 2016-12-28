@@ -39,45 +39,45 @@
 				<tr>
 					<th class="text-left">A</td>
 					<td class="text-left"><?php echo $propositions[0]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('r','R',1)" id="r1"> </td> <!-- remplacer le 'R',le numéro du groupe et la proposition par la base de données -->
-					<td> <input type="radio" name="rep2" onclick="remove2('r','R',1)" id="r2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('r','R',1)" id="r3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r1"> </td> <!-- remplacer le 'R',le numéro du groupe et la proposition par la base de données -->
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r3">  </td>
 				</tr>
 
 				<tr>
 					<th class="text-left">B</td>
 					<td class="text-left"><?php echo $propositions[1]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('a','I',1)" id="a1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2('a','I',1)" id="a2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('a','I',1)" id="a3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a1"> </td>
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a3">  </td>
 				</tr>
 				<tr>
 					<th class="text-left">C</td>
 					<td class="text-left"><?php echo $propositions[2]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('b','A',1)" id="b1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2('b','A',1)" id="b2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('b','A',1)" id="b3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b1"> </td>
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b3">  </td>
 				</tr>
 				<tr>
 					<th class="text-left">D</td>
 					<td class="text-left"><?php echo $propositions[3]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('c','S',1)" id="c1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2('c','S',1)" id="c2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('c','S',1)" id="c3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c1"> </td>
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c3">  </td>
 				</tr>
 				<tr>
 					<th class="text-left">E</td>
 					<td class="text-left"><?php echo $propositions[4]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('d','E',1)" id="d1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2('d','E',1)" id="d2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('d','E',1)" id="d3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d1"> </td>
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d3">  </td>
 				</tr>
 				<tr>
 					<th class="text-left">F</td>
 					<td class="text-left"><?php echo $propositions[5]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1('e','C',1)" id="e1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2('e','C',1)" id="e2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3('e','C',1)" id="e3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e1"> </td>
+					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e2"> </td>
+					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e3">  </td>
 				</tr>
 			</tbody>
 		</table>

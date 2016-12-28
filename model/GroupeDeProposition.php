@@ -19,7 +19,7 @@ function getPropositionsGroupe($GdP){
 	//résultat : les 6 descriptions des propositions du groupe
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT description FROM groupeprop g, proposition WHERE g.id=? AND g.id=idGroup');
+	$req=$pdo->prepare('SELECT p.id, description, idFiche FROM groupeprop g, proposition p WHERE g.id=? AND g.id=idGroup');
 	$req->execute(array($GdP));
 	$propositions=$req->fetchAll();
 

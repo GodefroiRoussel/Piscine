@@ -15,17 +15,17 @@
 				alert(tabval[0]); */
 				if(document.getElementById(id+2).checked){
 					document.getElementById(id+2).checked = false;
-					
+
 				}else if(document.getElementById(id+3).checked){
 					document.getElementById(id+3).checked = false;
-					
+
 				}
 
 
 			}
 		}
 		function remove2(id, type, grp) {
-			if(document.getElementById(id+2).checked){ 
+			if(document.getElementById(id+2).checked){
 				tabtype[(grp-1)*3+1]=type;
 				tabval[(grp-1)*3+1]=2;
 				if(document.getElementById(id+1).checked){
@@ -34,28 +34,28 @@
 					document.getElementById(id+3).checked = false;
 				}
 
-			
+
 			}
 		}
 		function remove3(id, type, grp) {
-			if(document.getElementById(id+3).checked){ 
+			if(document.getElementById(id+3).checked){
 				tabtype[(grp-1)*3+2]=type;
 				tabval[(grp-1)*3+2]=1;
 				if(document.getElementById(id+1).checked){
 					document.getElementById(id+1).checked = false;
-					
+
 				}else if(document.getElementById(id+2).checked){
 					document.getElementById(id+2).checked = false;
-					
+
 				}
-				
+
 			}
-			
-			
+
+
 		}
-		
+
 		function calcul(){
-			
+
 			for (var j = 0; j < 9; j++){
 				if(tabval[j]==0){
 					alert("Il manque des réponses.Rappel: Une case cochée par colonne, 3 réponses par groupe");
@@ -93,11 +93,11 @@
 			s=0;
 			e=0;
 			c=0; */
-			
+
 			window.location.href="file:///C:/Users/Chlo%C3%A9/Desktop/Formulaire/Resultat/GraphiqueEtoile/ProjetPiscine.html";
 		}
-		
-		
+
+
 var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
@@ -140,16 +140,16 @@ var randomScalingFactor = function() {
             elements: {
                 line: {
                     tension: 0.0,
-					
-					
+
+
                 }
-				
+
             },
             scale: {
                 beginAtZero: true,
 				fontSize: 40
             }
-			
+
         }
     };
 
