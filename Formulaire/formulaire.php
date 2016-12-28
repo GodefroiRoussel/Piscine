@@ -5,6 +5,7 @@
       require_once('../model/connexionBD.php');
       require_once('../model/GroupeDeProposition.php');
       use \Firebase\JWT\JWT;
+
 ?>
 
 <html>
@@ -22,7 +23,7 @@
 			<h3>Test RIASEC</h3>
 		</div>
 <?php
-    for ($i = 1; $i <= 12; $i++) {
+      $i = 1;
       $propositions=getPropositionsGroupe($i); //On a dans $propositions toutes les propositions du groupe 1 puis 2 ... c'est un array
       ?>
 		<table class="table-fill">
@@ -39,52 +40,49 @@
 				<tr>
 					<th class="text-left">A</td>
 					<td class="text-left"><?php echo $propositions[0]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r1"> </td> <!-- remplacer le 'R',le numéro du groupe et la proposition par la base de données -->
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[0]['id']?>,<?php $propositions[0]['idFiche']?>,<?php $i ?>)" id="r3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('a','R',<?php echo $i?>)" id="a1" </td> <!-- remplacer le 'R',le numéro du groupe et la proposition par la base de données -->
+					<td> <input type="radio" name="rep2" onclick="remove2('a','R',<?php echo $i?>)" id="a2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('a','R',<?php echo $i?>)" id="a3" </td>
 				</tr>
 
 				<tr>
 					<th class="text-left">B</td>
 					<td class="text-left"><?php echo $propositions[1]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[1]['id']?>,<?php $propositions[1]['idFiche']?>,<?php $i ?>)" id="a3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('b','I',<?php echo $i?>)" id="b1" </td>
+					<td> <input type="radio" name="rep2" onclick="remove2('b','I',<?php echo $i?>)" id="b2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('b','I',<?php echo $i?>)" id="b3"  </td>
 				</tr>
 				<tr>
 					<th class="text-left">C</td>
 					<td class="text-left"><?php echo $propositions[2]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[2]['id']?>,<?php $propositions[2]['idFiche']?>,<?php $i ?>)" id="b3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('c','A',<?php echo $i?>)" id="c1" </td>
+					<td> <input type="radio" name="rep2" onclick="remove2('c','A',<?php echo $i?>)" id="c2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('c','A',<?php echo $i?>)" id="c3" </td>
 				</tr>
 				<tr>
 					<th class="text-left">D</td>
 					<td class="text-left"><?php echo $propositions[3]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[3]['id']?>,<?php $propositions[3]['idFiche']?>,<?php $i ?>)" id="c3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('d','S',<?php echo $i?>)" id="d1" </td>
+					<td> <input type="radio" name="rep2" onclick="remove2('d','S',<?php echo $i?>)" id="d2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('d','S',<?php echo $i?>)" id="d3"  </td>
 				</tr>
 				<tr>
 					<th class="text-left">E</td>
 					<td class="text-left"><?php echo $propositions[4]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[4]['id']?>,<?php $propositions[4]['idFiche']?>,<?php $i ?>)" id="d3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('e','E',<?php echo $i?>)" id="e1" </td>
+					<td> <input type="radio" name="rep2" onclick="remove2('e','E',<?php echo $i?>)" id="e2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('e','E',<?php echo $i?>)" id="e3"  </td>
 				</tr>
 				<tr>
 					<th class="text-left">F</td>
 					<td class="text-left"><?php echo $propositions[5]['description'] ?></td>
-					<td> <input type="radio" name="rep1" onclick="remove1(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e1"> </td>
-					<td> <input type="radio" name="rep2" onclick="remove2(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e2"> </td>
-					<td> <input type="radio" name="rep3" onclick="remove3(<?php $propositions[5]['id']?>,<?php $propositions[5]['idFiche']?>,<?php $i ?>)" id="e3">  </td>
+					<td> <input type="radio" name="rep1" onclick="remove1('f','C',<?php echo $i?>)" id="f1" </td>
+					<td> <input type="radio" name="rep2" onclick="remove2('f','C',<?php echo $i?>)" id="f2" </td>
+					<td> <input type="radio" name="rep3" onclick="remove3('f','C',<?php echo $i?>)" id="f3"  </td>
 				</tr>
 			</tbody>
 		</table>
 
-    <?php
-        }//endfor
-    ?>
 		<!-- <div id="MaDiv">r=0</div>
 		<div id="MaDiv2">i=0</div>
 		<div id="MaDiv3">a=0</div>
