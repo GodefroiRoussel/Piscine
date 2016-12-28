@@ -1,60 +1,70 @@
 
-		var tabtype= [0,0,0,0,0,0,0,0,0] // Remplacer les deux tableau base de données?
-		var tabval = [0,0,0,0,0,0,0,0,0]
+		var tabRes1 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 1
+		var tabRes2 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 2
+		var tabRes3 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 3
+		var tabRes = [tabRes1,tabRes2,tabRes3];
+		var new_tab_js = tableau_js.join(";");
+		document.location.href = 'newpage.php?tab_js='+new_tab_js;
+
+
 		var r=0;
 		var i=0;
 		var a=0;
 		var s=0;
 		var e=0;
 		var c=0;
-		function remove1(id, type, grp) {
-			if(document.getElementById(id+1).checked){
-				tabtype[(grp-1)*3]=type;
-				tabval[(grp-1)*3]=3;
-/* 				alert(tabtype[0]);
-				alert(tabval[0]); */
-				if(document.getElementById(id+2).checked){
-					document.getElementById(id+2).checked = false;
+		function remove1(lettre, idProp, grp) {
+			if(document.getElementById(letre+1).checked){
+				tabRes1[grp]=idProp;
+				if(document.getElementById(lettre+2).checked){
+					document.getElementById(lettre+2).checked = false;
+					tabRes2[grp]=0;
 
-				}else if(document.getElementById(id+3).checked){
-					document.getElementById(id+3).checked = false;
-
+				}else if(document.getElementById(lettre+3).checked){
+					document.getElementById(lettre+3).checked = false;
+					tabRes3[grp]=0;
 				}
 
 
 			}
 		}
-		function remove2(id, type, grp) {
-			if(document.getElementById(id+2).checked){
-				tabtype[(grp-1)*3+1]=type;
-				tabval[(grp-1)*3+1]=2;
-				if(document.getElementById(id+1).checked){
-					document.getElementById(id+1).checked = false;
-				}else if(document.getElementById(id+3).checked){
-					document.getElementById(id+3).checked = false;
+
+		function remove2(lettre, idProp, grp) {
+			if(document.getElementById(lettre+2).checked){
+				tabRes2[grp]=idProp;
+				if(document.getElementById(lettre+1).checked){
+					document.getElementById(lettre+1).checked = false;
+					tabRes1[grp]=0;
+				}else if(document.getElementById(lettre+3).checked){
+					document.getElementById(lettre+3).checked = false;
+					tabRes3[grp]=0;
 				}
 
 
 			}
 		}
-		function remove3(id, type, grp) {
-			if(document.getElementById(id+3).checked){
-				tabtype[(grp-1)*3+2]=type;
-				tabval[(grp-1)*3+2]=1;
-				if(document.getElementById(id+1).checked){
-					document.getElementById(id+1).checked = false;
 
-				}else if(document.getElementById(id+2).checked){
-					document.getElementById(id+2).checked = false;
+		function remove3(lettre, idProp, grp) {
+			if(document.getElementById(lettre+3).checked){
+				tabRes3[grp]=idProp;
+				if(document.getElementById(lettre+1).checked){
+					document.getElementById(lettre+1).checked = false;
+					tabRes1[grp]=0;
 
-				}
+				}else if(document.getElementById(lettre+2).checked){
+					document.getElementById(lettre+2).checked = false;
+					tabRes2[grp]=0;
+				}//end elseif
+			}//endif
+		}//end remove3
 
-			}
 
-
+		function affichage(){
+			alert("Coucou je veux passer au suivant");
 		}
 
-		function calcul(){
+
+		/*function calcul(){
 
 			for (var j = 0; j < 9; j++){
 				if(tabval[j]==0){
@@ -92,10 +102,10 @@
 			a=0;
 			s=0;
 			e=0;
-			c=0; */
+			c=0;
 
 			window.location.href="file:///C:/Users/Chlo%C3%A9/Desktop/Formulaire/Resultat/GraphiqueEtoile/ProjetPiscine.html";
-		}
+		}*/
 
 
 var randomScalingFactor = function() {
