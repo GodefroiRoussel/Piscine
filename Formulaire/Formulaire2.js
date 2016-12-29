@@ -64,21 +64,34 @@
 			}//endif
 		}//end remove3
 
+		function ajoutVirgule(chaine1,chaine2){
+			var virgule= ",";
+			return chaine1+virgule+chaine2;
+		}
 
 		function suivant(grp,tab1,tab2,tab3){
-			var virgule= ",";
-			choix1= tab1+virgule+res1;
-			choix2= tab2+virgule+res2;
-			choix3= tab3+virgule+res3;
+			choix1= ajoutVirgule(tab1,res1);
+			choix2= ajoutVirgule(tab2,res2);
+			choix3= ajoutVirgule(tab3,res3);
 			var groupe=grp+1;
 			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
 		}
 
+		function precedent(grp,tab1,tab2,tab3){
+			var pos = tab1.lastIndexOf(',');
+			choix1= tab1.slice(0,pos);
+			pos = tab2.lastIndexOf(',');
+			choix2= tab2.slice(0,pos);
+			pos = tab3.lastIndexOf(',');
+			choix3= tab3.slice(0,pos);
+			var groupe=grp-1;
+			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
+		}
+
 		function resultat(grp,tab1,tab2,tab3){
-			var virgule= ",";
-			choix1= tab1+virgule+res1;
-			choix2= tab2+virgule+res2;
-			choix3= tab3+virgule+res3;
+			choix1= ajoutVirgule(tab1,res1);
+			choix2= ajoutVirgule(tab2,res2);
+			choix3= ajoutVirgule(tab3,res3);
 			document.location.href = "http://localhost/Piscine/controller/resultat.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3;
 		}
 
