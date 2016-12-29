@@ -10,7 +10,7 @@
 	</hearder>
 	<body>
 		<div>
-			<a href="../Formulaire/formulaire2.php" class="btn btn-info">Passer le vrai Test</a>
+			<a href="../controller/formulaire.controller.php" class="btn btn-info">Passer le vrai Test</a>
 		</div>
 		<br />
 		<div>

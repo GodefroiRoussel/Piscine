@@ -1,10 +1,16 @@
 
-		var tabRes1 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 1
-		var tabRes2 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 2
-		var tabRes3 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 3
-		var tabRes = [tabRes1,tabRes2,tabRes3];
-		var new_tab_js = tableau_js.join(";");
-		document.location.href = 'newpage.php?tab_js='+new_tab_js;
+		var i=0;
+		var res1 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 1
+		var res2 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 2
+		var res3 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 3
+
+
+		/*while (i<12){
+			tabRes1[i]='<?php echo $res1[i]?>';
+			tabRes2[i]='<?php echo $res2[i]?>';
+			tabRes3[i]='<?php echo $res3[i]?>';
+			i++;
+		}*/
 
 
 		var r=0;
@@ -13,54 +19,67 @@
 		var s=0;
 		var e=0;
 		var c=0;
-		function remove1(lettre, idProp, grp) {
-			if(document.getElementById(letre+1).checked){
-				tabRes1[grp]=idProp;
+		function remove1(lettre, idProp) {
+			if(document.getElementById(lettre+1).checked){
+				res1=idProp;
 				if(document.getElementById(lettre+2).checked){
 					document.getElementById(lettre+2).checked = false;
-					tabRes2[grp]=0;
+					res2=0;
 
 				}else if(document.getElementById(lettre+3).checked){
 					document.getElementById(lettre+3).checked = false;
-					tabRes3[grp]=0;
+					res3=0;
 				}
 
 
 			}
 		}
 
-		function remove2(lettre, idProp, grp) {
+		function remove2(lettre, idProp) {
 			if(document.getElementById(lettre+2).checked){
-				tabRes2[grp]=idProp;
+				res2=idProp;
 				if(document.getElementById(lettre+1).checked){
 					document.getElementById(lettre+1).checked = false;
-					tabRes1[grp]=0;
+					res1=0;
 				}else if(document.getElementById(lettre+3).checked){
 					document.getElementById(lettre+3).checked = false;
-					tabRes3[grp]=0;
+					res3=0;
 				}
 
 
 			}
 		}
 
-		function remove3(lettre, idProp, grp) {
+		function remove3(lettre, idProp) {
 			if(document.getElementById(lettre+3).checked){
-				tabRes3[grp]=idProp;
+				res3=idProp;
 				if(document.getElementById(lettre+1).checked){
 					document.getElementById(lettre+1).checked = false;
-					tabRes1[grp]=0;
+					res1=0;
 
 				}else if(document.getElementById(lettre+2).checked){
 					document.getElementById(lettre+2).checked = false;
-					tabRes2[grp]=0;
+					res2=0;
 				}//end elseif
 			}//endif
 		}//end remove3
 
 
-		function affichage(){
-			alert("Coucou je veux passer au suivant");
+		function suivant(grp,tab1,tab2,tab3){
+			var virgule= ",";
+			choix1= tab1+virgule+res1;
+			choix2= tab2+virgule+res2;
+			choix3= tab3+virgule+res3;
+			var groupe=grp+1;
+			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
+		}
+
+		function resultat(grp,tab1,tab2,tab3){
+			var virgule= ",";
+			choix1= tab1+virgule+res1;
+			choix2= tab2+virgule+res2;
+			choix3= tab3+virgule+res3;
+			document.location.href = "http://localhost/Piscine/controller/resultat.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3;
 		}
 
 

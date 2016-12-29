@@ -64,12 +64,19 @@ function resetpremierTest($idetudiant){
 	return $etudiant;
 }
 
+function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
+
+	global $pdo;
+	$req=$pdo->prepare('INSERT INTO correspondre(idEtudiant,idFiche,score) VALUES (?,?,?)');
+	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
+}
+
 /* Normalement n'a pas besoin de constructeur ici, dans promo cela est suffisant"
 function creerEtudiant($mail,$codePromo){
 
 	global $pdo;
 	 $req=$pdo->prepare('INSERT INTO etudiant(email,premierTest,codePromo) VALUES (?,True,?)');
-	 $req=execute(array($mail,$codePromo);
+	 $req=execute(array($mail,$codePromo));
 
 }
 */

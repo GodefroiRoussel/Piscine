@@ -44,15 +44,15 @@ function getContenuProposition($idProposition){
 
 }
 
-// Je ne sais plus ce que doit faire cette fonction
-function getTypeAssoc($proposition){
+// Renvoie le numéro de fiche associé à cette proposition
+function getFicheAssociee($idProposition){
 	global $pdo;
 
-	$req=$pdo->prepare('SELECT type FROM groupeprop WHERE proposition=?');
-  $req->execute(array($proposition));
-  $type=$req->fetch();
+	$req=$pdo->prepare('SELECT idFiche FROM proposition WHERE id=?');
+  $req->execute(array($idProposition));
+  $idFiche=$req->fetch();
 
-  return $type;
+  return $idFiche[0];
 
 
 }
