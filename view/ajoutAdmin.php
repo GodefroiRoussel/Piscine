@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<section>
-			<form action="ConfirmationAjout.php" method="post">
+			<form action="ConfirmationAjoutAdmin.php" method="post">
 				<p>
 					<em>Adresse mail : </em>
 					<input type="text" name="adresse"/>
@@ -22,3 +22,4 @@
 			</form>
 		</section>
 	</body>
+</html>
