@@ -29,7 +29,7 @@ function getAllResultat($idetudiant){
 	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT idFiche, score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
+	$req=$pdo->prepare('SELECT score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
 	$req->execute(array($idetudiant));
 	$resultat=$req->fetchAll();
 
@@ -51,9 +51,21 @@ function premierTest($idetudiant){
 
 }
 
+function passerTest($idEtudiant){
+	//donnée : id de l'élève
+	//résultat : Passe le premierTest a false pour dire : Ce n'est pas le premier test de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('UPDATE etudiant SET premierTest=false WHERE id=?');
+	$req->execute(array($idEtudiant));
+
+	$etudiant=$req->fetch();
+
+	return $etudiant;
+}
+
 function resetpremierTest($idetudiant){
 	//donnée : id de l'étudiant
-	//résultat: réinitialise le premierTest de l'élève à false
+	//résultat: réinitialise le premierTest de l'élève à true
 
 	global $pdo;
 	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');

@@ -66,7 +66,7 @@
               for($i=0;$i<6;$i++){
                 ajouterResultat($id,$i+1,$result[$i]);
               }
-
+              passerTest($id);
             }
           }
           else{
