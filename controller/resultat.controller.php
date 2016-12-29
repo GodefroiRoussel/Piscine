@@ -24,7 +24,6 @@
       if (verificationToken($decoded_array)){
         if($decoded_array['role']==="etudiant"){
           $id=$decoded_array['id'];
-          $premierTest=premierTest($id);
 
           //Si les variables res1,res2 et res3 ont été envoyées par un ancien formulaire et ne sont pas nulles. On remplace les string initialisés précédemment.
           if (isset($_GET['res1']) && isset($_GET['res2']) && isset($_GET['res3'])){
@@ -51,6 +50,7 @@
               }
               for($i=1;$i<=12;$i++){
                 // On récupère l'id de la Fiche pour savoir à quelle case du tableau on va devoir ajouter les points
+                //TODO: Si l'url rewritting n'est pas réussi, faire la vérification que les idées concordent à la fois au groupe (c'est-à-dire par rapport à j) et à un nombre inférieur à 72 et que le chiffre ne soit pas dans une autre case du tableau
                 $idFiche=getFicheAssociee($array_choice[$j][$i]);
                 $result[$idFiche-1]= $result[$idFiche-1] + $val;
               }
@@ -62,7 +62,7 @@
             }
 
             // Si c'est le premier test, on sauvegarde les résultats pour qu'il rentre dans les statistiques
-            if($premierTest){
+            if(premierTest($id)){
               for($i=0;$i<6;$i++){
                 ajouterResultat($id,$i+1,$result[$i]);
               }
@@ -70,7 +70,8 @@
             }
           }
           else{
-            //TODO: charger par la base de données les résultats
+            // On charge les résultats qui sont dans la base de données
+            $result=getAllResultat($id);
           }
 
           include('../view/resultat.php');
