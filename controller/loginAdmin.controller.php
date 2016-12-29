@@ -21,14 +21,13 @@
                 //On crypte le mot de passe avec un "grain de sel"
                 $password = crypt($password,$keyCryptage);
                 $id=existeAdmin($email, $password);
+                $id=(int)$id;
                 //On vérifie que le login existe dans la table et que les informations soient exactes. (BD.password==passwd && BD.email==email)
                 if ($id>0){
                     //On définit le token contenant les différentes informations. C'est un tableau.
                     $token = array(
-                        "iss" => "http://example.org",
-                        "aud" => "http://example.com",
-                        "iat" => time(),
-                        "nbf" => time() +10,
+                        "iss" => $_SERVER['HTTP_HOST'],
+                        "exp" => time() + $validity_time,
                         "id" => $id,
                         "role" => "admin"
                     );
@@ -40,6 +39,7 @@
                     $decoded_array = (array) $decoded;
                     */
                     setcookie("token", $jwt, time()+$validity_time,"/", null, false, true);
+                    header('Location:pageAdmin.controller.php');
                 }
                 else{
                   echo ("ERREUR : tu as rentré un mauvais login/mot de passe");
@@ -52,6 +52,3 @@
     else {
         echo ("ERREUR : tu es déjà connecté");
     }
-
-
-  include_once('../view/pageAdmin.php');
