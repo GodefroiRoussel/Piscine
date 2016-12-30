@@ -59,7 +59,7 @@ function premierTest($idetudiant){
 	$req->execute(array($idetudiant));
 	$premierTest=$req->fetch();
 
-	return $premierTest;
+	return $premierTest[0];
 
 }
 
