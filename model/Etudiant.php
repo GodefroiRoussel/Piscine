@@ -14,6 +14,18 @@ function getMail($idEtudiant){
 	return $mail[0];
 }
 
+function getCodePromo($idEtudiant){
+	//donnée : id de l'étudiant (entier)
+	//resultat : mail de l'étudiant (texte)
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT codePromo FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$codePromo=$req->fetch();
+
+	return $codePromo[0];
+}
+
 function existeEtudiant($email,$password,$promo){
 		global $pdo;
 

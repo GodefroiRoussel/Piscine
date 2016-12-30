@@ -81,11 +81,16 @@
 			 * 					tab3 : String
 			 * But: Envoie à la prochaine page les données choisies par l'utilisateur dans le questionnaire. En se souvenant des anciennes valeurs déjà envoyés.
 			 */
+			if (calcul()){
+ 				alert("Il manque des réponses. Rappel: Une case cochée par colonne, 3 réponses par groupe");
+ 			}
+ 			else{
 			choix1= ajoutVirgule(tab1,res1);
 			choix2= ajoutVirgule(tab2,res2);
 			choix3= ajoutVirgule(tab3,res3);
 			var groupe=grp+1;
 			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
+			}
 		}
 
 		function precedent(grp,tab1,tab2,tab3){
@@ -114,53 +119,25 @@
 			 * 					tab3 : String
 			 * But: Envoie à la page de résultat les données choisies par l'utilisateur depuis le début du questionnaire.
 			 */
-			choix1= ajoutVirgule(tab1,res1);
-			choix2= ajoutVirgule(tab2,res2);
-			choix3= ajoutVirgule(tab3,res3);
-			document.location.href = "http://localhost/Piscine/controller/resultat.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3;
+			if (calcul()){
+				alert("Il manque des réponses. Rappel: Une case cochée par colonne, 3 réponses par groupe");
+			}
+			else{
+				choix1= ajoutVirgule(tab1,res1);
+				choix2= ajoutVirgule(tab2,res2);
+				choix3= ajoutVirgule(tab3,res3);
+				document.location.href = "http://localhost/Piscine/controller/resultat.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3;
+			}
 		}
 
 
-		/*function calcul(){
+		function calcul(){
 
-			for (var j = 0; j < 9; j++){
-				if(tabval[j]==0){
-					alert("Il manque des réponses.Rappel: Une case cochée par colonne, 3 réponses par groupe");
-					return false;
-				}
-				else if(tabtype[j]=='R'){
-					r=r+tabval[j];
-				}
-				else if(tabtype[j]=='I'){
-					i=i+tabval[j];
-				}
-				else if(tabtype[j]=='A'){
-					a=a+tabval[j];
-				}
-				else if(tabtype[j]=='S'){
-					s=s+tabval[j];
-				}
-				else if(tabtype[j]=='E'){
-					e=e+tabval[j];
-				}
-				else{
-					c=c+tabval[j];
-				}
+				return res1==0 || res2==0 || res3==0;
+
 			}
-			document.getElementById("MaDiv").innerHTML = 'r='+r;
-			document.getElementById("MaDiv2").innerHTML = 'i='+i;
-			document.getElementById("MaDiv3").innerHTML = 'a='+a;
-			document.getElementById("MaDiv4").innerHTML = 's='+s;
-			document.getElementById("MaDiv5").innerHTML = 'e='+e;
-			document.getElementById("MaDiv6").innerHTML = 'c='+c;
-			console.log(r,i,a,s,e,c);
-			/* r=0;
-			i=0;
-			a=0;
-			s=0;
-			e=0;
-			c=0;
 
+/*
 			window.location.href="file:///C:/Users/Chlo%C3%A9/Desktop/Formulaire/Resultat/GraphiqueEtoile/ProjetPiscine.html";
 		}*/
 
@@ -169,7 +146,7 @@ var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
 
-    var color = Chart.helpers.color;
+    /*var color = Chart.helpers.color;
     var monRadar = {
         type: 'radar',
         data: {
@@ -222,4 +199,4 @@ var randomScalingFactor = function() {
 
     window.onload = function() {
         window.myRadar = new Chart(document.getElementById("canvas"), monRadar);
-    };
+    };*/
