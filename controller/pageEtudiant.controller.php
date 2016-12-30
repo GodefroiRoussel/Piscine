@@ -27,6 +27,7 @@
           $prenom=$array[0];
           $array=explode("@",$array[1]);
           $nom=$array[0];
+          $premierTestBool=premierTest($decoded_array['id']);
 
           include('../view/pageEtudiant.php');
         }

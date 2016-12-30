@@ -68,7 +68,7 @@
 
           $resultPromo=getmoyResultat(getCodePromo($id));
 
-          include('../Formulaire/Resultat/GraphiqueEtoile/test.php');
+          include('../view/resultat.php');
 
 
         }
