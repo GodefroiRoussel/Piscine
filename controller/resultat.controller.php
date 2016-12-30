@@ -63,7 +63,11 @@
           }
           else{
             // On charge les résultats qui sont dans la base de données
-            $result=getAllResultat($id);
+            $result_intermediaire=getAllResultat($id); //C'est un tableau de tableau
+            //On le fait passer en tableau
+            for ($i=0;$i<6;$i++){
+              $result[$i]=$result_intermediaire[$i][0];
+            }
           }
 
           $resultPromo=getmoyResultat(getCodePromo($id));
