@@ -23,7 +23,7 @@ function existeAdmin($email,$password){
 		$req->execute(array($email,$password));
 		$id=$req->fetch();
 
-		return $id;
+		return $id[0];
 }
 
 function creerAdmin($nomdeCompte,$mdp){

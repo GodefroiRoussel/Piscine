@@ -36,18 +36,9 @@
 
             //Double boucle pour parcourir tout le tableau $array_choice et ainsi permettre le calcul des résultats RIASEC
             for($j=0;$j<3;$j++){
-              // Si j==0 alors c'est le premier choix et il vaut 3 points
-              if($j==0){
-                $val=3;
-              }
-              // Si j==1 alors c'est le deuxième choix et il vaut 2 points
-              else if ($j==1){
-                $val=2;
-              }
-              // Sinon c'est le troisième choix et il vaut 1 point
-              else{
-                $val=1;
-              }
+              // Si j==0 c'est la proposition la plus importante donc elle vaut 3 points. Si j==1, la proposition vaut 2 points et si j==2, la proposition vaut 1 point.
+              $val= 3 - $j;
+              
               for($i=1;$i<=12;$i++){
                 // On récupère l'id de la Fiche pour savoir à quelle case du tableau on va devoir ajouter les points
                 //TODO: Si l'url rewritting n'est pas réussi, faire la vérification que les idées concordent à la fois au groupe (c'est-à-dire par rapport à j) et à un nombre inférieur à 72 et que le chiffre ne soit pas dans une autre case du tableau

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- J'ai l'impression que c'est une page qui sert à rien -->
 <html>
 	<head>
 		<meta charset="utf-8"/>

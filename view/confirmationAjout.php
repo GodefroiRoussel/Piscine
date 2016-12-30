@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- J'ai l'impression que c'est une page qui sert à rien. Et confimation ajout de quoi?-->
 <html>
 	<head>
 		<meta charset="utf-8"/>
@@ -7,7 +8,7 @@
 	</head>
 	<body>
 		<section>
-			<p>Ajout de l'admin <?php 
+			<p>Ajout de l'admin <?php
 			$decomposer=explode("@",$_POST['adresse']);
 			echo $decomposer[0]; ?> éffectué !</p>
 			<a href="PageAdmin.php" class="btn btn-info">Retour</a>

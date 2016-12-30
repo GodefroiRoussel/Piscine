@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<section>
-			<form action="PageAdmin.php" method="post">
+			<form action="../controller/loginAdmin.controller.php" method="post">
 				<p>
 					<em>Adresse mail : </em>
 					<input type="text" name="email"/>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Passe par un controller avant l'accès aux fonctions sinon n'importe qui peut ajouter un admin'-->
 <html>
 	<head>
 		<meta charset="utf-8"/>

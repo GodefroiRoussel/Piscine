@@ -1,25 +1,17 @@
 
 		var i=0;
-		var res1 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 1
-		var res2 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 2
-		var res3 = 0; // Ce tableau va stocker l'id de la proposition du choix numéro 3
+		var res1 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 1
+		var res2 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 2
+		var res3 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 3
 
 
-		/*while (i<12){
-			tabRes1[i]='<?php echo $res1[i]?>';
-			tabRes2[i]='<?php echo $res2[i]?>';
-			tabRes3[i]='<?php echo $res3[i]?>';
-			i++;
-		}*/
-
-
-		var r=0;
-		var i=0;
-		var a=0;
-		var s=0;
-		var e=0;
-		var c=0;
 		function remove1(lettre, idProp) {
+		/*
+		 * Données: lettre : String
+		 * 					idProp : int
+		 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+		 *			la proposition cochée si celle ci se trouve sur la même ligne
+		 */
 			if(document.getElementById(lettre+1).checked){
 				res1=idProp;
 				if(document.getElementById(lettre+2).checked){
@@ -30,12 +22,16 @@
 					document.getElementById(lettre+3).checked = false;
 					res3=0;
 				}
-
-
 			}
 		}
 
 		function remove2(lettre, idProp) {
+			/*
+			 * Données: lettre : String
+			 * 					idProp : int
+			 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+			 *			la proposition cochée si celle ci se trouve sur la même ligne
+			 */
 			if(document.getElementById(lettre+2).checked){
 				res2=idProp;
 				if(document.getElementById(lettre+1).checked){
@@ -45,18 +41,21 @@
 					document.getElementById(lettre+3).checked = false;
 					res3=0;
 				}
-
-
 			}
 		}
 
 		function remove3(lettre, idProp) {
+			/*
+			 * Données: lettre : String
+			 * 					idProp : int
+			 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+			 *			la proposition cochée si celle ci se trouve sur la même ligne
+			 */
 			if(document.getElementById(lettre+3).checked){
 				res3=idProp;
 				if(document.getElementById(lettre+1).checked){
 					document.getElementById(lettre+1).checked = false;
 					res1=0;
-
 				}else if(document.getElementById(lettre+2).checked){
 					document.getElementById(lettre+2).checked = false;
 					res2=0;
@@ -65,11 +64,23 @@
 		}//end remove3
 
 		function ajoutVirgule(chaine1,chaine2){
+			/*
+			 * Données: chaine1 : String
+			 * 					chaine2 : String
+			 * Résultat: Retourne une chaine de caractères. On concaténe les deux String en ajoutant une virgule entre eux.
+			 */
 			var virgule= ",";
 			return chaine1+virgule+chaine2;
 		}
 
 		function suivant(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Envoie à la prochaine page les données choisies par l'utilisateur dans le questionnaire. En se souvenant des anciennes valeurs déjà envoyés.
+			 */
 			choix1= ajoutVirgule(tab1,res1);
 			choix2= ajoutVirgule(tab2,res2);
 			choix3= ajoutVirgule(tab3,res3);
@@ -78,6 +89,13 @@
 		}
 
 		function precedent(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Renvoie la page précédente. C'est-à-dire que les informations précédemment envoyés sont oubliés et on affiche l'ancien groupe de questions.
+			 */
 			var pos = tab1.lastIndexOf(',');
 			choix1= tab1.slice(0,pos);
 			pos = tab2.lastIndexOf(',');
@@ -89,6 +107,13 @@
 		}
 
 		function resultat(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Envoie à la page de résultat les données choisies par l'utilisateur depuis le début du questionnaire.
+			 */
 			choix1= ajoutVirgule(tab1,res1);
 			choix2= ajoutVirgule(tab2,res2);
 			choix3= ajoutVirgule(tab3,res3);
