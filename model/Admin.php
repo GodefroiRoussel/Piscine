@@ -11,7 +11,7 @@ function getmdp($IdAdmin){
 	$req->execute(array($idEleve));
 	$mdp=$req->fetch();
 
-	return $mdp;
+	return $mdp[0];
 
 
 }

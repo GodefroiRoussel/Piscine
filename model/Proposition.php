@@ -12,7 +12,7 @@ function getNumProposition($proposition){
     $req = execute(array($proposition));
     $num=$req->fetch();
 
-	return $num;
+	return $num[0];
 
 }
 
@@ -40,7 +40,7 @@ function getContenuProposition($idProposition){
     $req->execute(array($idProposition));
     $contenu=$req->fetch();
 
-    return $contenu;
+    return $contenu[0];
 
 }
 

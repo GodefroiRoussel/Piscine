@@ -11,7 +11,7 @@ function getCode($annee,$idDep){
 	$req->execute(array($annee,$idDep));
 	$clef=$req->fetch();
 
-	return $clef;
+	return $clef[0];
 
 
 
@@ -25,7 +25,7 @@ function getNomDepartement($codePromo){
 	$req->execute(array($codepromo));
 	$departement=$req->fetch();
 
-	return $departement;
+	return $departement[0];
 }
 
 function getmoyResultat($codePromo){
