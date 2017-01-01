@@ -44,7 +44,7 @@
                 }
             }
             else{
-                echo ("ERREUR : il faut remplir tous les champs ! Login, mot de passe et le code de ta clefPromo");
+                echo ("ERREUR : il faut remplir tous les champs ! Login et mot de passe ");
             }
     }
     else {

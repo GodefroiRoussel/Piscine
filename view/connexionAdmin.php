@@ -14,7 +14,7 @@
 				</p>
 				<p>
 					<em>Mot de passe : </em>
-					<input type="text" name="password" />
+					<input type="text" name="passwd" />
 				</p>
 				<p>
 					<input type="submit" value="Connexion" />
