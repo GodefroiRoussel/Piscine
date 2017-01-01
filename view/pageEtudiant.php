@@ -13,17 +13,17 @@
 			if($premierTestBool){ //vrai s'il n'a pas encore passé le test
 		?>
 		<div>
-			<a href="../Formulaire/formulaire2.php" class="btn btn-info">Passer le vrai Test</a>
+			<a href="../controller/formulaire.controller.php" class="btn btn-info">Passer le vrai Test</a>
 		</div>
 		<?php }
 			else{ //s'il a déjà passé le test
 			?>
 		<div>
-			<a href="resultat.controller.php" class="btn btn-info">Consulter son résultat</a>
+			<a href="../controller/resultat.controller.php" class="btn btn-info">Consulter son résultat</a>
 		</div>
 		<br/> 
 		<div>
-			<a href="../view/TestEssai.php" class="btn btn-info">Faire un essai</a>
+			<a href="../controller/formulaire.controller.php" class="btn btn-info">Faire un essai</a>
 		</div>
 		<?php }
 			?>
