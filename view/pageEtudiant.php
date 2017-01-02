@@ -5,11 +5,16 @@
 		<title>Test de Hollande</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
+
 	<hearder>
 		<p> Bienvenue <?php echo $prenom." ".$nom; ?></p>
+		<div id="connexion">
+			<?php include("buttonInscription.php"); ?>
+		</div>
 	</hearder>
+
 	<body>
-		<?php 
+		<?php
 			if($premierTestBool){ //vrai s'il n'a pas encore passé le test
 		?>
 		<div>
@@ -21,7 +26,7 @@
 		<div>
 			<a href="../controller/resultat.controller.php" class="btn btn-info">Consulter son résultat</a>
 		</div>
-		<br/> 
+		<br/>
 		<div>
 			<a href="../controller/formulaire.controller.php" class="btn btn-info">Faire un essai</a>
 		</div>
