@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Passe par un controller avant l'accès aux fonctions sinon n'importe qui peut ajouter un admin'-->
 <html>
 	<head>
 		<meta charset="utf-8"/>
@@ -6,35 +7,42 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<header>
-		<p> Bienvenue</p>
+		<p> Bienvenue <?php
+			$decomposer=explode("@",$email);
+			echo $decomposer[0]; ?></p>
 	</header>
 	<body>
 		<div>
-			<a href="ajoutAdmin.php" class="btn btn-info">Ajouter un admin</a>
+			<a href="../controller/voirResultat..controllerphp" class="btn btn-info">Voir résultat d'une promo</a>
 		</div>
 		<br/>
 		<div>
-			<a href="modifierAdmin.php" class="btn btn-info">Modifier un admin</a>
+			<a href="../controller/reinitialiserTestEtudiant.controller.php" class="btn btn-info">Réinitialiser le vrai test d'un étudiant</a>
 		</div>
 		<br/>
 		<div>
-			<a href="statistiques.php" class="btn btn-info">Consulter les statistiques</a>
+			<a href="../controller/ajoutAdmin.controller.php" class="btn btn-info">Ajouter un administrateur</a>
 		</div>
 		<br/>
 		<div>
-			<a href="ajoutEleve.php" class="btn btn-info">Ajouter un élève</a>
+			<a href="../controller/modifierMdp.controller.php" class="btn btn-info">Modifier son mot de passe</a>
 		</div>
 		<br/>
 		<div>
-			<a href="reinitialiserResultat.php" class="btn btn-info">Réinitialiser des résultats</a>
+			<a href="../controller/ajoutEtudiant.controller.php" class="btn btn-info">Ajouter un étudiant</a>
+		</div>
+		<br/>
+		<br/>
+		<div>
+			<a href="../controller/ajoutPromo.controller.php" class="btn btn-info">Ajouter une promotion</a>
 		</div>
 		<br/>
 		<div>
-			<a href="modifierPromo.php" class="btn btn-info">Modifier une promo</a>
+			<a href="../controller/supprimerPromo.controller.php" class="btn btn-info">Supprimer une promotion</a>
 		</div>
 		<br/>
 		<div>
-			<a href="deconnexion.php" class="btn btn-info">Déconnexion</a>
+			<a href="../controller/definirCodePromo.controller.php" class="btn btn-info">Définir le code d'une promotion</a>
 		</div>
 	</body>
 </html>

@@ -11,9 +11,21 @@ function getmdp($IdAdmin){
 	$req->execute(array($idEleve));
 	$mdp=$req->fetch();
 
-	return $mdp;
+	return $mdp[0];
 
 
+}
+
+function getMail($IdAdmin){
+	//donnée: l'admin concerné
+	//résultat: l'id de l'admin concerné
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT email FROM Admin WHERE idAdmin=?');
+	$req->execute(array($idEleve));
+	$email=$req->fetch();
+
+	return $email[0];
 }
 
 function existeAdmin($email,$password){
@@ -23,7 +35,7 @@ function existeAdmin($email,$password){
 		$req->execute(array($email,$password));
 		$id=$req->fetch();
 
-		return $id;
+		return $id[0];
 }
 
 function creerAdmin($nomdeCompte,$mdp){

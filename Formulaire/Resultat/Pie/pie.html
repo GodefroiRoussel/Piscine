@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Pie Chart</title>
+    <script src="../Chart.bundle.js"></script>
+    <script src="../utils.js"></script>
+</head>
+
+<body bgcolor=#3e94ec>
+	<center><h1>Résultat promo nompromo</h1>
+    <div id="canvas-holder" style="width:40%">
+        <canvas id="chart-area" />
+    </div>
+    
+	</center>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+	Chart.defaults.global.defaultFontColor = '#000000';
+	Chart.defaults.global.defaultFontSize= 20;
+    var config = {
+        type: 'pie',
+		pointDot: false,
+		pointLabelFontSize: 40,
+		 
+        data: {
+            datasets: [{
+                data: [
+                    10,
+                    20,
+                    15,
+                    30,
+                    10,
+					15
+                ],
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    "#8D47F5",
+                    window.chartColors.green,
+                    "#01BFF5",
+					"#F0F501",
+                ],
+				hoverBackgroundColor: [
+                "#36436F",
+                "#36436F",
+                "#36436F",
+				"#36436F",
+                "#36436F",
+                "#36436F"
+            ],
+                label: 'IG2019'
+            }],
+            labels: [
+                "Realiste",
+                "Investigatif",
+                "Artistique",
+                "Social",
+                "Entrepreneur",
+				"Conventionnel"
+            ]
+        },
+        options: {
+            responsive: true
+        },
+		animation:{
+			animateRotate:true
+		}
+		
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+
+   
+    </script>
+</body>
+
+</html>

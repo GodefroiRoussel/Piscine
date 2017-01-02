@@ -11,7 +11,7 @@ function getCode($annee,$idDep){
 	$req->execute(array($annee,$idDep));
 	$clef=$req->fetch();
 
-	return $clef;
+	return $clef[0];
 
 
 
@@ -25,7 +25,7 @@ function getNomDepartement($codePromo){
 	$req->execute(array($codepromo));
 	$departement=$req->fetch();
 
-	return $departement;
+	return $departement[0];
 }
 
 function getmoyResultat($codePromo){
@@ -36,8 +36,8 @@ function getmoyResultat($codePromo){
 
 
 	$req=$pdo->prepare('SELECT AVG(score) FROM correspondre, etudiant e WHERE e.id=idEtudiant AND e.codePromo=? GROUP BY idFiche');
-	$req->execute(array($promo));
-	$moyResultat=$req->fetchAll();}
+	$req->execute(array($codePromo));
+	$moyResultat=$req->fetchAll();
 
 	return $moyResultat;
 
@@ -78,7 +78,7 @@ function ajoutEtudiant($codepromo,$mail){
 
 	global $pdo;
 	 $req=$pdo->prepare('INSERT INTO etudiant (email,premierTest,codePromo) VALUES (?,True,?)');
-	 $req=execute(array($mail,$codepromo);
+	 $req=execute(array($mail,$codepromo));
 
 
 	}

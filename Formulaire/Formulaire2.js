@@ -1,109 +1,143 @@
 
-		var tabRes1 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 1
-		var tabRes2 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 2
-		var tabRes3 = [0,0,0,0,0,0] // Ce tableau va stocker l'id de la proposition du choix numéro 3
-		var tabRes = [tabRes1,tabRes2,tabRes3];
-		var new_tab_js = tableau_js.join(";");
-		document.location.href = 'newpage.php?tab_js='+new_tab_js;
-
-
-		var r=0;
 		var i=0;
-		var a=0;
-		var s=0;
-		var e=0;
-		var c=0;
-		function remove1(lettre, idProp, grp) {
-			if(document.getElementById(letre+1).checked){
-				tabRes1[grp]=idProp;
+		var res1 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 1
+		var res2 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 2
+		var res3 = 0; // Cette variable va stocker l'id de la proposition du choix numéro 3
+
+
+		function remove1(lettre, idProp) {
+		/*
+		 * Données: lettre : String
+		 * 					idProp : int
+		 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+		 *			la proposition cochée si celle ci se trouve sur la même ligne
+		 */
+			if(document.getElementById(lettre+1).checked){
+				res1=idProp;
 				if(document.getElementById(lettre+2).checked){
 					document.getElementById(lettre+2).checked = false;
-					tabRes2[grp]=0;
+					res2=0;
 
 				}else if(document.getElementById(lettre+3).checked){
 					document.getElementById(lettre+3).checked = false;
-					tabRes3[grp]=0;
+					res3=0;
 				}
-
-
 			}
 		}
 
-		function remove2(lettre, idProp, grp) {
+		function remove2(lettre, idProp) {
+			/*
+			 * Données: lettre : String
+			 * 					idProp : int
+			 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+			 *			la proposition cochée si celle ci se trouve sur la même ligne
+			 */
 			if(document.getElementById(lettre+2).checked){
-				tabRes2[grp]=idProp;
+				res2=idProp;
 				if(document.getElementById(lettre+1).checked){
 					document.getElementById(lettre+1).checked = false;
-					tabRes1[grp]=0;
+					res1=0;
 				}else if(document.getElementById(lettre+3).checked){
 					document.getElementById(lettre+3).checked = false;
-					tabRes3[grp]=0;
+					res3=0;
 				}
-
-
 			}
 		}
 
-		function remove3(lettre, idProp, grp) {
+		function remove3(lettre, idProp) {
+			/*
+			 * Données: lettre : String
+			 * 					idProp : int
+			 * But: Cette fonction mémorise quelle proposition a été cochée et décoche/réinitialise
+			 *			la proposition cochée si celle ci se trouve sur la même ligne
+			 */
 			if(document.getElementById(lettre+3).checked){
-				tabRes3[grp]=idProp;
+				res3=idProp;
 				if(document.getElementById(lettre+1).checked){
 					document.getElementById(lettre+1).checked = false;
-					tabRes1[grp]=0;
-
+					res1=0;
 				}else if(document.getElementById(lettre+2).checked){
 					document.getElementById(lettre+2).checked = false;
-					tabRes2[grp]=0;
+					res2=0;
 				}//end elseif
 			}//endif
 		}//end remove3
 
+		function ajoutVirgule(chaine1,chaine2){
+			/*
+			 * Données: chaine1 : String
+			 * 					chaine2 : String
+			 * Résultat: Retourne une chaine de caractères. On concaténe les deux String en ajoutant une virgule entre eux.
+			 */
+			var virgule= ",";
+			return chaine1+virgule+chaine2;
+		}
 
-		function affichage(){
-			alert("Coucou je veux passer au suivant");
+		function suivant(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Envoie à la prochaine page les données choisies par l'utilisateur dans le questionnaire. En se souvenant des anciennes valeurs déjà envoyés.
+			 */
+			if (calcul()){
+ 				alert("Il manque des réponses. Rappel: Une case cochée par colonne, 3 réponses par groupe");
+ 			}
+ 			else{
+			choix1= ajoutVirgule(tab1,res1);
+			choix2= ajoutVirgule(tab2,res2);
+			choix3= ajoutVirgule(tab3,res3);
+			var groupe=grp+1;
+			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
+			}
+		}
+
+		function precedent(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Renvoie la page précédente. C'est-à-dire que les informations précédemment envoyés sont oubliés et on affiche l'ancien groupe de questions.
+			 */
+			var pos = tab1.lastIndexOf(',');
+			choix1= tab1.slice(0,pos);
+			pos = tab2.lastIndexOf(',');
+			choix2= tab2.slice(0,pos);
+			pos = tab3.lastIndexOf(',');
+			choix3= tab3.slice(0,pos);
+			var groupe=grp-1;
+			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
+		}
+
+		function resultat(grp,tab1,tab2,tab3){
+			/*
+			 * Données: grp : int
+			 * 					tab1 : String
+			 * 					tab2 : String
+			 * 					tab3 : String
+			 * But: Envoie à la page de résultat les données choisies par l'utilisateur depuis le début du questionnaire.
+			 */
+			if (calcul()){
+				alert("Il manque des réponses. Rappel: Une case cochée par colonne, 3 réponses par groupe");
+			}
+			else{
+				choix1= ajoutVirgule(tab1,res1);
+				choix2= ajoutVirgule(tab2,res2);
+				choix3= ajoutVirgule(tab3,res3);
+				document.location.href = "http://localhost/Piscine/controller/resultat.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3;
+			}
 		}
 
 
-		/*function calcul(){
+		function calcul(){
 
-			for (var j = 0; j < 9; j++){
-				if(tabval[j]==0){
-					alert("Il manque des réponses.Rappel: Une case cochée par colonne, 3 réponses par groupe");
-					return false;
-				}
-				else if(tabtype[j]=='R'){
-					r=r+tabval[j];
-				}
-				else if(tabtype[j]=='I'){
-					i=i+tabval[j];
-				}
-				else if(tabtype[j]=='A'){
-					a=a+tabval[j];
-				}
-				else if(tabtype[j]=='S'){
-					s=s+tabval[j];
-				}
-				else if(tabtype[j]=='E'){
-					e=e+tabval[j];
-				}
-				else{
-					c=c+tabval[j];
-				}
+				return res1==0 || res2==0 || res3==0;
+
 			}
-			document.getElementById("MaDiv").innerHTML = 'r='+r;
-			document.getElementById("MaDiv2").innerHTML = 'i='+i;
-			document.getElementById("MaDiv3").innerHTML = 'a='+a;
-			document.getElementById("MaDiv4").innerHTML = 's='+s;
-			document.getElementById("MaDiv5").innerHTML = 'e='+e;
-			document.getElementById("MaDiv6").innerHTML = 'c='+c;
-			console.log(r,i,a,s,e,c);
-			/* r=0;
-			i=0;
-			a=0;
-			s=0;
-			e=0;
-			c=0;
 
+/*
 			window.location.href="file:///C:/Users/Chlo%C3%A9/Desktop/Formulaire/Resultat/GraphiqueEtoile/ProjetPiscine.html";
 		}*/
 
@@ -112,7 +146,7 @@ var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
 
-    var color = Chart.helpers.color;
+    /*var color = Chart.helpers.color;
     var monRadar = {
         type: 'radar',
         data: {
@@ -165,4 +199,4 @@ var randomScalingFactor = function() {
 
     window.onload = function() {
         window.myRadar = new Chart(document.getElementById("canvas"), monRadar);
-    };
+    };*/

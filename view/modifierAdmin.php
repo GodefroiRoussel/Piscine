@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Passe par un controller avant la confirmation de la modif-->
 <html>
 	<head>
 		<meta charset="utf-8"/>

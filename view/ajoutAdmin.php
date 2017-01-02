@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Passe par un controller avant de confirmer l'ajout -->
 <html>
 	<head>
 		<meta charset="utf-8"/>
@@ -22,4 +23,3 @@
 			</form>
 		</section>
 	</body>
-</html>

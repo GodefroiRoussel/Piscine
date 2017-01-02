@@ -14,6 +14,18 @@ function getMail($idEtudiant){
 	return $mail[0];
 }
 
+function getCodePromo($idEtudiant){
+	//donnée : id de l'étudiant (entier)
+	//resultat : mail de l'étudiant (texte)
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT codePromo FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$codePromo=$req->fetch();
+
+	return $codePromo[0];
+}
+
 function existeEtudiant($email,$password,$promo){
 		global $pdo;
 
@@ -29,7 +41,7 @@ function getAllResultat($idetudiant){
 	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT idFiche, score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
+	$req=$pdo->prepare('SELECT score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
 	$req->execute(array($idetudiant));
 	$resultat=$req->fetchAll();
 
@@ -47,13 +59,25 @@ function premierTest($idetudiant){
 	$req->execute(array($idetudiant));
 	$premierTest=$req->fetch();
 
-	return $premierTest;
+	return $premierTest[0];
 
+}
+
+function passerTest($idEtudiant){
+	//donnée : id de l'élève
+	//résultat : Passe le premierTest a false pour dire : Ce n'est pas le premier test de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('UPDATE etudiant SET premierTest=false WHERE id=?');
+	$req->execute(array($idEtudiant));
+
+	$etudiant=$req->fetch();
+
+	return $etudiant;
 }
 
 function resetpremierTest($idetudiant){
 	//donnée : id de l'étudiant
-	//résultat: réinitialise le premierTest de l'élève à false
+	//résultat: réinitialise le premierTest de l'élève à true
 
 	global $pdo;
 	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');
@@ -64,12 +88,19 @@ function resetpremierTest($idetudiant){
 	return $etudiant;
 }
 
+function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
+
+	global $pdo;
+	$req=$pdo->prepare('INSERT INTO correspondre(idEtudiant,idFiche,score) VALUES (?,?,?)');
+	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
+}
+
 /* Normalement n'a pas besoin de constructeur ici, dans promo cela est suffisant"
 function creerEtudiant($mail,$codePromo){
 
 	global $pdo;
 	 $req=$pdo->prepare('INSERT INTO etudiant(email,premierTest,codePromo) VALUES (?,True,?)');
-	 $req=execute(array($mail,$codePromo);
+	 $req=execute(array($mail,$codePromo));
 
 }
 */
