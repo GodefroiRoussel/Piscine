@@ -16,6 +16,18 @@ function getmdp($IdAdmin){
 
 }
 
+function getMail($IdAdmin){
+	//donnée: l'admin concerné
+	//résultat: l'id de l'admin concerné
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT email FROM Admin WHERE idAdmin=?');
+	$req->execute(array($idEleve));
+	$email=$req->fetch();
+
+	return $email[0];
+}
+
 function existeAdmin($email,$password){
 		global $pdo;
 
