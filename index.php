@@ -6,6 +6,12 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+
+		<header>
+			<div id="connexion">
+				<?php include("view/buttonInscription.php"); ?>
+			</div>
+		</header>
 		<?php
 
 				//Si un utilisateur n'est pas connecté

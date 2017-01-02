@@ -6,6 +6,12 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<header>
+			<div id="connexion">
+				<?php include("buttonInscription.php"); ?>
+			</div>
+		</header>
+
 		<?php
 			  require_once('../vendor/autoload.php');
 				require_once('../model/token.php');

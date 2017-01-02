@@ -6,6 +6,12 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<header>
+			<div id="connexion">
+				<?php include("buttonInscription.php"); ?>
+			</div>
+		</header>
+
 		<section>
 			<form action="../controller/loginAdmin.controller.php" method="post">
 				<p>
@@ -21,5 +27,6 @@
 				</p>
 			</form>
 		</section>
+
 	</body>
 </html>

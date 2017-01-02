@@ -8,6 +8,13 @@
 	</head>
 
 	<body>
+
+		<header>
+			<div id="connexion">
+				<?php include("buttonInscription.php"); ?>
+			</div>
+		</header>
+
 		<section>
 			<form action="../controller/loginEtudiant.controller.php" method="post">
 				<p>
@@ -28,6 +35,7 @@
 				</p>
 			</form>
 		</section>
+
 	</body>
 
 </html>

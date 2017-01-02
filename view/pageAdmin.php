@@ -10,7 +10,11 @@
 		<p> Bienvenue <?php
 			$decomposer=explode("@",$email);
 			echo $decomposer[0]; ?></p>
+			<div id="connexion">
+				<?php include("buttonInscription.php"); ?>
+			</div>
 	</header>
+
 	<body>
 		<div>
 			<a href="../controller/voirResultat..controllerphp" class="btn btn-info">Voir résultat d'une promo</a>

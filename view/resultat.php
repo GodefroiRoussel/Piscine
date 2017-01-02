@@ -17,6 +17,13 @@
 
   <!-- Couleur de fond de la page, beige-->
   <body bgcolor=#FAF2E2>
+
+    <header>
+			<div id="connexion">
+				<?php include("buttonInscription.php"); ?>
+			</div>
+		</header>
+
     <input type="hidden" id="rEleve" value=<?php echo $result[0] ?> />
     <input type="hidden" id="rPromo" value=<?php echo $resultPromo[0][0] ?> />
     <input type="hidden" id="iEleve" value=<?php echo $result[1] ?> />
