@@ -26,23 +26,28 @@
         if($decoded_array['role']==="etudiant"){
           $id=$decoded_array['id'];
 
-          //Si les variables res1,res2 et res3 ont été envoyées par un ancien formulaire et ne sont pas nulles. On remplace les string initialisés précédemment.
-          if (isset($_GET['res1']) && isset($_GET['res2']) && isset($_GET['res3'])){
-            $array_choice1=explode(",",$_GET['res1']); //Contient tous les id qui ont été choisis en premier. array_choice1[0]==0
-            $array_choice2=explode(",",$_GET['res2']); //Contient tous les id qui ont été choisis en premier. array_choice2[0]==0
-            $array_choice3=explode(",",$_GET['res3']); //Contient tous les id qui ont été choisis en premier. array_choice3[0]==0
+          //On vérifie que les derniers choix ont bien été envoyés
+          if (isset($_POST['rep1']) && isset($_POST['rep2']) && isset($_POST['rep3'])){
+            $array_choice1=explode(",",$_POST['choix1']); //Contient tous les id qui ont été choisis en premier.
+            $array_choice2=explode(",",$_POST['choix2']); //Contient tous les id qui ont été choisis en premier.
+            $array_choice3=explode(",",$_POST['choix3']); //Contient tous les id qui ont été choisis en premier.
 
-            $array_choice=[$array_choice1,$array_choice2,$array_choice3]; // Tableau regroupant tous les tableaux pour éviter une duplication de code du calcul RIASEC
-            $result=[0,0,0,0,0,0]; // On stocke dans ce tableau les différents score de chaque fiche.
+            // On ajoute le dernier choix dans les tableaux correspondants.
+            $array_choice1[11] = $_POST['rep1'];
+            $array_choice2[11] = $_POST['rep2'];
+            $array_choice3[11] = $_POST['rep3'];
+
+            // Tableau regroupant tous les tableaux pour éviter une duplication de code du calcul RIASEC
+            $array_choice=[$array_choice1,$array_choice2,$array_choice3];
+            $result=[0,0,0,0,0,0]; // On stocke dans ce tableau les différents score de chaque fiche (initialisée à 0).
 
             //Double boucle pour parcourir tout le tableau $array_choice et ainsi permettre le calcul des résultats RIASEC
             for($j=0;$j<3;$j++){
               // Si j==0 c'est la proposition la plus importante donc elle vaut 3 points. Si j==1, la proposition vaut 2 points et si j==2, la proposition vaut 1 point.
               $val= 3 - $j;
 
-              for($i=1;$i<=12;$i++){
+              for($i=0;$i<=11;$i++){
                 // On récupère l'id de la Fiche pour savoir à quelle case du tableau on va devoir ajouter les points
-                //TODO: Si l'url rewritting n'est pas réussi, faire la vérification que les idées concordent à la fois au groupe (c'est-à-dire par rapport à j) et à un nombre inférieur à 72 et que le chiffre ne soit pas dans une autre case du tableau
                 $idFiche=getFicheAssociee($array_choice[$j][$i]);
                 $result[$idFiche-1]= $result[$idFiche-1] + $val;
               }
