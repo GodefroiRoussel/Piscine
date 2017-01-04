@@ -16,13 +16,13 @@ function getmdp($IdAdmin){
 
 }
 
-function getMail($IdAdmin){
+function getMail($idAdmin){
 	//donnée: l'admin concerné
 	//résultat: l'id de l'admin concerné
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT email FROM Admin WHERE idAdmin=?');
-	$req->execute(array($idEleve));
+	$req=$pdo->prepare('SELECT email FROM admin WHERE idAdmin=?');
+	$req->execute(array($idAdmin));
 	$email=$req->fetch();
 
 	return $email[0];
@@ -43,8 +43,8 @@ function creerAdmin($nomdeCompte,$mdp){
 	//résultat : ajout de l'admin dans la base de données
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO Admin(email,mdp) VALUE (?,?)');
-	if(!$req->execute(array($nomdeCompte,$mdp)){
+	$req=$pdo->prepare('INSERT INTO Admin(email,password) VALUE (?,?)');
+	if(!$req->execute(array($nomdeCompte,$mdp))){
 		return False;
 		}
 	else{

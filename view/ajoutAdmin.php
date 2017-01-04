@@ -15,9 +15,9 @@
 			</div>
 	</header>
 	<body>
-		<?php 
-			if(isset($ajoutReussi)){
-				echo "Ajout de l'administrateur ",$POST["email"]," réussit";
+		<?php
+			if(isset($ajoutReussi) && $ajoutReussi){
+				echo "Ajout de l'administrateur ",$_POST["email"]," réussit";
 			}
 		?>
 		<section>
@@ -28,7 +28,7 @@
 				</p>
 				<p>
 					<em>Mot de passe : </em>
-					<input type="text" name="passwd" id="passwd"/>
+					<input type="password" name="passwd" id="passwd"/>
 				</p>
 				<p>
 					<input type="submit" value="Ajouter"/>

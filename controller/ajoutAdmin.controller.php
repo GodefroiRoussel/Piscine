@@ -1,7 +1,9 @@
 <?php
   require_once('../vendor/autoload.php');
+  require_once('../model/connexionBD.php');
   require_once('../model/token.php');
   require_once('../model/admin.php');
+  use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
@@ -31,11 +33,11 @@
         		}
         		else{
  					    echo "ERREUR : l'email correspond à un administrateur déjà enregistré";
- 					    include('../view/AjouterAdmin.php');
+ 					    include('../view/ajoutAdmin.php');
           	}
           }
       		else{
-      			include('../view/AjouterAdmin.php');
+      			include('../view/ajoutAdmin.php');
       		}
         }
   	    else{
