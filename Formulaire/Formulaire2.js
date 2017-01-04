@@ -79,28 +79,7 @@
 			}
 
 		}
-
-		// onsubmit:function()
-
-		function precedent(grp){
-			/*
-			 * Données: grp : int
-			 * 					tab1 : String
-			 * 					tab2 : String
-			 * 					tab3 : String
-			 * But: Renvoie la page précédente. C'est-à-dire que les informations précédemment envoyés sont oubliés et on affiche l'ancien groupe de questions.
-			 */
-			var pos = tab1.lastIndexOf(',');
-			choix1= tab1.slice(0,pos);
-			pos = tab2.lastIndexOf(',');
-			choix2= tab2.slice(0,pos);
-			pos = tab3.lastIndexOf(',');
-			choix3= tab3.slice(0,pos);
-			var groupe=grp-1;
-			document.location.href = "http://localhost/Piscine/controller/formulaire.controller.php?res1="+choix1+"&res2="+choix2+"&res3="+choix3+"&groupe="+groupe;
-		}
-
-
+		
 		function allCasesCochees(){
 
 				return res1!=0 && res2!=0 && res3!=0;
