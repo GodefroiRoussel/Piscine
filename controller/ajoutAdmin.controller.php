@@ -49,7 +49,7 @@
       else {
     		echo "Mauvais token, veuillez vous reconnecter<br/>";
         sleep(2);
-    		header('../controller/connexionAdmin.controller.php');
+    		header('Location:../controller/connexionAdmin.controller.php');
       }
     }
 ?>
