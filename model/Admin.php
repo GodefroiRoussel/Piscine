@@ -7,7 +7,7 @@ function getmdp($IdAdmin){
 	//résultat: l'id de l'admin concerné
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT mdp FROM Admin WHERE idAdmin=?');
+	$req=$pdo->prepare('SELECT mdp FROM Admin WHERE id=?');
 	$req->execute(array($idEleve));
 	$mdp=$req->fetch();
 
@@ -21,7 +21,7 @@ function getMail($idAdmin){
 	//résultat: l'id de l'admin concerné
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT email FROM admin WHERE idAdmin=?');
+	$req=$pdo->prepare('SELECT email FROM admin WHERE id=?');
 	$req->execute(array($idAdmin));
 	$email=$req->fetch();
 
@@ -60,7 +60,7 @@ function modifPassword($idAdmin,$newmdp){
 	$req=$pdo->prepare('UPDATE Admin SET password= :newMdp WHERE id=:idAd');
   	if(!$req->execute(array(
 		'newMdp' => $newmdp,
-		'idAd' => $idAdamin
+		'idAd' => $idAdmin
 		))){
   		return False;
   	}
@@ -74,12 +74,9 @@ function modifMail($idAdmin,$newMail){
 	//résultat : modifie l'email actuel avec le nouveau mail
 	global $pdo;
 	$req=$pdo->prepare('UPDATE Admin SET email= :newMail WHERE id=:idAd');
-  	if(!$req->execute(array($nomdeCompte,$mdp))){
-		return False;
-		}
   	if(!$req->execute(array(
 			'newMail' => $newMail,
-			'idAd' => $idAdamin
+			'idAd' => $idAdmin
 			))){
   		return False;
   	}

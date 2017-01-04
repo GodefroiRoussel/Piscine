@@ -21,14 +21,14 @@
 			}
 		?>
 		<section>
-			<form action="ConfirmationModif.php" method="post" onsubmit="return informationsCorrecte();">
+			<form action="modifierCompte.controller.php" method="post" onsubmit="return informationsCorrecte();">
 				<p>
 					<em>Adresse mail : </em>
-					<input type="email" name="email" value=<?php echo $email ?>/>
+					<input type="email" name="email" id="email" value="<?php echo $email ?>"/>
 				</p>
 				<p>
 					<em>Mot de passe : </em>
-					<input type="password" name="passwd"/>
+					<input type="password" id="passwd" name="passwd"/>
 				</p>
 				<p>
 				<p>
