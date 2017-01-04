@@ -28,7 +28,7 @@
 		</div>
 		<br/>
 		<div>
-			<a href="../controller/modifierMdp.controller.php" class="btn btn-info">Modifier son mot de passe</a>
+			<a href="../controller/modifierCompte.controller.php" class="btn btn-info">Modifier ses identifiants</a>
 		</div>
 	</body>
 </html>

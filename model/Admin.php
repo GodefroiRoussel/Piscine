@@ -53,21 +53,39 @@ function creerAdmin($nomdeCompte,$mdp){
 }
 
 
-function modifMDP($idAdmin,$newmdp){
+function modifPassword($idAdmin,$newmdp){
 	//donnée : id de l'admin qui veut modifier son mdp et nouveau mdp
-	//résultat : modifie le mot de passe avctuel avec le nouveau mdp
+	//résultat : modifie le mot de passe actuel avec le nouveau mdp
 	global $pdo;
-	$req=$pdo->prepare('UPDATE Admin SET mdp= :newMdp WHERE idAdmin=:idAd');
-  $req->execute(array(
+	$req=$pdo->prepare('UPDATE Admin SET password= :newMdp WHERE id=:idAd');
+  	if(!$req->execute(array(
 		'newMdp' => $newmdp,
 		'idAd' => $idAdamin
-		));
-  $admin= $req->fetch();
+		))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
+}
 
-
-  return $admin;
-
-
+function modifMail($idAdmin,$newMail){
+	//données : id de l'admin qui veut modifier son mail et nouveau mail
+	//résultat : modifie l'email actuel avec le nouveau mail
+	global $pdo;
+	$req=$pdo->prepare('UPDATE Admin SET email= :newMail WHERE id=:idAd');
+  	if(!$req->execute(array($nomdeCompte,$mdp))){
+		return False;
+		}
+  	if(!$req->execute(array(
+			'newMail' => $newMail,
+			'idAd' => $idAdamin
+			))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
 }
 
 ?>
