@@ -26,8 +26,9 @@
 				?>
 				<form method="post" action="resultat.controller.php" class="form" onsubmit="return suivant();">
 					<?php
-					}
+			}
 				?>
+				
   		<table class="table-fill">
   			<thead>
   				<tr>
@@ -91,13 +92,6 @@
 			<input type="hidden" value="<?php echo implode(",",$choix3) ?>" name="choix3" />
 
       <?php
-          // Si i est supérieur à 1 on peut revenir en arrière
-          if ($i>1){
-            ?>
-            <input type="button" value="Précédent" onclick="precedent(<?php echo $i?>');" />
-
-          <?php
-          }
           // Si i est inférieur à 12 on continue le questionnaire
           if ($i<12){
             ?>

@@ -1,7 +1,7 @@
 <?php
 
-        require_once('/vendor/autoload.php');
-        require_once('/model/token.php');
+        require_once('../vendor/autoload.php');
+        require_once('../model/token.php');
         use \Firebase\JWT\JWT;
 
 
@@ -16,11 +16,11 @@
         if (verificationToken($decoded_array)){
           //Si c'est un étudiant on le redirige sur la page pageEtudiant.php
           if ($decoded_array["role"]==="etudiant"){
-            header('Location:controller/pageEtudiant.controller.php');
+            header('Location:pageEtudiant.controller.php');
           }//endif
           //Sinon on le redirige sur la page pageAdmin.php
           else{
-            header('Location:view/pageAdmin.php');
+            header('Location:pageAdmin.controller.php');
           }//endelse
 
         }//endif

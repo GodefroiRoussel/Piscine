@@ -35,7 +35,7 @@
 
 
 
-          // Si on a déjà les anciens choix en mémoire on les déserialize (donc on les remet sous forme de tableau) sauvegarde sinon on initialise un tableau de taille 12
+          // Si on a déjà les anciens choix en "mémoire" on les remet sous forme de tableau (en explodant la chaîne de caractères) sinon on initialise un tableau de taille 12
           // comportant que des 0 (signification qu'il n'a pas répondu à la question encore)
           if (isset($_POST['choix1']) && isset($_POST['choix2']) && isset($_POST['choix3'])){
             $choix1=explode(",",$_POST['choix1']);

@@ -43,7 +43,7 @@
   	    else{
         		echo "On vous redirige... <br/>";
             sleep(2);
-        		header('../index.php');
+        		header('Location:../controller/redirection.php');
     		}
 		  }
       else {

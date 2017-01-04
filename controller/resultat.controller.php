@@ -26,7 +26,7 @@
         if($decoded_array['role']==="etudiant"){
           $id=$decoded_array['id'];
 
-          //On vérifie que les derniers choix ont bien été envoyés
+          //On vérifie que les derniers choix ont bien été envoyés (ce qui correspond au fait qu'il vient de passer un test)
           if (isset($_POST['rep1']) && isset($_POST['rep2']) && isset($_POST['rep3'])){
             $array_choice1=explode(",",$_POST['choix1']); //Contient tous les id qui ont été choisis en premier.
             $array_choice2=explode(",",$_POST['choix2']); //Contient tous les id qui ont été choisis en premier.
@@ -37,7 +37,7 @@
             $array_choice2[11] = $_POST['rep2'];
             $array_choice3[11] = $_POST['rep3'];
 
-            // Tableau regroupant tous les tableaux pour éviter une duplication de code du calcul RIASEC
+            // Tableau regroupant tous les tableaux
             $array_choice=[$array_choice1,$array_choice2,$array_choice3];
             $result=[0,0,0,0,0,0]; // On stocke dans ce tableau les différents score de chaque fiche (initialisée à 0).
 
@@ -75,6 +75,7 @@
             }
           }
 
+          // On récupère la moyenne de chaque score de la promo de l'élève
           $resultPromo=getmoyResultat(getCodePromo($id));
 
           include('../view/resultat.php');
