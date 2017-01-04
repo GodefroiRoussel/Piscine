@@ -44,9 +44,12 @@ function creerAdmin($nomdeCompte,$mdp){
 
 	global $pdo;
 	$req=$pdo->prepare('INSERT INTO Admin(email,mdp) VALUE (?,?)');
-	$req=array($nomdeCompte,$mdp);
-
-
+	if(!$req->execute(array($nomdeCompte,$mdp)){
+		return False;
+		}
+	else{
+		return True;
+	}
 }
 
 

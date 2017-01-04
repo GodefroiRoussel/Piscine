@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Passe par un controller avant l'accès aux fonctions sinon n'importe qui peut ajouter un admin'-->
 <html>
 	<head>
 		<meta charset="utf-8"/>
@@ -17,11 +16,7 @@
 
 	<body>
 		<div>
-			<a href="../controller/voirResultat..controllerphp" class="btn btn-info">Voir résultat d'une promo</a>
-		</div>
-		<br/>
-		<div>
-			<a href="../controller/reinitialiserTestEtudiant.controller.php" class="btn btn-info">Réinitialiser le vrai test d'un étudiant</a>
+			<a href="../controller/administrerPromo.controllerphp" class="btn btn-info">Administrer les promos</a>
 		</div>
 		<br/>
 		<div>
@@ -29,24 +24,11 @@
 		</div>
 		<br/>
 		<div>
+			<a href="../controller/gererAdmin.controller.php" class="btn btn-info">Gerer les administrateurs</a>
+		</div>
+		<br/>
+		<div>
 			<a href="../controller/modifierMdp.controller.php" class="btn btn-info">Modifier son mot de passe</a>
-		</div>
-		<br/>
-		<div>
-			<a href="../controller/ajoutEtudiant.controller.php" class="btn btn-info">Ajouter un étudiant</a>
-		</div>
-		<br/>
-		<br/>
-		<div>
-			<a href="../controller/ajoutPromo.controller.php" class="btn btn-info">Ajouter une promotion</a>
-		</div>
-		<br/>
-		<div>
-			<a href="../controller/supprimerPromo.controller.php" class="btn btn-info">Supprimer une promotion</a>
-		</div>
-		<br/>
-		<div>
-			<a href="../controller/definirCodePromo.controller.php" class="btn btn-info">Définir le code d'une promotion</a>
 		</div>
 	</body>
 </html>
