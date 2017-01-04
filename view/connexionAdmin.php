@@ -15,17 +15,15 @@
 
 		<section>
 			<form action="../controller/loginAdmin.controller.php" method="post">
-				<p>
-					<em>Adresse mail : </em>
-					<input type="text" name="email"/>
-				</p>
-				<p>
-					<em>Mot de passe : </em>
-					<input type="password" name="passwd" />
-				</p>
-				<p>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input type="text" name="email" placeholder="prenom.nom@etu.umontpellier.fr"/>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input type="password" name="passwd" placeholder="Mot de passe"/>
+				</div>
 					<input type="submit" value="Connexion" />
-				</p>
 			</form>
 		</section>
 

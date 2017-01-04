@@ -22,7 +22,7 @@
       //On vérifie que c'est un token valide
       if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
-          $email=getMail($decoded_array['id']);
+          $email=getMailEtudiant($decoded_array['id']);
           include('../view/pageAdmin.php');
         }
         else{

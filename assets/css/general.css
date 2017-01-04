@@ -1,0 +1,13 @@
+/* Ceci ne servira que pour la page modifierCompte.php */
+
+#actuel{
+  display:none;
+}
+
+#new{
+  display:none;
+}
+
+#confirmer{
+  display:none;
+}

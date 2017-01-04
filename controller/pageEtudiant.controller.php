@@ -22,7 +22,7 @@
       //On vérifie que c'est un token valide
       if (verificationToken($decoded_array)){
         if($decoded_array['role']==="etudiant"){
-          $email=getMail($decoded_array['id']);
+          $email=getMailEtudiant($decoded_array['id']);
           $array=explode(".",$email);
           $prenom=$array[0];
           $array=explode("@",$array[1]);

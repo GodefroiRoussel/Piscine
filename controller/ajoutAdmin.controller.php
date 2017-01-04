@@ -7,6 +7,7 @@
 
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
+  $keyCryptage= "P0lyP1sCinE";
 
    //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
    if(!isset($_COOKIE["token"])){
@@ -22,34 +23,36 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-        	$email=getMail($decoded_array['id']);
+        	$email=getMailAdmin($decoded_array['id']);
       		//Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter un admin
         	if(isset($_POST["email"]) and isset($_POST["passwd"]) and !empty($_POST["email"]) and !empty($_POST["passwd"])){
-        		//On stocke true si creerAdmin() ajoute l'admin à la BDD, false s'il éxiste déjà
-        		$ajoutReussi=creerAdmin($_POST["email"],$_POST["passwd"]);
-		        //Si l'admin a bien été ajouté dans la BDD
-        		if($ajoutReussi){
-        			include('../view/ajoutAdmin.php');
+            // On sécurise contre l'injection sql
+            $email= htmlspecialchars($_POST["email"]);
+            $password= htmlspecialchars($_POST["passwd"]);
+
+            //On crypte le mot de passe avec un "grain de sel"
+            $password = crypt($password,$keyCryptage);
+            //On stocke true si creerAdmin() ajoute l'admin à la BD, false s'il éxiste déjà
+        		$ajoutReussi=creerAdmin($email,$password);
+		        //Si l'admin n'a pas bien été ajouté dans la BD
+        		if(!$ajoutReussi){
+        			echo "ERREUR : l'email correspond à un administrateur déjà enregistré";
         		}
-        		else{
- 					    echo "ERREUR : l'email correspond à un administrateur déjà enregistré";
- 					    include('../view/ajoutAdmin.php');
-          	}
-          }
-      		else{
-      			include('../view/ajoutAdmin.php');
-      		}
-        }
+          }//endif isset
+
+          include('../view/ajoutAdmin.php');
+        }//end admin
+        // Si c'est un étudiant qui a essayé d'outrepasser ses droits
   	    else{
         		echo "On vous redirige... <br/>";
             sleep(2);
         		header('Location:../controller/redirection.php');
     		}
-		  }
+		  }//endif verificationToken
       else {
     		echo "Mauvais token, veuillez vous reconnecter<br/>";
         sleep(2);
     		header('Location:../controller/connexionAdmin.controller.php');
       }
-    }
+    }//endelse
 ?>
