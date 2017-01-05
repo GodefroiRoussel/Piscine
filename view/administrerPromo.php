@@ -20,16 +20,23 @@
 		</div>
 		<table>
 			<tr>
-				<th>Code de la promo</th>
+				<th>Numéro</th>
+				<th>Département</th>
+				<th>Année</th>
+				<th>Clef de la promo</th>
 			</tr>
 			<?php
-				foreach ($promos as $promos){
+				$i=1;
+				foreach ($promos as $promo){
 			?>
 					<tr>
-						<td><?php echo $promos["codePromo"] ?></td>
-						<td><a href="../controller/gererEtudiantPromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Gérer les étudiants de la promo</a></td>
-						<td><a href="../controller/modifierCodePromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Modifier le code de la promo</a></td>
-						<td><a href="../controller/supprimerPromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Supprimer</a></td>
+						<td><?php echo $i; $i+=1; ?></td>
+						<td><?php echo $promo["nom"]?></td>
+						<td><?php echo $promo["anneePromo"]?></td>
+						<td><?php echo $promo["codePromo"] ?></td>
+						<td><?php echo $promo["id"]?></td>
+						<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>">Gérer la promo</a></td>
+						<td><a href="../controller/supprimerPromo.controller.php?refPromo=<?php echo $promo['id']?>">Supprimer</a></td>
 					</tr>
 			<?php
 				}?>

@@ -48,7 +48,7 @@
 							<input type="password" name="futur" id="futur"/>
 						</div>
 					<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
-				</div>
+					</div>
 					<input type="submit" value="Enregistrer"/>
 			</form>
 		</section>

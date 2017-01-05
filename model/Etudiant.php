@@ -52,6 +52,23 @@ function existeEtudiant($email,$password,$promo){
 		return $id[0];
 }
 
+function existeEtudiantId($idEtudiant){
+	//donnée : id de l'étudiant
+	//résultat : True si l'étudiant éxiste, False sinon
+	global $pdo;
+
+	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$compteur=$req->fetch();
+	if($compteur>0){
+		return True;
+	}
+	else{
+		return False;
+	}
+
+}
+
 function getAllResultat($idetudiant){
 	//donnée : id de l'élève
 	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
@@ -96,9 +113,8 @@ function resetpremierTest($idetudiant){
 	//résultat: réinitialise le premierTest de l'élève à true
 
 	global $pdo;
-	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');
+	$req=$pdo->prepare('UPDATE etudiant SET premierTest=True WHERE id=?');
 	$req->execute(array($idetudiant));
-
 	$etudiant=$req->fetch();
 
 	return $etudiant;
@@ -111,7 +127,6 @@ function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
 	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
 }
 
-
 function supprimerEtudiant($id){
 	//donnée : id de l'étudiant
 	//résultat : supprime l'étudiant ayant cet id
@@ -120,6 +135,30 @@ function supprimerEtudiant($id){
 	$req->execute(array($id));
 
 }
+
+function getPrenom($id){
+	//donnée : id de l'étudiant
+	//résultat : renvoie le prénom de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('SELECT prenom FROM etudiant WHERE id=?');
+	$req->execute(array($id));
+	$prenom=$req->fetch();
+
+	return $prenom[0];
+}
+
+function getNom($id){
+	//donnée : id de l'étudiant
+	//résultat : renvoie le nom de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('SELECT nom FROM etudiant WHERE id=?');
+	$req->execute(array($id));
+	$nom=$req->fetch();
+
+	return $nom[0];
+}
+
+
 /* Normalement n'a pas besoin de constructeur ici, dans promo cela est suffisant"
 function creerEtudiant($mail,$codePromo){
 
