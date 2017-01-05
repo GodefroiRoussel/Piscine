@@ -2,13 +2,13 @@
 //fonctions d'accès à la base de données du compte administrateur
 
 
-function getmdp($IdAdmin){
+function getPasswordAdmin($idAdmin){
 	//donnée: l'admin concerné
 	//résultat: l'id de l'admin concerné
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT mdp FROM Admin WHERE idAdmin=?');
-	$req->execute(array($idEleve));
+	$req=$pdo->prepare('SELECT password FROM admin WHERE id=?');
+	$req->execute(array($idAdmin));
 	$mdp=$req->fetch();
 
 	return $mdp[0];
@@ -16,13 +16,13 @@ function getmdp($IdAdmin){
 
 }
 
-function getMail($IdAdmin){
+function getMailAdmin($idAdmin){
 	//donnée: l'admin concerné
 	//résultat: l'id de l'admin concerné
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT email FROM Admin WHERE idAdmin=?');
-	$req->execute(array($idEleve));
+	$req=$pdo->prepare('SELECT email FROM admin WHERE id=?');
+	$req->execute(array($idAdmin));
 	$email=$req->fetch();
 
 	return $email[0];
@@ -43,28 +43,46 @@ function creerAdmin($nomdeCompte,$mdp){
 	//résultat : ajout de l'admin dans la base de données
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO Admin(email,mdp) VALUE (?,?)');
-	$req=array($nomdeCompte,$mdp);
-
-
+	$req=$pdo->prepare('INSERT INTO Admin(email,password) VALUE (?,?)');
+	if(!$req->execute(array($nomdeCompte,$mdp))){
+		return False;
+		}
+	else{
+		return True;
+	}
 }
 
 
-function modifMDP($idAdmin,$newmdp){
+function modifPasswordAdmin($idAdmin,$newmdp){
 	//donnée : id de l'admin qui veut modifier son mdp et nouveau mdp
-	//résultat : modifie le mot de passe avctuel avec le nouveau mdp
+	//résultat : modifie le mot de passe actuel avec le nouveau mdp
 	global $pdo;
-	$req=$pdo->prepare('UPDATE Admin SET mdp= :newMdp WHERE idAdmin=:idAd');
-  $req->execute(array(
+	$req=$pdo->prepare('UPDATE Admin SET password= :newMdp WHERE id=:idAd');
+  	if(!$req->execute(array(
 		'newMdp' => $newmdp,
-		'idAd' => $idAdamin
-		));
-  $admin= $req->fetch();
+		'idAd' => $idAdmin
+		))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
+}
 
-
-  return $admin;
-
-
+function modifMailAdmin($idAdmin,$newMail){
+	//données : id de l'admin qui veut modifier son mail et nouveau mail
+	//résultat : modifie l'email actuel avec le nouveau mail
+	global $pdo;
+	$req=$pdo->prepare('UPDATE Admin SET email= :newMail WHERE id=:idAd');
+  	if(!$req->execute(array(
+			'newMail' => $newMail,
+			'idAd' => $idAdmin
+			))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
 }
 
 ?>
