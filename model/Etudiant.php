@@ -2,7 +2,7 @@
 //fonctions d'accès a la base de données du type etudiant
 
 
-function getMail($idEtudiant){
+function getMailEtudiant($idEtudiant){
 	//donnée : id de l'étudiant (entier)
 	//resultat : mail de l'étudiant (texte)
 
@@ -12,6 +12,22 @@ function getMail($idEtudiant){
 	$mail=$req->fetch();
 
 	return $mail[0];
+}
+
+function modifPasswordEtudiant($idEtudiant,$newmdp){
+	//donnée : id de l'admin qui veut modifier son mdp et nouveau mdp
+	//résultat : modifie le mot de passe actuel avec le nouveau mdp
+	global $pdo;
+	$req=$pdo->prepare('UPDATE etudiant SET password= :newMdp WHERE id=:idEt');
+  	if(!$req->execute(array(
+		'newMdp' => $newmdp,
+		'idEt' => $idEtudiant
+		))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
 }
 
 function getCodePromo($idEtudiant){
