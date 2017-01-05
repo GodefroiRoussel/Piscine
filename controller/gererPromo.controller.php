@@ -64,7 +64,7 @@
                   }
                 }
                 //Cas où on veut supprimer un étudiant
-                if(isset($refEtuSupp)){
+                if(isset($_GET['refEtuSupp'])){
                   //Protéction contre les injections SQL
                   $refEtuSupp=htmlspecialchars(($_GET['refEtuSupp']));
                   if(existeEtudiantId($refEtuSupp)){
