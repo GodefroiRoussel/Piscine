@@ -93,9 +93,37 @@ function testMail($codepromo,$mail){
 	$compteur=$req->fetch();
 	if(compteur>0){return true;}
 	else{return false;}
-
-
-
 }
 
+function getAllPromo(){
+	//résultat : renvoie les codePromo de toutes les promos de la BDD
+	global $pdo;
+	$req->prepare('SELECT codePromo FROM Promo');
+	$req=execute();
+	$promos=$req->fetchAll();
+
+	return $promos
+}
+
+function existePromo($codepromo){
+	//donnée : code promo de la promo
+	//résultat : bool true si la promo éxiste, false sinon
+	global $pdo;
+	$req->prepare('SELECT COUNT(*) FROM Promo WHERE codePromo=?');
+	$req=execute(array($codepromo));
+	$compteur=$req->fetch();
+	if(compteur>0){return true;}
+	else{return false;}
+}
+
+function existeEtudiant($id){
+	//donnée : id de l'étudiant
+	//résultat : bool s'il éxiste un étudiant, false sinon
+	global $pdo;
+	$req->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
+	$req=execute(array($id));
+	$compteur=$req->fetch();
+	if(compteur>0){return true;}
+	else{return false;}
+}
 ?>
