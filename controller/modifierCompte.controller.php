@@ -36,9 +36,10 @@
 
           if (isset($_POST["passwd"]) && !empty($_POST["passwd"])){
             $password= htmlspecialchars ($_POST['passwd']);
+            $_POST["futur"]= htmlspecialchars($_POST["futur"]);
             // On cripte le password avant de le rentrer dans la BDD
             $password = crypt($password,$keyCryptage);
-            // On modifie le mail et on stocke dans une variable le booléen renvoyée pour vérifier que la modification a bien été éfféctuée
+            // On modifie le mot de passe et on stocke dans une variable le booléen renvoyée pour vérifier que la modification a bien été éfféctuée
             $modifReussiPasswd = modifPasswordAdmin($decoded_array['id'],$password);
           }
         }//endif admin
@@ -59,7 +60,7 @@
         }//endif etudiant
         $affichageMessage=false;
         // Si il existe une variable POST de passwd et que les modifs sont réussis OU si les modifications sont nulles alors on affichera le message
-        if((!empty($_POST["passwd"]) && $modifReussiMail && $modifReussiPasswd) || (is_null($modifReussiPasswd)) && is_null($modifReussiMail)){
+        if(($modifReussiMail && $modifReussiPasswd) || (is_null($modifReussiPasswd)) && is_null($modifReussiMail)){
           $affichageMessage=true;
         }
         // Sinon si la variable POST de passwd est vide pas et que la modification a été réalisée OU si la variable POST de passwd est vide et la modification est nulle alors on affichera le message
@@ -67,13 +68,10 @@
           $affichageMessage=true;
         }
         // Après avoir récupérer les valeurs chez étudiant ou admin, on vérifie si les 2 changements ont bien fonctionnés
-        if($affichageMessage){
-          include('../view/modifierCompte.php');
-        }
-        else{
+        if(!$affichageMessage){
           echo "Erreur : Une modification n'a pas été éffectuée";
-          include('../view/modifierCompte.php');
         }
+        include('../view/modifierCompte.php');
 
       }//endif verificationToken
       else{

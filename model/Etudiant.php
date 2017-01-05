@@ -111,16 +111,6 @@ function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
 	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
 }
 
-function existeEtudiant($id){
-	//donnée : id de l'étudiant
-	//résultat : bool s'il éxiste un étudiant, false sinon
-	global $pdo;
-	$req->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
-	$req=execute(array($id));
-	$compteur=$req->fetch();
-	if(compteur>0){return true;}
-	else{return false;}
-}
 
 function supprimerEtudiant($id){
 	//donnée : id de l'étudiant

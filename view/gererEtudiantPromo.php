@@ -23,18 +23,24 @@
 				<th>Email</th>
 				<th>Premier test effectué</th>
 			</tr>
-			<?php 
-			foreach ($etudiants as $etudiants)
+			<?php
+			$i=1;
+			foreach ($etudiants as $etudiant)
 				{?>
 				<tr>
-					<td><?php echo $i ?></td>
-					<td><?php echo $etudiants['email'] ?></td>
-					<td><?php if($etudiants['premierTest']){echo "Non"} else{echo "Oui"} ?></td>
-					<?php if($etudiants['premierTest']){ 
+					<td><?php echo $i; $i+=1; ?></td>
+					<td><?php echo $etudiant['email'] ?></td>
+					<td><?php if($etudiant['premierTest']){echo "Non";} else{echo "Oui";} ?></td>
+					<?php if($etudiant['premierTest']){
 						?> <!-- on affiche le bouton de reset seulement si on peut le reset -->
-							<td><a href="../controller/resetPremierTest.controller.php?refPromo=<?php echo $_GET['refPromo'] ?>&refEtu=<?php echo $etudiants['id']?>">Reset son vrai test</a></td>
-					<td><a href="../controller/supprimerEleve.controller.php?refPromo=<?php echo $_GET['refPromo'] ?>&refEtu=<?php echo $etudiants['id']?>">Supprimer</a></td>
+							<td><a href="../controller/resetPremierTest.controller.php?refPromo=<?php echo $_GET['refPromo'] ?>&refEtuTest=<?php echo $etudiant['id']?>">Reset son vrai test</a></td>
+							<?php
+						}
+						?>
+					<td><a href="../controller/supprimerEleve.controller.php?refPromo=<?php echo $_GET['refPromo'] ?>&refEtuSupp=<?php echo $etudiant['id']?>">Supprimer</a></td>
+
 				</tr>
+			<?php	}?>
 		</table>
 	</body>
 </html>

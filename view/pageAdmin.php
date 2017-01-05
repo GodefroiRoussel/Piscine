@@ -17,7 +17,7 @@
 
 	<body>
 		<div>
-			<a href="../controller/administrerPromo.controllerphp" class="btn btn-info">Administrer les promos</a>
+			<a href="../controller/administrerPromo.controller.php" class="btn btn-info">Administrer les promos</a>
 		</div>
 		<br/>
 		<div>

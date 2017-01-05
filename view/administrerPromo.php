@@ -13,7 +13,7 @@
 				<?php include("buttonInscription.php"); ?>
 			</div>
 	</header>
-	
+
 	<body>
 		<div>
 			<a href="../controller/ajouterPromo.controller.php" class="btn btn-info">Ajouter une promo</a>
@@ -22,8 +22,8 @@
 			<tr>
 				<th>Code de la promo</th>
 			</tr>
-			<?php 
-				foreach $promos as $promos{
+			<?php
+				foreach ($promos as $promos){
 			?>
 					<tr>
 						<td><?php echo $promos["codePromo"] ?></td>
@@ -36,8 +36,3 @@
 		</table>
 	</body>
 </html>
-
-
-
-						
-

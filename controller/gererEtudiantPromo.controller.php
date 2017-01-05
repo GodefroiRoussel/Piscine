@@ -4,6 +4,7 @@
   require_once('../model/token.php');
   require_once('../model/Promo.php');
   require_once('../model/Etudiant.php');
+  require_once('../model/Admin.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -23,36 +24,37 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-        	$email=getMail($decoded_array['id']);
-          if(isset($_GET['refPromo']) && isset($_GET['refEtu']) !empty($_GET['refPromo']) && !empty($_GET['refEtu']) && existeEtudiant($_GET['refEtu']) existePromo($_GET['refPromo'])){//cas où on veut reset le premier test
-            resetPremierTest($_GET['refEtu']);
-            echo "Reset éffectué";
-            $etudiants=getAllEtudiants($_GET['refPromo']);//récupère tous les étudiants de la promo          
+        	$email=getMailAdmin($decoded_array['id']);
+          //TODO: protéger contre l'injection sql
+          if(isset($_GET['refPromo']) && existePromo($_GET['refPromo'])){
+            // Cas où on veut reset le premier test
+            if(isset($_GET['refEtuTest']) && !empty($_GET['refEtuTest']) && existeEtudiant($_GET['refEtuTest'])){
+              resetPremierTest($_GET['refEtuTest']);
+              echo "Reset effectué";
+            }
+            //cas où on veut supprimer un élève
+            if(isset($_GET['refEtuSupp']) && !empty($_GET['refEtuSupp']) && existeEtudiant($_GET['refEtuSupp'])){
+              supprimerEtudiant($_GET['refEtuSupp']);
+            }
+            $etudiants=getAllEtudiant($_GET['refPromo']);//récupère tous les étudiants de la promo
             include("../view/gererEtudiantPromo.php");
-          if(isset($_GET['refPromo']) && !empty($_GET['refPromo']) && existePromo($_GET['refPromo'])){//cas où on veut pas modifier le premier test
-            $etudiants=getAllEtudiants($_GET['refPromo']);//récupère tous les étudiants de la promo          
-            include("../view/gererEtudiantPromo.php");
-          }
-          if(isset($_GET['refEtu']) && !empty($_GET['refEtu'])){//cas où on veut supprimer un élève
-            supprimerEtudiant($_GET['id']);
-            $etudiants=getAllEtudiants($_GET['refPromo']);//récupère tous les étudiants de la promo
-            include("../view/gererEtudiantPromo.php");            
-          }
-          else{
-            echo "Erreur la promo n'éxiste pas ... <br/>";
-            sleep(2);
-            header('Location:../controller/administrerPromo.controller.php');
           }
         else{
-            echo "On vous redirige... <br/>";
-            sleep(2);
-            header('Location:../controller/redirection.php');
+          echo "Erreur la promo n'existe pas ... <br/>";
+          sleep(2);
+          header('Location:../controller/administrerPromo.controller.php');
         }
-      }
-      else {
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-        sleep(2);
-        header('Location:../controller/connexionAdmin.controller.php');
-      }
     }
+    else{
+        echo "On vous redirige... <br/>";
+        sleep(2);
+        header('Location:../controller/redirection.php');
+    }
+  }
+  else {
+    echo "Mauvais token, veuillez vous reconnecter<br/>";
+    sleep(2);
+    header('Location:../controller/connexionAdmin.controller.php');
+  }
+}
 ?>
