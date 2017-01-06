@@ -42,13 +42,24 @@ function getAllChoixPromo($codePromo){
 	global $pdo;
 
 
-	$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix, etudiant e WHERE e.id=idEtudiant AND e.codePromo=?');
+	$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix, etudiant e WHERE e.id=idEtudiant AND e.idPromo=?');
 	$req->execute(array($codePromo));
 	$moyResultat=$req->fetchAll();
 
 	return $moyResultat;
 
 	}
+
+
+function getNbTestEffectue($idPromo){
+	global $pdo;
+
+	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE idPromo=? && premierTest=false ');
+	$req->execute(array($idPromo));
+	$compteur=$req->fetch();
+
+	return $compteur[0];
+}
 
 
 function getAllEtudiant($idPromo){

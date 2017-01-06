@@ -59,6 +59,18 @@ function existeEtudiantId($idEtudiant){
 
 }
 
+function getAllChoix($idetudiant){
+	//donnée : id de l'élève
+	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix ,etudiant WHERE id=? AND id=idEtudiant');
+	$req->execute(array($idetudiant));
+	$resultat=$req->fetchAll();
+
+	return $resultat;
+
+}
 
 function premierTest($idetudiant){
 	//donnée : id de l'élève
@@ -133,6 +145,17 @@ function getNom($id){
 	$nom=$req->fetch();
 
 	return $nom[0];
+}
+
+function getIdPromo($idEtudiant){
+		//donnée : le code de la promo (entier)
+		//resultat : le nom du département departement de la promo (string)
+	global $pdo;
+	$req=$pdo->prepare('SELECT idPromo FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$idPromo=$req->fetch();
+
+	return $idPromo[0];
 }
 
 
