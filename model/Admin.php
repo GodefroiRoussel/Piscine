@@ -28,6 +28,30 @@ function getMailAdmin($idAdmin){
 	return $email[0];
 }
 
+function getPrenomAdmin($idAdmin){
+	//donnée: l'admin concerné
+	//résultat: le prénom de l'admin concerné
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT prenom FROM admin WHERE id=?');
+	$req->execute(array($idAdmin));
+	$prenom=$req->fetch();
+
+	return $prenom[0];
+}
+
+function getNomAdmin($idAdmin){
+	//donnée: l'admin concerné
+	//résultat: l'id de l'admin concerné
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT nom FROM admin WHERE id=?');
+	$req->execute(array($idAdmin));
+	$nom=$req->fetch();
+
+	return $nom[0];
+}
+
 function existeAdmin($email,$password){
 		global $pdo;
 
