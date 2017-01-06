@@ -105,6 +105,8 @@ function resetpremierTest($idetudiant){
 	$req=$pdo->prepare('UPDATE etudiant SET premierTest=True WHERE id=?');
 	$req->execute(array($idetudiant));
 	$etudiant=$req->fetch();
+	$req=$pdo->prepare('DELETE FROM choix WHERE idEtudiant=?');
+	$req->execute(array($idetudiant));
 
 	return $etudiant;
 }
