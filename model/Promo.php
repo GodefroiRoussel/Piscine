@@ -25,14 +25,24 @@ function getNomDepartement($idPromo){
 	return $departement[0];
 }
 
-function getmoyResultat($codePromo){
+function existeEtudiant($email,$password,$promo){
+		global $pdo;
+
+		$req=$pdo->prepare('SELECT e.id FROM etudiant e, promo p WHERE email=? AND password=? AND codePromo=? AND p.id=idPromo');
+		$req->execute(array($email,$password,$promo));
+		$id=$req->fetch();
+
+		return $id[0];
+}
+
+function getAllChoixPromo($codePromo){
 		//donnée : un code promo entier
 		//resultat :un tableau de 6 cases chacune correspondant a la moyenne des types RIASEC de la promo
 
 	global $pdo;
 
 
-	$req=$pdo->prepare('SELECT AVG(score) FROM correspondre, etudiant e WHERE e.id=idEtudiant AND e.codePromo=? GROUP BY idFiche');
+	$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix, etudiant e WHERE e.id=idEtudiant AND e.codePromo=?');
 	$req->execute(array($codePromo));
 	$moyResultat=$req->fetchAll();
 
@@ -92,7 +102,7 @@ function testMail($codepromo,$mail){
 }
 
 function getAllPromo(){
-	//résultat : renvoie les codePromo de toutes les promos de la BDD
+	//résultat : renvoie les codePromo de toutes les promos de la BD
 	global $pdo;
 	$req=$pdo->prepare('SELECT p.id,codePromo,nom,anneePromo FROM promo p,departement d WHERE d.id=idDep');
 	$req->execute();

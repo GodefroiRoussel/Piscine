@@ -1,6 +1,6 @@
 <?php
   require_once('../vendor/autoload.php');
-  require_once('../model/Etudiant.php');
+  require_once('../model/Promo.php');
   require_once('../model/connexionBD.php');
   use \Firebase\JWT\JWT;
 

@@ -26,17 +26,17 @@
 		</header>
 
     <input type="hidden" id="rEleve" value=<?php echo $result[0] ?> />
-    <input type="hidden" id="rPromo" value=<?php echo $resultPromo[0][0] ?> />
+    <input type="hidden" id="rPromo" value=<?php echo $resultPromo[0] ?> />
     <input type="hidden" id="iEleve" value=<?php echo $result[1] ?> />
-    <input type="hidden" id="iPromo" value=<?php echo $resultPromo[1][0] ?> />
+    <input type="hidden" id="iPromo" value=<?php echo $resultPromo[1] ?> />
     <input type="hidden" id="aEleve" value=<?php echo $result[2] ?> />
-    <input type="hidden" id="aPromo" value=<?php echo $resultPromo[2][0] ?> />
+    <input type="hidden" id="aPromo" value=<?php echo $resultPromo[2] ?> />
     <input type="hidden" id="sEleve" value=<?php echo $result[3] ?> />
-    <input type="hidden" id="sPromo" value=<?php echo $resultPromo[3][0] ?> />
+    <input type="hidden" id="sPromo" value=<?php echo $resultPromo[3] ?> />
     <input type="hidden" id="eEleve" value=<?php echo $result[4] ?> />
-    <input type="hidden" id="ePromo" value=<?php echo $resultPromo[4][0] ?> />
+    <input type="hidden" id="ePromo" value=<?php echo $resultPromo[4] ?> />
     <input type="hidden" id="cEleve" value=<?php echo $result[5] ?> />
-    <input type="hidden" id="cPromo" value=<?php echo $resultPromo[5][0] ?> />
+    <input type="hidden" id="cPromo" value=<?php echo $resultPromo[5] ?> />
 
   	<center>
       <div style="width:40%">

@@ -42,16 +42,6 @@ function getCodePromo($idEtudiant){
 	return $codePromo[0];
 }
 
-function existeEtudiant($email,$password,$promo){
-		global $pdo;
-
-		$req=$pdo->prepare('SELECT id FROM etudiant WHERE email=? AND password=? AND codePromo=?');
-		$req->execute(array($email,$password,$promo));
-		$id=$req->fetch();
-
-		return $id[0];
-}
-
 function existeEtudiantId($idEtudiant){
 	//donnée : id de l'étudiant
 	//résultat : True si l'étudiant éxiste, False sinon
@@ -66,19 +56,6 @@ function existeEtudiantId($idEtudiant){
 	else{
 		return False;
 	}
-
-}
-
-function getAllResultat($idetudiant){
-	//donnée : id de l'élève
-	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
-
-	global $pdo;
-	$req=$pdo->prepare('SELECT score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
-	$req->execute(array($idetudiant));
-	$resultat=$req->fetchAll();
-
-	return $resultat;
 
 }
 
@@ -120,11 +97,11 @@ function resetpremierTest($idetudiant){
 	return $etudiant;
 }
 
-function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
+function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO correspondre(idEtudiant,idFiche,score) VALUES (?,?,?)');
-	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
+	$req=$pdo->prepare('INSERT INTO choix(idEtudiant,idGroupe,choix1,choix2,choix3) VALUES (?,?,?,?,?)');
+	$req->execute(array($idEtudiant,$idGroupe,$choix1,$choix2,$choix3));
 }
 
 function supprimerEtudiant($id){
