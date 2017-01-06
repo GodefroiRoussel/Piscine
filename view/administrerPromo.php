@@ -36,7 +36,7 @@
 						<td><?php echo $promo["codePromo"] ?></td>
 						<td><?php echo $promo["id"]?></td>
 						<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>">Gérer la promo</a></td>
-						<td><a href="../controller/supprimerPromo.controller.php?refPromo=<?php echo $promo['id']?>">Supprimer</a></td>
+						<td><a href="../controller/administrerPromo.controller.php?refPromo=<?php echo $promo['id']?>">Supprimer</a></td>
 					</tr>
 			<?php
 				}?>

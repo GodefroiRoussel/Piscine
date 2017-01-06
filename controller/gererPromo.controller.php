@@ -29,23 +29,23 @@
           if(isset($_GET['refPromo'])){
             //Protéction contre les injections SQL
             $id=htmlspecialchars(($_GET['refPromo']));
-            //On récupère ces infos pour les afficher dans la view
-            $nomDepartement=getNomDepartement($id);
-            $annee=getAnnee($id);
-            //Cas où on veut changer le code de la promo
-            if(isset($_POST['codePromo'])){
-              $codePromo=htmlspecialchars($_POST['codePromo']);
-              if(existePromo($codePromo)){
-                changerCode($id,$codePromo);
-                echo "Modifications enregistrées";
-              }
-              else{
-                echo "Erreur : une promo possède déjà ce code promo";
-              }
-            }
-            $codePromo=getCode($id);
             //Vérification que la référence promo correspond à une promo éxistante
-            if(existePromo($id)){
+            if(existePromoId($id)){
+              //On récupère ces infos pour les afficher dans la view              
+              $nomDepartement=getNomDepartement($id);
+              $annee=getAnnee($id);
+              //Cas où on veut changer le code de la promo
+              if(isset($_POST['codePromo'])){
+                $codePromo=htmlspecialchars($_POST['codePromo']);
+                if(!existePromo($codePromo)){
+                  changerCode($id,$codePromo);
+                  echo "Modifications enregistrées";
+                }
+                else{
+                  echo "Erreur : une promo possède déjà ce code promo";
+                }
+              }
+              $codePromo=getCode($id);
               //Cas où les deux variables sont définies (on ne peut pas reset et supprimer à la fois donc on choisit de ne rien faire)
               if(isset($refEtuTest) && isset($refEtuSupp)){
                 echo "Erreur veuillez réessayer";

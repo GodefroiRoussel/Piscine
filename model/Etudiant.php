@@ -60,7 +60,7 @@ function existeEtudiantId($idEtudiant){
 	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
 	$req->execute(array($idEtudiant));
 	$compteur=$req->fetch();
-	if($compteur>0){
+	if($compteur[0]>0){
 		return True;
 	}
 	else{

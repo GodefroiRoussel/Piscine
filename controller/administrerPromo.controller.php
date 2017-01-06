@@ -24,6 +24,17 @@
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
         	$email=getMailAdmin($decoded_array['id']);
+          //cas où on veut supprimer une promo
+          if(isset($_GET['refPromo'])){
+            $refPromo=htmlspecialchars($_GET['refPromo']);
+            if(existePromo($refPromo)){
+              supprimerPromo($refPromo);
+            }
+            else{
+              echo "Erreur : promo inéxistante";
+              include("../view/administrerPromo.php");
+            }
+          }
           $promos=getAllPromo();//récupère toutes les promos de la BDD
           include("../view/administrerPromo.php");
         }

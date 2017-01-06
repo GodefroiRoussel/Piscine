@@ -87,7 +87,7 @@ function testMail($codepromo,$mail){
 	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE codePromo=? AND email=?');
 	$req->execute(array($codepromo,$mail));
 	$compteur=$req->fetch();
-	if(compteur>0){return true;}
+	if($compteur[0]>0){return true;}
 	else{return false;}
 }
 
@@ -101,14 +101,25 @@ function getAllPromo(){
 	return $promos;
 }
 
-function existePromo($codepromo){
-	//donnée : code promo de la promo
+function existePromoId($idPromo){
+	//donnée : id promo de la promo
 	//résultat : bool true si la promo éxiste, false sinon
 	global $pdo;
-	$req=$pdo->prepare('SELECT COUNT(*) FROM promo WHERE codePromo=?');
-	$req->execute(array($codepromo));
+	$req=$pdo->prepare('SELECT COUNT(*) FROM promo WHERE id=?');
+	$req->execute(array($idPromo));
 	$compteur=$req->fetch();
-	if($compteur>0){return true;}
+	if($compteur[0]>0){return true;}
+	else{return false;}
+}
+
+function existePromo($codePromo){
+	//donnée : code promo de la promo
+	//résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
+	global $pdo;
+	$req=$pdo->prepare('SELECT COUNT(*) FROM promo WHERE codePromo=?');
+	$req->execute(array($codePromo));
+	$compteur=$req->fetch();
+	if($compteur[0]>0){return true;}
 	else{return false;}
 }
 
@@ -130,6 +141,12 @@ function changerCode($idPromo,$NouveauCodePromo){
 	$req->execute(array($NouveauCodePromo,$idPromo));
 }
 
+function supprimerPromo($idPromo){
+	//donnée : id de la promo à supprimer
+	global $pdo;
+	$req=$pdo->prepare('DELETE FROM promo WHERE id=?');
+	$req->execute(array($idPromo));
+}
 /* Fontion non nécessaire si on passe par un post
 function existeEtudiant($id){
 	//donnée : id de l'étudiant
