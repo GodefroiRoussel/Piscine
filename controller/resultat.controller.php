@@ -57,8 +57,8 @@
           }
           // On calcule les résultats de l'élève
           $result=calculResultat($array_choice1,$array_choice2,$array_choice3);
-          // On calcule les résultats de la promo
-          $resultPromo=calculResultatPromo(getCodePromo($id));
+          // On calcule les résultats de la promo à partir de l'id de la promo
+          $resultPromo=calculResultatPromo(getIdPromo($id));
           include('../view/resultat.php');
 
 

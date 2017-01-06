@@ -29,9 +29,9 @@ function calculResultat($array_choice1,$array_choice2,$array_choice3){
   return $result;
 }
 
-function calculResultatPromo($codePromo){
+function calculResultatPromo($idPromo){
   // On récupère tous les choix de la promo de l'élève
-  $choixPromo=getAllChoixPromo($codePromo);
+  $choixPromo=getAllChoixPromo($idPromo);
   $resultPromo=[0,0,0,0,0,0];
 
   // Une ligne correspond au choix1, choix2 et choix3. On calcule dans quelle fiche la proposition fait partie et on lui donne 3/2/1 points selon si c'est le premier, deuxième ou troisième choix respectivement
@@ -47,7 +47,7 @@ function calculResultatPromo($codePromo){
     $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 1;
   }
   // i stocke le nombre de test effectué dans une promo
-  $i=getNbTestEffectue($codePromo);
+  $i=getNbTestEffectue($idPromo);
 
   //On fait passer chaque score en pourcentage
   for ($j=0;$j<6;$j++){
