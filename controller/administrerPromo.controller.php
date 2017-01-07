@@ -36,6 +36,41 @@
             }
           }
           $promos=getAllPromo();//récupère toutes les promos de la BDD
+          $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
+          if($existeTri){
+            $tri=htmlspecialchars($_GET['tri']);
+            if($tri=='departement'){
+              foreach ($promos as $key => $row) {
+                $idPromo[$key] = $row['id'];
+                $codePromo[$key]  = $row['codePromo'];
+                $nom[$key] = $row['nom'];
+                $anneePromo[$key] = $row['anneePromo'];
+              }
+              array_multisort($nom, SORT_ASC, $promos);
+            }
+            elseif($tri=='annee'){
+              foreach ($promos as $key => $row) {
+                $idPromo[$key] = $row['id'];
+                $codePromo[$key]  = $row['codePromo'];
+                $nom[$key] = $row['nom'];
+                $anneePromo[$key] = $row['anneePromo'];
+              }
+              array_multisort($anneePromo, SORT_ASC, $promos);
+            }
+            elseif($tri=='clefPromo'){
+              foreach ($promos as $key => $row) {
+                $idPromo[$key] = $row['id'];
+                $codePromo[$key]  = $row['codePromo'];
+                $nom[$key] = $row['nom'];
+                $anneePromo[$key] = $row['anneePromo'];
+              }
+              array_multisort($codePromo, SORT_ASC, $promos);
+            }
+            else{
+              $existeTri=False;//si c'est un mauvais critère c'est comme si aucun tri n'était appliqué
+              echo "Impossible de trier selon ce critère";
+            }
+          }
           include("../view/administrerPromo.php");
         }
         else{

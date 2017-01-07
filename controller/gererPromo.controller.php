@@ -39,7 +39,7 @@
                 $codePromo=htmlspecialchars($_POST['codePromo']);
                 if(!existePromo($codePromo)){
                   changerCode($id,$codePromo);
-                  echo "Modifications enregistrées";
+                  echo "Le code promo a bien été changé";
                 }
                 else{
                   echo "Erreur : une promo possède déjà ce code promo";
@@ -51,7 +51,6 @@
                 echo "Erreur veuillez réessayer";
               }
               else{
-                //Cas où on veut reset le premier test d'un étudiant
                 if(isset($_GET['refEtuTest'])){
                   //Protéction contre les injections SQL
                   $refEtuTest=htmlspecialchars(($_GET['refEtuTest']));
@@ -63,7 +62,6 @@
                     echo "Etudiant invalide";
                   }
                 }
-                //Cas où on veut supprimer un étudiant
                 if(isset($_GET['refEtuSupp'])){
                   //Protéction contre les injections SQL
                   $refEtuSupp=htmlspecialchars(($_GET['refEtuSupp']));
@@ -80,19 +78,54 @@
                 }
               }
               $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
-              include("../view/gererPromo.php");
+              $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
+              if($existeTri){
+                $tri=htmlspecialchars($_GET['tri']);
+                if($tri=='prenom'){
+                  foreach ($etudiants as $key => $row) {
+                    $idEtu[$key] = $row['id'];
+                    $nom[$key]  = $row['nom'];
+                    $prenom[$key] = $row['prenom'];
+                    $premierTest[$key] = $row['premierTest'];
+                  }
+                  array_multisort($prenom, SORT_ASC, $etudiants);
+                }
+                elseif($tri=='nom'){
+                  foreach ($etudiants as $key => $row) {
+                    $idEtu[$key] = $row['id'];
+                    $nom[$key]  = $row['nom'];
+                    $prenom[$key] = $row['prenom'];
+                    $premierTest[$key] = $row['premierTest'];
+                  }
+                  array_multisort($nom, SORT_ASC, $etudiants);
+                }
+                elseif($tri=='test'){
+                  foreach ($etudiants as $key => $row) {
+                    $idEtu[$key] = $row['id'];
+                    $nom[$key]  = $row['nom'];
+                    $prenom[$key] = $row['prenom'];
+                    $premierTest[$key] = $row['premierTest'];
+                  }
+                  array_multisort($premierTest, SORT_ASC, $etudiants);
+                }
+                else{
+                  $existeTri=False;//si c'est un mauvais critère c'est comme si aucun tri n'était appliqué
+                  echo "Impossible de trier selon ce critère";
+                }
+              }
+            include("../view/gererPromo.php");
             }
             else{
               echo "Erreur la promo n'existe pas ... <br/>";
               sleep(2);
               header('Location:../controller/administrerPromo.controller.php');
             }
+          }
+          else{
+              echo "Erreur la promo n'existe pas ... <br/>";
+              sleep(2);
+              header('Location:../controller/administrerPromo.controller.php');
             }
-            else{
-                echo "Erreur la promo n'existe pas ... <br/>";
-                sleep(2);
-                header('Location:../controller/administrerPromo.controller.php');
-              }
         }
         else{
             echo "On vous redirige... <br/>";

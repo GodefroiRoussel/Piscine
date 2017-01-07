@@ -21,9 +21,9 @@
 		<table>
 			<tr>
 				<th>Numéro</th>
-				<th>Département</th>
-				<th>Année</th>
-				<th>Clef de la promo</th>
+				<th>Département <a href="../controller/administrerPromo.controller.php?tri=departement">D</a></th>
+				<th>Année <a href="../controller/administrerPromo.controller.php?tri=annee">A</a></th>
+				<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromo">C</a></th>
 			</tr>
 			<?php
 				$i=1;
@@ -34,9 +34,8 @@
 						<td><?php echo $promo["nom"]?></td>
 						<td><?php echo $promo["anneePromo"]?></td>
 						<td><?php echo $promo["codePromo"] ?></td>
-						<td><?php echo $promo["id"]?></td>
 						<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>">Gérer la promo</a></td>
-						<td><a href="../controller/administrerPromo.controller.php?refPromo=<?php echo $promo['id']?>">Supprimer</a></td>
+						<td><a href="../controller/administrerPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>">Supprimer</a></td>
 					</tr>
 			<?php
 				}?>
