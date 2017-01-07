@@ -46,9 +46,9 @@
             }
           }
           else{
-            // On charge les choix qui sont dans la base de données
+            // On charge les choix de l'étudiant qui sont dans la base de données
             $choice_tab=getAllChoix($id); //C'est un tableau de tableau
-            //On le fait passer en simple tableau tableau
+            //On le fait passer en simple tableau
             for ($i=0;$i<12;$i++){
               $array_choice1[$i]=$choice_tab[$i][0];
               $array_choice2[$i]=$choice_tab[$i][1];
@@ -64,14 +64,14 @@
 
         }
         else{
-          echo "On vous redirige <br/>";
+          // Si un admin essaie d'accéder aux résultats on le redirige
+          header('Location:redirection.php');
         }
 
       }
 
       else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
+          // Si le token n'est pas valide, on redirige et détruit le cookie
+          header('Location:redirection.php');
       }
     }
