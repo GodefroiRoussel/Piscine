@@ -12,6 +12,9 @@
 			<div id="connexion">
 				<?php include("view/buttonInscription.php"); ?>
 			</div>
+			<div id="menu">
+				<?php include("view/menu.php"); ?>
+			</div>
 		</header>
 		<?php
 

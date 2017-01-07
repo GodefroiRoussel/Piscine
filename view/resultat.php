@@ -23,6 +23,9 @@
 			<div id="connexion">
 				<?php include("buttonInscription.php"); ?>
 			</div>
+      <div id="menu">
+  			<?php include("menu.php"); ?>
+  		</div>
 		</header>
 
     <input type="hidden" id="rEleve" value=<?php echo $result[0] ?> />
