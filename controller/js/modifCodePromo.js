@@ -12,11 +12,12 @@ function afficher(){
 
 function verifCodePromo(){
 	/*
-	 * But: vérifier que le code promo est unique
+	 * But: On vérifie que le code promo n'est pas vide
 	 */
-	 return document.getElementById("codePromo").value;
-}
-
-function envoyer(){
-	return verifCodePromo();
+	 res=true;
+	 if(!document.getElementById("codePromo").value!=""){
+		 alert("Vous ne pouvez pas rentrer un code promo vide");
+		 res=false;
+	 }
+	 return res;
 }
