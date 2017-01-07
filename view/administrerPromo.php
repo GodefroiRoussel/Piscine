@@ -21,9 +21,63 @@
 		<table>
 			<tr>
 				<th>Numéro</th>
-				<th>Département <a href="../controller/administrerPromo.controller.php?tri=departement">D</a></th>
-				<th>Année <a href="../controller/administrerPromo.controller.php?tri=annee">A</a></th>
-				<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromo">C</a></th>
+				<?php 
+				if($existeTri){
+					if($tri=="departementCroissant"){?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="departementDecroissant"){?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php
+				if($existeTri){
+					if($tri=="anneeCroissant"){?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="anneeDecroissant"){?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php
+				if($existeTri){
+					if($tri=="clefPromoCroissant"){?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="clefPromoDecroissant"){?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
 			</tr>
 			<?php
 				$i=1;
