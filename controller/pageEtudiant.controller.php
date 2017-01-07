@@ -22,24 +22,21 @@
       //On vérifie que c'est un token valide
       if (verificationToken($decoded_array)){
         if($decoded_array['role']==="etudiant"){
-          $email=getMailEtudiant($decoded_array['id']);
-          $array=explode(".",$email);
-          $prenom=$array[0];
-          $array=explode("@",$array[1]);
-          $nom=$array[0];
+          $prenom=getPrenomEtudiant($decoded_array['id']);
+          $nom=getNomEtudiant($decoded_array['id']);
           $premierTestBool=premierTest($decoded_array['id']);
 
           include('../view/pageEtudiant.php');
         }
         else{
-          echo "On vous redirige <br/>";
+          // On le redirige vers la page admin
+          header('Location:redirection.php');
         }
 
       }
 
       else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
+        // On le redirige et on enlève le cookie.
+        header('Location:redirection.php');
       }
     }

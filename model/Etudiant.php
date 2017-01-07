@@ -127,7 +127,7 @@ function supprimerEtudiant($id){
 
 }
 
-function getPrenom($id){
+function getPrenomEtudiant($id){
 	//donnée : id de l'étudiant
 	//résultat : renvoie le prénom de l'étudiant
 	global $pdo;
@@ -138,7 +138,7 @@ function getPrenom($id){
 	return $prenom[0];
 }
 
-function getNom($id){
+function getNomEtudiant($id){
 	//donnée : id de l'étudiant
 	//résultat : renvoie le nom de l'étudiant
 	global $pdo;

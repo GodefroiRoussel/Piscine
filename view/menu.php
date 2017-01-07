@@ -13,9 +13,9 @@ if(!isset($_COOKIE["token"])){
 			?>
               <ul>
                 <li><a href="redirection.php">Accueil</a></li>
-                <li><a href="news.asp">Questionnaire</a></li>
+                <li><a href="afficherQuestionnaire.controller.php">Questionnaire</a></li>
                 <li><a href="news.asp">Statistique</a></li>
-                <li><a href="news.asp">Administrer une promotion</a></li>
+                <li><a href="administrerPromo.controller.php">Administrer une promotion</a></li>
                 <li><a href="contact.asp">Contact</a></li>
               </ul>
 
