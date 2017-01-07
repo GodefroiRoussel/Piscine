@@ -7,6 +7,14 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<header>
+			<div id="connexion">
+			<?php include("buttonInscription.php"); ?>
+		</div>
+		<div id="menu">
+			<?php include("menu.php"); ?>
+		</div>
+	</header>
 		<section>
 			<p>Informations bien enregistrée !</p>
 			<a href="PageAdmin.php" class="btn btn-info">Retour</a>

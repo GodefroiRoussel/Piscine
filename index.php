@@ -8,34 +8,8 @@
 	</head>
 	<body>
 
-		<header>
-			<div id="connexion">
-				<?php include("view/buttonInscription.php"); ?>
-			</div>
-			<div id="menu">
-				<?php include("view/menu.php"); ?>
-			</div>
-		</header>
 		<?php
-
-				//Si un utilisateur n'est pas connecté
-				if (!isset($_COOKIE["token"])){
-		?>
-				<h1>Bienvenue sur le test de Hollande</h1>
-				<div>
-					<a href="view/connexionEtudiant.php" class="btn btn-info">Etudiant</a>
-				</div>
-				<br />
-				<div>
-					<a href="view/connexionAdmin.php" class="btn btn-info">Admin</a>
-				</div>
-		<?php
-		}
-
-			else {
-					include('controller/redirection.php');
-			}//endelse
-
+			header('Location:controller/pageAccueil.controller.php');
 		?>
 	</body>
 </html>

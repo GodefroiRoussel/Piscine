@@ -3,6 +3,7 @@
   require_once('../model/token.php');
   require_once('../model/connexionBD.php');
   require_once('../model/GroupeDeProposition.php');
+  require_once('../model/Etudiant.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -61,7 +62,7 @@
           $propositions=getPropositionsGroupe($i); //On a dans $propositions toutes les propositions du groupe x. C'est un array
 
 
-          include('../Formulaire/formulaire.php');
+          include('../view/formulaire.php');
         }
         else{
           echo "On vous redirige <br/>";

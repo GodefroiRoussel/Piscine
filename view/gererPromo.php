@@ -7,11 +7,11 @@
 		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
 	</head>
 	<header>
-		<p> Bienvenue <?php
-			$decomposer=explode("@",$email);
-			echo $decomposer[0]; ?></p>
 			<div id="connexion">
 				<?php include("buttonInscription.php"); ?>
+			</div>
+			<div id="menu">
+				<?php include("menu.php"); ?>
 			</div>
 	</header>
 	<body>
@@ -20,7 +20,7 @@
 			<span>Code promo actuel : <?php echo $codePromo ?></span>
 			<!-- Bouton qui va afficher la saisie d'un nouveau codePromo -->
 			<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
-			<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier --> 
+			<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 			<div id="new">
 				<span>Nouveau :</span>
 				<input type="text" name="codePromo" id="codePromo"/>
@@ -61,7 +61,7 @@
 						<?php
 						}
 						?>
-					<?php	
+					<?php
 					}
 					?>
 					<td><a href="../controller/modifierEleve.controller.php?refEtuMod=<?php echo $etudiant['id']?>">Modifier</a></td>

@@ -7,6 +7,14 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		<header>
+			<div id="connexion">
+			<?php include("buttonInscription.php"); ?>
+		</div>
+		<div id="menu">
+			<?php include("menu.php"); ?>
+		</div>
+	</header>
 		<section>
 			<p>Ajout de l'admin <?php
 			$decomposer=explode("@",$_POST['adresse']);

@@ -4,11 +4,6 @@
   require_once('../model/connexionBD.php');
   use \Firebase\JWT\JWT;
 
-  //Sécurisation des données saisies
-  $email = htmlspecialchars ($_POST['email']);
-  $password = htmlspecialchars ($_POST['passwd']);
-  $clefPromo = htmlspecialchars ($_POST['clefPromo']);
-
   //TODO : mettre ces variables dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
   $keyCryptage= "P0lyP1sCinE";
@@ -17,12 +12,16 @@
    //On vérifie que l'utilisateur n'est pas déjà connecté
    if(!isset($_COOKIE["token"])){
             //On vérifie que les champs ne soient pas vide et non null.
-            //TODO: A vérifier si ça marche toujours en passant par les variables
             if(isset($_POST['email']) && isset($_POST['clefPromo']) && isset($_POST['passwd']) && !empty($_POST['email']) && !empty($_POST['passwd']) && !empty($_POST['clefPromo'])){
+
+              //Sécurisation des données saisies
+              $email = htmlspecialchars ($_POST['email']);
+              $password = htmlspecialchars ($_POST['passwd']);
+              $clefPromo = htmlspecialchars ($_POST['clefPromo']);
+
                 //On crypte le mot de passe avec un "grain de sel"
                 $password = crypt($password,$keyCryptage);
                 $id=existeEtudiant($email, $password, $clefPromo);
-                $id=(int)$id;
 
                 //On vérifie que le login existe dans la table et que les informations soient exactes. (BD.password==passwd && BD.email==email)
                 if ($id>0){
@@ -44,12 +43,15 @@
                 }
                 else{
                   echo ("ERREUR : tu as rentré un mauvais login/mot de passe");
+                  include('../view/connexionEtudiant.php');
                 }
+            }//endif isset(variables)
+            else {
+              // Cas où la personne passe directement ici par l'url et n'est pas connecté
+              header('Location:connexionEtudiant.controller.php');
             }
-            else{
-                echo ("ERREUR : il faut remplir tous les champs ! Login, mot de passe et le code de ta clefPromo");
-            }
-    }
+    } //endif !isset(COOKIE)
     else {
-        echo ("ERREUR : tu es déjà connecté");
+        // Cas où la personne est déjà connecté
+        header('Location:redirection.php');
     }
