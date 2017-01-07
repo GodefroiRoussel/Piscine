@@ -67,7 +67,7 @@
 					<td><a href="../controller/modifierEleve.controller.php?refEtuMod=<?php echo $etudiant['id']?>">Modifier</a></td>
 					<?php if($existeTri){
 							?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
-								<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&$tri=<?php echo $tri ?>">Supprimer</a></td>
+								<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>">Supprimer</a></td>
 							<?php
 							}
 							else{

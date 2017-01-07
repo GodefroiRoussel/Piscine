@@ -67,10 +67,10 @@
                   $refEtuSupp=htmlspecialchars(($_GET['refEtuSupp']));
                   if(existeEtudiantId($refEtuSupp)){
                     //on stocke le nom et prénom pour informer l'utilisateur de l'étudiant qui a été supprimé
-                    $prenom=getPrenom($refEtuSupp);
-                    $nom=getNom($refEtuSupp);
+                    $prenomEtuSupp=getPrenom($refEtuSupp);
+                    $nomEtuSupp=getNom($refEtuSupp);
                     supprimerEtudiant($refEtuSupp);
-                    echo "Suppréssion de l'étudiant ",$prenom," ",$nom," effectué";
+                    echo "Suppréssion de l'étudiant ",$prenomEtuSupp," ",$nomEtuSupp," effectué";
                   }
                   else{
                     echo "Etudiant invalide";
@@ -84,26 +84,26 @@
                 if($tri=='prenom'){
                   foreach ($etudiants as $key => $row) {
                     $idEtu[$key] = $row['id'];
-                    $nom[$key]  = $row['nom'];
-                    $prenom[$key] = $row['prenom'];
+                    $nomEtu[$key]  = $row['nom'];
+                    $prenomEtu[$key] = $row['prenom'];
                     $premierTest[$key] = $row['premierTest'];
                   }
-                  array_multisort($prenom, SORT_ASC, $etudiants);
+                  array_multisort($prenomEtu, SORT_ASC, $etudiants);
                 }
                 elseif($tri=='nom'){
                   foreach ($etudiants as $key => $row) {
                     $idEtu[$key] = $row['id'];
-                    $nom[$key]  = $row['nom'];
-                    $prenom[$key] = $row['prenom'];
+                    $nomEtu[$key]  = $row['nom'];
+                    $prenomEtu[$key] = $row['prenom'];
                     $premierTest[$key] = $row['premierTest'];
                   }
-                  array_multisort($nom, SORT_ASC, $etudiants);
+                  array_multisort($nomEtu, SORT_ASC, $etudiants);
                 }
                 elseif($tri=='test'){
                   foreach ($etudiants as $key => $row) {
                     $idEtu[$key] = $row['id'];
-                    $nom[$key]  = $row['nom'];
-                    $prenom[$key] = $row['prenom'];
+                    $nomEtu[$key]  = $row['nom'];
+                    $prenomEtu[$key] = $row['prenom'];
                     $premierTest[$key] = $row['premierTest'];
                   }
                   array_multisort($premierTest, SORT_ASC, $etudiants);
