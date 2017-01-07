@@ -33,9 +33,63 @@
 		<table>
 			<tr>
 				<th>Numéro</th>
-				<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenom">P</a></th>
-				<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nom">N</a></th>
-				<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=test">T</a></th>
+				<?php 
+				if($existeTri){
+					if($tri=="prenomCroissant"){?>
+						<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomDecroissant"><img src="flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="prenomDecroissant"){?>
+						<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant"><img src="flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php 
+				if($existeTri){
+					if($tri=="nomCroissant"){?>
+						<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomDecroissant"><img src="flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="nomDecroissant"){?>
+						<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant"><img src="flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php 
+				if($existeTri){
+					if($tri=="testCroissant"){?>
+						<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testDecroissant"><img src="flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="testDecroissant"){?>
+						<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testCroissant"><img src="flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testCroissant"><img src="flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
 			</tr>
 			<?php
 			$i=1;
