@@ -6,11 +6,11 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<header>
-		<p> Bienvenue <?php
-			$decomposer=explode("@",$email);
-			echo $decomposer[0]; ?></p>
 			<div id="connexion">
 				<?php include("buttonInscription.php"); ?>
+			</div>
+			<div id="menu">
+				<?php include("menu.php"); ?>
 			</div>
 	</header>
 
@@ -20,16 +20,76 @@
 		</div>
 		<table>
 			<tr>
-				<th>Code de la promo</th>
+				<th>Numéro</th>
+				<?php 
+				if($existeTri){
+					if($tri=="departementCroissant"){?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="departementDecroissant"){?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php
+				if($existeTri){
+					if($tri=="anneeCroissant"){?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="anneeDecroissant"){?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
+				<?php
+				if($existeTri){
+					if($tri=="clefPromoCroissant"){?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+					<?php
+					}
+					elseif($tri=="clefPromoDecroissant"){?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+					<?php
+					}
+					else{?>
+						<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+					<?php
+					}
+				}
+				else{?>
+					<th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				<?php
+				}?>
 			</tr>
 			<?php
-				foreach ($promos as $promos){
+				$i=1;
+				foreach ($promos as $promo){
 			?>
 					<tr>
-						<td><?php echo $promos["codePromo"] ?></td>
-						<td><a href="../controller/gererEtudiantPromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Gérer les étudiants de la promo</a></td>
-						<td><a href="../controller/modifierCodePromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Modifier le code de la promo</a></td>
-						<td><a href="../controller/supprimerPromo.controller.php?refPromo=<?php echo $promos['codePromo']?>">Supprimer</a></td>
+						<td><?php echo $i; $i+=1; ?></td>
+						<td><?php echo $promo["nom"]?></td>
+						<td><?php echo $promo["anneePromo"]?></td>
+						<td><?php echo $promo["codePromo"] ?></td>
+						<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>">Gérer la promo</a></td>
+						<td><a href="../controller/administrerPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>">Supprimer</a></td>
 					</tr>
 			<?php
 				}?>

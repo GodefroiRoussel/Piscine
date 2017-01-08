@@ -42,29 +42,35 @@ function getCodePromo($idEtudiant){
 	return $codePromo[0];
 }
 
-function existeEtudiant($email,$password,$promo){
-		global $pdo;
+function existeEtudiantId($idEtudiant){
+	//donnée : id de l'étudiant
+	//résultat : True si l'étudiant éxiste, False sinon
+	global $pdo;
 
-		$req=$pdo->prepare('SELECT id FROM etudiant WHERE email=? AND password=? AND codePromo=?');
-		$req->execute(array($email,$password,$promo));
-		$id=$req->fetch();
+	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$compteur=$req->fetch();
+	if($compteur[0]>0){
+		return True;
+	}
+	else{
+		return False;
+	}
 
-		return $id[0];
 }
 
-function getAllResultat($idetudiant){
+function getAllChoix($idetudiant){
 	//donnée : id de l'élève
 	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
 
 	global $pdo;
-	$req=$pdo->prepare('SELECT score FROM correspondre ,etudiant WHERE id=? AND id=idEtudiant');
+	$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix ,etudiant WHERE id=? AND id=idEtudiant');
 	$req->execute(array($idetudiant));
 	$resultat=$req->fetchAll();
 
 	return $resultat;
 
 }
-
 
 function premierTest($idetudiant){
 	//donnée : id de l'élève
@@ -96,21 +102,21 @@ function resetpremierTest($idetudiant){
 	//résultat: réinitialise le premierTest de l'élève à true
 
 	global $pdo;
-	$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');
+	$req=$pdo->prepare('UPDATE etudiant SET premierTest=True WHERE id=?');
 	$req->execute(array($idetudiant));
-
 	$etudiant=$req->fetch();
+	$req=$pdo->prepare('DELETE FROM choix WHERE idEtudiant=?');
+	$req->execute(array($idetudiant));
 
 	return $etudiant;
 }
 
-function ajouterResultat($idEtudiant,$idFiche,$pourcentage){
+function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO correspondre(idEtudiant,idFiche,score) VALUES (?,?,?)');
-	$req->execute(array($idEtudiant,$idFiche,$pourcentage));
+	$req=$pdo->prepare('INSERT INTO choix(idEtudiant,idGroupe,choix1,choix2,choix3) VALUES (?,?,?,?,?)');
+	$req->execute(array($idEtudiant,$idGroupe,$choix1,$choix2,$choix3));
 }
-
 
 function supprimerEtudiant($id){
 	//donnée : id de l'étudiant
@@ -120,6 +126,41 @@ function supprimerEtudiant($id){
 	$req->execute(array($id));
 
 }
+
+function getPrenomEtudiant($id){
+	//donnée : id de l'étudiant
+	//résultat : renvoie le prénom de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('SELECT prenom FROM etudiant WHERE id=?');
+	$req->execute(array($id));
+	$prenom=$req->fetch();
+
+	return $prenom[0];
+}
+
+function getNomEtudiant($id){
+	//donnée : id de l'étudiant
+	//résultat : renvoie le nom de l'étudiant
+	global $pdo;
+	$req=$pdo->prepare('SELECT nom FROM etudiant WHERE id=?');
+	$req->execute(array($id));
+	$nom=$req->fetch();
+
+	return $nom[0];
+}
+
+function getIdPromo($idEtudiant){
+		//donnée : le code de la promo (entier)
+		//resultat : le nom du département departement de la promo (string)
+	global $pdo;
+	$req=$pdo->prepare('SELECT idPromo FROM etudiant WHERE id=?');
+	$req->execute(array($idEtudiant));
+	$idPromo=$req->fetch();
+
+	return $idPromo[0];
+}
+
+
 /* Normalement n'a pas besoin de constructeur ici, dans promo cela est suffisant"
 function creerEtudiant($mail,$codePromo){
 

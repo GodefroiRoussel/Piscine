@@ -3,8 +3,8 @@
   require_once('../model/token.php');
   require_once('../model/connexionBD.php');
   require_once('../model/Etudiant.php');
-  require_once('../model/Proposition.php');
   require_once('../model/Promo.php');
+  require_once('../assets/functions/calculResultat.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -37,60 +37,41 @@
             $array_choice2[11] = $_POST['rep2'];
             $array_choice3[11] = $_POST['rep3'];
 
-            // Tableau regroupant tous les tableaux
-            $array_choice=[$array_choice1,$array_choice2,$array_choice3];
-            $result=[0,0,0,0,0,0]; // On stocke dans ce tableau les différents score de chaque fiche (initialisée à 0).
-
-            //Double boucle pour parcourir tout le tableau $array_choice et ainsi permettre le calcul des résultats RIASEC
-            for($j=0;$j<3;$j++){
-              // Si j==0 c'est la proposition la plus importante donc elle vaut 3 points. Si j==1, la proposition vaut 2 points et si j==2, la proposition vaut 1 point.
-              $val= 3 - $j;
-
-              for($i=0;$i<=11;$i++){
-                // On récupère l'id de la Fiche pour savoir à quelle case du tableau on va devoir ajouter les points
-                $idFiche=getFicheAssociee($array_choice[$j][$i]);
-                $result[$idFiche-1]= $result[$idFiche-1] + $val;
-              }
-            }
-
-            //On fait passer chaque score en pourcentage
-            for ($i=0;$i<6;$i++){
-              $result[$i]= ($result[$i]/72)*100;
-            }
-
-            // Si c'est le premier test, on sauvegarde les résultats pour qu'il rentre dans les statistiques
+            // Si c'est le premier test, on sauvegarde les choix pour qu'il rentre dans les statistiques
             if(premierTest($id)){
-              for($i=0;$i<6;$i++){
-                ajouterResultat($id,$i+1,$result[$i]);
+              for($i=0;$i<12;$i++){
+                ajouterChoix($id,$i+1,$array_choice1[$i],$array_choice2[$i],$array_choice3[$i]);
               }
               passerTest($id);
             }
           }
           else{
-            // On charge les résultats qui sont dans la base de données
-            $result_intermediaire=getAllResultat($id); //C'est un tableau de tableau
-            //On le fait passer en tableau
-            for ($i=0;$i<6;$i++){
-              $result[$i]=$result_intermediaire[$i][0];
+            // On charge les choix de l'étudiant qui sont dans la base de données
+            $choice_tab=getAllChoix($id); //C'est un tableau de tableau
+            //On le fait passer en simple tableau
+            for ($i=0;$i<12;$i++){
+              $array_choice1[$i]=$choice_tab[$i][0];
+              $array_choice2[$i]=$choice_tab[$i][1];
+              $array_choice3[$i]=$choice_tab[$i][2];
             }
           }
-
-          // On récupère la moyenne de chaque score de la promo de l'élève
-          $resultPromo=getmoyResultat(getCodePromo($id));
-
+          // On calcule les résultats de l'élève
+          $result=calculResultat($array_choice1,$array_choice2,$array_choice3);
+          // On calcule les résultats de la promo à partir de l'id de la promo
+          $resultPromo=calculResultatPromo(getIdPromo($id));
           include('../view/resultat.php');
 
 
         }
         else{
-          echo "On vous redirige <br/>";
+          // Si un admin essaie d'accéder aux résultats on le redirige
+          header('Location:redirection.php');
         }
 
       }
 
       else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
+          // Si le token n'est pas valide, on redirige et détruit le cookie
+          header('Location:redirection.php');
       }
     }

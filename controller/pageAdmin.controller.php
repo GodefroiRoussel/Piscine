@@ -2,7 +2,7 @@
   require_once('../vendor/autoload.php');
   require_once('../model/token.php');
   require_once('../model/connexionBD.php');
-  require_once('../model/etudiant.php');
+  require_once('../model/Admin.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -11,8 +11,8 @@
    //On vérifie que l'utilisateur est déjà connecté
    if(!isset($_COOKIE["token"])){
 
-            // On le redirige vers la connexion étudiant
-            header('Location:connexionEtudiant.controller.php');
+            // On le redirige vers la connexion admin
+            header('Location:connexionAdmin.controller.php');
     }
     else{
       //On décode le token
@@ -22,7 +22,8 @@
       //On vérifie que c'est un token valide
       if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
-          $email=getMailEtudiant($decoded_array['id']);
+          $prenom=getPrenomAdmin($decoded_array['id']);
+          $nom=getNomAdmin($decoded_array['id']);
           include('../view/pageAdmin.php');
         }
         else{

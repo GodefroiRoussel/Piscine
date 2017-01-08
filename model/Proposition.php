@@ -61,17 +61,13 @@ function modifProposition($idP,$newCont){
 
 
 	global $pdo;
-	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE idP= :id');
+	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE id= :idP');
 	$req->execute(array(
     'newDesc' => $newCont,
-    'id' => $idP
+    'idP' => $idP
     ));
-
-  $proposition= $req->fetch();
-
-
-  return $proposition;
 }
+
 
 /* normalement fonction inutile
 function creerProposition($num,$contenu,$typeAssoc){
@@ -84,6 +80,20 @@ function creerProposition($num,$contenu,$typeAssoc){
     $req=$pdo->prepare('INSERT INTO groupeprop (num, contenu) VALUES (?,?,?)');
     $red->execute(array($num,$contenu,$typeAssoc));
 }
+
+global $pdo;
+$req=$pdo->prepare('UPDATE Admin SET password= :newMdp WHERE id=:idAd');
+  if(!$req->execute(array(
+  'newMdp' => $newmdp,
+  'idAd' => $idAdmin
+  ))){
+    return False;
+  }
+  else{
+    return True;
+  }
+
+Vous aimez avoir des activités à l'extérieur, travailler en plein air
 */
 
 ?>
