@@ -17,7 +17,7 @@
 				</div>
 		</header>
 		<section>
-			<form action="ConfirmationModif.php" method="post">
+			<form action="ConfirmationModifAdmin.php" method="post">
 				<p>
 					<em>Adresse mail : </em>
 					<input type="text" name="adresse"/>

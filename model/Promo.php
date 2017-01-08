@@ -89,18 +89,18 @@ function getAllEtudiantRecherche($idPromo,$typeRecherche){
 	return $etudiants;
 }
 
-function creerPromo($codePromo,$idDep,$anneePromo){
+function creerPromo($codePromo,$idDep,$datePromo){
 			//donnée : la clef promo, le département et l'année où sera diplomée la promo
 			//resultat : la promo insérée dans la base de données
 
-
-
 	global $pdo;
-
-	$req=$pdo->prepare('INSERT INTO Promo (codePromo,anneePromo,idDep) VALUE (?,?,?)');
-	$req=execute(array($codePromo,$anneePromo,$idDep));
-
-
+	$req=$pdo->prepare('INSERT INTO promo (codePromo,anneePromo,idDep) VALUES (?,?,?)');
+	if(!$req->execute(array($codePromo,$datePromo,$idDep))){
+		return False;
+	}
+	else{
+		return True;
+	}
 }
 
 function ajoutEtudiant($codepromo,$mail){
