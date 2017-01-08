@@ -109,4 +109,13 @@ function modifMailAdmin($idAdmin,$newMail){
   	}
 }
 
+function getNbAdmin(){
+	global $pdo;
+	$req=$pdo->prepare('SELECT COUNT(*) FROM admin');
+  $req->execute();
+	$nbAdmin=$req->fetch();
+
+	return $nbAdmin[0];
+}
+
 ?>

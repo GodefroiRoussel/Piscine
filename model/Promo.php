@@ -14,6 +14,19 @@ function getCode($idPromo){
 	return $codePromo[0];
 }
 
+function getAnneePlusAnciennePromo(){
+	//donnée: le code de la promo du département de la promo
+	//résuluat : la clef Promo permettant de s'authentifier dans une promo
+
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT min(anneePromo) FROM promo');
+	$req->execute();
+	$annee=$req->fetch();
+
+	return $annee[0];
+}
+
 function getNomDepartement($idPromo){
 		//donnée : le code de la promo (entier)
 		//resultat : le nom du département departement de la promo (string)
@@ -180,6 +193,15 @@ function supprimerPromo($idPromo){
 	global $pdo;
 	$req=$pdo->prepare('DELETE FROM promo WHERE id=?');
 	$req->execute(array($idPromo));
+}
+
+function getNbPromo(){
+	//résultat : renvoie le nomnbre de promo créé
+	global $pdo;
+	$req=$pdo->prepare('SELECT COUNT(*) FROM promo');
+	$req->execute();
+	$compteur=$req->fetch();
+	return $compteur[0];
 }
 /* Fontion non nécessaire si on passe par un post
 function existeEtudiant($id){

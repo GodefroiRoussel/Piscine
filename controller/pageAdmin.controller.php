@@ -3,6 +3,7 @@
   require_once('../model/token.php');
   require_once('../model/connexionBD.php');
   require_once('../model/Admin.php');
+  require_once('../model/Promo.php');
   use \Firebase\JWT\JWT;
 
   //TODO: mettre dans un fichier .env
@@ -24,6 +25,9 @@
         if($decoded_array['role']==="admin"){
           $prenom=getPrenomAdmin($decoded_array['id']);
           $nom=getNomAdmin($decoded_array['id']);
+          $nbPromo=getNbPromo();
+          $anneePromo=getAnneePlusAnciennePromo();
+          $nbAdmin=getNbAdmin();
           include('../view/pageAdmin.php');
         }
         else{

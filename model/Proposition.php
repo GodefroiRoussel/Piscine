@@ -2,7 +2,7 @@
 //fonctions du type proposition
 
 
-//Surement inutile
+/* Je pense que ces fonctions seront inutiles
 function getNumProposition($proposition){
     //Recoit la proposition
     //Retourne le num de proposition
@@ -16,7 +16,7 @@ function getNumProposition($proposition){
 
 }
 
-/* Je pense que cette fonction sera inutile
+
 function getAllProposition()
 {
     global $pdo;

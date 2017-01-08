@@ -3,19 +3,24 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test de Hollande</title>
-		<link rel="stylesheet" href="style.css" />
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- BOOTSTRAP STYLES-->
+		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FONTAWESOME STYLES-->
+		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- CUSTOM STYLES-->
+		<link href="../assets/css/custom.css" rel="stylesheet" />
+		<!-- GOOGLE FONTS-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	</head>
 	<body>
-		<header>
-			<div id="connexion">
-				<?php include("buttonInscription.php"); ?>
-			</div>
-			<div id="menu">
-				<?php include("menu.php"); ?>
-			</div>
+			<div id="wrapper">
+				<?php include("menu/menuTop.php"); ?>
+				<!-- /. NAV TOP  -->
+				<!-- NAV SIDE only if we are connected -->
+				<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+					 include("menu/side_menu.php");
+				} ?>
 
-		</header>
 
 				<h1>Bienvenue sur le test de Hollande</h1>
 				<div>
@@ -25,5 +30,17 @@
 				<div>
 					<a href="connexionAdmin.controller.php" class="btn btn-info">Admin</a>
 				</div>
+
+		</div>
+		<!-- /. WRAPPER  -->
+		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+		<!-- JQUERY SCRIPTS -->
+		<script src="../assets/js/jquery-1.10.2.js"></script>
+		<!-- BOOTSTRAP SCRIPTS -->
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<!-- METISMENU SCRIPTS -->
+		<script src="../assets/js/jquery.metisMenu.js"></script>
+		<!-- CUSTOM SCRIPTS -->
+		<script src="../assets/js/custom.js"></script>
 	</body>
 </html>
