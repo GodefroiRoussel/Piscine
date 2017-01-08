@@ -63,7 +63,7 @@ function getNbTestEffectue($idPromo){
 
 
 function getAllEtudiant($idPromo){
-		//donnée : une promo
+		//donnée : id d'une promo
 		//resultat : la liste des élèves(id, mail et premierTest) de la promo
 
 	global $pdo;
@@ -75,6 +75,19 @@ function getAllEtudiant($idPromo){
 
 }
 
+function getAllEtudiantRecherche($idPromo,$typeRecherche){
+	//donnée : id d'une promo, le type de la recherche (prenom,nom,premierTest) et le texte à rechercher
+	//resultat : liste des étudiants dont la valeur du type de recherche contient au moins le texte à rechercher
+
+	global $pdo;
+	//$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE "%".?."%"');
+	//$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE ?');
+	$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE "%ri%"');
+	$req->execute(array($idPromo,$typeRecherche));
+	$etudiants=$req->fetchAll();
+
+	return $etudiants;
+}
 
 function creerPromo($codePromo,$idDep,$anneePromo){
 			//donnée : la clef promo, le département et l'année où sera diplomée la promo

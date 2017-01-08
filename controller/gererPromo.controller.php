@@ -77,7 +77,25 @@
                   }
                 }
               }
-              $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
+              if(isset($_POST['typeRecherche'])){
+                $typeRecherche=$_POST['typeRecherche'];
+                if($typeRecherche=="Prénom"){
+                  $typeRecherche="prenom";
+                }
+                if($typeRecherche=="Test effectué"){
+                  $typeRecherche="premierTest";
+                }
+                if(isset($_POST['recherche'])){
+                  $recherche=htmlspecialchars($_POST['recherche']);
+                  $etudiants=getAllEtudiantRecherche($id,$typeRecherche);
+                }
+                else{
+                  $etudiants=getAllEtudiantRecherche($id,$typeRecherche);//récupère tous les étudiants de la promo
+                }
+              }
+              else{
+                $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
+              }
               $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
               if($existeTri){
                 $tri=htmlspecialchars($_GET['tri']);

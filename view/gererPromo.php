@@ -5,6 +5,7 @@
 		<title>Test de Hollande</title>
 		<link rel="stylesheet" href="../assets/css/general.css" />
 		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
+		<script type="text/javascript" src="../controller/js/recherche.js"></script>
 	</head>
 	<header>
 			<div id="connexion">
@@ -91,6 +92,23 @@
 				<?php
 				}?>
 			</tr>
+			<div>
+			<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
+				<!-- Bouton qui va afficher la saisie de la recherche -->
+				<select name="listeRecherche" id="listeRecherche" onchange=afficherRecherche()>
+					<option value="">Rechercher selon...</option>
+					<option value="prenom">Prénom</option>
+					<option value="nom">Nom</option>
+					<option value="test">Test effectué</option>
+				</select>
+
+				<!-- ce qui va être affiché lors de la seléction d'une option -->
+				<div id="newRecherche">
+					<input type="text" name="recherche" id="recherche"/>
+					<input type="submit" value="Chercher" id="chercher"/>
+				</div>
+				<input type="hidden" name="typeRecherche" id="typeRecherche"/>
+			</form> 
 			<?php
 			$i=1;
 			foreach ($etudiants as $etudiant){
