@@ -33,8 +33,7 @@
 									if($premierTestBool){ //vrai s'il n'a pas encore passé le test
 								?>
 								<div class="row">
-										<div class="col-md-6 col-sm-5 col-xs-6">
-												<h5>Passer le test</h5>
+										<div class="col-md-12 col-sm-12 col-xs-12">
 												<div class="panel panel-primary text-center no-boder bg-color-blue">
 														<div class="panel-body">
 																<i class="fa fa-bar-chart-o fa-5x"></i>
@@ -42,8 +41,8 @@
 														</div>
 														<div class="panel-footer back-footer-blue">
 														Le questionnaire RIASEC vise à déterminer chez un individu quels sont les traits de caractères prédominants. Une fois ce test passé, un profil vous indique
-														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi.
-														<a href="#" class="btn btn-primary">Consulter les statistiques</a>
+														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi. <br>
+														<a href="formulaire.controller.php" class="btn btn-primary">Passer le test</a>
 														</div>
 												</div>
 										</div>
@@ -54,7 +53,7 @@
 											else{ //s'il a déjà passé le test
 											?>
 								<div class="row">
-										<div class="col-md-6 col-sm-5 col-xs-6">
+										<div class="col-md-6 col-sm-6 col-xs-6">
 												<h5>Passer le test</h5>
 												<div class="panel panel-primary text-center no-boder bg-color-blue">
 														<div class="panel-body">
@@ -69,7 +68,7 @@
 												</div>
 										</div>
 
-										<div class="col-md-6 col-sm-5 col-xs-6">
+										<div class="col-md-6 col-sm-6 col-xs-6">
 											<h5>Voir ses résultats</h5>
 											<div class="alert alert-info text-center">
 															<i class="fa fa-bar-chart-o fa-5x"></i>
