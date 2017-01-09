@@ -23,13 +23,7 @@
 
 
 				<h1>Bienvenue sur le test de Hollande</h1>
-				<div>
-					<a href="connexionEtudiant.controller.php" class="btn btn-info">Etudiant</a>
-				</div>
-				<br />
-				<div>
-					<a href="connexionAdmin.controller.php" class="btn btn-info">Admin</a>
-				</div>
+
 
 		</div>
 		<!-- /. WRAPPER  -->
