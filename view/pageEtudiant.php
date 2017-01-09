@@ -20,27 +20,75 @@
 				<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
 					 include("menu/side_menu.php");
 				} ?>
+				<div id="page-wrapper">
+						<div id="page-inner">
+								<div class="row">
+										<div class="col-md-12">
+												<h2>Tableau de bord</h2>
+										</div>
+								</div>
+								<!-- /. ROW  -->
+								<hr />
+								<?php
+									if($premierTestBool){ //vrai s'il n'a pas encore passé le test
+								?>
+								<div class="row">
+										<div class="col-md-6 col-sm-5 col-xs-6">
+												<h5>Passer le test</h5>
+												<div class="panel panel-primary text-center no-boder bg-color-blue">
+														<div class="panel-body">
+																<i class="fa fa-bar-chart-o fa-5x"></i>
+																<h3>Ce test se fait en 5 minutes ! </h3>
+														</div>
+														<div class="panel-footer back-footer-blue">
+														Le questionnaire RIASEC vise à déterminer chez un individu quels sont les traits de caractères prédominants. Une fois ce test passé, un profil vous indique
+														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi.
+														<a href="#" class="btn btn-primary">Consulter les statistiques</a>
+														</div>
+												</div>
+										</div>
+									</div>
+									<!-- /. ROW  -->
+									<hr />
+										<?php }
+											else{ //s'il a déjà passé le test
+											?>
+								<div class="row">
+										<div class="col-md-6 col-sm-5 col-xs-6">
+												<h5>Passer le test</h5>
+												<div class="panel panel-primary text-center no-boder bg-color-blue">
+														<div class="panel-body">
+																<i class="fa fa-check-circle fa-5x"></i>
+																<h3>Tu peux repasser le test mais le résultat ne changera pas </h3>
+														</div>
+														<div class="panel-footer back-footer-blue">
+														Le questionnaire RIASEC vise à déterminer chez un individu quels sont les traits de caractères prédominants. Une fois ce test passé, un profil vous indique
+														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi.
+														<a href="formulaire.controller.php" class="btn btn-primary">Passer le test</a>
+														</div>
+												</div>
+										</div>
 
-		<?php
-			if($premierTestBool){ //vrai s'il n'a pas encore passé le test
-		?>
-		<div>
-			<a href="../controller/formulaire.controller.php" class="btn btn-info">Passer le vrai Test</a>
-		</div>
-		<?php }
-			else{ //s'il a déjà passé le test
-			?>
-		<div>
-			<a href="../controller/resultat.controller.php" class="btn btn-info">Consulter son résultat</a>
-		</div>
-		<br/>
-		<div>
-			<a href="../controller/formulaire.controller.php" class="btn btn-info">Faire un essai</a>
-		</div>
-		<?php }
-			?>
-		</div>
-		<!-- /. WRAPPER  -->
+										<div class="col-md-6 col-sm-5 col-xs-6">
+											<h5>Voir ses résultats</h5>
+											<div class="alert alert-info text-center">
+															<i class="fa fa-bar-chart-o fa-5x"></i>
+															<h3>Tu es plutôt... <?php echo $nomFiche ?> !</h3>
+													<div class="panel-footer">
+													Ici vous pouvez voir vos différents scores et vous comparer à votre promotion <br>
+													<a href="resultat.controller.php" class="btn btn-primary">Voir ses résultats</a>
+													</div>
+											</div>
+										</div>
+									</div>
+									<!-- /. ROW  -->
+									<?php }
+									?>
+									<hr />
+								</div>
+								<!-- /. PAGE WRAPPER  -->
+				</div>
+				<!-- /. WRAPPER  -->
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<!-- JQUERY SCRIPTS -->
 		<script src="../assets/js/jquery-1.10.2.js"></script>
