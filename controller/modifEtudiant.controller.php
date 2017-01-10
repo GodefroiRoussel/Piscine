@@ -27,7 +27,7 @@
           $email=getMailAdmin($decoded_array['id']);
           //Vérification que la référence promo correspond à une promo éxistante
           if(isset($_GET['refPromo'])){
-            $id=$_GET['refPromo'];
+            $id=htmlspecialchars($_GET['refPromo']);
             if(existePromoId($id)){
               if(isset($_GET['refEtuMod'])){
                 //Protéction contre les injections SQL
@@ -35,6 +35,8 @@
                 //Vérification que la référence promo correspond à une promo éxistante 
                 if(existeEtudiantId($idEtuMod)){
                   $email=getMailEtudiant($idEtuMod);
+				  $prenom=strtolower(getPrenomEtudiant($idEtuMod));
+				  $nom=strtolower(getNomEtudiant($idEtuMod));
                   if(isset($_GET["email"]) & !empty($_GET["email"])){
                     $newEmail=htmlspecialchars($_GET['email']);
                     if(existeEtudiantMail($newEmail)){
