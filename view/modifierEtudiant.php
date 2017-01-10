@@ -18,7 +18,7 @@
 				</div>
 		</header>
 		<section>
-			<form action="modifEtudiant.controller.php?refPromo=$id" onsubmit="return informationsCorrecte();">
+			<form action="modifEtudiant.controller.php?refPromo=<?php echo $id ?>" onsubmit="return informationsCorrecte();">
 				<span>Adresse mail :</span>
 				<input type="text" value="<?php echo $email ?>"  id="email" />"
 				<div>
