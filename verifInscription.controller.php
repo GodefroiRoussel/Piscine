@@ -34,15 +34,14 @@ require_once('../model/Promo.php');
 				
 				if(!$id<0){
 					//on transforme le mail sous la forme prenom.nom@etu.umontpellier.Fr
-					$mail=$email."@etu.umontpellier.Fr"
+					$mail=$email."@etu.umontpellier.Fr";
 					//on récupère l'id de la promo correspondant au code promo 
 					$idPromo=getID($clefPromo);
 					
-					if(!testerMail($idPromo,$mail)){
+					
 					ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp);
 					
-					
-					}
+									}
 					}
 				
 					

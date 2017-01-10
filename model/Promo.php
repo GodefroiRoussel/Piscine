@@ -116,16 +116,20 @@ function creerPromo($codePromo,$idDep,$datePromo){
 	}
 }
 
-function ajoutEtudiant($codepromo,$mail){
-	//donnée : la clef de la promo et le mail de l'étudiant à ajouter
+function ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp){
+	//données : l'id de la promo, le mail de l'étudiant, le nom, le prénom de l'étudiant et le mdp crypté 
 	//résultat : l'étudiant est ajouté à la base de donnée avec sa promo correspondante
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO etudiant (email,premierTest,codePromo) VALUES (?,True,?)');
-	$req=execute(array($mail,$codepromo));
+
+	 $req=$pdo->prepare('INSERT INTO etudiant (email,nom,prenom,premierTest,password,idPromo) VALUES (?,?,?,True,?,?)');
+	 $req=execute(array($mail,$nom,$prenom,$mdp,$idPromo));
+
+	
+
 
 	}
-
+	/*
 function testMail($codepromo,$mail){
 	//donnée : code promo et eleve
 	//resultat : bool true si l'élève appartient a la promo, false sinon
@@ -137,6 +141,8 @@ function testMail($codepromo,$mail){
 	if($compteur[0]>0){return true;}
 	else{return false;}
 }
+*/
+
 
 function getAllPromo(){
 	//résultat : renvoie les codePromo de toutes les promos de la BD
@@ -202,5 +208,17 @@ function getNbPromo(){
 	$req->execute();
 	$compteur=$req->fetch();
 	return $compteur[0];
+}
+function getID($codePromo){
+	//donnée : code de la promo 
+	//resultat : id de la promo correspondant au code 
+	
+	global $pdo;
+	$req=$pdo->prepare('SELECT id FROM promo WHERE codePromo=?');
+	$req-> execute(array($codePromo));
+	$id=$req->fetch();
+	
+	return $id[0];
+		
 }
 ?>
