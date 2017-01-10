@@ -8,21 +8,29 @@
 		<!-- <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"> -->
 		<link rel="stylesheet" href="../Formulaire/Formulaire.css">
     <script type="text/javascript" src="../assets/js/modifierQuestionnaire.js"></script>
-<!--		<script type="text/javascript" src="../Formulaire/Formulaire2.js"></script> -->
-	</head>
+		<!--		<script type="text/javascript" src="../Formulaire/Formulaire2.js"></script> -->
+		<!-- BOOTSTRAP STYLES-->
+		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FONTAWESOME STYLES-->
+		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- CUSTOM STYLES-->
+		<link href="../assets/css/custom.css" rel="stylesheet" />
+		<!-- GOOGLE FONTS-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		</head>
 
-	<body>
-		<header>
-			<div id="connexion">
-				<?php include("buttonInscription.php"); ?>
+		<body>
+		<div id="wrapper">
+			<?php include("menu/menuTop.php"); ?>
+			<!-- /. NAV TOP  -->
+			<!-- NAV SIDE only if we are connected -->
+			<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+				 include("menu/side_menu.php");
+			} ?>
+
+			<div class="table-title">
+				<h3>Test RIASEC</h3>
 			</div>
-      <div id="menu">
-  			<?php include("menu.php"); ?>
-  		</div>
-		</header>
-		<div class="table-title">
-			<h3>Test RIASEC</h3>
-		</div>
 
     <form method="get" action="afficherQuestionnaire.controller.php">
        <label for="numGroupe">Groupe </label>
@@ -80,5 +88,16 @@
   		</table>
 
       <a href="../controller/modifierQuestionnaire.controller.php?numGroupe=<?php echo $i?>"/>Modifier</a>
+		</div>
+		<!-- /. WRAPPER  -->
+		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+		<!-- JQUERY SCRIPTS -->
+		<script src="../assets/js/jquery-1.10.2.js"></script>
+		<!-- BOOTSTRAP SCRIPTS -->
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<!-- METISMENU SCRIPTS -->
+		<script src="../assets/js/jquery.metisMenu.js"></script>
+		<!-- CUSTOM SCRIPTS -->
+		<script src="../assets/js/custom.js"></script>
 	</body>
 </html>
