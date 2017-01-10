@@ -20,11 +20,9 @@ function afficher(){
 	 */
 
 		document.getElementById("new").style.display="inline";
-		document.getElementById("confirmer").style.display="inline";
 	  document.getElementById("modifier").style.visibility="hidden";
 
 	  return true;
-
 }
 
 function verifPassword(){

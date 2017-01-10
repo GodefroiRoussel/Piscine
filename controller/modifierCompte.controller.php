@@ -27,6 +27,8 @@
         $modifReussiPasswd=null;
       	if($role==="admin"){
         	$email=getMailAdmin($decoded_array['id']);
+          $prenom=getPrenomAdmin($decoded_array['id']);
+          $nom=getNomAdmin($decoded_array['id']);
         	// Si $_POST['email'] existe et qu'il n'est pas vide, on modifie l'adresse mail
         	if(isset($_POST["email"]) && !empty($_POST["email"])) {
               $email = htmlspecialchars ($_POST['email']);
@@ -46,6 +48,8 @@
         // On fait la même chose mais si c'est un étudiant
         else if($role==="etudiant"){
           $email=getMailEtudiant($decoded_array['id']);
+          $prenom=getPrenomEtudiant($decoded_array['id']);
+          $nom=getNomEtudiant($decoded_array['id']);
 
           // Par contre il peut changer son mot de passe
           if (isset($_POST["passwd"]) && !empty($_POST["passwd"])){
