@@ -3,19 +3,29 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test de Hollande</title>
+		<!-- BOOTSTRAP STYLES-->
+		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FONTAWESOME STYLES-->
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- DataTables CSS -->
+		<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+		<!-- DataTables Responsive CSS -->
+		<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+		<!-- CUSTOM STYLES-->
 		<link rel="stylesheet" href="../assets/css/general.css" />
-		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
-		<script type="text/javascript" src="../controller/js/recherche.js"></script>
+		<link href="../assets/css/custom.css" rel="stylesheet" !important/>
+		<!-- GOOGLE FONTS-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	</head>
-	<header>
-			<div id="connexion">
-				<?php include("buttonInscription.php"); ?>
-			</div>
-			<div id="menu">
-				<?php include("menu.php"); ?>
-			</div>
-	</header>
 	<body>
+		<div id="wrapper">
+			<?php include("menu/menuTop.php"); ?>
+			<!-- /. NAV TOP  -->
+			<!-- NAV SIDE only if we are connected -->
+			<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+				 include("menu/side_menu.php");
+			} ?>
 		<p>Promo <?php echo $nomDepartement," ",$annee; ?></p>
 		<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verifCodePromo();">
 			<span>Code promo actuel : <?php echo $codePromo ?></span>
@@ -34,7 +44,7 @@
 		<table>
 			<tr>
 				<th>Numéro</th>
-				<?php 
+				<?php
 				if($existeTri){
 					if($tri=="prenomCroissant"){?>
 						<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
@@ -53,7 +63,7 @@
 					<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
 				<?php
 				}?>
-				<?php 
+				<?php
 				if($existeTri){
 					if($tri=="nomCroissant"){?>
 						<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
@@ -72,7 +82,7 @@
 					<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
 				<?php
 				}?>
-				<?php 
+				<?php
 				if($existeTri){
 					if($tri=="testCroissant"){?>
 						<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
@@ -117,7 +127,7 @@
 				</div>
 				<input type="hidden" name="contenuRecherche" id="contenuRecherche" value=<?php echo $recherche ?> />
 				<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> />
-			</form> 
+			</form>
 			<?php
 			$i=1;
 			foreach ($etudiants as $etudiant){
@@ -162,5 +172,23 @@
 			?>
 				</tr>
 		</table>
+		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+		<!-- JQUERY SCRIPTS -->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<!-- BOOTSTRAP SCRIPTS -->
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<!-- METISMENU SCRIPTS -->
+		<script src="../assets/js/jquery.metisMenu.js"></script>
+		<!-- CUSTOM SCRIPTS -->
+		<script src="../assets/js/custom.js"></script>
+		<!-- DataTables JavaScript -->
+		<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+		<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../dist/js/sb-admin-2.js"></script>
+		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
+		<script type="text/javascript" src="../controller/js/recherche.js"></script>
 	</body>
 </html>
