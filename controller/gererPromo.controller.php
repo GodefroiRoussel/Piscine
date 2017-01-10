@@ -77,20 +77,25 @@
                   }
                 }
               }
+              $typeRecherche="";//variable qui gardera la valeur de l'option dans tous les cas
+              $recherche="";
               if(isset($_POST['typeRecherche'])){
                 $typeRecherche=$_POST['typeRecherche'];
-                if($typeRecherche=="Prénom"){
-                  $typeRecherche="prenom";
-                }
-                if($typeRecherche=="Test effectué"){
-                  $typeRecherche="premierTest";
-                }
-                if(isset($_POST['recherche'])){
-                  $recherche=htmlspecialchars($_POST['recherche']);
-                  $etudiants=getAllEtudiantRecherche($id,$typeRecherche);
+                if($typeRecherche!="default"){
+                  if(isset($_POST['recherche'])){
+                    $recherche=htmlspecialchars($_POST['recherche']);
+                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche);
+                  }
+                  elseif(isset($_POST['oldRechercheText'])){
+                    $recherche=htmlspecialchars($_POST['oldRechercheText']);
+                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche);
+                  }
+                  else{
+                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche);//récupère tous les étudiants de la promo
+                  }
                 }
                 else{
-                  $etudiants=getAllEtudiantRecherche($id,$typeRecherche);//récupère tous les étudiants de la promo
+                  $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
                 }
               }
               else{

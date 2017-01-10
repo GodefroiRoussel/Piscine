@@ -3,29 +3,22 @@ function afficherRecherche(){
 	 * But : Afficher les champs pour faire la recherche et mettre la bonne valeur dans le champ 
 	 */
 	var listeRecherche=document.getElementById("listeRecherche");
-	if(!(listeRecherche.options[listeRecherche.selectedIndex].text=="Rechercher selon...")){
-		document.getElementById("newRecherche").style.display="inline";
-		document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].text;
-		return true;
+	if(!(listeRecherche.options[listeRecherche.selectedIndex].value=="default")){
+		var typeRecherche=document.getElementById("typeRecherche").value;
+		var texteRecherche=document.getElementById("contenuRecherche").value;
+		if(listeRecherche.options[listeRecherche.selectedIndex].value==typeRecherche){
+			document.getElementById("oldRecherche").style.display="inline";
+		}
+		else{
+			document.getElementById("oldRecherche").style.display="none";
+			document.getElementById("newRecherche").style.display="inline";
+		}
+		document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
 	}
 	else{
 		document.getElementById("newRecherche").style.display="none";
-		return false;
+		document.getElementById("oldRecherche").style.display="none";
+		document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
 	}
-}
-
-function valeurSelectionee(){
-	/*
-	 * But : Renvoyer la valeur séléctionnée par la liste déroulante
-	*/
-
-	var listeRecherche=document.getElementById("listeRecherche");
-	var texteSelectionnee=listeRecherche.options[listeRecherche.selectedIndex].text;
-	return texteSelectionnee;
-}
-
-function verifRecherche(){
-	//var texte=valeurSelectionee();
-	//document.getElementById("info").value="bonjour";
 	return true;
 }

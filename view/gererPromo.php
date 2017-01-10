@@ -29,7 +29,7 @@
 			</div>
 		</form>
 		<div>
-			<a href="../controller/ajouterEtudiant.controller.php?refPromo=<?php echo $id ?>" class="btn btn-info">Ajouter un élève</a>
+			<a href="../controller/ajouterEtudiantBdd.controller.php?refPromo=<?php echo $id ?>" class="btn btn-info">Ajouter un élève</a>
 		</div>
 		<table>
 			<tr>
@@ -96,18 +96,27 @@
 			<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
 				<!-- Bouton qui va afficher la saisie de la recherche -->
 				<select name="listeRecherche" id="listeRecherche" onchange=afficherRecherche()>
-					<option value="">Rechercher selon...</option>
-					<option value="prenom">Prénom</option>
-					<option value="nom">Nom</option>
-					<option value="test">Test effectué</option>
+					<option value="default" <?php if($typeRecherche=="default"){?>selected <?php }?>>Rechercher selon...</option>
+					<option value="prenom" <?php if($typeRecherche=="prenom"){?>selected <?php }?> >Prénom</option>
+					<option value="nom" <?php if($typeRecherche=="nom"){?>selected <?php }?> >Nom</option>
+					<option value="premierTest" <?php if($typeRecherche=="premierTest"){?>selected <?php }?> >Test effectué</option>
 				</select>
+
+				<?php
+				if($typeRecherche!="" OR $typeRecherche!="default"){?>
+				<div id="oldRecherche">
+					<input type="text" name="oldRechercheTexte" id="oldRechercheTexte" value=<?php echo $recherche ?> />
+					<input type="submit" value="Chercher" id="chercherOld"/>
+				</div>
+				<?php }?>
 
 				<!-- ce qui va être affiché lors de la seléction d'une option -->
 				<div id="newRecherche">
 					<input type="text" name="recherche" id="recherche"/>
-					<input type="submit" value="Chercher" id="chercher"/>
+					<input type="submit" value="Chercher" id="chercherNew"/>
 				</div>
-				<input type="hidden" name="typeRecherche" id="typeRecherche"/>
+				<input type="hidden" name="contenuRecherche" id="contenuRecherche" value=<?php echo $recherche ?> />
+				<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> />
 			</form> 
 			<?php
 			$i=1;
@@ -136,7 +145,7 @@
 					<?php
 					}
 					?>
-					<td><a href="../controller/modifierEleve.controller.php?refEtuMod=<?php echo $etudiant['id']?>">Modifier</a></td>
+					<td><a href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>">Modifier</a></td>
 					<?php if($existeTri){
 							?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
 								<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>">Supprimer</a></td>

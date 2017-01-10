@@ -15,3 +15,7 @@
 #newRecherche{
   display:none;
 }
+
+#oldRecherche{
+  display:inline;
+}

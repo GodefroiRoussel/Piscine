@@ -15,12 +15,28 @@ function getMailEtudiant($idEtudiant){
 }
 
 function modifPasswordEtudiant($idEtudiant,$newmdp){
-	//donnée : id de l'admin qui veut modifier son mdp et nouveau mdp
+	//donnée : id de l'étudiant qui veut modifier son mdp et nouveau mdp
 	//résultat : modifie le mot de passe actuel avec le nouveau mdp
 	global $pdo;
 	$req=$pdo->prepare('UPDATE etudiant SET password= :newMdp WHERE id=:idEt');
   	if(!$req->execute(array(
 		'newMdp' => $newmdp,
+		'idEt' => $idEtudiant
+		))){
+  		return False;
+  	}
+  	else{
+  		return True;
+  	}
+}
+
+function modifMailEtudiant($idEtudiant,$newMail){
+	//donnée : id de l'étudiant qui veut modifier son mail et nouveau mail
+	//résultat : modifie le mail aactuel avec le nouveau mail
+	global $pdo;
+	$req=$pdo->prepare('UPDATE etudiant SET email= :newMail WHERE id=:idEt');
+  	if(!$req->execute(array(
+		'newMdp' => $newMail,
 		'idEt' => $idEtudiant
 		))){
   		return False;
@@ -40,6 +56,22 @@ function getCodePromo($idEtudiant){
 	$codePromo=$req->fetch();
 
 	return $codePromo[0];
+}
+
+function existeEtudiantMail($email){
+	//donnée : email de l'étudiant
+	//résultat : True si l'étudiant éxiste, False sinon
+	global $pdo;
+
+	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE email=?');
+	$req->execute(array($email));
+	$compteur=$req->fetch();
+	if($compteur[0]>0){
+		return True;
+	}
+	else{
+		return False;
+	}
 }
 
 function existeEtudiantId($idEtudiant){
