@@ -19,17 +19,15 @@
 		</header>
 		<section>
 			<form action="modifEtudiant.controller.php?refPromo=<?php echo $id ?>" onsubmit="return informationsCorrecte();">
-				<span>Adresse mail :</span>
+				<label>Adresse mail :</label>
 				<input type="text" value="<?php echo $email ?>"  id="email" />"
-				<div>
-					<span>Mot de passe : </span>
+				<div class="form-group">
+					<label>Mot de passe : </label>
 					
 					<div id="new">
-						<span>Nouveau :</span>
+						<label>Nouveau :</label>
 						<input type="password" name="passwd" id="passwd" />
-					</div>
-					<div id="confirmer">
-						<span>Confirmer :</span>
+						<label>Confirmer :</label>
 						<input type="password" name="futur" id="futur"/>
 					</div>
 					<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>

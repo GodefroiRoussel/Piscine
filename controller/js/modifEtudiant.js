@@ -19,11 +19,10 @@ function afficher(){
 	 * But : Afficher les champs pour changer son mot de passe
 	 */
 
-		document.getElementById("new").style.display="inline";
-		document.getElementById("confirmer").style.display="inline";
-	  document.getElementById("modifier").style.visibility="hidden";
+	document.getElementById("new").style.display="inline";
+	document.getElementById("modifier").style.visibility="hidden";
 
-	  return true;
+	return true;
 
 }
 
