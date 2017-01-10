@@ -4,23 +4,35 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test de Hollande</title>
-		<link rel="stylesheet" href="style.css" />
+		<!-- BOOTSTRAP STYLES-->
+		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FONTAWESOME STYLES-->
+		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- CUSTOM STYLES-->
+		<link href="../assets/css/custom.css" rel="stylesheet" />
+		<link href="../assets/css/general.css" rel="stylesheet" />
+		<!-- GOOGLE FONTS-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script type="text/javascript" src="../controller/js/modifEtudiant.js"></script>
 	</head>
 	<body>
-		<header>
-				<div id="connexion">
-					<?php include("buttonInscription.php"); ?>
-				</div>
-				<div id="menu">
-					<?php include("menu.php"); ?>
-				</div>
-		</header>
-		<section>
+		<div id="wrapper">
+				<?php include("menu/menuTop.php"); ?>
+				<!-- /. NAV TOP  -->
+				<!-- NAV SIDE only if we are connected -->
+				<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+					 include("menu/side_menu.php");
+				} ?>
+		<div id="page-wrapper">
+						<div id="page-inner">
+								<div class="row">
+										<div class="col-md-12">
+											<h2>Informations de l'étudiant <?php echo $prenom," ",$nom ?></h2>
 			<form action="modifEtudiant.controller.php?refPromo=<?php echo $id ?>" onsubmit="return informationsCorrecte();">
 				<label>Adresse mail :</label>
-				<input type="text" value="<?php echo $email ?>"  id="email" />"
+				<input type="text" value="<?php echo $email ?>"  id="email" />
 				<div class="form-group">
 					<label>Mot de passe : </label>
 					
@@ -34,9 +46,20 @@
 				</div>
 				<input type="submit" value="Enregistrer"/>
 			</form>
-			<form action="gererPromo.controller.php?refPromo=<?php echo $id ?>">	
+			<form method="get" action="gererPromo.controller.php?refPromo=<?php echo $id ?>">	
 				<input type="submit" value="Retour" />
 			</form>
 		</section>
+	<!-- /. WRAPPER  -->
+	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+	<!-- JQUERY SCRIPTS -->
+	<script src="../assets/js/jquery-1.10.2.js"></script>
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="../assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script type="text/javascript" src="../controller/js/modifEtudiant.js"></script>
+	<script src="../assets/js/custom.js"></script>
 	</body>
 </html>
