@@ -15,26 +15,5 @@
             include('../view/pageAccueil.php');
     }
     else{
-      //On décode le token
-      $decoded = JWT::decode($_COOKIE["token"], $key, array('HS256'));
-      $decoded_array = (array) $decoded;
-
-      //On vérifie que c'est un token valide
-      if (verificationToken($decoded_array)){
-        if($decoded_array['role']==="admin"){
-          $prenom=getPrenomAdmin($decoded_array['id']);
-          $nom=getNomAdmin($decoded_array['id']);
-          include('../view/pageAdmin.php');
-        }
-        else{
-          echo "On vous redirige <br/>";
-        }
-
+      header('Location:redirection.php');
       }
-
-      else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
-      }
-    }
