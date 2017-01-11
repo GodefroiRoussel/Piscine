@@ -33,7 +33,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i>Statistiques</a>
+                        <a href="statistiques.controller.php"><i class="fa fa-bar-chart-o"></i>Statistiques</a>
                     </li>
                     <?php
                   }
