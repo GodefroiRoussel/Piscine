@@ -19,7 +19,8 @@
            include("menu/side_menu.php");
         } ?>
 
-        <div class="inner contact">
+        <div id="page-wrapper">
+  				<div id="page-inner">
                         <!-- Form Area -->
                         <div class="contact-form">
                             <!-- Form -->
@@ -54,9 +55,11 @@
                                     <strong>Merci !</strong> Votre email a été délivré.
                                 </div>
                             </div>
-
                     </div>
-                    <!-- End Contact Form Area -->
+                  </div>
+                  <!-- /. PAGE-INNER -->
+                </div>
+                <!-- /. PAGE-WRAPPER -->
           </div>
           <!-- /. INNER -->
     </div>

@@ -14,7 +14,7 @@
             		        ?>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="redirection.php"><i class="fa fa-square-o "></i>&nbsp;Test de Hollande</a>
+                    <a class="navbar-brand" href="redirection.php"><i class="fa fa-square-o "></i>&nbsp;Test de Holland</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -27,7 +27,7 @@
                       <?php
                       }
                       ?>
-                      <li><a href="contact.asp">Contact</a></li>
+                      <li><a href="contact.controller.php">Contact</a></li>
                     </ul>
                 </div>
 
