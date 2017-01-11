@@ -1,10 +1,10 @@
-function afficher(){
+function afficherCode(){
 	/*
 	 * But : Afficher les champs pour changer le code promo
 	 */
 
-	document.getElementById("new").style.display="inline";
-	document.getElementById("modifier").style.visibility="hidden";
+	document.getElementById("newCode").style.display="inline";
+	document.getElementById("modifierCode").style.visibility="hidden";
 
 	return true;
 }

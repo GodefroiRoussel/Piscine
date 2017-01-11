@@ -88,15 +88,15 @@ function getAllEtudiant($idPromo){
 
 }
 
-function getAllEtudiantRecherche($idPromo,$typeRecherche){
+function getAllEtudiantRecherche($idPromo,$typeRecherche,$rechercheTexte){
 	//donnée : id d'une promo, le type de la recherche (prenom,nom,premierTest) et le texte à rechercher
 	//resultat : liste des étudiants dont la valeur du type de recherche contient au moins le texte à rechercher
 
 	global $pdo;
-	//$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE "%".?."%"');
-	//$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE ?');
-	$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND ? LIKE "%ri%"');
-	$req->execute(array($idPromo,$typeRecherche));
+	$requete='SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND '.$typeRecherche.' LIKE ?';
+	$req=$pdo->prepare($requete);
+	$rechercheTexte='%'.$rechercheTexte.'%';
+	$req->execute(array($idPromo,$rechercheTexte));
 	$etudiants=$req->fetchAll();
 
 	return $etudiants;
@@ -152,6 +152,20 @@ function getAllPromo(){
 	return $promos;
 }
 
+function getAllPromoRecherche($typeRecherche,$rechercheTexte){
+	//donnée : le type de la recherche (departement,anneePromo,codePromo) et le texte à rechercher
+	//resultat : liste des promos dont la valeur du type de recherche contient au moins le texte à rechercher
+
+	global $pdo;
+	$requete='SELECT p.id,nom,anneePromo,codePromo FROM promo p,departement d WHERE d.id=idDep AND '.$typeRecherche.' LIKE ?';
+	$req=$pdo->prepare($requete);
+	$rechercheTexte='%'.$rechercheTexte.'%';
+	$req->execute(array($rechercheTexte));
+	$promos=$req->fetchAll();
+
+	return $promos;
+}
+
 function existePromoId($idPromo){
 	//donnée : id promo de la promo
 	//résultat : bool true si la promo éxiste, false sinon
@@ -185,11 +199,11 @@ function getAnnee($idPromo){
 	return $annee[0];
 }
 
-function changerCode($idPromo,$NouveauCodePromo){
+function changerCode($idPromo,$nouveauCodePromo){
 	//donnée : id de la promo et le nouveau code promo à mettre
 	global $pdo;
 	$req=$pdo->prepare('UPDATE Promo SET codePromo=? WHERE id=?');
-	$req->execute(array($NouveauCodePromo,$idPromo));
+	$req->execute(array($nouveauCodePromo,$idPromo));
 }
 
 function supprimerPromo($idPromo){
@@ -218,5 +232,14 @@ function getID($codePromo){
 
 	return $id[0];
 
+}
+
+function setAnneePromo($idPromo,$nouvelleAnneePromo){
+	//donnée : id de la promo et la nouvelle année de la promo
+
+	global $pdo;
+	$req=$pdo->prepare('UPDATE promo SET anneePromo=?  WHERE id=?');
+	$req-> execute(array($nouvelleAnneePromo,$idPromo));
+	$id=$req->fetch();
 }
 ?>

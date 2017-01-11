@@ -35,7 +35,26 @@
               include("../view/administrerPromo.php");
             }
           }
-          $promos=getAllPromo();//récupère toutes les promos de la BDD
+          $typeRecherche="default";
+          $rechercheTexte="";
+          if(isset($_POST['typeRecherche'])){
+            $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
+            if($typeRecherche!="default"){
+              if(isset($_POST['rechercheTexte'])){
+                $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
+                $promos=getAllPromoRecherche($typeRecherche,$rechercheTexte);
+              }
+              else{
+                $promos=getAllPromo();//récupère toutes les promos
+              }
+            }
+            else{
+              $promos=getAllPromo();//récupère toutes les promos
+            }
+          }
+          else{
+            $promos=getAllPromo();//récupère toutes les promos
+          }
           $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
           if($existeTri){
             $tri=htmlspecialchars($_GET['tri']);

@@ -4,21 +4,12 @@ function afficherRecherche(){
 	 */
 	var listeRecherche=document.getElementById("listeRecherche");
 	if(!(listeRecherche.options[listeRecherche.selectedIndex].value=="default")){
-		var typeRecherche=document.getElementById("typeRecherche").value;
-		var texteRecherche=document.getElementById("contenuRecherche").value;
-		if(listeRecherche.options[listeRecherche.selectedIndex].value==typeRecherche){
-			document.getElementById("oldRecherche").style.display="inline";
-		}
-		else{
-			document.getElementById("oldRecherche").style.display="none";
-			document.getElementById("newRecherche").style.display="inline";
-		}
-		document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
+		document.getElementById("newRecherche").style.display="inline";
 	}
 	else{
 		document.getElementById("newRecherche").style.display="none";
-		document.getElementById("oldRecherche").style.display="none";
-		document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
 	}
+	//on stocke le type de recherche dans le input
+	document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
 	return true;
 }

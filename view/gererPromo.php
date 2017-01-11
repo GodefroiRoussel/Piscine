@@ -32,12 +32,24 @@
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verifCodePromo();">
 						<span>Code promo actuel : <?php echo $codePromo ?></span>
 						<!-- Bouton qui va afficher la saisie d'un nouveau codePromo -->
-						<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
+						<input type="button" value="Modifier" id="modifierCode" onclick="afficherCode();"/>
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
-						<div id="new">
+						<div id="newCode">
 							<span>Nouveau :</span>
 							<input type="text" name="codePromo" id="codePromo"/>
-							<input type="submit" value="Enregistrer" id="enregistrer"/>
+							<input type="submit" value="Enregistrer" id="enregistrerCode"/>
+						</div>
+					</form>
+					<br/>
+					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verfiAnneePromo();">
+						<span>Année promo actuelle : <?php echo $anneePromo ?></span>
+						<!-- Bouton qui va afficher la saisie d'une nouvelle année promo -->
+						<input type="button" value="Modifier" id="modifierAnnee" onclick="afficherAnnee();"/>
+						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
+						<div id="newAnnee">
+							<span>Nouveau :</span>
+							<input type="text" name="anneePromo" id="anneePromo"/>
+							<input type="submit" value="Enregistrer" id="enregistrerAnnee"/>
 						</div>
 					</form>
 					<div>
@@ -117,30 +129,19 @@
 												<th></th>
 											</tr>
 										</thead>
-										<div>
 										<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
 											<!-- Bouton qui va afficher la saisie de la recherche -->
-											<select name="listeRecherche" id="listeRecherche" onchange=afficherRecherche()>
-												<option value="default" <?php if($typeRecherche=="default"){?>selected <?php }?>>Rechercher selon...</option>
-												<option value="prenom" <?php if($typeRecherche=="prenom"){?>selected <?php }?> >Prénom</option>
-												<option value="nom" <?php if($typeRecherche=="nom"){?>selected <?php }?> >Nom</option>
-												<option value="premierTest" <?php if($typeRecherche=="premierTest"){?>selected <?php }?> >Test effectué</option>
+											<select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()">
+												<option value="default" selected >Rechercher selon...</option>
+												<option value="prenom" >Prénom</option>
+												<option value="nom" >Nom</option>
+												<option value="premierTest" >Test effectué</option>
 											</select>
-
-											<?php
-											if($typeRecherche!="default"){?>
-												<div id="oldRecherche">
-													<input type="text" name="oldRechercheTexte" id="oldRechercheTexte" value=<?php echo $recherche ?> />
-													<input type="submit" value="Chercher" id="chercherOld" />
-												</div>
-											<?php }?>
-
 											<!-- ce qui va être affiché lors de la seléction d'une option -->
 											<div id="newRecherche">
-												<input type="text" name="recherche" id="recherche"/>
+												<input type="search" name="rechercheTexte" id="rechercheTexte"/>
 												<input type="submit" value="Chercher" id="chercherNew"/>
 											</div>
-											<input type="hidden" name="contenuRecherche" id="contenuRecherche" value=<?php echo $recherche ?> />
 											<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> />
 										</form>
 										<?php
@@ -187,6 +188,7 @@
 										?>
 											</tr>
 						</table>
+						<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" >Retour</a>
 						<!-- /.table-responsive -->
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<!-- JQUERY SCRIPTS -->
@@ -206,5 +208,6 @@
 		<script src="../dist/js/sb-admin-2.js"></script>
 		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
 		<script type="text/javascript" src="../controller/js/recherche.js"></script>
+		<script type="text/javascript" src="../controller/js/modifAnneePromo.js"></script>
 	</body>
 </html>

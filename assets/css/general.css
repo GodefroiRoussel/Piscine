@@ -12,6 +12,10 @@
   display:none;
 }
 
-#oldRecherche{
-  display:inline;
+#newCode{
+  display:none;
+}
+
+#newAnnee{
+  display:none;
 }

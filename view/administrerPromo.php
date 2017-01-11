@@ -12,6 +12,7 @@
 		<!-- DataTables Responsive CSS -->
 		<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 		<!-- CUSTOM STYLES-->
+		<link href="../assets/css/general.css" />
 		<link href="../assets/css/custom.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -44,6 +45,21 @@
 																				<th>Clef de la promo</th>
 																		</tr>
 																</thead>
+																<form action="../controller/administrerPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>"; method="post">
+																	<!-- Bouton qui va afficher la saisie de la recherche -->
+																	<select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()">
+																		<option value="default" selected >Rechercher selon...</option>
+																		<option value="d.nom" >Département</option>
+																		<option value="anneePromo" >Année</option>
+																		<option value="clefPromo" >Clef de la promo</option>
+																	</select>
+																	<!-- ce qui va être affiché lors de la seléction d'une option -->
+																	<div id="newRecherche">
+																		<input type="search" name="rechercheTexte" id="rechercheTexte"/>
+																		<input type="submit" value="Chercher" id="chercherNew"/>
+																	</div>
+																	<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> />
+																</form>
 																<tbody>
 																	<?php
 																		$i=1;
@@ -81,6 +97,7 @@
 	<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+	<script src="../controller/js/recherche.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>

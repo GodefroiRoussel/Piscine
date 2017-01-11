@@ -34,33 +34,40 @@
                 $idEtuMod=htmlspecialchars(($_GET['refEtuMod']));
                 //Vérification que la référence promo correspond à une promo éxistante 
                 if(existeEtudiantId($idEtuMod)){
-                  $email=getMailEtudiant($idEtuMod);
-				  $prenom=strtolower(getPrenomEtudiant($idEtuMod));
-				  $nom=strtolower(getNomEtudiant($idEtuMod));
-                  if(isset($_GET["email"]) & !empty($_GET["email"])){
-                    $newEmail=htmlspecialchars($_GET['email']);
-                    if(existeEtudiantMail($newEmail)){
-                      if(modifMailEtudiant($idEtuMod,$newEmail)){
-                        echo "Mail modifié";
+                  if(getIdPromo($idEtuMod)==$id){
+                    $email=getMailEtudiant($idEtuMod);
+				            $prenom=strtolower(getPrenomEtudiant($idEtuMod));
+				            $nom=strtolower(getNomEtudiant($idEtuMod));
+                    if(isset($_GET["email"]) & !empty($_GET["email"])){
+                      $newEmail=htmlspecialchars($_GET['email']);
+                      if(existeEtudiantMail($newEmail)){
+                        if(modifMailEtudiant($idEtuMod,$newEmail)){
+                          echo "Mail modifié";
+                        }
+                        else{
+                          echo "Erreur, le mail n'a pu être modifié";
+                        }
                       }
                       else{
-                        echo "Erreur, le mail n'a pu être modifié";
+                        echo "Erreur, mail déjà utilisé par un autre étudiant";
                       }
                     }
-                    else{
-                      echo "Erreur, mail déjà utilisé par un autre étudiant";
+                    if(isset($_GET["passwd"]) & !empty($_GET["passwd"])){
+                      $passwd=htmlspecialchars(($_GET['passwd']));
+                      if(modifPasswordEtudiant($idEtuMod,$passwd)){
+                        echo "Mot de passe modifé";
+                      }
+                      else{
+                        echo "Erreur, le mot de passe n'a pu être modifé";
+                      }
                     }
+                    include ("../view/modifierEtudiant.php");
                   }
-                  if(isset($_GET["passwd"]) & !empty($_GET["passwd"])){
-                    $passwd=htmlspecialchars(($_GET['passwd']));
-                    if(modifPasswordEtudiant($idEtuMod,$passwd)){
-                      echo "Mot de passe modifé";
-                    }
-                    else{
-                      echo "Erreur, le mot de passe n'a pu être modifé";
-                    }
+                  else{
+                    echo "Erreur l'étudiant n'appartient pas à cette prom ...<br/>";
+                    sleep(2);
+                    header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
                   }
-                  include ("../view/modifierEtudiant.php");
                 }
                 else{
                   echo "Erreur l'étudiant n'éxiste pas ... <br/>";

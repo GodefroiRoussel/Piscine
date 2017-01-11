@@ -182,8 +182,8 @@ function getNomEtudiant($id){
 }
 
 function getIdPromo($idEtudiant){
-		//donnée : le code de la promo (entier)
-		//resultat : le nom du département departement de la promo (string)
+	//donnée : le code de la promo (entier)
+	//resultat : l'id de la promo dans laquelle appartient l'étudiant (string)
 	global $pdo;
 	$req=$pdo->prepare('SELECT idPromo FROM etudiant WHERE id=?');
 	$req->execute(array($idEtudiant));

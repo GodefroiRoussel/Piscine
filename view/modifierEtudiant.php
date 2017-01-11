@@ -27,29 +27,28 @@
 				} ?>
 		<div id="page-wrapper">
 						<div id="page-inner">
-								<div class="row">
-										<div class="col-md-12">
-											<h2>Informations de l'étudiant <?php echo $prenom," ",$nom ?></h2>
-			<form action="modifEtudiant.controller.php?refPromo=<?php echo $id ?>" onsubmit="return informationsCorrecte();">
-				<label>Adresse mail :</label>
-				<input type="text" value="<?php echo $email ?>"  id="email" />
-				<div class="form-group">
-					<label>Mot de passe : </label>
-					
-					<div id="new">
-						<label>Nouveau :</label>
-						<input type="password" name="passwd" id="passwd" />
-						<label>Confirmer :</label>
-						<input type="password" name="futur" id="futur"/>
-					</div>
-					<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
-				</div>
-				<input type="submit" value="Enregistrer"/>
-			</form>
-			<form method="get" action="gererPromo.controller.php?refPromo=<?php echo $id ?>">	
-				<input type="submit" value="Retour" />
-			</form>
-		</section>
+								<h2>Informations de l'étudiant <?php echo $prenom," ",$nom ?></h2>
+								<?php echo $id; echo $idEtuMod; ?>
+								<form action="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $idEtuMod ?>" onsubmit="return informationsCorrecte();">
+									<label>Adresse mail :</label>
+									<input type="text" value="<?php echo $email ?>"  id="email" />
+									<div class="form-group">
+										<label>Mot de passe : </label>
+										
+										<div id="new">
+											<label>Nouveau :</label>
+											<input type="password" name="passwd" id="passwd" />
+											<label>Confirmer :</label>
+											<input type="password" name="futur" id="futur"/>
+										</div>
+										<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
+									</div>
+									<input type="submit" value="Enregistrer"/>
+								</form>
+								<a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>" class="btn btn-success" >Retour</a>
+						</div>
+		</div>
+		</div>
 	<!-- /. WRAPPER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->

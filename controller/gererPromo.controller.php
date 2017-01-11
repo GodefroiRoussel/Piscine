@@ -46,6 +46,12 @@
                 }
               }
               $codePromo=getCode($id);
+              if(isset($_POST['anneePromo'])){
+                $anneePromo=htmlspecialchars($_POST['anneePromo']);
+                setAnneePromo($id,$anneePromo);
+                echo "L'année de la promo a bien été changé";
+              }
+              $anneePromo=getAnnee($id);
               //Cas où les deux variables sont définies (on ne peut pas reset et supprimer à la fois donc on choisit de ne rien faire)
               if(isset($refEtuTest) && isset($refEtuSupp)){
                 echo "Erreur veuillez réessayer";
@@ -78,21 +84,16 @@
                 }
               }
               $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
-              $recherche="";
+              $rechercheTexte="";
               if(isset($_POST['typeRecherche'])){
-                $typeRecherche=$_POST['typeRecherche'];
+                $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
                 if($typeRecherche!="default"){
-					$typeRechercheBool=True;
-					if(isset($_POST['recherche'])){
-						$recherche=htmlspecialchars($_POST['recherche']);
-						$etudiants=getAllEtudiantRecherche($id,$typeRecherche);
-                  }
-                  elseif(isset($_POST['oldRechercheText'])){
-                    $recherche=htmlspecialchars($_POST['oldRechercheText']);
-                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche);
+                  if(isset($_POST['rechercheTexte'])){
+                    $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
+                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche,$rechercheTexte);
                   }
                   else{
-                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche);//récupère tous les étudiants de la promo
+                    $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
                   }
                 }
                 else{

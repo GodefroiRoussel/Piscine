@@ -7,9 +7,12 @@ function informationsCorrecte(){
 		alert("Email non renseigné");
 		res= false;
 	}
-	if(document.getElementById('passwd').value==""){
-		alert("Mot de passe non renseigné");
-		res=false;
+	//Cas où on a pas appuyé sur le bouton pour modifier le mot de passe
+	if(document.getElementById('new').style.display=="inline"){
+		if(document.getElementById('passwd').value==""){
+			alert("Mot de passe non renseigné");
+			res=false;
+		}
 	}
 	return res;
 }
