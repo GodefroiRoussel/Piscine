@@ -62,6 +62,17 @@ function existeAdmin($email,$password){
 		return $id[0];
 }
 
+function existeAdminMail($email){
+	//donnée : code promo de la promo
+	//résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
+	global $pdo;
+	$req=$pdo->prepare('SELECT COUNT(*) FROM admin WHERE email=?');
+	$req->execute(array($email));
+	$compteur=$req->fetch();
+	if($compteur[0]>0){return true;}
+	else{return false;}
+}
+
 function creerAdmin($nomdeCompte,$mdp){
 	//donnée : nom de compte et mot de passe de l'admin
 	//résultat : ajout de l'admin dans la base de données
@@ -75,6 +86,14 @@ function creerAdmin($nomdeCompte,$mdp){
 		return True;
 	}
 }
+
+function supprimerAdmin($email){
+	//donnée : id de la promo à supprimer
+	global $pdo;
+	$req=$pdo->prepare('DELETE FROM admin WHERE email=?');
+	$req->execute(array($email));
+}
+
 
 
 function modifPasswordAdmin($idAdmin,$newmdp){
@@ -116,6 +135,16 @@ function getNbAdmin(){
 	$nbAdmin=$req->fetch();
 
 	return $nbAdmin[0];
+}
+
+function getAllOtherAdmin($id){
+	//résultat : renvoie les codePromo de toutes les promos de la BD
+	global $pdo;
+	$req=$pdo->prepare('SELECT prenom,nom,email FROM admin WHERE id!=?');
+	$req->execute(array($id));
+	$admins=$req->fetchAll();
+
+	return $admins;
 }
 
 ?>

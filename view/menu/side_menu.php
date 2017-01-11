@@ -19,7 +19,7 @@
                                 <a href="ajoutAdmin.controller.php">Ajouter un administrateur</a>
                             </li>
                             <li>
-                                <a href="#">Consulter les administrateurs</a>
+                                <a href="consulterAdmin.controller.php">Consulter les administrateurs</a>
                             </li>
                         </ul>
                     </li>
