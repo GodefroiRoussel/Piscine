@@ -40,7 +40,7 @@
                             </div>
                             <div class="panel-footer back-footer-blue">
 														Ici vous pouvez voir les statistiques sur une ou plusieurs promotions
-														<a href="#" class="btn btn-primary">Consulter les statistiques</a>
+														<a href="statistiques.controller.php" class="btn btn-primary">Consulter les statistiques</a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
 															</div>
 																<div class="panel-footer back-footer-blue">
 																Ici vous pouvez voir les administrateurs existants, ajouter un ou supprimer un administrateur et changer leurs informations si nécessaire
-																<a href="#" class="btn btn-primary">Consulter les administrateurs</a>
+																<a href="consulterAdmin.controller.php" class="btn btn-primary">Consulter les administrateurs</a>
 		                            </div>
 		                        </div>
 		                    </div>

@@ -3,47 +3,85 @@
 <head>
     <meta charset="utf-8"/>
     <title>Test de Hollande</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script type="text/javascript" src="../controller/js/ajoutPromo.js"></script>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="../assets/css/custom.css" rel="stylesheet" />
+    <link href="../assets/css/general.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
-<header>
-    <p> Bienvenue <?php
-        $decomposer=explode("@",$email);
-        echo $decomposer[0]; ?></p>
-    <div id="connexion">
-        <?php include("buttonInscription.php"); ?>
-    </div>
-</header>
 <body>
-<?php
-if(isset($ajoutReussi) && $ajoutReussi){
-    echo "Ajout de la Promo ",$_POST["codePromo"]," réussit";
-}
-?>
-<section>
-    <form action="ajouterPromo.controller.php" method="post" onsubmit="return informationsCorrecte();">
-        <p>
-            <em>Code Promo : </em>
-            <input type="text" name="codePromo" id="codePromo"/>
-        </p>
-        <p>
-            <em>année de Promo : </em>
-            <input type="number" name="annee" id="annee"/> ex: 2019
-        </p>
-        <p>
-            <em>Département : </em>
-            <select name="departement" id="departement">
+<div id="wrapper">
+    <?php include("menu/menuTop.php"); ?>
+    <!-- /. NAV TOP  -->
+    <!-- NAV SIDE only if we are connected -->
+    <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+        include("menu/side_menu.php");
+    } ?>
+
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Ajouter Promo</h2>
+                </div>
                 <?php
-                if(isset($listeDepartements)){
-                    echo $listeDepartements;
+                if(isset($ajoutReussi) && $ajoutReussi){
+                    ?>
+                    <div class="col-md-12">
+                        <h5>Ajout de la promo <?php echo $_POST["codePromo"];?></h5>
+                    </div>
+                    <?php
                 }
                 ?>
-            </select>
-        </p>
-        <p>
-            <input type="submit" value="Ajouter"/>
-        </p>
-    </form>
-</section>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="ajouterPromo.controller.php?" method="post" onsubmit="return envoyer();" role="form">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Code Promo :</label>
+                                <input type="text" name="codePromo" id="codePromo" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label>Année de Promo (ex:2019) :</label>
+                                <input type="number" name="annee" id="annee" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label>Département :</label>
+                                <select name="departement" id="departement">
+                                    <?php
+                                    if(isset($listeDepartements)){
+                                        echo $listeDepartements;
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" value="Enregistrer"/>
+                    </form>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="../assets/js/custom.js"></script>
+    <script src="../controller/js/ajoutAdmin.js"></script>
 </body>
+</html>

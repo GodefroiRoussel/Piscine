@@ -27,18 +27,19 @@
 
 		if (verificationToken($decoded_array)){
 			if($decoded_array['role']==="admin"){
+        	$nbPromo= getNbPromo();
 
-				if (isset($_POST["promo2"]) && isset($_POST["promo1"]){
+				if (isset($_POST["promo2"]) && isset($_POST["promo1"])){
 					$resultPromo2=calculResultatPromo($_POST["promo2"]);
 					$resultPromo1=calculResultatPromo($_POST["promo1"]);
 				}
 				else{
-					$promos=getAllPromo();	
-					$resultPromo2= calculResultatPromo(promos[0]);
-					$resultPromo1= calculResultatPromo(promos[0]);
+					$promos=getAllPromo();
+					$resultPromo1= calculResultatPromo($promos[0]['id']);
+          $resultPromo2= calculResultatPromo($promos[0]['id']);
 				}
 				include('../view/statistiques.php');
-		 
+
 			}
 			else{
 				// Si un Etudiant essaie d'accéder aux résultats on le redirige
@@ -46,6 +47,3 @@
 			}
 		}
 	}
-
-
-?>

@@ -54,8 +54,12 @@ h4{
 }
 
 .flotte{
-float:left;
-padding-right: 1%;
+  float:left;
+  padding-right: 1%;
+}
+
+.centrer{
+  text-align:center;
 }
 
 /*==============================================
@@ -189,6 +193,7 @@ color: #fff;
 .no-boder {
 border: 1px solid #f3f3f3;
 }
+
 .back-footer-blue {
 background-color: #7479E6;
 border-top: 0px solid #fff;
@@ -199,6 +204,7 @@ border-top: 0px solid #fff;
   color: #31708f;
   border-color: #bce8f1;
 }
+
 .back-footer-info {
 background-color: #f5f5f5;
 border-top: 0px solid #fff;

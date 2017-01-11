@@ -26,58 +26,50 @@
 			<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
 				 include("menu/side_menu.php");
 			} ?>
-
-
-					<div id="page-inner">
-							<div class="row">
-									<div class="col-md-12">
-											<h2>Inscription</h2>
+			<div class="container">
+					<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+									<div class="login-panel panel panel-default">
+											<div class="panel-heading">
+													<h3 class="panel-title centrer">Inscription</h3>
+											</div>
+											<div class="panel-body">
+													<form action="../controller/verifInscription.controller.php" method="post" onsubmit="return verifInfoEtudiant()" role="form">
+															<fieldset>
+																	<div class="form-group">
+																			<label>Nom : </label>
+																			<input type="text" class="form-control" name="nom" placeholder="Nom" autofocus/>
+																	</div>
+																	<div class="form-group">
+																			<label>Prénom : </label>
+																			<input type="text" class="form-control" name="prenom" placeholder="Prénom">
+																	</div>
+																	<div class="form-group">
+																			<label>Email universitaire : </label>
+																			<input type="text" class="form-control" name="email" placeholder="prenom.nom">
+																			@etu.umontpellier.fr
+																	</div>
+																	<div class="form-group">
+																			<label>Mot de passe : </label>
+																			<input type="password" class="form-control" name="passwd">
+																	</div>
+																	<div class="form-group">
+																			<label>Confirmation mot de passe : </label>
+																			<input type="password" class="form-control" name="passwdconf">
+																	</div>
+																	<div class="form-group">
+																			<label>Code de la promo : </label>
+																			<input type="text" class="form-control" name="clefPromo">
+																	</div>
+																	<!-- Change this to a button or input when using this as a form -->
+																	<input type="submit" class="btn btn-lg btn-success btn-block" value="Je m'inscris" />
+															</fieldset>
+													</form>
+											</div>
 									</div>
 							</div>
-							<!-- /. ROW  -->
-							<hr />
-							<div class="row">
-										<div class="col-lg-6">
-											<form action="../controller/verifInscription.controller.php" method="post">
-												<div class="input-group">
-													<label class="input-group-addon">Nom</label>
-													<input type="text" name="nom" placeholder="nom"/>
-												</div>
-
-												<div class="input-group">
-													<label class="input-group-addon">Prénom</label>
-													<input type="text" name="prenom" placeholder="prenom" />
-												</div>
-
-												<div class="input-group">
-													<label class="input-group-addon">Email universitaire</label>
-													<input type="text" name="email" placeholder="prenom.nom" />
-													@etu.umontpellier.Fr
-												</div>
-
-												<div class="input-group">
-													<label class="input-group-addon">Mot de passe</label>
-													<input type="password" name="passwd" />
-												</div>
-
-												<div class="input-group">
-													<label class="input-group-addon">Confirmation mot de passe</label>
-													<input type="password" name="passwdconf" />
-												</div>
-
-												<div class="input-group">
-													<label class="input-group-addon">Clef de la promo</label>
-													<input type="text" name="clefPromo" />
-												</div>
-													<input type="submit" value="Valider l'inscription" />
-												</p>
-											</form>
-										</div>
-								</div>
-								<!-- /. ROW  -->
-								<hr />
-							</div>
-							<!-- /. PAGE INNER  -->
+					</div>
+			</div>
 		</div>
 		<!-- /. WRAPPER  -->
 	</body>

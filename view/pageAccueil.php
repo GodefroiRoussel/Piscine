@@ -23,10 +23,10 @@
 
 				<div class="row">
             <div class="col-lg-push-1 col-lg-pull-1 col-lg-10">
-                <div class="bg-color-info">
-                    <h4>Bienvenue sur le test de Hollande</h4>
+                <div class="bg-color-info col-sm-12 centrer">
+                    <h4>Bienvenue sur le test de Holland</h4>
                     <p>Dans le cadre de ton cours d'insertion professionnel à Polytech Montpellier, tu viens sur ce site pour passer le fameux test RIASEC. Mais qu'est-ce donc?</p>
-                    <p>C'est la première fois que tu viens ici?</p><a class="btn btn-primary btn-lg" role="button">Inscris-toi !</a>
+                    <p>C'est la première fois que tu viens ici?</p><a href="inscription.controller.php" class="btn btn-primary btn-lg" role="button">Inscris-toi !</a>
 
                 </div>
             </div>
