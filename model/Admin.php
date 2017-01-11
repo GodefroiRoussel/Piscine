@@ -73,13 +73,13 @@ function existeAdminId($id){
 	else{return false;}
 }
 
-function creerAdmin($nomdeCompte,$mdp){
+function creerAdmin($nomdeCompte,$mdp,$nom,$prenom){
 	//donnée : nom de compte et mot de passe de l'admin
 	//résultat : ajout de l'admin dans la base de données
 
 	global $pdo;
-	$req=$pdo->prepare('INSERT INTO Admin(email,password) VALUE (?,?)');
-	if(!$req->execute(array($nomdeCompte,$mdp))){
+	$req=$pdo->prepare('INSERT INTO Admin(prenom,nom,email,password) VALUE (?,?,?,?)');
+	if(!$req->execute(array($prenom,$nom,$nomdeCompte,$mdp))){
 		return False;
 		}
 	else{

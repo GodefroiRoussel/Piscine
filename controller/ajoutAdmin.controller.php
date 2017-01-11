@@ -23,17 +23,19 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
+            $ajoutReussi=false;
         	$email=getMailAdmin($decoded_array['id']);
       		//Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter un admin
-        	if(isset($_POST["email"]) and isset($_POST["passwd"]) and !empty($_POST["email"]) and !empty($_POST["passwd"])){
+        	if(isset($_POST["email"]) and isset($_POST["passwd"]) and isset($_POST["nomNewAdmin"]) and isset($_POST["prenomNewAdmin"]) and !empty($_POST["email"]) and !empty($_POST["passwd"]) and !empty($_POST["nomNewAdmin"]) and !empty($_POST["prenomNewAdmin"])){
             // On sécurise contre l'injection sql
             $email= htmlspecialchars($_POST["email"]);
             $password= htmlspecialchars($_POST["passwd"]);
-
-            //On crypte le mot de passe avec un "grain de sel"
+            $nomNewAdmin= htmlspecialchars($_POST["nomNewAdmin"]);
+                $prenomNewAdmin= htmlspecialchars($_POST["prenomNewAdmin"]);
+                //On crypte le mot de passe avec un "grain de sel"
             $password = crypt($password,$keyCryptage);
             //On stocke true si creerAdmin() ajoute l'admin à la BD, false s'il éxiste déjà
-        		$ajoutReussi=creerAdmin($email,$password);
+                $ajoutReussi=creerAdmin($email,$password,$nomNewAdmin,$prenomNewAdmin);
 		        //Si l'admin n'a pas bien été ajouté dans la BD
         		if(!$ajoutReussi){
         			echo "ERREUR : l'email correspond à un administrateur déjà enregistré";
