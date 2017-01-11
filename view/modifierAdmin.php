@@ -1,34 +1,93 @@
 <!DOCTYPE html>
-<!-- Passe par un controller avant la confirmation de la modif-->
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>Test de Hollande</title>
-		<link rel="stylesheet" href="style.css" />
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	</head>
-	<body>
-		<header>
-				<div id="connexion">
-					<?php include("buttonInscription.php"); ?>
+<head>
+	<meta charset="utf-8"/>
+	<title>Test de Hollande</title>
+	<!-- BOOTSTRAP STYLES-->
+	<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+	<!-- FONTAWESOME STYLES-->
+	<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+	<!-- CUSTOM STYLES-->
+	<link href="../assets/css/custom.css" rel="stylesheet" />
+	<link href="../assets/css/general.css" rel="stylesheet" />
+	<!-- GOOGLE FONTS-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+<div id="wrapper">
+	<?php include("menu/menuTop.php"); ?>
+	<!-- /. NAV TOP  -->
+	<!-- NAV SIDE only if we are connected -->
+	<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
+		include("menu/side_menu.php");
+	} ?>
+
+	<div id="page-wrapper">
+		<div id="page-inner">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Modifier Admin</h2>
 				</div>
-				<div id="menu">
-					<?php include("menu.php"); ?>
+				<?php
+				if($affichageMessage && !is_null($modifReussiMail) && !is_null($modifReussiNom) && !is_null($modifReussiPrenom)){
+					?>
+					<div class="col-md-12">
+						<h5>Modification enregistrée</h5>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+			<!-- /. ROW  -->
+			<hr />
+			<div class="row">
+				<div class="col-lg-6">
+					<form action="modifierAdmin.controller.php?<?php if ($_GET['refAdmin']) { ?>refAdmin=<?php echo $_GET['refAdmin'];
+					} ?>" method="post" onsubmit="return envoyer();" role="form">
+
+						<div class="form-group">
+								<div class="form-group">
+									<label>Email :</label>
+									<input type="email" name="email" id="email" value="<?php echo $email ?>"/>
+								</div>
+								<div class="form-group">
+									<label>Prenom :</label>
+									<input type="text" name="prenomFormulaire" id="prenomFormulaire" value="<?php echo $prenom ?>"/>
+								</div>
+								<div class="form-group">
+									<label>Nom :</label>
+									<input type="text" name="nomFormulaire" id="nomFormulaire" value="<?php echo $nom ?>"/>
+								</div>
+						</div>
+						<div class="form-group">
+							<label>Mot de passe : </label>
+							<div id="new">
+								<label>Nouveau :</label>
+								<input type="password" name="passwd" id="passwd" />
+								<label>Confirmer :</label>
+								<input type="password" name="futur" id="futur"/>
+							</div>
+							<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
+						</div>
+						<input type="submit" value="Enregistrer"/>
+					</form>
 				</div>
-		</header>
-		<section>
-			<form action="ConfirmationModifAdmin.php" method="post">
-				<p>
-					<em>Adresse mail : </em>
-					<input type="text" name="adresse"/>
-				</p>
-				<p>
-					<em>Mot de passe : </em>
-					<input type="text" name="MotDePasse" />
-				</p>
-				<p>
-					<input type="submit" value="Enregistrer" />
-				</p>
-			</form>
-		</section>
-	</body>
+			</div>
+			<!-- /. ROW  -->
+			<hr />
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+	</div>
+	<!-- /. WRAPPER  -->
+	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+	<!-- JQUERY SCRIPTS -->
+	<script src="../assets/js/jquery-1.10.2.js"></script>
+	<!-- BOOTSTRAP SCRIPTS -->
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<!-- METISMENU SCRIPTS -->
+	<script src="../assets/js/jquery.metisMenu.js"></script>
+	<!-- CUSTOM SCRIPTS -->
+	<script src="../assets/js/custom.js"></script>
+	<script src="../controller/js/ajoutAdmin.js"></script>
+</body>
+</html>

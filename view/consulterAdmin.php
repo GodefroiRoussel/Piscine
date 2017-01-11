@@ -51,8 +51,9 @@
                                     <td><?php echo $eltAdmin["prenom"]?></td>
                                     <td><?php echo $eltAdmin["nom"]?></td>
                                     <td><?php echo $eltAdmin["email"]?></td>
-                                    <td><a class="btn btn-primary btn-block" href="">Gérer la promo</a></td>
-                                    <td><a class="btn btn-danger btn-block" href="../controller/consulterAdmin.controller.php?<?php if ($eltAdmin["email"]) { ?>refAdmin=<?php echo $eltAdmin["email"];
+                                    <td><a class="btn btn-primary btn-block" href="../controller/modifierAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
+                                        } ?>">Gérer la promo</a></td>
+                                    <td><a class="btn btn-danger btn-block" href="../controller/consulterAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
                                         } ?>"><i class="icon-remove-sign"></i></a></td>
                                 </tr>
                                 <?php

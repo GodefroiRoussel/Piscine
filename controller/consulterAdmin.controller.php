@@ -25,13 +25,12 @@ else{
             $email=getMailAdmin($decoded_array['id']);
             //cas où on veut supprimer une promo
             if(isset($_GET['refAdmin'])){
-                $refAdmin=htmlspecialchars($_GET['refAdmin']);
-                if(existeAdminMail($refAdmin)){
+                $refAdmin=$_GET['refAdmin'];
+                if(existeAdminId($refAdmin)){
                     supprimerAdmin($refAdmin);
                 }
                 else{
                     echo "Erreur : admin inéxistant";
-                    include("../view/consulterAdmin.php");
                 }
             }
             $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté

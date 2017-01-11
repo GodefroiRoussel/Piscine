@@ -62,12 +62,12 @@ function existeAdmin($email,$password){
 		return $id[0];
 }
 
-function existeAdminMail($email){
+function existeAdminId($id){
 	//donnée : code promo de la promo
 	//résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
 	global $pdo;
-	$req=$pdo->prepare('SELECT COUNT(*) FROM admin WHERE email=?');
-	$req->execute(array($email));
+	$req=$pdo->prepare('SELECT COUNT(*) FROM admin WHERE id=?');
+	$req->execute(array($id));
 	$compteur=$req->fetch();
 	if($compteur[0]>0){return true;}
 	else{return false;}
@@ -87,11 +87,11 @@ function creerAdmin($nomdeCompte,$mdp){
 	}
 }
 
-function supprimerAdmin($email){
+function supprimerAdmin($id){
 	//donnée : id de la promo à supprimer
 	global $pdo;
-	$req=$pdo->prepare('DELETE FROM admin WHERE email=?');
-	$req->execute(array($email));
+	$req=$pdo->prepare('DELETE FROM admin WHERE id=?');
+	$req->execute(array($id));
 }
 
 
@@ -128,6 +128,38 @@ function modifMailAdmin($idAdmin,$newMail){
   	}
 }
 
+function modifNomAdmin($idAdmin,$newNom){
+	//données : id de l'admin qui veut modifier son mail et nouveau mail
+	//résultat : modifie l'email actuel avec le nouveau mail
+	global $pdo;
+	$req=$pdo->prepare('UPDATE Admin SET nom= :newNom WHERE id=:idAd');
+	if(!$req->execute(array(
+			'newNom' => $newNom,
+			'idAd' => $idAdmin
+	))){
+		return False;
+	}
+	else{
+		return True;
+	}
+}
+
+function modifPrenomAdmin($idAdmin,$newPrenom){
+	//données : id de l'admin qui veut modifier son mail et nouveau mail
+	//résultat : modifie l'email actuel avec le nouveau mail
+	global $pdo;
+	$req=$pdo->prepare('UPDATE Admin SET prenom= :newPrenom WHERE id=:idAd');
+	if(!$req->execute(array(
+			'newPrenom' => $newPrenom,
+			'idAd' => $idAdmin
+	))){
+		return False;
+	}
+	else{
+		return True;
+	}
+}
+
 function getNbAdmin(){
 	global $pdo;
 	$req=$pdo->prepare('SELECT COUNT(*) FROM admin');
@@ -140,7 +172,7 @@ function getNbAdmin(){
 function getAllOtherAdmin($id){
 	//résultat : renvoie les codePromo de toutes les promos de la BD
 	global $pdo;
-	$req=$pdo->prepare('SELECT prenom,nom,email FROM admin WHERE id!=?');
+	$req=$pdo->prepare('SELECT id,prenom,nom,email FROM admin WHERE id!=?');
 	$req->execute(array($id));
 	$admins=$req->fetchAll();
 
