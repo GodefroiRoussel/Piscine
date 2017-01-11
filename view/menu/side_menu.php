@@ -25,7 +25,15 @@
                     </li>
 
                     <li>
-                        <a href="administrerPromo.controller.php"><i class="fa fa-table "></i>Administrer les promotions</a>
+                        <a href="#"><i class="fa fa-table "></i>Administrer les promotions<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                          <li>
+                              <a href="ajouterPromo.controller.php">Ajouter une promotion</a>
+                          </li>
+                          <li>
+                              <a href="administrerPromo.controller.php">Consulter les promotions</a>
+                          </li>
+                        </ul>
                     </li>
 
                     <li>
@@ -57,11 +65,11 @@
                   }//endif ETUDIANT
                     ?>
                     <li>
-                        <a href="../controller/modifierCompte.controller.php"><i class="fa fa-gear "></i>Mon Compte </a>
+                        <a href="modifierCompte.controller.php"><i class="fa fa-gear "></i>Mon Compte </a>
                     </li>
 
                     <li>
-                        <a href="../controller/deconnexion.controller.php"><i class="fa fa-sign-out"></i>Deconnexion </a>
+                        <a href="deconnexion.controller.php"><i class="fa fa-sign-out"></i>Deconnexion </a>
                     </li>
                 </ul>
 

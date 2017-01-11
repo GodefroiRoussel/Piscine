@@ -14,7 +14,7 @@
             		        ?>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;Test de Hollande</a>
+                    <a class="navbar-brand" href="redirection.php"><i class="fa fa-square-o "></i>&nbsp;Test de Hollande</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -22,8 +22,8 @@
                       <?php
                       if(!isset($_COOKIE["token"])){
                       ?>
-                          <li><a href="../controller/inscription.controller.php">Inscription</a></li>
-                          <li><a href="../controller/connexionEtudiant.controller.php">Connexion</a></li>
+                          <li><a href="inscription.controller.php">Inscription</a></li>
+                          <li><a href="connexionEtudiant.controller.php">Connexion</a></li>
                       <?php
                       }
                       ?>
