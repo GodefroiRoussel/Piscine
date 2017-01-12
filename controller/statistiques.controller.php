@@ -27,16 +27,16 @@
 
 		if (verificationToken($decoded_array)){
 			if($decoded_array['role']==="admin"){
-        	$nbPromo= getNbPromo();
+        	$nbPromo= getNbPromo(); //on récupère le nombre de promo dans une variable
 
-				if (isset($_POST["promo2"]) && isset($_POST["promo1"])){
-					$resultPromo2=calculResultatPromo($_POST["promo2"]);
+				if (isset($_POST["promo2"]) && isset($_POST["promo1"])){ // On regarde si le formulaire a bien été rempli
+					$resultPromo2=calculResultatPromo($_POST["promo2"]); //on calcul les résultats de la promo selectionnée
 					$resultPromo1=calculResultatPromo($_POST["promo1"]);
 				}
-				else{
+				else{ //Si le formulaire n'a pas été rempli alors on attribu des valeurs de promo par défault
 					$promos=getAllPromo();
 					$resultPromo1= calculResultatPromo($promos[0]['id']);
-          $resultPromo2= calculResultatPromo($promos[0]['id']);
+          				$resultPromo2= calculResultatPromo($promos[0]['id']);
 				}
 				include('../view/statistiques.php');
 
