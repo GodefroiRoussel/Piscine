@@ -59,16 +59,12 @@
           // On calcule les résultats de l'élève
           $result=calculResultat($array_choice1,$array_choice2,$array_choice3);
 
-          // On récupère la position du tableau où le résultat est le plus grand
-          $idFiche=0;
-          for ($i=1;$i<6;$i++){
-            if($result[$idFiche]<$result[$i]){
-              $idFiche=$i;
-            }
-          }
-          // On ajoute un à l'id de la fiche pour récupérer le bon id de fiche (car la position initial du tableau correspond à 0 et il n'existe pas d'idFiche=0)
-          $nomFiche=getNomFiche($idFiche+1);
-          $valeurFiche=getValeurFiche($idFiche+1);
+          // On récupère l'id de la fiche correspondant au maximum des résultats de l'étudiant
+          $idFiche=getIdFicheByResult($result);
+
+          $nomFiche=getNomFiche($idFiche);
+          $valeurFiche= getValeurFiche($idFiche);
+
           // On calcule les résultats de la promo à partir de l'id de la promo
           $resultPromo=calculResultatPromo(getIdPromo($idFiche));
           include('../view/resultat.php');

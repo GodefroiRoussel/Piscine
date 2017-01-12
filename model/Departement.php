@@ -25,4 +25,28 @@ function getAllDepartement(){
     return $ListeDep;
 }
 
+function getAllPromoByDepartement($idDep){
+  //donnée: l'id d'un département
+  //résultat : Toutes les promotions qui font partie de ce département
+
+  global $pdo;
+  $req=$pdo->prepare('SELECT * FROM promo WHERE idDep=?');
+  $req->execute(array($idDep));
+  $promos=$req->fetchAll();
+
+  return $promos;
+}
+
+function getAllPromoByAnnee($annee){
+  //donnée: l'id d'un département
+  //résultat : Toutes les promotions qui font partie de l'année passée en paramètre
+
+  global $pdo;
+  $req=$pdo->prepare('SELECT * FROM promo WHERE anneePromo=?');
+  $req->execute(array($annee));
+  $promos=$req->fetchAll();
+
+  return $promos;
+}
+
 ?>

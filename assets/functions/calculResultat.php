@@ -59,3 +59,48 @@ function calculResultatPromo($idPromo){
   return $resultPromo;
 
 }
+
+function getIdFicheByResult($result){
+
+  // On récupère la position du tableau où le résultat est le plus grand
+  $idFiche=0;
+  for ($i=1;$i<6;$i++){
+    if($result[$idFiche]<$result[$i]){
+      $idFiche=$i;
+    }
+  }
+
+  // On ajoute un à l'id de la fiche pour récupérer le bon id de fiche (car la position initial du tableau correspond à 0 et il n'existe pas d'idFiche=0)
+  return $idFiche+1;
+}
+
+function calculResultatDepartement($idDep){
+// Renvoie un tableau avec le nombre d'étudiant dans chaque catégorie.
+
+  // Tableau de résultats
+  $result=[0,0,0,0,0,0];
+  // On récupère toutes les promos de ce département
+  $promos=getAllPromoByDepartement($idDep);
+  foreach ($promos as $promo) {
+    // On récupère tous les élèves de cette promo
+    $etudiants=getAllEtudiantAyantTest($promo['id']);
+    foreach ($etudiants as $etudiant){
+      // On charge les choix de l'étudiant qui sont dans la base de données
+      $choice_tab=getAllChoix($etudiant['id']); //C'est un tableau de tableau
+      //On le fait passer en simple tableau
+      for ($i=0;$i<12;$i++){
+        $array_choice1[$i]=$choice_tab[$i][0];
+        $array_choice2[$i]=$choice_tab[$i][1];
+        $array_choice3[$i]=$choice_tab[$i][2];
+      }
+      // On calcule les résultats de l'élève
+      $result=calculResultat($array_choice1,$array_choice2,$array_choice3);
+      $idFiche=getIdFicheByResult($result);
+      $result[$idFiche-1]+=1;
+
+    }
+  }
+
+  return $result;
+
+}

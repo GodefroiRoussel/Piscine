@@ -88,6 +88,19 @@ function getAllEtudiant($idPromo){
 
 }
 
+function getAllEtudiantAyantTest($idPromo){
+		//donnée : id d'une promo
+		//resultat : la liste des élèves(id, mail et premierTest) ayant passé le test
+
+	global $pdo;
+	$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND premierTest=false');
+	$req->execute(array($idPromo));
+	$etudiants=$req->fetchAll();
+
+	return $etudiants;
+
+}
+
 function getAllEtudiantRecherche($idPromo,$typeRecherche,$rechercheTexte){
 	//donnée : id d'une promo, le type de la recherche (prenom,nom,premierTest) et le texte à rechercher
 	//resultat : liste des étudiants dont la valeur du type de recherche contient au moins le texte à rechercher
