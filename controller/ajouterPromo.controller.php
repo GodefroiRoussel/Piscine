@@ -31,7 +31,7 @@ else{
             $listeDepartements="";
             //On construit la syntaxe d'une liste déroulante avec la liste des départements
             foreach($AllDepartements as $valeur)
-                $listeDepartements=$listeDepartements."<option value=\"".$valeur[0]."\">".$valeur[0]."</option>\n";
+                $listeDepartements=$listeDepartements."<option value=\"".$valeur['nom']."\">".$valeur['nom']."</option>\n";
             //Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter une promo
             if(isset($_POST["codePromo"]) and isset($_POST["annee"]) and isset($_POST["departement"]) and !empty($_POST["codePromo"]) and !empty($_POST["annee"]) and !empty($_POST["departement"])){
                 // On sécurise contre l'injection sql
