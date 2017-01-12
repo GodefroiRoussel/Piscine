@@ -28,10 +28,10 @@
 				}
 				else{
 					$departs=getAllDepartement(); //On récupère tous les départements dans le tableau de tableau
-					$resultDepart= calculResultatDepart($departs[0]['id']); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
-        
+					$resultDepart= calculResultatDepartement(1); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
+
 				}
-				include('../view/statistiques.php'); 
+				include('../view/departement.php');
 			}
 			else{
 				// Si un Etudiant essaie d'accéder aux résultats on le redirige

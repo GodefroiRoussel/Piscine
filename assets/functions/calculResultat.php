@@ -78,7 +78,7 @@ function calculResultatDepartement($idDep){
 // Renvoie un tableau avec le nombre d'étudiant dans chaque catégorie.
 
   // Tableau de résultats
-  $result=[0,0,0,0,0,0];
+  $resultat=[0,0,0,0,0,0];
   // On récupère toutes les promos de ce département
   $promos=getAllPromoByDepartement($idDep);
   foreach ($promos as $promo) {
@@ -96,11 +96,11 @@ function calculResultatDepartement($idDep){
       // On calcule les résultats de l'élève
       $result=calculResultat($array_choice1,$array_choice2,$array_choice3);
       $idFiche=getIdFicheByResult($result);
-      $result[$idFiche-1]+=1;
+      $resultat[$idFiche-1]+=1;
 
     }
   }
 
-  return $result;
+  return $resultat;
 
 }

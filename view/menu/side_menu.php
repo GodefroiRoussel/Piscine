@@ -41,7 +41,15 @@
                     </li>
 
                     <li>
-                        <a href="statistiques.controller.php"><i class="fa fa-bar-chart-o"></i>Statistiques</a>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i>Statistiques<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="statistiques.controller.php">Entre promotions</a>
+                            </li>
+                            <li>
+                                <a href="departement.controller.php">Par département</a>
+                            </li>
+                        </ul>
                     </li>
                     <?php
                   }

@@ -4,9 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Statistique Promos</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	</head>
-	<body>
 		<!-- BOOTSTRAP STYLES-->
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- FONTAWESOME STYLES-->
@@ -24,9 +21,8 @@
         -ms-user-select: none;
     }
 		</style>
-		<div class="title">
-					<h3>Stat</h3>
-		</div>
+	</head>
+	<body>
 		<div id="wrapper">
         <?php include("menu/menuTop.php"); ?>
         <!-- /. NAV TOP  -->
@@ -34,7 +30,6 @@
         <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
            include("menu/side_menu.php");
         } ?>
-
 			<div id="page-wrapper">
 				<div id="page-inner">
 					<div class="row">
@@ -52,15 +47,15 @@
 									<select  id="depart">
 									<?php
 											foreach ($departs as $depart){
-												echo '<option value="'.$depart['codeDepart'].'">'.$depart['codeDepart'].'</option>'; //Affiche chaque id (ex: IG2019) de chaque promo de la base de données
+												echo '<option value="'.$depart['nom'].'">'.$depart['nom'].'</option>'; //Affiche chaque id (ex: IG2019) de chaque promo de la base de données
 											}
 									?>
 									</select>
 								</span>
-								
+
 							</label>
 						</p>
-						<input type="submit" value="Comparer" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller
+						<input type="submit" value="Comparer" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller-->
 
 					</form>
 
@@ -74,7 +69,7 @@
           <input type="hidden" id="eDepart" value=<?php echo $resultDepart[4] ?> />
           <input type="hidden" id="cDepart" value=<?php echo $resultDepart[5] ?> />
 
-		  
+
 
 					<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
        					 <canvas id="chart-area" />
@@ -95,6 +90,6 @@
 	<script src="../assets/js/custom.js"></script>
 	<script src="../Formulaire/Resultat/Chart.bundle.js"></script>
 	<script src="../Formulaire/Resultat/utils.js"></script>
-	<script type="text/javascript" src="../controller/js/statistiques.js"></script>
+	<script type="text/javascript" src="../assets/js/departement.js"></script>
 	</body>
 </html>

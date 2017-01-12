@@ -18,7 +18,7 @@ function getAllDepartement(){
     //résultat : la liste des noms des départements
 
     global $pdo;
-    $req=$pdo->prepare('SELECT nom FROM departement');
+    $req=$pdo->prepare('SELECT * FROM departement');
     $req->execute(array());
     $ListeDep=$req->fetchAll();
 
