@@ -28,6 +28,7 @@
         <?php include("menu/menuTop.php"); ?>
         <!-- /. NAV TOP  -->
         <!-- NAV SIDE only if we are connected -->
+	<!--vérification de la validité du cookie-->
         <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
            include("menu/side_menu.php");
         } ?>
@@ -43,20 +44,20 @@
 
 								<div class="row">
                   <div class="col-md-4">
-                      <h5>Félicitation tu es dans la catégorie <?php echo $nomFiche ?></h5>
+                      <h5>Félicitation tu es dans la catégorie <?php echo $nomFiche ?></h5> <!--affiche le nom de la fiche qui correspond aux résultats du questionnaire -->
                       <div class="panel panel-primary">
                           <div class="panel-heading">
                               <?php echo $nomFiche ?>
                           </div>
                           <div class="panel-body">
-                              <p><?php echo $valeurFiche ?></p>
+                              <p><?php echo $valeurFiche ?></p> <!--Affiche la valeur(le texte) que contient l'affiche -->
                           </div>
                           <div class="panel-footer">
-                              <a href="../assets/pdf/interpretationRIASEC.pdf#page=<?php echo $idFiche+2 ?>" >Voir plus</a>
+                              <a href="../assets/pdf/interpretationRIASEC.pdf#page=<?php echo $idFiche+2 ?>" >Voir plus</a> <!-- Si l'on veut voir la description entière de la fiche, cela nous envoie sur le pdf qui contient toutes les description, à l'endroit voulu -->
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-8" style="width:45%">
+                  <div class="col-md-8" style="width:45%"> <!--Affiche le diagramme en étoile -->
                       <canvas id="canvas"></canvas>
                   </div>
                 </div>
