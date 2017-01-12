@@ -35,7 +35,17 @@
                           </li>
                         </ul>
                     </li>
-
+                          <li>
+                              <a href="#"><i class="fa fa-table "></i>Administrer les départements<span class="fa arrow"></span></a>
+                              <ul class="nav nav-second-level">
+                                  <li>
+                                      <a href="ajouterDepartement.controller.php">Ajouter un département</a>
+                                  </li>
+                                  <li>
+                                      <a href="administrerDepartement.controller.php">Consulter les départements</a>
+                                  </li>
+                              </ul>
+                          </li>
                     <li>
                         <a href="modifierQuestionnaire.controller.php"> <i class="fa fa-edit "></i>Modifier le test </a>
                     </li>
