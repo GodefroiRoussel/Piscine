@@ -31,6 +31,7 @@
         <?php include("menu/menuTop.php"); ?>
         <!-- /. NAV TOP  -->
         <!-- NAV SIDE only if we are connected -->
+	<!--Vérification de la validité du cookie -->
         <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
            include("menu/side_menu.php");
         } ?>
@@ -44,14 +45,14 @@
 							<!-- /.col-lg-12 -->
 					</div>
 					<!-- /.row -->
-					<form method="post" action="statistiques.controller.php" class="form">
+					<form method="post" action="statistiques.controller.php" class="form"> <!--Affiche deux menus déroulants permettant de pouvoir choisir les deux promotions que nous souhaitons comparer -->
 						<p>
 							<label>
 								Choisissez deux promotions que vous voulez comparer:
 								<span class="custom-dropdown custom-dropdown--white">
 									<select  id="promo1">
 									<?php
-											foreach ($promos as $promo){
+											foreach ($promos as $promo){ //Pour chaque promo nous allons afficher le codePromo (ex:IG2019) dans le menu déroulant et attibuer ce codePromo en valeur de l'option
 												echo '<option value="'.$promo['codePromo'].'">'.$promo['codePromo'].'</option>';
 											}
 									?>
@@ -60,7 +61,7 @@
 								<span class="custom-dropdown custom-dropdown--white">
 									<select  id="promo2">
 										<?php
-											foreach ($promos as $promo){
+											foreach ($promos as $promo){ //Pour chaque promo nous allons afficher le codePromo (ex:IG2019) dans le menu déroulant et attibuer ce codePromo en valeur de l'option
 												echo '<option value="'.$promo['codePromo'].'">'.$promo['codePromo'].'</option>';
 											}
 											?>
@@ -68,7 +69,7 @@
 								</span>
 							</label>
 						</p>
-						<input type="submit" value="Comparer" />
+						<input type="submit" value="Comparer" /> <!--Ce bouton permet de pouvoir envoyer les données au controleur -->
 
 					</form>
 
