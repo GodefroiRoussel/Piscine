@@ -28,7 +28,7 @@ function modifPasswordEtudiant($idEtudiant,$newmdp){
 		$req->execute(array(
 			'newMdp' => $newmdp,
 			'idEt' => $idEtudiant
-		))
+		));
   	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modificaton du mot de passe de l'étudiant dans la base de données " );
@@ -44,7 +44,7 @@ function modifMailEtudiant($idEtudiant,$newMail){
 		$req->execute(array(
 			'newMdp' => $newMail,
 			'idEt' => $idEtudiant
-			))
+			));
   	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du mail de l'étudiant dans la base de données " );

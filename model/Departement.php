@@ -94,7 +94,7 @@ function creerDepartement($nomDep){
     global $pdo;
 	try{
 		$req=$pdo->prepare('INSERT INTO departement (nom) VALUES (?)');
-		$req->execute(array($nomDep))
+		$req->execute(array($nomDep));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la création du département dans la base de données " );
@@ -140,7 +140,7 @@ function modifNomDepartement($idDep,$newNom){
 		$req->execute(array(
 			'newNom' => $newNom,
 			'idAd' => $idDep
-    ))
+    ));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du nom de département dans la base de données " );

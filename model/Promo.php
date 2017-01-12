@@ -160,7 +160,7 @@ function creerPromo($codePromo,$idDep,$datePromo){
 	global $pdo;
 	try{
 		$req=$pdo->prepare('INSERT INTO promo (codePromo,anneePromo,idDep) VALUES (?,?,?)');
-		$req->execute(array($codePromo,$datePromo,$idDep))
+		$req->execute(array($codePromo,$datePromo,$idDep));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la création de la promo dans la base de données " );

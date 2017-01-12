@@ -155,7 +155,7 @@ function modifMailAdmin($idAdmin,$newMail){
   	$req->execute(array(
 			'newMail' => $newMail,
 			'idAd' => $idAdmin
-			))
+			));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du mail dans la base de données " );
@@ -171,7 +171,7 @@ function modifNomAdmin($idAdmin,$newNom){
 		$req->execute(array(
 			'newNom' => $newNom,
 			'idAd' => $idAdmin
-	))
+	));
 	} catch(PDOException $e){
 		echo($e->getMessage());
 		die(" Erreur lors de la modification du nom de l'admin dans la base de données " );
@@ -187,7 +187,7 @@ function modifPrenomAdmin($idAdmin,$newPrenom){
 		$req->execute(array(
 			'newPrenom' => $newPrenom,
 			'idAd' => $idAdmin
-	))
+	));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du prenom de l'admin dans la base de données " );
