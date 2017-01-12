@@ -49,4 +49,18 @@ function getAllPromoByAnnee($annee){
   return $promos;
 }
 
+function creerDepartement($nomDep){
+    //donnée : la clef promo, le département et l'année où sera diplomée la promo
+    //resultat : la promo insérée dans la base de données
+
+    global $pdo;
+    $req=$pdo->prepare('INSERT INTO departement (nom) VALUES (?)');
+    if(!$req->execute(array($nomDep))){
+        return False;
+    }
+    else{
+        return True;
+    }
+}
+
 ?>
