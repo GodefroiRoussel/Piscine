@@ -109,7 +109,7 @@ function creerAdmin($nomdeCompte,$mdp,$nom,$prenom){
 	global $pdo;
 	try{
 		$req=$pdo->prepare('INSERT INTO Admin(prenom,nom,email,password) VALUE (?,?,?,?)');
-		$req->execute(array($prenom,$nom,$nomdeCompte,$mdp))
+		$req->execute(array($prenom,$nom,$nomdeCompte,$mdp));
 	} catch(PDOException $e){
 		echo($e->getMessage());
 		die(" Erreur lors l'insertion de l'admin dans la base de données " );
