@@ -28,37 +28,40 @@
 			} ?>
 			<div id="page-wrapper">
 				<div id="page-inner">
-					<p>Promo <?php echo $nomDepartement," ",$annee; ?></p>
+					<h2 id="titrePromo">Promo <?php echo $nomDepartement," ",$annee; ?></h2>
+					<br/>
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verifCodePromo();">
-						<span>Code promo actuel : <?php echo $codePromo ?></span>
+						<span><span class="gras"> Code promo actuel :</span> <?php echo $codePromo ?></span>
 						<!-- Bouton qui va afficher la saisie d'un nouveau codePromo -->
 						<input type="button" value="Modifier" id="modifierCode" onclick="afficherCode();"/>
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 						<div id="newCode">
 							<span>Nouveau :</span>
 							<input type="text" name="codePromo" id="codePromo"/>
-							<input type="submit" value="Enregistrer" id="enregistrerCode"/>
+							<input type="submit" value="Enregistrer"/>
 						</div>
 					</form>
 					<br/>
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verfiAnneePromo();">
-						<span>Année promo actuelle : <?php echo $anneePromo ?></span>
+						<span><span class="gras">Année promo actuelle :</span> <?php echo $anneePromo ?></span>
 						<!-- Bouton qui va afficher la saisie d'une nouvelle année promo -->
 						<input type="button" value="Modifier" id="modifierAnnee" onclick="afficherAnnee();"/>
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 						<div id="newAnnee">
 							<span>Nouveau :</span>
 							<input type="text" name="anneePromo" id="anneePromo"/>
-							<input type="submit" value="Enregistrer" id="enregistrerAnnee"/>
+							<input type="submit" value="Enregistrer"/>
 						</div>
 					</form>
+					<br/>
 					<div>
-						<a href="../controller/ajouterEtudiantBdd.controller.php?refPromo=<?php echo $id ?>" class="btn btn-info">Ajouter un élève</a>
+						<a href="../controller/ajouterEtudiantBdd.controller.php?refPromo=<?php echo $id ?>" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un élève</a>
 					</div>
+					<br/>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="panel panel-default">
-								<div class="panel-heading">
+								<div class="panel-heading titreTable">
 									Gerer la promo
 								</div>
 								<!-- /.panel-heading -->
@@ -157,29 +160,32 @@
 													?> <!-- on affiche le bouton de reset seulement si on peut le reset donc que le test a été éffectué -->
 														<?php if($existeTri){
 														?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
-															<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id?>&refEtuTest=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>">Reset son vrai test</a></td>
+															<td><a class="btn btn-primary btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id?>&refEtuTest=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>"><i class="fa fa-refresh" aria-hidden="true"></i> Réinitialiser le vrai test</a></td>
 														<?php
 														}
 														else{
 														?>
-															<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id?>&refEtuTest=<?php echo $etudiant['id']?>">Reset son vrai test</a></td>
+															<td><a class="btn btn-primary btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id?>&refEtuTest=<?php echo $etudiant['id']?>"><i class="fa fa-refresh" aria-hidden="true"></i> Réinitialiser le vrai test</a></td>
 														<?php
 														?>
 													<?php
 													}
+												}
+												else{
 													?>
+													<td></td>
 												<?php
 												}
 												?>
-												<td><a href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>">Modifier</a></td>
+												<td><a class="btn btn-primary btn-block info" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td><!-- bouton modifier -->
 												<?php if($existeTri){
 														?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
-															<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>">Supprimer</a></td>
+															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>" onclick="return confirmMessageEtudiantTri()"><i class="icon-remove-sign"></i></a></td><!-- bouton supprimer -->
 														<?php
 														}
 														else{
 														?>
-															<td><a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>">Supprimer</a></td>
+															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>" onclick=" return confirmMessageEtudiant()"><i class="icon-remove-sign"></i></a></td><!-- bouton supprimer -->
 														<?php
 														}
 														?>
@@ -187,8 +193,12 @@
 										}
 										?>
 											</tr>
-						</table>
-						<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" >Retour</a>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 						<!-- /.table-responsive -->
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<!-- JQUERY SCRIPTS -->
@@ -208,6 +218,7 @@
 		<script src="../dist/js/sb-admin-2.js"></script>
 		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
 		<script type="text/javascript" src="../controller/js/recherche.js"></script>
+		<script type="text/javascript" src="../controller/js/confirmMessage.js"></script>
 		<script type="text/javascript" src="../controller/js/modifAnneePromo.js"></script>
 	</body>
 </html>

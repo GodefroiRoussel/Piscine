@@ -28,7 +28,6 @@
 		<div id="page-wrapper">
 						<div id="page-inner">
 								<h2>Informations de l'étudiant <?php echo $prenom," ",$nom ?></h2>
-								<?php echo $id; echo $idEtuMod; ?>
 								<form action="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $idEtuMod ?>" onsubmit="return informationsCorrecte();">
 									<label>Adresse mail :</label>
 									<input type="text" value="<?php echo $email ?>"  id="email" />

@@ -19,3 +19,32 @@
 #newAnnee{
   display:none;
 }
+
+a.info span{
+  display: :none;
+}
+
+a.info:hover {
+   z-index: 500; /* On définit une valeur pour l'ordre d'affichage. */
+}
+
+a.info:hover span{
+  display:inline;
+  position: absolute;
+
+  top: 30px; /* On positionne notre infobulle. */
+  left: 20px;
+}
+
+#titrePromo{
+   text-align: center;
+   font-weight:bold;
+}
+
+.gras{
+	font-weight:bold;
+}
+
+.titreTable{
+	font-weight:bold;
+}
