@@ -7,6 +7,7 @@
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- FONTAWESOME STYLES-->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
 		<!-- DataTables CSS -->
 		<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 		<!-- DataTables Responsive CSS -->

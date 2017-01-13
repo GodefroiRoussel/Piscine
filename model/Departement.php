@@ -13,13 +13,14 @@ function getIdDepartement($departement){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération de l'id du département dans la base de données " );
-} 
-	
-	
-	
+}
+
+
+
     return $idDep[0];
 }
 
+/*
 function getNomDepartement($id){
     //donnée: le nom d'un département
     //résultat : l'id correspondant à ce département
@@ -32,10 +33,11 @@ function getNomDepartement($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du nom du département dans la base de données " );
-		} 
+		}
 
     return $nomDep[0];
 }
+*/
 
 function getAllDepartement(){
     //donnée:
@@ -49,7 +51,7 @@ function getAllDepartement(){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération des départements dans la base de données " );
-} 
+}
     return $ListeDep;
 }
 
@@ -65,7 +67,7 @@ function getAllPromoByDepartement($idDep){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération des promos par département dans la base de données " );
-} 
+}
 
   return $promos;
 }
@@ -82,7 +84,7 @@ function getAllPromoByAnnee($annee){
   } catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération des promos par année dans la base de données " );
-} 
+}
 
   return $promos;
 }
@@ -98,8 +100,8 @@ function creerDepartement($nomDep){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la création du département dans la base de données " );
-} 
-    
+}
+
 	}
 
 function existeDepartement($id){
@@ -113,8 +115,8 @@ function existeDepartement($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de lavérification de l'existence du département dans la base de données " );
-} 
-	
+}
+
     if($compteur[0]>0){return true;}
     else{return false;}
 }
@@ -128,7 +130,7 @@ function supprimerDepartement($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la suppression du département dans la base de données " );
-} 
+}
 }
 
 function modifNomDepartement($idDep,$newNom){
@@ -144,8 +146,8 @@ function modifNomDepartement($idDep,$newNom){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du nom de département dans la base de données " );
-} 
-      
+}
+
 }
 
 ?>

@@ -7,6 +7,7 @@
   require_once('../assets/functions/calculResultat.php');
   use \Firebase\JWT\JWT;
 
+
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 

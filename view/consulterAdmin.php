@@ -7,6 +7,7 @@
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
     <!-- DataTables CSS -->
     <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
@@ -27,13 +28,16 @@
 
     <div id="page-wrapper">
         <div id="page-inner">
+          <div class="row">
+							<div class="col-lg-12">
+									<h1 class="page-header">Administrer les administrateurs</h1>
+							</div>
+							<!-- /.col-lg-12 -->
+					</div>
+					<!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Administrer les admins
-                        </div>
-                        <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -52,7 +56,7 @@
                                     <td><?php echo $eltAdmin["nom"]?></td>
                                     <td><?php echo $eltAdmin["email"]?></td>
                                     <td><a class="btn btn-primary btn-block" href="../controller/modifierAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
-                                        } ?>">Gérer la promo</a></td>
+                                    } ?>">Modifier</a></td>
                                     <td><a class="btn btn-danger btn-block" href="../controller/consulterAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
                                         } ?>"><i class="icon-remove-sign"></i></a></td>
                                 </tr>
