@@ -4,9 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Statistique Promos</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	</head>
-	<body>
 		<!-- BOOTSTRAP STYLES-->
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- FONTAWESOME STYLES-->
@@ -24,9 +21,8 @@
         -ms-user-select: none;
     }
 		</style>
-		<div class="title">
-					<h3>Stat</h3>
-		</div>
+	</head>
+	<body>
 		<div id="wrapper">
         <?php include("menu/menuTop.php"); ?>
         <!-- /. NAV TOP  -->
@@ -50,19 +46,19 @@
 							<label>
 								Choisissez deux promotions que vous voulez comparer:
 								<span class="custom-dropdown custom-dropdown--white">
-									<select  id="promo1">
+									<select name="promo1" id="promo1">
 									<?php
 											foreach ($promos as $promo){ //Pour chaque promo nous allons afficher le codePromo (ex:IG2019) dans le menu déroulant et attibuer ce codePromo en valeur de l'option
-												echo '<option value="'.$promo['codePromo'].'">'.$promo['codePromo'].'</option>';
+												echo '<option value="'.$promo['id'].'">'.$promo['codePromo'].'</option>';
 											}
 									?>
 									</select>
 								</span>
 								<span class="custom-dropdown custom-dropdown--white">
-									<select  id="promo2">
+									<select name="promo2" id="promo2">
 										<?php
 											foreach ($promos as $promo){ //Pour chaque promo nous allons afficher le codePromo (ex:IG2019) dans le menu déroulant et attibuer ce codePromo en valeur de l'option
-												echo '<option value="'.$promo['codePromo'].'">'.$promo['codePromo'].'</option>';
+												echo '<option value="'.$promo['id'].'">'.$promo['codePromo'].'</option>';
 											}
 											?>
 									</select>
@@ -75,21 +71,24 @@
 
 		          <!-- On trouve ici toutes les données utilisées pour créer le graphique. Elles sont en hidden pour éviter que l'utilisateur les modifie directement -->
 
+					<?php if(isset($resultPromo1) && isset($resultPromo2)){
+						?>
+						<input type="hidden" id="rPromo1" value=<?php echo $resultPromo1[0] ?> />
+	          <input type="hidden" id="iPromo1" value=<?php echo $resultPromo1[1] ?> />
+	          <input type="hidden" id="aPromo1" value=<?php echo $resultPromo1[2] ?> />
+	          <input type="hidden" id="sPromo1" value=<?php echo $resultPromo1[3] ?> />
+	          <input type="hidden" id="ePromo1" value=<?php echo $resultPromo1[4] ?> />
+	          <input type="hidden" id="cPromo1" value=<?php echo $resultPromo1[5] ?> />
 
-          <input type="hidden" id="rPromo1" value=<?php echo $resultPromo1[0] ?> />
-          <input type="hidden" id="iPromo1" value=<?php echo $resultPromo1[1] ?> />
-          <input type="hidden" id="aPromo1" value=<?php echo $resultPromo1[2] ?> />
-          <input type="hidden" id="sPromo1" value=<?php echo $resultPromo1[3] ?> />
-          <input type="hidden" id="ePromo1" value=<?php echo $resultPromo1[4] ?> />
-          <input type="hidden" id="cPromo1" value=<?php echo $resultPromo1[5] ?> />
+			  		<input type="hidden" id="rPromo2" value=<?php echo $resultPromo2[0] ?> />
+	          <input type="hidden" id="iPromo2" value=<?php echo $resultPromo2[1] ?> />
+	          <input type="hidden" id="aPromo2" value=<?php echo $resultPromo2[2] ?> />
+	          <input type="hidden" id="sPromo2" value=<?php echo $resultPromo2[3] ?> />
+	          <input type="hidden" id="ePromo2" value=<?php echo $resultPromo2[4] ?> />
+	          <input type="hidden" id="cPromo2" value=<?php echo $resultPromo2[5] ?> />
 
-		  		<input type="hidden" id="rPromo2" value=<?php echo $resultPromo2[0] ?> />
-          <input type="hidden" id="iPromo2" value=<?php echo $resultPromo2[1] ?> />
-          <input type="hidden" id="aPromo2" value=<?php echo $resultPromo2[2] ?> />
-          <input type="hidden" id="sPromo2" value=<?php echo $resultPromo2[3] ?> />
-          <input type="hidden" id="ePromo2" value=<?php echo $resultPromo2[4] ?> />
-          <input type="hidden" id="cPromo2" value=<?php echo $resultPromo2[5] ?> />
-
+						<?php
+					} ?>
 
 					<div id="container" style="width: 70%;">
 						<canvas id="canvas"></canvas>
