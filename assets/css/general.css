@@ -20,22 +20,6 @@
   display:none;
 }
 
-a.info span{
-  display: :none;
-}
-
-a.info:hover {
-   z-index: 500; /* On définit une valeur pour l'ordre d'affichage. */
-}
-
-a.info:hover span{
-  display:inline;
-  position: absolute;
-
-  top: 30px; /* On positionne notre infobulle. */
-  left: 20px;
-}
-
 #titrePromo{
    text-align: center;
    font-weight:bold;
@@ -47,4 +31,35 @@ a.info:hover span{
 
 .titreTable{
 	font-weight:bold;
+}
+
+@keyframes masuperanimation {
+    0% {
+        transform: translateY(1500px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.test
+{
+    animation: masuperanimation 1.5s;
+}
+
+.test2
+{
+	animation: masuperanimation 3s;
+}
+
+.test3
+{
+	animation: masuperanimation 3.5s;
+
+}
+
+.test4
+{
+	animation: masuperanimation 4s;
 }

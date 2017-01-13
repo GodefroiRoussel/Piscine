@@ -9,6 +9,7 @@
 		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
 		<!-- CUSTOM STYLES-->
 		<link href="../assets/css/custom.css" rel="stylesheet" />
+		<link href="../assets/css/general.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 	</head>
@@ -23,8 +24,8 @@
 
 				<div class="row">
             <div class="col-lg-push-1 col-lg-pull-1 col-lg-10">
-                <div class="bg-color-info col-sm-12 centrer">
-                    <h4>Bienvenue sur le test de Holland</h4>
+                <div class="bg-color-info col-sm-12 centrer test">
+                    <h1>Bienvenue sur le test de Holland</h1>
                     <p>Dans le cadre de ton cours d'insertion professionnel à Polytech Montpellier, tu viens sur ce site pour passer le fameux test RIASEC. Mais qu'est-ce donc?</p>
                     <p>C'est la première fois que tu viens ici?</p><a href="inscription.controller.php" class="btn btn-primary btn-lg" role="button">Inscris-toi !</a>
 
@@ -33,8 +34,8 @@
                 <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-				<div class="row">
-					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-push-1 col-lg-3">
+				<div class="row ">
+					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-push-1 col-lg-3 test2">
 						<h4> RIASEC : une typologie qui procède d’une démarche scientifique </h4>
 						<p class="flotte">
 							<img src="../assets/img/johnholland.png" class="img-responsive img-rounded" alt="Photo de montagne" title="C'est beau les Alpes quand même !" />
@@ -45,7 +46,7 @@
 							qui fixent des référents de manière plus ou moins arbitraire.
 						</p>
 					</div>
-					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-3 ">
+					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-3 test3">
 						<h4> Six types d'intérêt professionnels </h4>
 						<img src="../assets/img/RIASEC.jpg" class="img-responsive" alt="Photo de montagne" title="C'est beau les Alpes quand même !" />
 						<p> A partir de questions simples, ce test vous positionne ainsi par rapport à six types de personnalité professionnelle :
@@ -53,7 +54,7 @@
 							Votre "profil RIASEC" s'inscrit dans un hexagone où chaque sommet correspond à un type.
 						</p>
 					</div>
-					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-3">
+					<div class="col-xs-12 col-sm-push-1 col-sm-3 col-md-push-1 col-md-3 col-lg-3 test4">
 						<h4> Un bon outil pour une première orientation… </h4>
 						<p>
 							<img src="../assets/img/bilanOrientation.png" class="img-responsive" alt="Photo de montagne" title="C'est beau les Alpes quand même !" />
