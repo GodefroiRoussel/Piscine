@@ -14,13 +14,7 @@
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-		<style>
-		canvas {
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
-		</style>
+		
 	</head>
 	<body>
 		<div id="wrapper">
@@ -44,10 +38,10 @@
 							<label>
 								Choisissez deux promotions que vous voulez comparer:
 								<span class="custom-dropdown custom-dropdown--white">
-									<select  id="depart">
+									<select name="depart" id="depart">
 									<?php
 											foreach ($departs as $depart){
-												echo '<option value="'.$depart['nom'].'">'.$depart['nom'].'</option>'; //Affiche chaque id (ex: IG2019) de chaque promo de la base de données
+												echo '<option value="'.$depart['nom'].'">'.$depart['nom'].'</option>'; //Affiche chaque nom (ex: IG2019) de chaque promo de la base de données
 											}
 									?>
 									</select>
@@ -70,11 +64,11 @@
           <input type="hidden" id="cDepart" value=<?php echo $resultDepart[5] ?> />
 
 
-
-					<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
-       					 <canvas id="chart-area" />
-    				</div>
-
+		<center>
+			<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
+				 <canvas id="chart-area" />
+			</div>
+		</center>
 				</div>
 			</div>
 	</div>
@@ -90,6 +84,73 @@
 	<script src="../assets/js/custom.js"></script>
 	<script src="../Formulaire/Resultat/Chart.bundle.js"></script>
 	<script src="../Formulaire/Resultat/utils.js"></script>
-	<script type="text/javascript" src="../assets/js/departement.js"></script>
+	<!--<script type="text/javascript" src="../assets/js/departement.js"></script> -->
+	<script>
+	var rDepart = document.getElementById("rDepart").value;
+	var iDepart = document.getElementById("iDepart").value;
+	var aDepart = document.getElementById("aDepart").value;
+	var sDepart = document.getElementById("sDepart").value;
+	var eDepart = document.getElementById("eDepart").value;
+	var cDepart = document.getElementById("cDepart").value;
+  
+	Chart.defaults.global.defaultFontColor = '#000000';
+	Chart.defaults.global.defaultFontSize= 15;
+    var config = {
+        type: 'pie',
+		pointDot: false,
+		pointLabelFontSize: 40,
+		 
+        data: {
+            datasets: [{
+                data: [
+                    rDepart,
+                    iDepart,
+                    aDepart,
+                    sDepart,
+                    eDepart,
+					cDepart
+                ],
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    "#8D47F5",
+                    window.chartColors.green,
+                    "#01BFF5",
+					"#F0F501",
+                ],
+				hoverBackgroundColor: [
+                "#36436F",
+                "#36436F",
+                "#36436F",
+				"#36436F",
+                "#36436F",
+                "#36436F"
+            ],
+                label: 'IG2019'
+            }],
+            labels: [
+                "Realiste",
+                "Investigatif",
+                "Artistique",
+                "Social",
+                "Entrepreneur",
+				"Conventionnel"
+            ]
+        },
+        options: {
+            responsive: true
+        },
+		animation:{
+			animateRotate:true
+		}
+		
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+	};
+
+	</script>
 	</body>
 </html>
