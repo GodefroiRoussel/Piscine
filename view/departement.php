@@ -14,12 +14,12 @@
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-		
+
 	</head>
 	<body>
 		<div id="wrapper">
         <?php include("menu/menuTop.php"); ?>
-        <!-- /. NAV TOP  -->
+      	<!-- /. NAV TOP  -->
         <!-- NAV SIDE only if we are connected -->
         <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
            include("menu/side_menu.php");
@@ -36,12 +36,12 @@
 					<form method="post" action="departement.controller.php" class="form">
 						<p>
 							<label>
-								Choisissez deux promotions que vous voulez comparer:
+								Regarder les statistiques du département :
 								<span class="custom-dropdown custom-dropdown--white">
 									<select name="depart" id="depart">
 									<?php
 											foreach ($departs as $depart){
-												echo '<option value="'.$depart['nom'].'">'.$depart['nom'].'</option>'; //Affiche chaque nom (ex: IG2019) de chaque promo de la base de données
+												echo '<option value="'.$depart['id'].'">'.$depart['nom'].'</option>'; //Affiche chaque nom (ex: Informatique et Gestion) de chaque département de la base de données
 											}
 									?>
 									</select>
@@ -54,14 +54,18 @@
 					</form>
 
 		          <!-- On trouve ici toutes les données utilisées pour créer le graphique. Elles sont en hidden pour éviter que l'utilisateur les modifie directement -->
-
-
-          <input type="hidden" id="rDepart" value=<?php echo $resultDepart[0] ?> />
-          <input type="hidden" id="iDepart" value=<?php echo $resultDepart[1] ?> />
-          <input type="hidden" id="aDepart" value=<?php echo $resultDepart[2] ?> />
-          <input type="hidden" id="sDepart" value=<?php echo $resultDepart[3] ?> />
-          <input type="hidden" id="eDepart" value=<?php echo $resultDepart[4] ?> />
-          <input type="hidden" id="cDepart" value=<?php echo $resultDepart[5] ?> />
+					<?php
+					if(isset($resultDepart)){
+					?>
+						<input type="hidden" id="rDepart" value=<?php echo $resultDepart[0] ?> />
+	          <input type="hidden" id="iDepart" value=<?php echo $resultDepart[1] ?> />
+	          <input type="hidden" id="aDepart" value=<?php echo $resultDepart[2] ?> />
+	          <input type="hidden" id="sDepart" value=<?php echo $resultDepart[3] ?> />
+	          <input type="hidden" id="eDepart" value=<?php echo $resultDepart[4] ?> />
+	          <input type="hidden" id="cDepart" value=<?php echo $resultDepart[5] ?> />
+					<?php
+					}
+					?>
 
 
 		<center>
@@ -92,14 +96,14 @@
 	var sDepart = document.getElementById("sDepart").value;
 	var eDepart = document.getElementById("eDepart").value;
 	var cDepart = document.getElementById("cDepart").value;
-  
+
 	Chart.defaults.global.defaultFontColor = '#000000';
 	Chart.defaults.global.defaultFontSize= 15;
     var config = {
         type: 'pie',
 		pointDot: false,
 		pointLabelFontSize: 40,
-		 
+
         data: {
             datasets: [{
                 data: [
@@ -143,7 +147,7 @@
 		animation:{
 			animateRotate:true
 		}
-		
+
     };
 
     window.onload = function() {

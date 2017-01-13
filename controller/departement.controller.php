@@ -23,15 +23,16 @@
 		//On vérifie que c'est un token valide
 		if (verificationToken($decoded_array)){
 			if($decoded_array['role']==="admin"){
+        $departs=getAllDepartement(); //On récupère tous les départements dans le tableau de tableau
 				if (isset($_POST["depart"])){ //On regarde si une information a été envoyée via le formulaire
-					$idDepa=getIdDepartement($_POST["depart"]);
-					$resultDepart=calculResultatDepartement($idDep); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
+					$resultDepart=calculResultatDepartement($_POST["depart"]); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
 				}
-				else{
-					$departs=getAllDepartement(); //On récupère tous les départements dans le tableau de tableau
+				/*
+        else{
 					$resultDepart= calculResultatDepartement(1); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
 
 				}
+        */
 				include('../view/departement.php');
 			}
 			else{
