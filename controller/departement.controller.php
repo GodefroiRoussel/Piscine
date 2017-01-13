@@ -24,7 +24,8 @@
 		if (verificationToken($decoded_array)){
 			if($decoded_array['role']==="admin"){
 				if (isset($_POST["depart"])){ //On regarde si une information a été envoyée via le formulaire
-					$resultDepart=calculResultatDepart($_POST["depart"]); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
+					$idDepa=getIdDepartement($_POST["depart"]);
+					$resultDepart=calculResultatDepartement($idDep); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
 				}
 				else{
 					$departs=getAllDepartement(); //On récupère tous les départements dans le tableau de tableau
