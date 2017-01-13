@@ -73,6 +73,9 @@
 
 					<?php if(isset($resultPromo1) && isset($resultPromo2)){
 						?>
+						<input type="hidden" id="nomPromo1" value=<?php echo $nomPromo1 ?> />
+						<input type="hidden" id="nomPromo2" value=<?php echo $nomPromo2 ?> />
+
 						<input type="hidden" id="rPromo1" value=<?php echo $resultPromo1[0] ?> />
 	          <input type="hidden" id="iPromo1" value=<?php echo $resultPromo1[1] ?> />
 	          <input type="hidden" id="aPromo1" value=<?php echo $resultPromo1[2] ?> />

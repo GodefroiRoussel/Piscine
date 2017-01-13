@@ -31,6 +31,9 @@
           $promos=getAllPromo();
 
 				if (isset($_POST["promo2"]) && isset($_POST["promo1"])){ // On regarde si le formulaire a bien été rempli
+          $nomPromo1= getCode($_POST["promo1"]);
+          $nomPromo2= getCode($_POST["promo2"]);
+
           $resultPromo1=calculResultatPromo($_POST["promo1"]);
 					$resultPromo2=calculResultatPromo($_POST["promo2"]); //on calcul les résultats de la promo selectionnée
 				}

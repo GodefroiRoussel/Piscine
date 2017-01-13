@@ -1,8 +1,10 @@
 
 
 window.onload = function() {
-	
-  //récupère les valeurs des deux promos à partir de la page php 
+
+  //récupère les valeurs des deux promos à partir de la page php
+	var nomPromo1 = document.getElementById("nomPromo1").value;
+	var nomPromo2 = document.getElementById("nomPromo2").value;
 
   var rPromo1 = document.getElementById("rPromo1").value;
   var iPromo1 = document.getElementById("iPromo1").value;
@@ -25,14 +27,14 @@ window.onload = function() {
 		Chart.defaults.global.defaultFontSize= 15;
         var barChartData = {
 			options : {
-				scaleBeginAtZero: false 
+				scaleBeginAtZero: false
 			},
 
-            labels: ["IG2015", "IG2016"],//Affiche le nom des deux promos sélectionnées dans le graphique
+            labels: [nomPromo1, nomPromo2],//Affiche le nom des deux promos sélectionnées dans le graphique
             datasets: [{
                 label: 'Realiste', // Les deux valeurs rpromo1 et rpromo2 seront représenteront l'aspect réaliste des deux promos
                 backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-                borderColor: window.chartColors.red, 
+                borderColor: window.chartColors.red,
                 borderWidth: 1,
                 data: [
                     rPromo1,
@@ -106,7 +108,7 @@ window.onload = function() {
 					},
                     responsive: true, // Le graphique sera responsive
                     legend: {
-                        position: 'top', 
+                        position: 'top',
                     },
                     title: {
                         display: true,
