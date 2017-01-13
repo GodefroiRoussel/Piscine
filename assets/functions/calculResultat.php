@@ -34,26 +34,29 @@ function calculResultatPromo($idPromo){
   $choixPromo=getAllChoixPromo($idPromo);
   $resultPromo=[0,0,0,0,0,0];
 
-  // Une ligne correspond au choix1, choix2 et choix3. On calcule dans quelle fiche la proposition fait partie et on lui donne 3/2/1 points selon si c'est le premier, deuxième ou troisième choix respectivement
-  foreach ($choixPromo as $promo) {
-
-    $idFiche=getFicheAssociee($promo['choix1']);
-    $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 3;
-
-    $idFiche=getFicheAssociee($promo['choix2']);
-    $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 2;
-
-    $idFiche=getFicheAssociee($promo['choix3']);
-    $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 1;
-  }
   // i stocke le nombre de test effectué dans une promo
   $i=getNbTestEffectue($idPromo);
+  // Si il n'y a pas de test effectué alors nous n'avons pas de résultat
+  if($i!=0){
+    // Une ligne correspond au choix1, choix2 et choix3. On calcule dans quelle fiche la proposition fait partie et on lui donne 3/2/1 points selon si c'est le premier, deuxième ou troisième choix respectivement
+    foreach ($choixPromo as $promo) {
 
-  //On fait passer chaque score en pourcentage
-  for ($j=0;$j<6;$j++){
-    $resultPromo[$j]= ($resultPromo[$j]/72)*100;
-  // On fait la moyenne des pourcentages pour avoir le résultat de la promo.
-    $resultPromo[$j]=$resultPromo[$j]/$i;
+      $idFiche=getFicheAssociee($promo['choix1']);
+      $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 3;
+
+      $idFiche=getFicheAssociee($promo['choix2']);
+      $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 2;
+
+      $idFiche=getFicheAssociee($promo['choix3']);
+      $resultPromo[$idFiche-1]= $resultPromo[$idFiche-1] + 1;
+    }
+
+    //On fait passer chaque score en pourcentage
+    for ($j=0;$j<6;$j++){
+      $resultPromo[$j]= ($resultPromo[$j]/72)*100;
+    // On fait la moyenne des pourcentages pour avoir le résultat de la promo.
+      $resultPromo[$j]=$resultPromo[$j]/$i;
+    }
   }
 
   return $resultPromo;
