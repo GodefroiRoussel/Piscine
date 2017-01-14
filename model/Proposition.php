@@ -34,12 +34,15 @@ function getContenuProposition($idProposition){
     //recoit la proposition
     //retourne le texte de la proposition
     global $pdo;
-
+	try{
     //$req=$pdo->prepare('SELECT contenu FROM (SELECT GroupeDeProposition FROM GroupeDePropositions WHERE NumGroupPos= WHERE proposition=?')
-    $req=$pdo->prepare('SELECT description FROM proposition WHERE id=?');
-    $req->execute(array($idProposition));
-    $contenu=$req->fetch();
-
+		$req=$pdo->prepare('SELECT description FROM proposition WHERE id=?');
+		$req->execute(array($idProposition));
+		$contenu=$req->fetch();
+	} catch(PDOException $e){
+			echo($e->getMessage());
+			die(" Erreur lors de la récupération du contenu de la proposition dans la base de données " );
+	}
     return $contenu[0];
 
 }
@@ -47,11 +50,14 @@ function getContenuProposition($idProposition){
 // Renvoie le numéro de fiche associé à cette proposition
 function getFicheAssociee($idProposition){
 	global $pdo;
-
-	$req=$pdo->prepare('SELECT idFiche FROM proposition WHERE id=?');
-  $req->execute(array($idProposition));
-  $idFiche=$req->fetch();
-
+	try{
+		$req=$pdo->prepare('SELECT idFiche FROM proposition WHERE id=?');
+		$req->execute(array($idProposition));
+		$idFiche=$req->fetch();
+	} catch(PDOException $e){
+			echo($e->getMessage());
+			die(" Erreur lors de la récupération de la fiche associée à la proposition dans la base de données " );
+	}
   return $idFiche[0];
 
 
@@ -61,11 +67,16 @@ function modifProposition($idP,$newCont){
 
 
 	global $pdo;
+	try{
 	$req=$pdo->prepare('UPDATE proposition SET description= :newDesc WHERE id= :idP');
 	$req->execute(array(
     'newDesc' => $newCont,
     'idP' => $idP
     ));
+	} catch(PDOException $e){
+			echo($e->getMessage());
+			die(" Erreur lors de la modification de la proposition dans la base de données " );
+	}
 }
 
 
