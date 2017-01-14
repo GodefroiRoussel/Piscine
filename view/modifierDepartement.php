@@ -51,13 +51,13 @@
                                 <input type="text" size="50" name="nomFormulaire" id="nomFormulaire" value="<?php echo $nom ?>"/>
                             </div>
                         </div>
-                        <input type="submit" value="Enregistrer"/>
+                        <input type="submit" class="btn btn-success" value="Enregistrer"/>
                     </form>
                 </div>
             </div>
             <!-- /. ROW  -->
             <hr />
-            <a href="../controller/administrerDepartement.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+            <a href="../controller/administrerDepartement.controller.php?" class="btn btn-default" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

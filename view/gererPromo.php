@@ -33,24 +33,24 @@
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verifCodePromo();">
 						<span><span class="gras"> Code promo actuel :</span> <?php echo $codePromo ?></span>
 						<!-- Bouton qui va afficher la saisie d'un nouveau codePromo -->
-						<input type="button" value="Modifier" id="modifierCode" onclick="afficherCode();"/>
+						<input type="button" class="btn btn-primary" value="Modifier" id="modifierCode" onclick="afficherCode();"/>
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 						<div id="newCode">
 							<span>Nouveau :</span>
 							<input type="text" name="codePromo" id="codePromo"/>
-							<input type="submit" value="Enregistrer"/>
+							<input type="submit" class="btn btn-success" value="Enregistrer"/>
 						</div>
 					</form>
 					<br/>
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verfiAnneePromo();">
 						<span><span class="gras">Année promo actuelle :</span> <?php echo $anneePromo ?></span>
 						<!-- Bouton qui va afficher la saisie d'une nouvelle année promo -->
-						<input type="button" value="Modifier" id="modifierAnnee" onclick="afficherAnnee();"/>
+						<input type="button" class="btn btn-primary" value="Modifier" id="modifierAnnee" onclick="afficherAnnee();"/>
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 						<div id="newAnnee">
 							<span>Nouveau :</span>
 							<input type="text" name="anneePromo" id="anneePromo"/>
-							<input type="submit" value="Enregistrer"/>
+							<input type="submit" class="btn btn-success" value="Enregistrer"/>
 						</div>
 					</form>
 					<br/>
