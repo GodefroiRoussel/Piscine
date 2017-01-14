@@ -65,8 +65,8 @@
           $nomFiche=getNomFiche($idFiche);
           $valeurFiche= getValeurFiche($idFiche);
 
-          // On calcule les résultats de la promo à partir de l'id de la promo
-          $resultPromo=calculResultatPromo(getIdPromo($idFiche));
+          // On calcule les résultats de la promo à partir de l'id de l'étudiant
+          $resultPromo=calculResultatPromo(getIdPromo($id));
           include('../view/resultat.php');
 
 
