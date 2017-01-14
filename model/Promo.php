@@ -36,7 +36,7 @@ function getAnneePlusAnciennePromo(){
 	return $annee[0];
 }
 
-function getNomDepartement($idPromo){
+function getNomDepartementPromo($idPromo){
 		//donnée : le code de la promo (entier)
 		//resultat : le nom du département departement de la promo (string)
 	global $pdo;

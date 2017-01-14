@@ -29,7 +29,7 @@
 						<div id="page-inner">
 								<div class="row">
 										<div class="col-md-12">
-												<h2>Test RIASEC</h2>
+												<h1>Test RIASEC</h1>
 										</div>
 								</div>
 								<!-- /. ROW  -->
@@ -108,7 +108,7 @@
 						  			</tbody>
 						  		</table>
 
-						      <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant" type="submit" value="Valider les modifications"/>
+						      <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant btn btn-success"  type="submit" value="Valider les modifications"/>
 										</form>
 			</div>
 			<!-- /. WRAPPER  -->

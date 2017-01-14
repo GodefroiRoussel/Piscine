@@ -26,7 +26,7 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Modifier Admin</h2>
+					<h1 class="page-header">Modifier Admin</h1>
 				</div>
 				<?php
 				if($affichageMessage && !is_null($modifReussiMail) && !is_null($modifReussiNom) && !is_null($modifReussiPrenom)){
@@ -67,14 +67,15 @@
 								<label>Confirmer :</label>
 								<input type="password" name="futur" id="futur"/>
 							</div>
-							<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
+							<input type="button" class="btn btn-primary" value="Modifier" id="modifier" onclick="afficher();"/>
 						</div>
-						<input type="submit" value="Enregistrer"/>
+						<input type="submit" class="btn btn-success" value="Enregistrer"/>
 					</form>
 				</div>
 			</div>
 			<!-- /. ROW  -->
 			<hr />
+			<a href="../controller/consulterAdmin.controller.php?" class="btn btn-default" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 		</div>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

@@ -26,7 +26,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Modifier Département</h2>
+                    <h1>Modifier Département</h1>
                 </div>
                 <?php
                 if($affichageMessage && !is_null($modifReussiNom)){
@@ -57,6 +57,7 @@
             </div>
             <!-- /. ROW  -->
             <hr />
+            <a href="../controller/administrerDepartement.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

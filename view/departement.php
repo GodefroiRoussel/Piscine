@@ -11,6 +11,7 @@
 		<!-- CUSTOM STYLES-->
 		<link href="../assets/css/custom.css" rel="stylesheet" />
 		<link href="../view/css/statistiques.css" rel="stylesheet" />
+		<link href="../assets/css/general.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
@@ -49,7 +50,7 @@
 
 							</label>
 						</p>
-						<input type="submit" value="Comparer" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller-->
+						<input type="submit" class="btn btn-success" value="Comparer" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller-->
 
 					</form>
 

@@ -1,6 +1,7 @@
 <?php
   require_once('../vendor/autoload.php');
   require_once('../model/token.php');
+  require_once('../model/Etudiant.php');
   use \Firebase\JWT\JWT;
 
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";

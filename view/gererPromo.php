@@ -28,7 +28,7 @@
 			} ?>
 			<div id="page-wrapper">
 				<div id="page-inner">
-					<h2 id="titrePromo">Promo <?php echo $nomDepartement," ",$annee; ?></h2>
+					<h2 class="titrePage">Promo <?php echo $nomDepartement," ",$annee; ?></h2>
 					<br/>
 					<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>" method="post" onsubmit="return verifCodePromo();">
 						<span><span class="gras"> Code promo actuel :</span> <?php echo $codePromo ?></span>
@@ -53,10 +53,6 @@
 							<input type="submit" value="Enregistrer"/>
 						</div>
 					</form>
-					<br/>
-					<div>
-						<a href="../controller/ajouterEtudiantBdd.controller.php?refPromo=<?php echo $id ?>" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un élève</a>
-					</div>
 					<br/>
 					<div class="row">
 						<div class="col-lg-12">
@@ -132,7 +128,7 @@
 												<th></th>
 											</tr>
 										</thead>
-										<form action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
+										<form id="formRecherche" action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
 											<!-- Bouton qui va afficher la saisie de la recherche -->
 											<select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()">
 												<option value="default" selected >Rechercher selon...</option>
@@ -177,7 +173,7 @@
 												<?php
 												}
 												?>
-												<td><a class="btn btn-primary btn-block info" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td><!-- bouton modifier -->
+												<td><a class="btn btn-primary btn-block" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td><!-- bouton modifier -->
 												<?php if($existeTri){
 														?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
 															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>" onclick="return confirmMessageEtudiantTri()"><i class="icon-remove-sign"></i></a></td><!-- bouton supprimer -->
@@ -198,8 +194,12 @@
 							</div>
 						</div>
 					</div>
+					<hr />
 					<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
-						<!-- /.table-responsive -->
+				</div>
+			</div>
+		</div>		
+				<!-- /.table-responsive -->
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<!-- JQUERY SCRIPTS -->
 		<script src="../vendor/jquery/jquery.min.js"></script>

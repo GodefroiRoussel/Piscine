@@ -8,8 +8,8 @@ function afficherRecherche(){
 	}
 	else{
 		document.getElementById("newRecherche").style.display="none";
+		document.formRecherche.submit();
 	}
 	//on stocke le type de recherche dans le input
 	document.getElementById("typeRecherche").value=listeRecherche.options[listeRecherche.selectedIndex].value;
-	return true;
 }

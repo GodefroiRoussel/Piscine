@@ -29,24 +29,28 @@
 
 			<div id="page-wrapper">
 				<div id="page-inner">
+				<div class="row">
+							<div class="col-lg-12">
+									<h1 class="page-header">Administrer les promotions</h1>
+							</div>
+							<!-- /.col-lg-12 -->
+					</div>
+					<!-- /.row -->
 						<div class="row">
 								<div class="col-lg-12">
 										<div class="panel panel-default">
-												<div class="panel-heading titreTable">
-														Administrer les promotions
-												</div>
-												<!-- /.panel-heading -->
 												<div class="panel-body">
 														<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 																<thead>
 																		<tr>
-																				<th>Numéro</th>
-																				<th>Département</th>
-																				<th>Année</th>
-																				<th>Clef de la promo</th>
+																			<th>Numéro</th>
+																			<th>Département</th>
+																			<th>Année</th>
+																			<th>Clef de la promo</th>
 																		</tr>
 																</thead>
-																<form action="../controller/administrerPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>"; method="post">
+																<br/>
+																<form action="../controller/administrerPromo.controller.php<?php if($existeTri){?>?tri=<?php echo $tri;}?>"; method="post">
 																	<!-- Bouton qui va afficher la saisie de la recherche -->
 																	<select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()">
 																		<option value="default" selected >Rechercher selon...</option>
@@ -71,17 +75,23 @@
 																				<td><?php echo $promo["nom"]?></td>
 																				<td><?php echo $promo["anneePromo"]?></td>
 																				<td><?php echo $promo["codePromo"] ?></td>
-																				<td><a class="btn btn-primary btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>">Gérer la promo</a></td>
-																				<td><a class="btn btn-danger btn-block" href="../controller/administrerPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>"><i class="icon-remove-sign"></i></a></td>
+																				<td><a class="btn btn-primary btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>"><i class="fa fa-table "></i> Gérer la promo</a></td>
+																				<td><a class="btn btn-danger btn-block" href="../controller/administrerPromo.controller.php?refPromoSupp=<?php echo $promo['id'];?><?php if($existeTri){?>&tri=<?php echo $tri;}?>"><i class="icon-remove-sign"></i></a></td>
 																			</tr>
 																	<?php
 																		}?>
-												</tbody>
-										</table>
-										<!-- /.table-responsive -->
-		<div>
-			<a href="../controller/ajouterPromo.controller.php" class="btn btn-success">Ajouter une promo</a>
-		</div>
+																</tbody>
+														</table>
+														<!-- /.table-responsive -->
+														<a href="../controller/ajouterPromo.controller.php" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une promo</a>
+												</div>
+										</div>
+								</div>
+						</div>
+						<hr />
+				</div>
+			</div>
+			</div>
 	</div>
 	<!-- /. WRAPPER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->

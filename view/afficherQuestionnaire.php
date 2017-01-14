@@ -29,7 +29,7 @@
 			} ?>
 
 			<div class="table-title">
-				<h3>Test RIASEC</h3>
+				<h1>Test RIASEC</h1>
 			</div>
 
     <form method="get" action="afficherQuestionnaire.controller.php">

@@ -56,7 +56,7 @@
                                     <td><?php echo $eltAdmin["nom"]?></td>
                                     <td><?php echo $eltAdmin["email"]?></td>
                                     <td><a class="btn btn-primary btn-block" href="../controller/modifierAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
-                                    } ?>">Modifier</a></td>
+                                    } ?>"><i class="fa fa-edit "></i> Modifier</a></td>
                                     <td><a class="btn btn-danger btn-block" href="../controller/consulterAdmin.controller.php?<?php if ($eltAdmin["id"]) { ?>refAdmin=<?php echo $eltAdmin["id"];
                                         } ?>"><i class="icon-remove-sign"></i></a></td>
                                 </tr>
@@ -66,7 +66,7 @@
                             </table>
                             <!-- /.table-responsive -->
                             <div>
-                                <a href="../controller/ajoutAdmin.controller.php" class="btn btn-success">Ajouter un Admin</a>
+                                <a href="../controller/ajoutAdmin.controller.php" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un Admin</a>
                             </div>
                         </div>
                         <!-- /. WRAPPER  -->
@@ -95,5 +95,12 @@
                                 });
                             });
                         </script>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
 </body>
 </html>

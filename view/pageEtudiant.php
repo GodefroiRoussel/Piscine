@@ -24,7 +24,7 @@
 						<div id="page-inner">
 								<div class="row">
 										<div class="col-md-12">
-												<h2>Tableau de bord</h2>
+												<h1>Tableau de bord</h1>
 										</div>
 								</div>
 								<!-- /. ROW  -->
@@ -62,7 +62,7 @@
 														</div>
 														<div class="panel-footer back-footer-blue">
 														Le questionnaire RIASEC vise à déterminer chez un individu quels sont les traits de caractères prédominants. Une fois ce test passé, un profil vous indique
-														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi.
+														 quels styles d'activité pourraient le plus vous épanouir et vous explique pourquoi.<br>
 														<a href="formulaire.controller.php" class="btn btn-primary">Passer le test</a>
 														</div>
 												</div>

@@ -20,13 +20,14 @@
      	if (verificationToken($decoded_array)){
         	if($decoded_array['role']==="admin"){
           	$email=getMail($decoded_array['id']);
-    		include('../view/AjouterEtudiant.php');
-    	    else{
-          		echo "On vous redirige <br/>";
-    		}
-		}
-      	else {
-			echo "Mauvais token, veuillez vous reconnecter<br/>";
+    		    include('../view/AjouterEtudiant.php');
+    	    }
+          else{
+          	echo "On vous redirige <br/>";
+    		  }
+		  }
+      else {
+        echo "Mauvais token, veuillez vous reconnecter<br/>";
       }
     }
 ?>

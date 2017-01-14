@@ -20,7 +20,7 @@ function getIdDepartement($departement){
     return $idDep[0];
 }
 
-/*
+
 function getNomDepartement($id){
     //donnée: le nom d'un département
     //résultat : l'id correspondant à ce département
@@ -37,7 +37,7 @@ function getNomDepartement($id){
 
     return $nomDep[0];
 }
-*/
+
 
 function getAllDepartement(){
     //donnée:

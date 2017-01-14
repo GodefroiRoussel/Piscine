@@ -36,7 +36,7 @@
 						<div id="page-inner">
 								<div class="row">
 										<div class="col-md-12">
-												<h2>Résultat</h2>
+												<h1>Résultat</h1>
 										</div>
 								</div>
 								<!-- /. ROW  -->

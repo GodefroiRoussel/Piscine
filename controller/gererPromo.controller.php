@@ -32,7 +32,7 @@
             //Vérification que la référence promo correspond à une promo éxistante
             if(existePromoId($id)){
               //On récupère ces infos pour les afficher dans la view              
-              $nomDepartement=getNomDepartement($id);
+              $nomDepartement=getNomDepartementPromo($id);
               $annee=getAnnee($id);
               //Cas où on veut changer le code de la promo
               if(isset($_POST['codePromo'])){
@@ -106,71 +106,44 @@
               $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
               if($existeTri){
                 $tri=htmlspecialchars($_GET['tri']);
-                if(!empty($etudiants)){
-                  if($tri=='prenomCroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($prenomEtu, SORT_ASC, $etudiants);
+                $triPossible=array('prenomCroissant','prenomDecroissant','nomCroissant','nomDecroissant','testCroissant','testDecroissant');
+                if(in_array($tri, $triPossible)){
+                  //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
+                  foreach ($etudiants as $key => $row) {
+                    $idEtu[$key] = $row['id'];
+                    $nomEtu[$key]  = $row['nom'];
+                    $prenomEtu[$key] = $row['prenom'];
+                    $premierTest[$key] = $row['premierTest'];
                   }
-                  elseif($tri=='prenomDecroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($prenomEtu, SORT_DESC, $etudiants);
+                  switch($tri){
+                    case 'prenomCroissant' :
+                      array_multisort($prenomEtu, SORT_ASC, $etudiants);
+                      break;
+
+                    case 'prenomDecroissant' :
+                      array_multisort($prenomEtu, SORT_DESC, $etudiants);
+                      break;
+
+                    case 'nomCroissant' :
+                      array_multisort($nomEtu, SORT_ASC, $etudiants);
+                      break;
+
+                    case 'nomDecroissant' :
+                      array_multisort($nomEtu, SORT_DESC, $etudiants);
+                      break;
+
+                    case 'testCroissant' :
+                      array_multisort($premierTest, SORT_ASC, $etudiants);
+                      break;
+
+                    case 'testDecroissant' :
+                      array_multisort($premierTest, SORT_DESC, $etudiants);
+                      break;
                   }
-                  elseif($tri=='nomCroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($nomEtu, SORT_ASC, $etudiants);
-                  }
-                  elseif($tri=='nomDecroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($nomEtu, SORT_DESC, $etudiants);
-                  }
-                  elseif($tri=='testCroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($premierTest, SORT_ASC, $etudiants);
-                  }
-                  elseif($tri=='testDecroissant'){
-                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
-                    foreach ($etudiants as $key => $row) {
-                      $idEtu[$key] = $row['id'];
-                      $nomEtu[$key]  = $row['nom'];
-                      $prenomEtu[$key] = $row['prenom'];
-                      $premierTest[$key] = $row['premierTest'];
-                    }
-                    array_multisort($premierTest, SORT_DESC, $etudiants);
-                  }
-                  else{
-                    $existeTri=False;//si c'est un mauvais critère c'est comme si aucun tri n'était appliqué
-                    echo "Impossible de trier selon ce critère";
-                  }
+                }  
+                else{
+                  $existeTri=False;//si c'est un mauvais critère c'est comme si aucun tri n'était appliqué
+                  echo "Impossible de trier selon ce critère";
                 }
               }
             include("../view/gererPromo.php");

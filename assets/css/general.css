@@ -20,16 +20,12 @@
   display:none;
 }
 
-#titrePromo{
+.titrePage{
    text-align: center;
    font-weight:bold;
 }
 
 .gras{
-	font-weight:bold;
-}
-
-.titreTable{
 	font-weight:bold;
 }
 
@@ -62,4 +58,12 @@
 .test4
 {
 	animation: masuperanimation 4s;
+}
+
+#promo1,#promo2{
+  width:95px;
+}
+
+#depart{
+  width:280px;
 }

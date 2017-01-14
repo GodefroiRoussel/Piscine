@@ -26,7 +26,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Ajouter Département</h2>
+                    <h1>Ajouter Département</h1>
                 </div>
                 <?php
                 if(isset($ajoutReussi) && $ajoutReussi){
@@ -49,12 +49,13 @@
                                 <input type="text" size="50" name="nomDep" id="nomDep" value=""/>
                             </div>
                         </div>
-                        <input type="submit" value="Enregistrer"/>
+                        <input type="submit" class="btn btn-success" value="Enregistrer"/>
                     </form>
                 </div>
             </div>
             <!-- /. ROW  -->
             <hr />
+            <a href="../controller/administrerDepartement.controller.php" class="btn btn-default" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

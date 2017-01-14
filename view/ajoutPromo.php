@@ -26,7 +26,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Ajouter Promo</h2>
+                    <h1>Ajouter Promo</h1>
                 </div>
                 <?php
                 if(isset($ajoutReussi) && $ajoutReussi){
@@ -63,12 +63,13 @@
                                 </select>
                             </div>
                         </div>
-                        <input type="submit" value="Enregistrer"/>
+                        <input type="submit" class="btn btn-success" value="Enregistrer"/>
                     </form>
                 </div>
             </div>
             <!-- /. ROW  -->
             <hr />
+            <a href="../controller/administrerPromo.controller.php?" class="btn btn-default" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>

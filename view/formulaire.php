@@ -29,7 +29,7 @@
 						<div id="page-inner">
 								<div class="row">
 										<div class="col-md-12">
-												<h2>Test RIASEC</h2>
+												<h1>Test RIASEC</h1>
 										</div>
 								</div>
 								<!-- /. ROW  -->
@@ -124,13 +124,13 @@
 										          // Si i est inférieur à 12 on continue le questionnaire
 										          if ($i<12){
 										            ?>
-										            <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant" type="submit" value="Suivant" />
+										            <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant btn btn-success" type="submit" value="Suivant" />
 										          <?php
 										          }
 										          // Sinon on arrive à l'affichage des résultats
 										          else{
 										            ?>
-										            <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant" type="submit" value="Voir ses résultats" />
+										            <input class=" col-sm-2 col-sm-push-5 col-lg-push-5 suivant btn btn-success" type="submit" value="Voir ses résultats" />
 										          <?php
 										          }
 										          ?>

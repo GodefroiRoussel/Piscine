@@ -24,7 +24,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Tableau de bord</h2>
+                        <h1>Tableau de bord</h1>
                     </div>
                 </div>
 								<!-- /. ROW  -->
@@ -39,7 +39,7 @@
                                 <h3><?php echo $nbPromo ?> promotions ont commencé le test </h3>
                             </div>
                             <div class="panel-footer back-footer-blue">
-														Ici vous pouvez voir les statistiques sur une ou plusieurs promotions
+														Ici vous pouvez voir les statistiques sur une ou plusieurs promotions<br>
 														<a href="statistiques.controller.php" class="btn btn-primary">Consulter les statistiques</a>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
 		                                <i class="fa fa-list-alt fa-5x"></i>
 		                                <h3>La plus ancienne promotion date de <?php echo $anneePromo ?> </h3>
 		                            <div class="panel-footer">
-																	Ici vous pouvez voir les promotions existantes, ajouter une promotion, supprimer une promotion et accéder aux informations de chaque étudiant
+																	Ici vous pouvez voir les promotions existantes, ajouter une promotion, supprimer une promotion et accéder aux informations de chaque étudiant<br>
 																	<a href="administrerPromo.controller.php" class="btn btn-primary">Consulter les promotions</a>
 		                            </div>
 		                        </div>
@@ -81,7 +81,7 @@
 		                            <h3><?php echo $nbAdmin-1 ?> personnes ont les mêmes droits que vous </h3>
 															</div>
 																<div class="panel-footer back-footer-blue">
-																Ici vous pouvez voir les administrateurs existants, ajouter un ou supprimer un administrateur et changer leurs informations si nécessaire
+																Ici vous pouvez voir les administrateurs existants, ajouter un ou supprimer un administrateur et changer leurs informations si nécessaire<br>
 																<a href="consulterAdmin.controller.php" class="btn btn-primary">Consulter les administrateurs</a>
 		                            </div>
 		                        </div>
