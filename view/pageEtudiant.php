@@ -73,8 +73,11 @@
 											<div class="alert alert-info text-center">
 															<i class="fa fa-bar-chart-o fa-5x"></i>
 															<h3>Tu es plutôt... <?php echo $nomFiche; ?> !</h3>
+															<br/>
 													<div class="panel-footer">
-													Ici vous pouvez voir vos différents scores et vous comparer à votre promotion <br>
+													Ici vous pouvez voir vos différents scores et vous comparer à votre promotion 
+													<br/>
+													<br/>
 													<a href="resultat.controller.php" class="btn btn-primary">Voir ses résultats</a>
 													</div>
 											</div>

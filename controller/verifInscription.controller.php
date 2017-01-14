@@ -32,7 +32,7 @@ require_once('../model/Promo.php');
 				//On vérifie que l'étudiant n'est pas déjà dans la base de données
 				    if(!$id>0){
 					         //on transforme le mail sous la forme prenom.nom@etu.umontpellier.Fr
-					         $mail=$email."@etu.umontpellier.Fr";
+					         $mail=$email."@etu.umontpellier.fr";
 					         //on récupère l'id de la promo correspondant au code promo
 				        	 $idPromo=getID($clefPromo);
 					         ajoutEtudiant($idPromo,$mail,$nom,$prenom,$passwd);
@@ -42,7 +42,7 @@ require_once('../model/Promo.php');
 					echo 'ERREUR : un compte pour cet étudiant existe déjà';
         }
 		  } else {
-				echo 'ERREUR : l email n a pas la forme prenom.nom@etu.umontpellier.Fr';
+				echo 'ERREUR : l email n a pas la forme prenom.nom@etu.umontpellier.fr';
 		    }
       }
     else {
