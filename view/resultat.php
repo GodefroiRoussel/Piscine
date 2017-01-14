@@ -53,7 +53,7 @@
                               <p><?php echo $valeurFiche ?></p> <!--Affiche la valeur(le texte) que contient l'affiche -->
                           </div>
                           <div class="panel-footer">
-                              <a href="../assets/pdf/interpretationRIASEC.pdf#page=<?php echo $idFiche+2 ?>" >Voir plus</a> <!-- Si l'on veut voir la description entière de la fiche, cela nous envoie sur le pdf qui contient toutes les description, à l'endroit voulu -->
+                              <a href="../assets/pdf/interpretationRIASEC.pdf#page=<?php echo $idFiche+1 ?>" >Voir plus</a> <!-- Si l'on veut voir la description entière de la fiche, cela nous envoie sur le pdf qui contient toutes les description, à l'endroit voulu -->
                           </div>
                       </div>
                   </div>

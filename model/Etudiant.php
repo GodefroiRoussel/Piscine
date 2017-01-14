@@ -152,12 +152,10 @@ function passerTest($idEtudiant){
 	try{
 		$req=$pdo->prepare('UPDATE etudiant SET premierTest=false WHERE id=?');
 		$req->execute(array($idEtudiant));
-		$etudiant=$req->fetch();
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors du passage du premier test de l'étudiant dans la base de données " );
-}
-	return $etudiant;
+		}
 }
 
 function resetpremierTest($idetudiant){
@@ -186,7 +184,7 @@ function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de l'ajout d'un choix de l'étudiant dans la base de données " );
-}
+		}
 }
 
 function supprimerEtudiant($id){
