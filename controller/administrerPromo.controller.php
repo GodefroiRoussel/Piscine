@@ -27,7 +27,7 @@
           //cas où on veut supprimer une promo
           if(isset($_GET['refPromoSupp'])){
             $refPromoSupp=htmlspecialchars($_GET['refPromoSupp']);
-            if(existePromo($refPromoSupp)){
+            if(existePromoId($refPromoSupp)){
               supprimerPromo($refPromoSupp);
             }
             else{
