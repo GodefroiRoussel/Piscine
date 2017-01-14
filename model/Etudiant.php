@@ -14,7 +14,7 @@ function getMailEtudiant($idEtudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du mail de l'étudiant dans la base de données " );
-} 
+}
 
 	return $mail[0];
 }
@@ -32,7 +32,7 @@ function modifPasswordEtudiant($idEtudiant,$newmdp){
   	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modificaton du mot de passe de l'étudiant dans la base de données " );
-} 
+}
 }
 
 function modifMailEtudiant($idEtudiant,$newMail){
@@ -48,7 +48,7 @@ function modifMailEtudiant($idEtudiant,$newMail){
   	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification du mail de l'étudiant dans la base de données " );
-} 	
+}
 }
 
 function getCodePromo($idEtudiant){
@@ -63,7 +63,7 @@ function getCodePromo($idEtudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du code de la promo de l'étudiant dans la base de données " );
-} 
+}
 
 	return $codePromo[0];
 }
@@ -79,8 +79,8 @@ function existeEtudiantMail($email){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la vérifiation de l'existence de l'étudiant par son mail dans la base de données " );
-} 
-	
+}
+
 	if($compteur[0]>0){
 		return True;
 	}
@@ -100,8 +100,8 @@ function existeEtudiantId($idEtudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de vérification de l'existence de l'étudiant par son id dans la base de données " );
-} 		
-		
+}
+
 	if($compteur[0]>0){
 		return True;
 	}
@@ -123,7 +123,7 @@ function getAllChoix($idetudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération des choix de l'étudiant dans la base de données " );
-} 
+}
 	return $resultat;
 
 }
@@ -140,7 +140,7 @@ function premierTest($idetudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupéraion du booleen premier test dans la base de données " );
-} 
+}
 	return $premierTest[0];
 
 }
@@ -156,7 +156,7 @@ function passerTest($idEtudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors du passage du premier test de l'étudiant dans la base de données " );
-} 
+}
 	return $etudiant;
 }
 
@@ -166,17 +166,15 @@ function resetpremierTest($idetudiant){
 
 	global $pdo;
 	try{
-		$req=$pdo->prepare('UPDATE etudiant SET premierTest=True WHERE id=?');
+		$req=$pdo->prepare('UPDATE etudiant SET premierTest=true WHERE id=?');
 		$req->execute(array($idetudiant));
-		$etudiant=$req->fetch();
 		$req=$pdo->prepare('DELETE FROM choix WHERE idEtudiant=?');
 		$req->execute(array($idetudiant));
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la réinitialisation du test de l'étudiant dans la base de données " );
-} 
+	}
 
-	return $etudiant;
 }
 
 function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
@@ -188,7 +186,7 @@ function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de l'ajout d'un choix de l'étudiant dans la base de données " );
-} 		
+}
 }
 
 function supprimerEtudiant($id){
@@ -201,7 +199,7 @@ function supprimerEtudiant($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la suppression de l'étudiant dans la base de données " );
-} 
+}
 }
 
 function getPrenomEtudiant($id){
@@ -215,7 +213,7 @@ function getPrenomEtudiant($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du prénom de l'étudiant dans la base de données " );
-} 
+}
 	return $prenom[0];
 }
 
@@ -230,7 +228,7 @@ function getNomEtudiant($id){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du nom de l'étudiant dans la base de données " );
-} 
+}
 	return $nom[0];
 }
 
@@ -245,7 +243,7 @@ function getIdPromo($idEtudiant){
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération de l'id promo dans la base de données " );
-} 
+}
 	return $idPromo[0];
 }
 
