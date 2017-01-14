@@ -12,16 +12,15 @@
    //On vérifie que l'utilisateur n'est pas déjà connecté
    if(!isset($_COOKIE["token"])){
             //On vérifie que les champs ne soient pas vide et non null.
-            if(isset($_POST['email']) && isset($_POST['clefPromo']) && isset($_POST['passwd']) && !empty($_POST['email']) && !empty($_POST['passwd']) && !empty($_POST['clefPromo'])){
+            if(isset($_POST['email']) && isset($_POST['passwd']) && !empty($_POST['email']) && !empty($_POST['passwd']) ){
 
               //Sécurisation des données saisies
               $email = htmlspecialchars ($_POST['email']);
               $password = htmlspecialchars ($_POST['passwd']);
-              $clefPromo = htmlspecialchars ($_POST['clefPromo']);
 
                 //On crypte le mot de passe avec un "grain de sel"
                 $password = crypt($password,$keyCryptage);
-                $id=existeEtudiant($email, $password, $clefPromo);
+                $id=existeEtudiant($email, $password);
 
                 //On vérifie que le login existe dans la table et que les informations soient exactes. (BD.password==passwd && BD.email==email)
                 if ($id>0){

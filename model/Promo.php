@@ -52,11 +52,11 @@ function getNomDepartementPromo($idPromo){
 	return $departement[0];
 }
 
-function existeEtudiant($email,$password,$promo){
+function existeEtudiant($email,$password){
 		global $pdo;
 		try{
-			$req=$pdo->prepare('SELECT e.id FROM etudiant e, promo p WHERE email=? AND password=? AND codePromo=? AND p.id=idPromo');
-			$req->execute(array($email,$password,$promo));
+			$req=$pdo->prepare('SELECT e.id FROM etudiant e, promo p WHERE email=? AND password=? AND p.id=idPromo');
+			$req->execute(array($email,$password));
 			$id=$req->fetch();
 		} catch(PDOException $e){
 			echo($e->getMessage());
@@ -149,7 +149,7 @@ function getAllEtudiantRecherche($idPromo,$typeRecherche,$rechercheTexte){
 			echo($e->getMessage());
 			die(" Erreur lors de la récupération du type d'élève cherché dans la base de données " );
 	}
-	
+
 	return $etudiants;
 }
 
@@ -165,7 +165,7 @@ function creerPromo($codePromo,$idDep,$datePromo){
 			echo($e->getMessage());
 			die(" Erreur lors de la création de la promo dans la base de données " );
 	}
-	
+
 }
 
 function ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp){
@@ -243,8 +243,8 @@ function existePromoId($idPromo){
 			echo($e->getMessage());
 			die(" Erreur lors de la vérification de l'existence d'une promo par son id dans la base de données " );
 	}
-	
-	
+
+
 	if($compteur[0]>0){return true;}
 	else{return false;}
 }
@@ -261,8 +261,8 @@ function existePromo($codePromo){
 			echo($e->getMessage());
 			die(" Erreur lors de la vérification de l'existence de la promo par son code promo  dans la base de données " );
 	}
-	
-	
+
+
 	if($compteur[0]>0){return true;}
 	else{return false;}
 }
