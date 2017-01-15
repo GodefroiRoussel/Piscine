@@ -10,7 +10,7 @@ use \Firebase\JWT\JWT;
 $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 $keyCryptage= "P0lyP1sCinE";
 
-//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
 if(!isset($_COOKIE["token"])){
     // On le redirige vers la connexion admin
     header('Location:connexionAdmin.controller.php');
@@ -25,6 +25,7 @@ else{
         $role=$decoded_array['role'];
         $modifReussiNom=null;
 
+        // On récupère l'id du département auquel on souhaite modifier les informations
         if(isset($_GET['refDep'])) {
             $refDep =$_GET['refDep'];
         }else{
@@ -32,12 +33,15 @@ else{
         }
 
         if($role==="admin"){
+            // On récupère le nom actuel du département pour l'afficher dans le champ
             $nom=getNomDepartement($refDep);
-            // Si $_POST['email'] existe et qu'il n'est pas vide, on modifie l'adresse mail
+
+            // Si $_POST['nomFormulaire'] existe et qu'il n'est pas vide, on modifie le nom du département
             if(isset($_POST["nomFormulaire"]) && !empty($_POST["nomFormulaire"])) {
                 $modifReussiNom = modifNomDepartement($refDep,$_POST["nomFormulaire"]);
             }
         }//endif admin
+        // On récupère le nouveau nom du département pour l'afficher dans le champ de modification
         $nom=getNomDepartement($refDep);
         $affichageMessage=false;
         // Si il existe une variable POST de passwd et que les modifs sont réussis OU si les modifications sont nulles alors on affichera le message

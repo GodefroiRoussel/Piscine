@@ -9,7 +9,7 @@ use \Firebase\JWT\JWT;
 $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 $keyCryptage= "P0lyP1sCinE";
 
-//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
 if(!isset($_COOKIE["token"])){
     // On le redirige vers la connexion admin
     header('Location:connexionAdmin.controller.php');
@@ -27,6 +27,7 @@ else{
         $modifReussiNom=null;
         $modifReussiPrenom=null;
 
+        // On récupère l'id de l'admin auquel on veut modifier les informations
         if(isset($_GET['refAdmin'])) {
             $refAdmin =$_GET['refAdmin'];
         }else{
@@ -34,6 +35,7 @@ else{
         }
 
         if($role==="admin"){
+            //On récupère les informations de l'admin auquel on a récupéré l'id afin de les afficher dans les champs de modification
             $email=getMailAdmin($refAdmin);
             $prenom=getPrenomAdmin($refAdmin);
             $nom=getNomAdmin($refAdmin);
@@ -43,7 +45,7 @@ else{
                 $modifReussiMail = modifMailAdmin($refAdmin,$_POST["email"]);
             }
 
-
+            // Si $_POST['passwd'] existe et qu'il n'est pas vide, on modifie le mot de passe
             if (isset($_POST["passwd"]) && !empty($_POST["passwd"])){
                 $password= htmlspecialchars ($_POST['passwd']);
                 $_POST["futur"]= htmlspecialchars($_POST["futur"]);
@@ -53,17 +55,19 @@ else{
                 $modifReussiPasswd = modifPasswordAdmin($refAdmin,$password);
             }
 
+            // Si $_POST['nomFormulaire'] existe et qu'il n'est pas vide, on modifie le nom de l'admin
             if(isset($_POST["nomFormulaire"]) && !empty($_POST["nomFormulaire"])) {
                 $nomFormulaire = htmlspecialchars ($_POST['nomFormulaire']);
                 $modifReussiNom = modifNomAdmin($refAdmin,$_POST["nomFormulaire"]);
             }
 
-
+            // Si $_POST['prenomFormulaire'] existe et qu'il n'est pas vide, on modifie le prenom de l'admin
             if (isset($_POST["prenomFormulaire"]) && !empty($_POST["prenomFormulaire"])){
                 $prenomFormulaire= htmlspecialchars ($_POST['prenomFormulaire']);
                 $modifReussiPrenom = modifPrenomAdmin($refAdmin,$_POST["prenomFormulaire"]);
             }
         }//endif admin
+        //On récupère les nouvelles informations de l'admin auquel on a récupéré l'id afin de les afficher dans les champs de modification
         $email=getMailAdmin($refAdmin);
         $prenom=getPrenomAdmin($refAdmin);
         $nom=getNomAdmin($refAdmin);
