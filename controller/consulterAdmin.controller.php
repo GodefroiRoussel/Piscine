@@ -37,10 +37,10 @@ else{
             $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
             $rechercheTexte="";
             if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){
-                if(isset($_POST['typeRecherche'])){
+                if(isset($_POST['typeRecherche'])){//Si le type de recherche a été transmis par un POST (donc par la recherche directement)
                   $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
                 }
-                if(isset($_GET['typeRecherche'])){
+                if(isset($_GET['typeRecherche'])){//Si le type de recherche a été transmis par un GET (donc par l'url d'un bouton de tri)
                   $typeRecherche=htmlspecialchars($_GET['typeRecherche']);
                 }
                 if($typeRecherche!="default" && $typeRecherche!="sansTri"){

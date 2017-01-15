@@ -47,7 +47,10 @@
               }
               $codePromo=getCode($id);
               if(isset($_POST['anneePromo'])){
+                //Protéction contre les injections SQL
                 $anneePromo=htmlspecialchars($_POST['anneePromo']);
+                //On convertit en int
+                $anneePromo=intval($anneePromo);
                 setAnneePromo($id,$anneePromo);
                 echo "L'année de la promo a bien été changé";
               }
@@ -83,17 +86,18 @@
                   }
                 }
               } 
-              $existeRecherche=False; 
+              $existeRecherche=False; //variable pour savoir si on devra ou non transmettre la recherche en cours
               $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
               $rechercheTexte="";
               if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){ 
-                if(isset($_POST['typeRecherche'])){ 
+                if(isset($_POST['typeRecherche'])){//Si le type de recherche a été transmis par un POST (donc par la recherche directement)
                   $typeRecherche=htmlspecialchars($_POST['typeRecherche']); 
                 } 
-                if(isset($_GET['typeRecherche'])){ 
+                if(isset($_GET['typeRecherche'])){//Si le type de recherche a été transmis par un GET (donc par l'url d'un bouton de tri)
                   $typeRecherche=htmlspecialchars($_GET['typeRecherche']); 
-                } 
-                if($typeRecherche!="default" && $typeRecherche!="sansTri"){ 
+                }
+                $typeRecherchePossible=array('prenom','nom','premierTest'); 
+                if(in_array($typeRecherche, $typeRecherchePossible)){//Si c'est une recherche que l'on peut réaliser 
                   if(isset($_POST['rechercheTexte'])){
                     $existeRecherche=True; 
                     $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
@@ -108,6 +112,7 @@
                     $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
                   }
                 }
+                //sinon on récupère juste les étudiants sans appliquer de tri
                 else{
                   $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
                 }
@@ -119,7 +124,7 @@
               if($existeTri){
                 $tri=htmlspecialchars($_GET['tri']);
                 $triPossible=array('prenomCroissant','prenomDecroissant','nomCroissant','nomDecroissant','testCroissant','testDecroissant');
-                if(in_array($tri, $triPossible)){
+                if(in_array($tri, $triPossible)){//Si c'est un tri que l'on peut réaliser
                   //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
                   foreach ($etudiants as $key => $row) {
                     $idEtu[$key] = $row['id'];

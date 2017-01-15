@@ -140,7 +140,7 @@
                                 <tbody>
                                 <?php
                                 $i=1;
-                                foreach ($listeAdmins as $eltAdmin){
+                                foreach ($listeAdmins as $eltAdmin){//On affiche pour chaque admin ses informations et les boutons d'actions
                                 ?>
                                 <tr>
                                     <td><?php echo $i; $i+=1; ?> </td>
@@ -172,7 +172,7 @@
                         <script src="../assets/js/jquery.metisMenu.js"></script>
                         <!-- CUSTOM SCRIPTS -->
                         <script src="../assets/js/custom.js"></script>
-                        <script type="text/javascript" src="../controller/js/recherche.js"></script>
+                        <script type="text/javascript" src="../controller/js/rechercheConsulterAdmin.js"></script>
                         <!-- DataTables JavaScript -->
                         <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
                         <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>

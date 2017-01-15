@@ -163,7 +163,8 @@
 				                    <form action="../controller/administrerPromo.controller.php<?php if($existeTri){?>?tri=<?php echo $tri;}?>"; method="post"> 
 				                        <!-- Bouton qui va afficher la saisie de la recherche --> 
 				                        <select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()"> 
-				                          <option value="default" selected >Rechercher selon...</option> 
+				                          <option value="default" selected >Rechercher selon...</option>
+				                          <option value="sansTri" >Sans tri</option>
 				                          <option value="d.nom" >Département</option> 
 				                          <option value="anneePromo" >Année</option> 
 				                          <option value="clefPromo" >Clef de la promo</option> 
@@ -173,12 +174,13 @@
 				                          <input type="search" name="rechercheTexte" id="rechercheTexte"/> 
 				                          <input type="submit" value="Chercher" id="chercherNew"/> 
 										</div>
-									<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> /> 
+										<!-- permet de transmettre par POST au controller le type de la recherche  -->
+										<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> /> 
 				                    </form> 
 				                    <tbody> 
 				                      <?php 
 				                        $i=1; 
-				                        foreach ($promos as $promo){ 
+				                        foreach ($promos as $promo){//On affiche pour chaque promo ses informations et les boutons d'actions 
 				                      ?> 
 				                          <tr> 
 				                            <td><?php echo $i; $i+=1; ?></td> 
@@ -217,17 +219,9 @@
 	<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 	<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-	<script src="../controller/js/recherche.js"></script>
+	<script src="../controller/js/rechercheAdministrerPromo.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-	$(document).ready(function() {
-			$('#dataTables-example').DataTable({
-					responsive: true
-			});
-	});
-	</script>
 	</body>
 </html>
