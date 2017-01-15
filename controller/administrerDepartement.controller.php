@@ -35,7 +35,27 @@ else{
                 }
             }
             $listeDeps=getAllDepartement();//récupère tous les admins de la BDD sauf celui connecté
-
+             $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
+            if($existeTri){ 
+                $tri=htmlspecialchars($_GET['tri']); 
+                $triPossible=array('departementCroissant','departementDecroissant'); 
+                if(in_array($tri, $triPossible)){
+                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
+                    foreach ($listeDeps as $key => $row) {
+                        $idPromo[$key] = $row['id'];
+                        $nom[$key]  = $row['nom'];
+                    } 
+                }
+                switch($tri){
+                    case 'departementCroissant' :
+                        array_multisort($nom, SORT_ASC, $listeDeps);
+                    break;
+ 
+                    case 'departementDecroissant' :
+                      array_multisort($nom, SORT_DESC, $listeDeps);
+                      break;
+                }
+            }
             include("../view/administrerDepartement.php");
         }
         else{

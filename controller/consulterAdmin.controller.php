@@ -33,8 +33,74 @@ else{
                     echo "Erreur : admin inéxistant";
                 }
             }
-            $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté
+            $existeRecherche=False;
+            $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
+            $rechercheTexte="";
+            if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){
+                if(isset($_POST['typeRecherche'])){
+                  $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
+                }
+                if(isset($_GET['typeRecherche'])){
+                  $typeRecherche=htmlspecialchars($_GET['typeRecherche']);
+                }
+                if($typeRecherche!="default" && $typeRecherche!="sansTri"){
+                  if(isset($_POST['rechercheTexte'])){
+                    $existeRecherche=True;
+                    $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
+                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);
+                  }
+                  else if(isset($_GET['rechercheTexte'])){
+                    $existeRecherche=True;
+                    $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']);
+                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);
+                  }
+                  else{
+                    $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté
+                  }
+                }
+                else{
+                  $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté
+                }
+              }
+              else{
+                $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté
+              }
+            $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
+            if($existeTri){
+                $tri=htmlspecialchars($_GET['tri']);
+                $triPossible=array('prenomCroissant','prenomDecroissant','nomCroissant','nomDecroissant');
+                if(in_array($tri, $triPossible)){
+                  //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
+                  foreach ($listeAdmins as $key => $row) {
+                    $id[$key] = $row['id'];
+                    $nom[$key]  = $row['nom'];
+                    $prenom[$key] = $row['prenom'];
+                    $email[$key] = $row['email'];
+                  }
+                  switch($tri){
+                    case 'prenomCroissant' :
+                      array_multisort($prenom, SORT_ASC, $listeAdmins);
+                      break;
 
+                    case 'prenomDecroissant' :
+                      array_multisort($prenom, SORT_DESC, $listeAdmins);
+                      break;
+ 
+                    case 'nomCroissant' :
+                      array_multisort($nom, SORT_ASC, $listeAdmins);
+                      break;
+ 
+                    case 'nomDecroissant' :
+                      array_multisort($nom, SORT_DESC, $listeAdmins);
+                      break;
+                  }
+                }  
+                else{
+                  $existeTri=False;//si c'est un mauvais critère c'est comme si aucun tri n'était appliqué
+                  echo "Impossible de trier selon ce critère";
+                }
+              }
+ 
             include("../view/consulterAdmin.php");
         }
         else{

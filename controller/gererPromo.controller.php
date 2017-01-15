@@ -82,16 +82,28 @@
                     echo "Etudiant invalide";
                   }
                 }
-              }
+              } 
+              $existeRecherche=False; 
               $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
               $rechercheTexte="";
-              if(isset($_POST['typeRecherche'])){
-                $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
-                if($typeRecherche!="default"){
+              if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){ 
+                if(isset($_POST['typeRecherche'])){ 
+                  $typeRecherche=htmlspecialchars($_POST['typeRecherche']); 
+                } 
+                if(isset($_GET['typeRecherche'])){ 
+                  $typeRecherche=htmlspecialchars($_GET['typeRecherche']); 
+                } 
+                if($typeRecherche!="default" && $typeRecherche!="sansTri"){ 
                   if(isset($_POST['rechercheTexte'])){
+                    $existeRecherche=True; 
                     $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
                     $etudiants=getAllEtudiantRecherche($id,$typeRecherche,$rechercheTexte);
                   }
+                  else if(isset($_GET['rechercheTexte'])){ 
+                    $existeRecherche=True; 
+                    $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']); 
+                    $etudiants=getAllEtudiantRecherche($id,$typeRecherche,$rechercheTexte); 
+                  } 
                   else{
                     $etudiants=getAllEtudiant($id);//récupère tous les étudiants de la promo
                   }

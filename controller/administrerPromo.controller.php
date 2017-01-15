@@ -34,15 +34,27 @@
               echo "Erreur : promo inéxistante";
             }
           }
-          $typeRecherche="default";
+          $existeRecherche=False; 
+          $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas 
           $rechercheTexte="";
-          if(isset($_POST['typeRecherche'])){
-            $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
+          if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){ 
+            if(isset($_POST['typeRecherche'])){ 
+              $typeRecherche=htmlspecialchars($_POST['typeRecherche']); 
+            } 
+            if(isset($_GET['typeRecherche'])){ 
+              $typeRecherche=htmlspecialchars($_GET['typeRecherche']); 
+            } 
             if($typeRecherche!="default"){
               if(isset($_POST['rechercheTexte'])){
+                $existeRecherche=True;
                 $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
                 $promos=getAllPromoRecherche($typeRecherche,$rechercheTexte);
               }
+              else if(isset($_GET['rechercheTexte'])){ 
+                $existeRecherche=True; 
+                $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']); 
+                $etudiants=getAllPromoRecherche($id,$typeRecherche,$rechercheTexte); 
+              } 
               else{
                 $promos=getAllPromo();//récupère toutes les promos
               }
@@ -72,7 +84,7 @@
                   break;
 
                 case 'departementDecroissant' :
-                  array_multisort($anneePromo, SORT_ASC, $promos);
+                  array_multisort($anneePromo, SORT_DESC, $promos); 
                   break;
 
                 case 'anneeCroissant' :
@@ -80,7 +92,7 @@
                   break;
               
                 case 'anneeDecroissant' :
-                  array_multisort($anneePromo, SORT_ASC, $promos);
+                  array_multisort($anneePromo, SORT_DESC, $promos);
                   break;
               
                 case 'clefPromoCroissant' :
@@ -88,7 +100,7 @@
                   break;
               
                 case 'clefPromoDecroissant' :
-                  array_multisort($codePromo, SORT_ASC, $promos);
+                  array_multisort($codePromo, SORT_DESC, $promos);
                   break;
               }
             }
