@@ -33,9 +33,9 @@ else{
                     echo "Erreur : admin inéxistant";
                 }
             }
-            $existeRecherche=False;
+            $existeRecherche=False;//variable pour savoir si on devra ou non transmettre la recherche en cours
             $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
-            $rechercheTexte="";
+            $rechercheTexte="";//
             if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){
                 if(isset($_POST['typeRecherche'])){//Si le type de recherche a été transmis par un POST (donc par la recherche directement)
                   $typeRecherche=htmlspecialchars($_POST['typeRecherche']);

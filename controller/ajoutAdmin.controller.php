@@ -9,10 +9,10 @@
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
   $keyCryptage= "P0lyP1sCinE";
 
-   //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+   //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
    if(!isset($_COOKIE["token"])){
 
-            // On le redirige vers la connexion étudiant
+            // On le redirige vers la connexion admin
             header('Location:connexionAdmin.controller.php');
     }
     else{
@@ -23,8 +23,7 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-            $ajoutReussi=false;
-        	$email=getMailAdmin($decoded_array['id']);
+          $ajoutReussi=false;
       		//Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter un admin
         	if(isset($_POST["email"]) and isset($_POST["passwd"]) and isset($_POST["nomNewAdmin"]) and isset($_POST["prenomNewAdmin"]) and !empty($_POST["email"]) and !empty($_POST["passwd"]) and !empty($_POST["nomNewAdmin"]) and !empty($_POST["prenomNewAdmin"])){
             // On sécurise contre l'injection sql
