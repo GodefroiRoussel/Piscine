@@ -8,10 +8,10 @@ use \Firebase\JWT\JWT;
 //TODO: mettre dans un fichier .env
 $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 
-//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
 if(!isset($_COOKIE["token"])){
 
-    // On le redirige vers la connexion étudiant
+    // On le redirige vers la connexion admin
     header('Location:connexionAdmin.controller.php');
 }
 else{
@@ -23,10 +23,10 @@ else{
     if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
             $email=getMailAdmin($decoded_array['id']);
-            //cas où on veut supprimer une promo
+            //cas où on veut supprimer un admin, on récupère son id
             if(isset($_GET['refAdmin'])){
                 $refAdmin=$_GET['refAdmin'];
-                if(existeAdminId($refAdmin)){
+                if(existeAdminId($refAdmin)){//Si il existe un admin correspondant à l'id, on le supprime avec la fonction sql
                     supprimerAdmin($refAdmin);
                 }
                 else{
@@ -47,12 +47,12 @@ else{
                   if(isset($_POST['rechercheTexte'])){
                     $existeRecherche=True;
                     $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
-                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);
+                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);//récupère tous les admins de la BDD sauf celui connecté en prenant compte de la recherche voulue
                   }
                   else if(isset($_GET['rechercheTexte'])){
                     $existeRecherche=True;
                     $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']);
-                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);
+                    $listeAdmins=getAllOtherAdminRecherche($decoded_array['id'],$typeRecherche,$rechercheTexte);//récupère tous les admins de la BDD sauf celui connecté en prenant compte de la recherche voulue
                   }
                   else{
                     $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté
