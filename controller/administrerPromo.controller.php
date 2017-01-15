@@ -9,10 +9,10 @@
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 
-   //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+   //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
    if(!isset($_COOKIE["token"])){
 
-            // On le redirige vers la connexion étudiant
+            // On le redirige vers la connexion admin
             header('Location:connexionAdmin.controller.php');
     }
     else{
@@ -23,11 +23,10 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-        	$email=getMailAdmin($decoded_array['id']);
-          //cas où on veut supprimer une promo
+          //cas où on veut supprimer une promo, on récupère l'id de la promo
           if(isset($_GET['refPromoSupp'])){
             $refPromoSupp=htmlspecialchars($_GET['refPromoSupp']);
-            if(existePromoId($refPromoSupp)){
+            if(existePromoId($refPromoSupp)){//Si une promo avec l'id récupéré existe, on appelle la fonction sql SupprimerPromo()
               supprimerPromo($refPromoSupp);
             }
             else{

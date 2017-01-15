@@ -25,11 +25,10 @@ else{
     //On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
-            $email=getMailAdmin($decoded_array['id']);
             //On charge une liste de tous les départements
             $AllDepartements=getAllDepartement();
             $listeDepartements="";
-            //On construit la syntaxe d'une liste déroulante avec la liste des départements
+            //On construit la syntaxe d'une liste déroulante avec la liste des départements pour le formulaire d'ajout
             foreach($AllDepartements as $valeur)
                 $listeDepartements=$listeDepartements."<option value=\"".$valeur['nom']."\">".$valeur['nom']."</option>\n";
             //Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter une promo

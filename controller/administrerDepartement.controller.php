@@ -9,10 +9,10 @@ use \Firebase\JWT\JWT;
 //TODO: mettre dans un fichier .env
 $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
 
-//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
+//On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion admin
 if(!isset($_COOKIE["token"])){
 
-    // On le redirige vers la connexion étudiant
+    // On le redirige vers la connexion admin
     header('Location:connexionAdmin.controller.php');
 }
 else{
@@ -23,18 +23,17 @@ else{
     //On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
-            $email=getMailAdmin($decoded_array['id']);
-            //cas où on veut supprimer une promo
+            //cas où on veut supprimer un Département, on récupère l'id du département à supprimer
             if(isset($_GET['refDep'])){
                 $refDep=$_GET['refDep'];
-                if(existeDepartement($refDep)){
+                if(existeDepartement($refDep)){//Si un département avec l'id récupéré existe, on appelle la fonction sql SupprimerDepartement()
                     supprimerDepartement($refDep);
                 }
                 else{
                     echo "Erreur : département inéxistant";
                 }
             }
-            $listeDeps=getAllDepartement();//récupère tous les admins de la BDD sauf celui connecté
+            $listeDeps=getAllDepartement();//récupère tous les départements de la BDD
 
             include("../view/administrerDepartement.php");
         }

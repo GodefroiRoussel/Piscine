@@ -11,8 +11,6 @@ $keyCryptage= "P0lyP1sCinE";
 
 //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion Admin
 if(!isset($_COOKIE["token"])){
-
-    // On le redirige vers la connexion Admin
     header('Location:connexionAdmin.controller.php');
 }
 else{
