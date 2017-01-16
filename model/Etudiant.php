@@ -3,8 +3,10 @@
 
 
 function getMailEtudiant($idEtudiant){
-	//donnée : id de l'étudiant (entier)
-	//resultat : mail de l'étudiant (texte)
+	//donnée : id de l'étudiant 
+	//pre : idEtudiant : entier >0
+	//resultat : mail de l'étudiant 
+	//post : mail : String 
 
 	global $pdo;
 	try{

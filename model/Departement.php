@@ -5,6 +5,7 @@ function getIdDepartement($nomDepartement){
     //donnée: le nom d'un département
 	//pre : nomDepartement : String 
     //résultat : l'id correspondant à ce département
+	//post : id : entier >0
 
     global $pdo;
 	try{
@@ -26,6 +27,7 @@ function getNomDepartement($id){
     //donnée: id d'un département 
 	//pre : id : entier >0
     //résultat : nom correspondant à ce département
+	//post : nom : String 
 
     global $pdo;
 	try{
@@ -43,6 +45,7 @@ function getNomDepartement($id){
 
 function getAllDepartement(){
     //résultat : la liste des départements
+	//post : ListeDep : array : un département par ligne, (id, nom) pour les colonnes 
 
     global $pdo;
 	try{
@@ -60,6 +63,7 @@ function getAllPromoByDepartement($idDep){
   //donnée: l'id d'un département
   //pré : idDep : entier >0
   //résultat : Toutes les promotions qui font partie de ce département
+  //post : promos : array : une promo par ligne, (id,) pour les colonnes 
 
   global $pdo;
   try{
@@ -78,6 +82,7 @@ function getAllPromoByAnnee($annee){
   //donnée: année dont on souhaite affichée les promos 
   //prec : année : int > 2016 
   //résultat : Toutes les promotions qui font partie de l'année passée en paramètre
+  //post : promos : array : une promo par ligne, (id, ) pour les colonnes 
 
   global $pdo;
   try{
@@ -96,6 +101,7 @@ function creerDepartement($nomDep){
     //donnée : nom du département 
 	//pré : nom : String
     //resultat : nouveau département inséré dans la base de données 
+	
 
     global $pdo;
 	try{
@@ -129,6 +135,7 @@ function existeDepartement($id){
 function supprimerDepartement($id){
     //donnée : id du département à supprimer
 	//pré : id : entier >0
+	//résultat : suppression du département concerné de la base de données 
     global $pdo;
 	try{
 		$req=$pdo->prepare('DELETE FROM departement WHERE id=?');
