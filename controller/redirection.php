@@ -41,3 +41,4 @@
              header('Location:../view/accueil.php');
            }
          }
+?>
