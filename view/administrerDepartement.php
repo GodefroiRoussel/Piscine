@@ -66,6 +66,9 @@
                                 <tbody>
                                 <?php
                                 $i=1;
+                                // Affichage dans un tableau des différents départements
+                                // Ajout d'un bouton de modification du département relié à l'id du département dans une variable GET
+                                // Ajout d'un bouton de suppression du département relié à l'id du département dans une variable GET
                                 foreach ($listeDeps as $eltDep){
                                     ?>
                                     <tr>

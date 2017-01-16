@@ -29,6 +29,7 @@
                     <h1>Ajouter Promo</h1>
                 </div>
                 <?php
+                //Si un ajout vient d'être effectué on affiche un message d'information
                 if(isset($ajoutReussi) && $ajoutReussi){
                     ?>
                     <div class="col-md-12">
