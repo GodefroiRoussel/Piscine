@@ -35,7 +35,10 @@ else{
         if($role==="admin"){
             // On récupère le nom actuel du département pour l'afficher dans le champ
             $nom=getNomDepartement($refDep);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
             // Si $_POST['nomFormulaire'] existe et qu'il n'est pas vide, on modifie le nom du département
             if(isset($_POST["nomFormulaire"]) && !empty($_POST["nomFormulaire"])) {
                 $modifReussiNom = modifNomDepartement($refDep,$_POST["nomFormulaire"]);

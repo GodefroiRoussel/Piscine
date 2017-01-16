@@ -221,4 +221,23 @@ function getAllOtherAdmin($id){
 	return $admins;
 }
 
+function getAllOtherAdminRecherche($id,$typeRecherche,$rechercheTexte){ 
+  //donnée : id d'un admin, le type de la recherche (prenom,nom,email) et le texte à rechercher 
+  //resultat : liste des admins sauf l'admin avec l'id passé en paramètre dont la valeur du type de recherche contient au moins le texte à rechercher 
+ 
+  global $pdo; 
+  try{ 
+    $requete='SELECT id,nom,prenom,email FROM admin WHERE id!=? AND '.$typeRecherche.' LIKE ?'; 
+    $req=$pdo->prepare($requete); 
+    $rechercheTexte='%'.$rechercheTexte.'%'; 
+    $req->execute(array($id,$rechercheTexte)); 
+    $admin=$req->fetchAll(); 
+  } catch(PDOException $e){ 
+      echo($e->getMessage()); 
+      die(" Erreur lors de la récupération du type d'admin cherché dans la base de données " ); 
+  } 
+   
+  return $admin; 
+} 
+
 ?>

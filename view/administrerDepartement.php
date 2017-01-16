@@ -39,19 +39,37 @@
                     <!-- /.row -->
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Département</th>
+                                     <th>Numéro</th>
+                                    <?php
+                                    //S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri
+                                    if($existeTri){
+                                        if($tri=="departementCroissant"){?>
+                                            <th>Département <a href="../controller/administrerDepartement.controller.php?tri=departementDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+                                        <?php
+                                        }
+                                        elseif($tri=="departementDecroissant"){?>
+                                            <th>Département <a href="../controller/administrerDepartement.controller.php?tri=departementCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+                                        <?php
+                                        }
+                                    }
+                                    else{?>
+                                        <th>Département <a href="../controller/administrerDepartement.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                    <?php
+                                    }?>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
+                                $i=1;
                                 foreach ($listeDeps as $eltDep){
                                     ?>
                                     <tr>
-                                        <td><?php echo $eltDep["id"]?></td>
+                                        <td><?php echo $i; $i+=1;?></td>
                                         <td><?php echo $eltDep["nom"]?></td>
                                         <td><a class="btn btn-primary btn-block" href="../controller/modifierDepartement.controller.php?refDep=<?php echo $eltDep["id"];
                                             ?>"><i class="fa fa-table "></i> Gérer le département</a></td>
@@ -85,14 +103,6 @@
 
                         <!-- Custom Theme JavaScript -->
                         <script src="../dist/js/sb-admin-2.js"></script>
-                        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-                        <script>
-                            $(document).ready(function() {
-                                $('#dataTables-example').DataTable({
-                                    responsive: true
-                                });
-                            });
-                        </script>
                     </div>
                 </div>
             </div>

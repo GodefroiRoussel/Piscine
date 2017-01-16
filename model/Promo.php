@@ -344,7 +344,6 @@ function setAnneePromo($idPromo,$nouvelleAnneePromo){
 	try{
 		$req=$pdo->prepare('UPDATE promo SET anneePromo=?  WHERE id=?');
 		$req-> execute(array($nouvelleAnneePromo,$idPromo));
-		$id=$req->fetch();
 	} catch(PDOException $e){
 			echo($e->getMessage());
 			die(" Erreur lors de la modification de l'année de la promo dans la base de données " );

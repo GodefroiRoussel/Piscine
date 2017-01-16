@@ -10,10 +10,13 @@ function afficherRecherche(){
 	}
 	else if(listeRecherche.options[listeRecherche.selectedIndex].value=='sansTri'){ 		
 		document.getElementById("newRecherche").style.display="none";
-		var refPromo = document.getElementById("refPromo").value;
-		window.location="gererPromo.controller.php".refPromo; 
+		//on récupère l'id de la promo pour recharcher la page avec la bonne id
+		var refPromo=document.getElementById("refPromo").value;
+		//on redirige vers la page pour réinitialiser le tri
+		window.location="gererPromo.controller.php?refPromo="+refPromo;
   	} 
-  	else{ 
+  	else{
+  		//on rend visible le champ de recherche
     	document.getElementById("newRecherche").style.display="inline"; 
     }
 }

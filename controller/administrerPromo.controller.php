@@ -23,6 +23,10 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
+<<<<<<< HEAD
+=======
+        	$email=getMailAdmin($decoded_array['id']);
+>>>>>>> master
           //cas où on veut supprimer une promo, on récupère l'id de la promo
           if(isset($_GET['refPromoSupp'])){
             $refPromoSupp=htmlspecialchars($_GET['refPromoSupp']);
@@ -33,15 +37,27 @@
               echo "Erreur : promo inéxistante";
             }
           }
-          $typeRecherche="default";
+          $existeRecherche=False; //variable pour savoir si on devra ou non transmettre la recherche en cours
+          $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas 
           $rechercheTexte="";
-          if(isset($_POST['typeRecherche'])){
-            $typeRecherche=htmlspecialchars($_POST['typeRecherche']);
-            if($typeRecherche!="default"){
+          if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){ 
+            if(isset($_POST['typeRecherche'])){//Si le type de recherche a été transmis par un POST (donc par la recherche directement)
+              $typeRecherche=htmlspecialchars($_POST['typeRecherche']); 
+            } 
+            if(isset($_GET['typeRecherche'])){//Si le type de recherche a été transmis par un GET (donc par l'url d'un bouton de tri)
+              $typeRecherche=htmlspecialchars($_GET['typeRecherche']); 
+            } 
+            if($typeRecherche!="default" && $typeRecherche!="sansTri"){
               if(isset($_POST['rechercheTexte'])){
+                $existeRecherche=True;
                 $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
                 $promos=getAllPromoRecherche($typeRecherche,$rechercheTexte);
               }
+              else if(isset($_GET['rechercheTexte'])){ 
+                $existeRecherche=True; 
+                $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']); 
+                $etudiants=getAllPromoRecherche($id,$typeRecherche,$rechercheTexte); 
+              } 
               else{
                 $promos=getAllPromo();//récupère toutes les promos
               }
@@ -71,7 +87,7 @@
                   break;
 
                 case 'departementDecroissant' :
-                  array_multisort($anneePromo, SORT_ASC, $promos);
+                  array_multisort($anneePromo, SORT_DESC, $promos); 
                   break;
 
                 case 'anneeCroissant' :
@@ -79,7 +95,7 @@
                   break;
               
                 case 'anneeDecroissant' :
-                  array_multisort($anneePromo, SORT_ASC, $promos);
+                  array_multisort($anneePromo, SORT_DESC, $promos);
                   break;
               
                 case 'clefPromoCroissant' :
@@ -87,7 +103,7 @@
                   break;
               
                 case 'clefPromoDecroissant' :
-                  array_multisort($codePromo, SORT_ASC, $promos);
+                  array_multisort($codePromo, SORT_DESC, $promos);
                   break;
               }
             }

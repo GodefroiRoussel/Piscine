@@ -23,6 +23,10 @@ else{
     //On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
         if($decoded_array['role']==="admin"){
+<<<<<<< HEAD
+=======
+            $email=getMailAdmin($decoded_array['id']);
+>>>>>>> master
             //cas où on veut supprimer un Département, on récupère l'id du département à supprimer
             if(isset($_GET['refDep'])){
                 $refDep=$_GET['refDep'];
@@ -34,7 +38,31 @@ else{
                 }
             }
             $listeDeps=getAllDepartement();//récupère tous les départements de la BDD
+<<<<<<< HEAD
 
+=======
+             $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
+            if($existeTri){ 
+                $tri=htmlspecialchars($_GET['tri']); 
+                $triPossible=array('departementCroissant','departementDecroissant'); 
+                if(in_array($tri, $triPossible)){
+                    //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
+                    foreach ($listeDeps as $key => $row) {
+                        $idPromo[$key] = $row['id'];
+                        $nom[$key]  = $row['nom'];
+                    } 
+                }
+                switch($tri){
+                    case 'departementCroissant' :
+                        array_multisort($nom, SORT_ASC, $listeDeps);
+                    break;
+ 
+                    case 'departementDecroissant' :
+                      array_multisort($nom, SORT_DESC, $listeDeps);
+                      break;
+                }
+            }
+>>>>>>> master
             include("../view/administrerDepartement.php");
         }
         else{
