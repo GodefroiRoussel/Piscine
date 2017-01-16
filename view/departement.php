@@ -50,7 +50,7 @@
 
 							</label>
 						</p>
-						<input type="submit" class="btn btn-success" value="Comparer" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller-->
+						<input type="submit" class="btn btn-success" value="Afficher" /> <!--Lorsque l'on appuie sur ce bouton le choix va être envoyé vers le controller-->
 
 					</form>
 
