@@ -38,6 +38,9 @@
 						<br/>
 						<label>Prénom :</label>
 						<input type="text" value="<?php echo $prenom ?>"  id="prenom" />
+						<br/>
+						<label>Code promo :</label>
+						<input type="text" value="<?php echo $codePromo ?>"  id="codePromo" />
 						<div class="form-group">
 							<label>Mot de passe : </label>
 							
@@ -47,7 +50,7 @@
 								<label>Confirmer :</label>
 								<input type="password" name="futur" id="futur"/>
 							</div>
-							<input type="button" value="Modifier" id="modifier" onclick="afficher();"/>
+							<input type="button" value="Modifier" id="modifier" class="btn btn-primary" onclick="afficher();"/>
 						</div>
 						<input type="submit" value="Enregistrer" class="btn btn-success"/>
 					</form>

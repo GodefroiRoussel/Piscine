@@ -35,9 +35,6 @@
                 //Vérification que la référence promo correspond à une promo éxistante 
                 if(existeEtudiantId($idEtuMod)){
                   if(getIdPromo($idEtuMod)==$id){
-                    $email=getMailEtudiant($idEtuMod);
-				            $prenom=strtolower(getPrenomEtudiant($idEtuMod));
-				            $nom=strtolower(getNomEtudiant($idEtuMod));
                     if(isset($_GET["email"]) & !empty($_GET["email"])){
                       $newEmail=htmlspecialchars($_GET['email']);
                       if(existeEtudiantMail($newEmail)){
@@ -59,6 +56,16 @@
                       $prenom=htmlspecialchars(($_GET['prenom']));
                       modifPrenomEtudiant($idEtuMod,$prenom);
                     }
+                    if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"])){
+                      $codePromo=htmlspecialchars(($_GET['codePromo']));
+                      $idPromo=getID($codePromo);
+                      modifIdPromoEtudiant($idEtuMod,$idPromo);
+                    }
+                    $idPromo=getIdPromo($idEtuMod);
+                    $codePromo=getCode($idPromo);
+                    $email=getMailEtudiant($idEtuMod);
+                    $prenom=getPrenomEtudiant($idEtuMod);
+                    $nom=getNomEtudiant($idEtuMod);
                     include ("../view/modifierEtudiant.php");
                   }
                   else{//L'étudiant n'appartient pas à cette promo

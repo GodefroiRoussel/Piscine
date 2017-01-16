@@ -83,21 +83,20 @@ function modifPrenomEtudiant($idEtudiant,$newPrenom){
 }
 }
 
-function getCodePromo($idEtudiant){
-	//donnée : id de l'étudiant (entier)
-	//resultat : code promo de l'étudiant (texte)
-
+function modifIdPromoEtudiant($idEtudiant,$newIdPromo){
+	//donnée : id de l'étudiant qui veut modifier son idPromo et son nouvel idPromo
+	//résultat : modifie l'idPromo actuel avec le nouvel id de la promo passé en paramètre
 	global $pdo;
 	try{
-		$req=$pdo->prepare('SELECT codePromo FROM etudiant WHERE id=?');
-		$req->execute(array($idEtudiant));
-		$codePromo=$req->fetch();
-	} catch(PDOException $e){
+		$req=$pdo->prepare('UPDATE etudiant SET idPromo=:newIdPromo WHERE id=:idEt');
+		$req->execute(array(
+			'newIdPromo' => $newIdPromo,
+			'idEt' => $idEtudiant
+			));
+  	} catch(PDOException $e){
 			echo($e->getMessage());
-			die(" Erreur lors de la récupération du code de la promo de l'étudiant dans la base de données " );
+			die(" Erreur lors de la modification du prénom de l'étudiant dans la base de données " );
 }
-
-	return $codePromo[0];
 }
 
 function existeEtudiantMail($email){

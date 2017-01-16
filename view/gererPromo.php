@@ -273,7 +273,7 @@
 					</div>
 					<hr />
 					<!-- Bouton Retour -->
-					<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
+					<a href="../controller/administrerPromo.controller.php?" class="btn btn-default" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 				</div>
 			</div>
 		</div>

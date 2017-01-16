@@ -40,10 +40,11 @@ else{
                 //On récupère l'id correspondant au département sélectionné
                 $idDep=intval(getIdDepartement($departement));
                 //On stocke true si creerPromo() ajoute la promo à la BD, false s'il éxiste déjà
-                $ajoutReussi=creerPromo($codePromo,$idDep,$annee);
-                //Si la promo n'a pas bien été ajouté dans la BD
-                if(!$ajoutReussi){
-                    echo "ERREUR, ajout raté";
+                if(!existePromo($codePromo)){
+                    creerPromo($codePromo,$idDep,$annee);
+                }
+                else{
+                    echo "ERREUR, le code promo est déjà utilisé par une autre promo";
                 }
             }//endif isset
 

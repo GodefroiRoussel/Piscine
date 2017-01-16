@@ -1,6 +1,6 @@
-function informationsCorrecte(){
+function informationsCorrectes(){
 	/*
-	But : Vérifie si les champs email et passwd ne sont pas vides
+	But : Vérifie si les champs email, passwd, non, prénom et code promo ne sont pas vides
 	*/
 	res=true;
 	if(document.getElementById('email').value==""){
@@ -13,6 +13,10 @@ function informationsCorrecte(){
 	}
 	if(document.getElementById('nom').value==""){
 		alert("Nom non renseigné");
+		res= false;
+	}
+	if(document.getElementById('codePromo').value==""){
+		alert("Code promo non renseigné");
 		res= false;
 	}
 	//Cas où on a appuyé sur le bouton pour modifier le mot de passe
