@@ -58,7 +58,8 @@
 					<?php
 					if(isset($resultDepart)){
 					?>
-						<input type="hidden" id="rDepart" value=<?php echo $resultDepart[0] ?> />
+			  
+			  <input type="hidden" id="rDepart" value=<?php echo $resultDepart[0] ?> />
 	          <input type="hidden" id="iDepart" value=<?php echo $resultDepart[1] ?> />
 	          <input type="hidden" id="aDepart" value=<?php echo $resultDepart[2] ?> />
 	          <input type="hidden" id="sDepart" value=<?php echo $resultDepart[3] ?> />
@@ -73,6 +74,7 @@
 			<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
 				 <canvas id="chart-area" />
 			</div>
+			<p> <strong><?php echo $NomDep ?> </strong></p>
 		</center>
 				</div>
 			</div>
@@ -91,6 +93,7 @@
 	<script src="../Formulaire/Resultat/utils.js"></script>
 	<!--<script type="text/javascript" src="../assets/js/departement.js"></script> -->
 	<script>
+	
 	var rDepart = document.getElementById("rDepart").value;
 	var iDepart = document.getElementById("iDepart").value;
 	var aDepart = document.getElementById("aDepart").value;
