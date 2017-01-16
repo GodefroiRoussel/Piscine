@@ -28,15 +28,6 @@
 										<div class="col-md-12">
 												<h1>Mon compte</h1>
 										</div>
-										<?php
-											if($affichageMessage && !is_null($modifReussiMail)){
-												?>
-												<div class="col-md-12">
-														<h5>Modification enregistrée</h5>
-												</div>
-										<?php
-											}
-										?>
 								</div>
 								<!-- /. ROW  -->
 								<hr />

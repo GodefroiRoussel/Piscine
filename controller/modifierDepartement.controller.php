@@ -23,11 +23,10 @@ else{
     // On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
         $role=$decoded_array['role'];
-        $modifReussiNom=null;
 
         // On récupère l'id du département auquel on souhaite modifier les informations
         if(isset($_GET['refDep'])) {
-            $refDep =$_GET['refDep'];
+            $refDep =htmlspecialchars($_GET['refDep']);
         }else{
             echo "Erreur : pas de département sélectionné";
         }
@@ -37,20 +36,11 @@ else{
             $nom=getNomDepartement($refDep);
             // Si $_POST['nomFormulaire'] existe et qu'il n'est pas vide, on modifie le nom du département
             if(isset($_POST["nomFormulaire"]) && !empty($_POST["nomFormulaire"])) {
-                $modifReussiNom = modifNomDepartement($refDep,$_POST["nomFormulaire"]);
+               modifNomDepartement($refDep,$_POST["nomFormulaire"]);
             }
         }//endif admin
         // On récupère le nouveau nom du département pour l'afficher dans le champ de modification
         $nom=getNomDepartement($refDep);
-        $affichageMessage=false;
-        // Si il existe une variable POST de passwd et que les modifs sont réussis OU si les modifications sont nulles alors on affichera le message
-        if($modifReussiNom){
-            $affichageMessage=true;
-        }
-        // Après avoir récupérer les valeurs chez étudiant ou admin, on vérifie si les 2 changements ont bien fonctionnés
-        if(!$affichageMessage){
-            echo "Erreur : la modification n'a pas été éffectuée";
-        }
         include('../view/modifierDepartement.php');
 
     }//endif verificationToken

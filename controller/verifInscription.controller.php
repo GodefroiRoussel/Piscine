@@ -26,9 +26,9 @@ require_once('../model/Promo.php');
 
 			//vérifie que l'email est bien de la forme prenom.nom@etu.umontpellier.Fr
 			if(preg_match("#".$verifemail."([0]?)([0-9]?)#",$email)){
-		      //On crypte le mot de passe avec un "grain de sel"
-          $passwd = crypt($passwd,$keyCryptage);
-          $id=existeEtudiant($email, $passwd, $clefPromo);
+		      	//On crypte le mot de passe avec un "grain de sel"
+          		$passwd = crypt($passwd,$keyCryptage);
+          		$id=existeEtudiant($email, $passwd, $clefPromo);
 				//On vérifie que l'étudiant n'est pas déjà dans la base de données
 				    if(!$id>0){
 					         //on transforme le mail sous la forme prenom.nom@etu.umontpellier.Fr

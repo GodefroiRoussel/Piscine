@@ -28,15 +28,6 @@
                 <div class="col-md-12">
                     <h1>Modifier Département</h1>
                 </div>
-                <?php
-                if($affichageMessage && !is_null($modifReussiNom)){
-                    ?>
-                    <div class="col-md-12">
-                        <h5>Modification enregistrée</h5>
-                    </div>
-                    <?php
-                }
-                ?>
             </div>
             <!-- /. ROW  -->
             <hr />

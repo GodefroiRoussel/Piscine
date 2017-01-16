@@ -22,10 +22,6 @@ else{
     // On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
         $role=$decoded_array['role'];
-        $modifReussiMail=null;
-        $modifReussiPasswd=null;
-        $modifReussiNom=null;
-        $modifReussiPrenom=null;
 
         // On récupère l'id de l'admin auquel on veut modifier les informations
         if(isset($_GET['refAdmin'])) {
@@ -42,7 +38,7 @@ else{
             // Si $_POST['email'] existe et qu'il n'est pas vide, on modifie l'adresse mail
             if(isset($_POST["email"]) && !empty($_POST["email"])) {
                 $email = htmlspecialchars ($_POST['email']);
-                $modifReussiMail = modifMailAdmin($refAdmin,$_POST["email"]);
+                modifMailAdmin($refAdmin,$email);
             }
 
             // Si $_POST['passwd'] existe et qu'il n'est pas vide, on modifie le mot de passe
@@ -51,39 +47,26 @@ else{
                 $_POST["futur"]= htmlspecialchars($_POST["futur"]);
                 // On cripte le password avant de le rentrer dans la BDD
                 $password = crypt($password,$keyCryptage);
-                // On modifie le mot de passe et on stocke dans une variable le booléen renvoyée pour vérifier que la modification a bien été éfféctuée
-                $modifReussiPasswd = modifPasswordAdmin($refAdmin,$password);
+                modifPasswordAdmin($refAdmin,$password);
             }
 
             // Si $_POST['nomFormulaire'] existe et qu'il n'est pas vide, on modifie le nom de l'admin
             if(isset($_POST["nomFormulaire"]) && !empty($_POST["nomFormulaire"])) {
                 $nomFormulaire = htmlspecialchars ($_POST['nomFormulaire']);
-                $modifReussiNom = modifNomAdmin($refAdmin,$_POST["nomFormulaire"]);
+                $modifReussiNom = modifNomAdmin($refAdmin,$nomFormulaire);
             }
 
             // Si $_POST['prenomFormulaire'] existe et qu'il n'est pas vide, on modifie le prenom de l'admin
             if (isset($_POST["prenomFormulaire"]) && !empty($_POST["prenomFormulaire"])){
                 $prenomFormulaire= htmlspecialchars ($_POST['prenomFormulaire']);
-                $modifReussiPrenom = modifPrenomAdmin($refAdmin,$_POST["prenomFormulaire"]);
+                modifPrenomAdmin($refAdmin,$prenomFormulaire);
             }
         }//endif admin
         //On récupère les nouvelles informations de l'admin auquel on a récupéré l'id afin de les afficher dans les champs de modification
         $email=getMailAdmin($refAdmin);
         $prenom=getPrenomAdmin($refAdmin);
         $nom=getNomAdmin($refAdmin);
-        $affichageMessage=false;
-        // Si il existe une variable POST de passwd et que les modifs sont réussis OU si les modifications sont nulles alors on affichera le message
-        if(($modifReussiMail && $modifReussiPasswd && $modifReussiNom && $modifReussiPrenom) || (is_null($modifReussiPasswd)) && is_null($modifReussiMail) && is_null($modifReussiNom) && is_null($modifReussiPrenom)){
-            $affichageMessage=true;
-        }
-        // Sinon si la variable POST de passwd est vide pas et que la modification a été réalisée OU si la variable POST de passwd est vide et la modification est nulle alors on affichera le message
-        else if ((empty($_POST["passwd"]) && $modifReussiMail && $modifReussiNom && $modifReussiPrenom) || (empty($_POST["passwd"]) && is_null($modifReussiMail) && is_null($modifReussiNom) && is_null($modifReussiPrenom))){
-            $affichageMessage=true;
-        }
-        // Après avoir récupérer les valeurs chez étudiant ou admin, on vérifie si les 2 changements ont bien fonctionnés
-        if(!$affichageMessage){
-            echo "Erreur : Une modification n'a pas été éffectuée";
-        }
+
         include('../view/modifierAdmin.php');
 
     }//endif verificationToken
