@@ -1,14 +1,15 @@
 <?php
 //fonctions d'accès a la base de données du type Département
 
-function getIdDepartement($departement){
+function getIdDepartement($nomDepartement){
     //donnée: le nom d'un département
+	//pre : nomDepartement : String 
     //résultat : l'id correspondant à ce département
 
     global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT id FROM departement WHERE nom=?');
-		$req->execute(array($departement));
+		$req->execute(array($nomDepartement));
 		$idDep=$req->fetch();
 	} catch(PDOException $e){
 			echo($e->getMessage());
@@ -22,8 +23,9 @@ function getIdDepartement($departement){
 
 
 function getNomDepartement($id){
-    //donnée: le nom d'un département
-    //résultat : l'id correspondant à ce département
+    //donnée: id d'un département 
+	//pre : id : entier >0
+    //résultat : nom correspondant à ce département
 
     global $pdo;
 	try{
@@ -40,8 +42,7 @@ function getNomDepartement($id){
 
 
 function getAllDepartement(){
-    //donnée:
-    //résultat : la liste des noms des départements
+    //résultat : la liste des départements
 
     global $pdo;
 	try{
@@ -57,6 +58,7 @@ function getAllDepartement(){
 
 function getAllPromoByDepartement($idDep){
   //donnée: l'id d'un département
+  //pré : idDep : entier >0
   //résultat : Toutes les promotions qui font partie de ce département
 
   global $pdo;
@@ -73,7 +75,8 @@ function getAllPromoByDepartement($idDep){
 }
 
 function getAllPromoByAnnee($annee){
-  //donnée: l'id d'un département
+  //donnée: année dont on souhaite affichée les promos 
+  //prec : année : int > 2016 
   //résultat : Toutes les promotions qui font partie de l'année passée en paramètre
 
   global $pdo;
@@ -90,8 +93,9 @@ function getAllPromoByAnnee($annee){
 }
 
 function creerDepartement($nomDep){
-    //donnée : la clef promo, le département et l'année où sera diplomée la promo
-    //resultat : la promo insérée dans la base de données
+    //donnée : nom du département 
+	//pré : nom : String
+    //resultat : nouveau département inséré dans la base de données 
 
     global $pdo;
 	try{
@@ -105,8 +109,9 @@ function creerDepartement($nomDep){
 	}
 
 function existeDepartement($id){
-    //donnée : code promo de la promo
-    //résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
+    //donnée : id du département 
+	//pré : id entier >0
+    //résultat : bool true s'il existe un département avec cet id, false sinon 
     global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM departement WHERE id=?');
@@ -122,7 +127,8 @@ function existeDepartement($id){
 }
 
 function supprimerDepartement($id){
-    //donnée : id de la promo à supprimer
+    //donnée : id du département à supprimer
+	//pré : id : entier >0
     global $pdo;
 	try{
 		$req=$pdo->prepare('DELETE FROM departement WHERE id=?');
@@ -134,8 +140,9 @@ function supprimerDepartement($id){
 }
 
 function modifNomDepartement($idDep,$newNom){
-    //données : id de l'admin qui veut modifier son mail et nouveau mail
-    //résultat : modifie l'email actuel avec le nouveau mail
+    //données : id du département concerné et nouveau nom de celui-ci
+	//pré : id : entier >0 / newNom : String 
+    //résultat : modifie le nom du département concerné par l'id dans la base de données 
     global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE departement SET nom= :newNom WHERE id=:idAd');
