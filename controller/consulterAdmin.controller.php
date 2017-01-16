@@ -21,12 +21,7 @@ else{
 
     //On vérifie que c'est un token valide
     if (verificationToken($decoded_array)){
-        if($decoded_array['role']==="admin"){
-<<<<<<< HEAD
-=======
-            $email=getMailAdmin($decoded_array['id']);
->>>>>>> master
-            //cas où on veut supprimer un admin, on récupère son id
+        if($decoded_array['role']==="admin"){//cas où on veut supprimer un admin, on récupère son id
             if(isset($_GET['refAdmin'])){
                 $refAdmin=$_GET['refAdmin'];
                 if(existeAdminId($refAdmin)){//Si il existe un admin correspondant à l'id, on le supprime avec la fonction sql
@@ -36,9 +31,9 @@ else{
                     echo "Erreur : admin inéxistant";
                 }
             }
-<<<<<<< HEAD
+
             $listeAdmins=getAllOtherAdmin($decoded_array['id']);//récupère tous les admins de la BDD sauf celui connecté pour pouvoir les afficher dans la vue
-=======
+
             $existeRecherche=False;//variable pour savoir si on devra ou non transmettre la recherche en cours
             $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas
             $rechercheTexte="";//
@@ -87,7 +82,6 @@ else{
                     case 'prenomCroissant' :
                       array_multisort($prenom, SORT_ASC, $listeAdmins);
                       break;
->>>>>>> master
 
                     case 'prenomDecroissant' :
                       array_multisort($prenom, SORT_DESC, $listeAdmins);

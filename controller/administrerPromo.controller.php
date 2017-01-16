@@ -23,10 +23,6 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-<<<<<<< HEAD
-=======
-        	$email=getMailAdmin($decoded_array['id']);
->>>>>>> master
           //cas où on veut supprimer une promo, on récupère l'id de la promo
           if(isset($_GET['refPromoSupp'])){
             $refPromoSupp=htmlspecialchars($_GET['refPromoSupp']);

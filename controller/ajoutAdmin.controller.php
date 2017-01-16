@@ -23,11 +23,7 @@
     	//On vérifie que c'est un token valide
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
-<<<<<<< HEAD
             $ajoutReussi=false;
-=======
-          $ajoutReussi=false;
->>>>>>> master
       		//Si $_POST éxiste et qu'il n'est pas vide c'est à dire qu'on veut ajouter un admin
         	if(isset($_POST["email"]) and isset($_POST["passwd"]) and isset($_POST["nomNewAdmin"]) and isset($_POST["prenomNewAdmin"]) and !empty($_POST["email"]) and !empty($_POST["passwd"]) and !empty($_POST["nomNewAdmin"]) and !empty($_POST["prenomNewAdmin"])){
             // On sécurise contre l'injection sql
