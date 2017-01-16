@@ -9,6 +9,7 @@
 
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
+  $keyCryptage= "P0lyP1sCinE";
 
    //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
    if(!isset($_COOKIE["token"])){
@@ -32,12 +33,12 @@
               if(isset($_GET['refEtuMod'])){
                 //Protection contre les failles XSS
                 $idEtuMod=htmlspecialchars(($_GET['refEtuMod']));
-                //Vérification que la référence promo correspond à une promo éxistante 
+                //Vérification que la référence promo correspond à une promo éxistante
                 if(existeEtudiantId($idEtuMod)){
                   if(getIdPromo($idEtuMod)==$id){
                     if(isset($_POST["email"]) & !empty($_POST["email"])){
                       $newEmail=htmlspecialchars($_POST['email']);
-                      if(existeEtudiantMail($newEmail)){
+                      if(!existeEtudiantMail($newEmail)){
                         modifMailEtudiant($idEtuMod,$newEmail);
                       }
                       else{
@@ -45,8 +46,11 @@
                       }
                     }
                     if(isset($_POST["passwd"]) & !empty($_POST["passwd"])){
-                      $passwd=htmlspecialchars(($_POST['passwd']));
-                      modifPasswordEtudiant($idEtuMod,$passwd);
+                      $password= htmlspecialchars ($_POST['passwd']);
+                      $_POST["futur"]= htmlspecialchars($_POST["futur"]);
+                      // On cripte le password avant de le rentrer dans la BD
+                      $password = crypt($password,$keyCryptage);
+                      modifPasswordEtudiant($idEtuMod,$password);
                     }
                     if(isset($_POST["nom"]) & !empty($_POST["nom"])){
                       $nom=htmlspecialchars(($_POST['nom']));
@@ -56,10 +60,11 @@
                       $prenom=htmlspecialchars(($_POST['prenom']));
                       modifPrenomEtudiant($idEtuMod,$prenom);
                     }
-                    if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"])){
+                    if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"]) && $_POST["codePromo"]!=getCode(getIdPromo($idEtuMod)) ){
                       $codePromo=htmlspecialchars(($_POST['codePromo']));
                       $idPromo=getID($codePromo);
                       modifIdPromoEtudiant($idEtuMod,$idPromo);
+                      header('Location:administrerPromo.controller.php');
                     }
                     $idPromo=getIdPromo($idEtuMod);
                     $codePromo=getCode($idPromo);
@@ -80,7 +85,7 @@
                 header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
               }
             }
-            else{//La référence promo n'éxiste pas 
+            else{//La référence promo n'éxiste pas
               header('Location:../controller/administrerPromo.controller.php');
             }
           }

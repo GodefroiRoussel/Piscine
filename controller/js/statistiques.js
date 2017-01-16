@@ -108,7 +108,7 @@ window.onload = function() {
 					},
                     responsive: true, // Le graphique sera responsive
                     legend: {
-                        position: 'top',
+                        position: 'top'
                     },
                     title: {
                         display: true,
