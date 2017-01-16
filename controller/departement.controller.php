@@ -28,12 +28,7 @@
 					$resultDepart=calculResultatDepartement($_POST["depart"]); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
 					$NomDep=getNomDepartement($_POST["depart"]);
 				}
-				/*
-        else{
-					$resultDepart= calculResultatDepartement(1); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
-
-				}
-        */
+				
 				include('../view/departement.php');
 			}
 			else{
