@@ -75,7 +75,8 @@
                                             <td><?php echo $i; $i+=1;?></td>
                                             <td><?php echo $eltDep["nom"]?></td>
                                             <td><a class="btn btn-primary btn-block" href="../controller/modifierDepartement.controller.php?refDep=<?php echo $eltDep["id"];
-                                                ?>"><i class="fa fa-table "></i> Gérer le département</a></td>
+                                                ?>"><i class="fa fa-edit "></i></a></td>
+                                            <!-- Supprimer le département -->
                                             <td><a class="btn btn-danger btn-block" href="../controller/administrerDepartement.controller.php?refDep=<?php echo $eltDep["id"];
                                                 ?>"><i class="icon-remove-sign"></i></a></td>
                                         </tr>
