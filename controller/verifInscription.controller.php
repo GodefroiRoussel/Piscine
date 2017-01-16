@@ -39,24 +39,21 @@ require_once('../model/Promo.php');
                    header('Location:connexionEtudiant.controller.php');
             }
        else{
-					echo 'ERREUR : un compte pour cet étudiant existe déjà';
+			echo 'ERREUR : un compte pour cet étudiant existe déjà';
         }
 		  } else {
 				echo 'ERREUR : l email n a pas la forme prenom.nom@etu.umontpellier.fr';
 		    }
       }
     else {
-				echo 'ERREUR : les deux mots de passe ne correspondent pas';
+		echo 'ERREUR : les deux mots de passe ne correspondent pas';
       }
     }
     else {
 		echo 'ERREUR : un des champs est vide';
-  }
+    }
  }
  else{
-	echo 'ERREUR : tu es déjà connecté'; }
-
-
-
-
+	header('Location:../controller/redirection.php');
+	}
 ?>

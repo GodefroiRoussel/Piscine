@@ -114,12 +114,12 @@
           }
           include("../view/administrerPromo.php");
         }
-        else{
+        else{//On est sur la page admin alors qu'on n'est pas admin
             header('Location:../controller/redirection.php');
         }
       }
-      else {
-        header('Location:../controller/connexionAdmin.controller.php');
+      else {//Mauvais token
+        header('Location:../controller/redirection.php');
       }
     }
 ?>

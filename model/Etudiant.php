@@ -37,12 +37,12 @@ function modifPasswordEtudiant($idEtudiant,$newmdp){
 
 function modifMailEtudiant($idEtudiant,$newMail){
 	//donnée : id de l'étudiant qui veut modifier son mail et nouveau mail
-	//résultat : modifie le mail aactuel avec le nouveau mail
+	//résultat : modifie le mail actuel avec le nouveau mail
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE etudiant SET email= :newMail WHERE id=:idEt');
 		$req->execute(array(
-			'newMdp' => $newMail,
+			'newEmail' => $newMail,
 			'idEt' => $idEtudiant
 			));
   	} catch(PDOException $e){
@@ -51,9 +51,41 @@ function modifMailEtudiant($idEtudiant,$newMail){
 }
 }
 
+function modifNomEtudiant($idEtudiant,$newNom){
+	//donnée : id de l'étudiant qui veut modifier son nom et nouveau nom
+	//résultat : modifie le nom actuel avec le nouveau nom
+	global $pdo;
+	try{
+		$req=$pdo->prepare('UPDATE etudiant SET nom= :newNom WHERE id=:idEt');
+		$req->execute(array(
+			'newNom' => $newNom,
+			'idEt' => $idEtudiant
+			));
+  	} catch(PDOException $e){
+			echo($e->getMessage());
+			die(" Erreur lors de la modification du nom de l'étudiant dans la base de données " );
+}
+}
+
+function modifPrenomEtudiant($idEtudiant,$newPrenom){
+	//donnée : id de l'étudiant qui veut modifier son prenom et nouveau prenom
+	//résultat : modifie le prénom actuel avec le nouveau prénom
+	global $pdo;
+	try{
+		$req=$pdo->prepare('UPDATE etudiant SET prenom= :newPrenom WHERE id=:idEt');
+		$req->execute(array(
+			'newPrenom' => $newPrenom,
+			'idEt' => $idEtudiant
+			));
+  	} catch(PDOException $e){
+			echo($e->getMessage());
+			die(" Erreur lors de la modification du prénom de l'étudiant dans la base de données " );
+}
+}
+
 function getCodePromo($idEtudiant){
 	//donnée : id de l'étudiant (entier)
-	//resultat : mail de l'étudiant (texte)
+	//resultat : code promo de l'étudiant (texte)
 
 	global $pdo;
 	try{

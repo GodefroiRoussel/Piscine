@@ -48,5 +48,5 @@
             }
     }
     else {
-        echo ("ERREUR : tu es déjà connecté");
+        header('Location:../controller/redirection.php');
     }

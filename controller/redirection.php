@@ -40,5 +40,4 @@
              unset($_COOKIE["token"]);
              header('Location:../view/accueil.php');
            }
-
          }

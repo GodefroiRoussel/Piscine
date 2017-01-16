@@ -45,15 +45,11 @@
         }//end admin
         // Si c'est un étudiant qui a essayé d'outrepasser ses droits
   	    else{
-        		echo "On vous redirige... <br/>";
-            sleep(2);
         		header('Location:../controller/redirection.php');
     		}
 		  }//endif verificationToken
       else {
-    		echo "Mauvais token, veuillez vous reconnecter<br/>";
-        sleep(2);
-    		header('Location:../controller/connexionAdmin.controller.php');
+    		header('Location:../controller/redirection.php');
       }
     }//endelse
 ?>

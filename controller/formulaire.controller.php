@@ -65,14 +65,12 @@
           include('../view/formulaire.php');
         }
         else{
-          echo "On vous redirige <br/>";
+          header('Location:../controller/redirection.php');
         }
 
       }
 
       else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
+        header('Location:../controller/redirection.php');
       }
     }

@@ -41,68 +41,57 @@
                     if(isset($_GET["email"]) & !empty($_GET["email"])){
                       $newEmail=htmlspecialchars($_GET['email']);
                       if(existeEtudiantMail($newEmail)){
-                        if(modifMailEtudiant($idEtuMod,$newEmail)){
-                          echo "Mail modifié";
-                        }
-                        else{
-                          echo "Erreur, le mail n'a pu être modifié";
-                        }
+                        modifMailEtudiant($idEtuMod,$newEmail):
+                        $modif=True;
                       }
                       else{
+                        $modif=False;
                         echo "Erreur, mail déjà utilisé par un autre étudiant";
                       }
                     }
                     if(isset($_GET["passwd"]) & !empty($_GET["passwd"])){
                       $passwd=htmlspecialchars(($_GET['passwd']));
-                      if(modifPasswordEtudiant($idEtuMod,$passwd)){
-                        echo "Mot de passe modifé";
-                      }
-                      else{
-                        echo "Erreur, le mot de passe n'a pu être modifé";
-                      }
+                      modifPasswordEtudiant($idEtuMod,$passwd);
+                      $modif=True;
+                    }
+                    if(isset($_GET["nom"]) & !empty($_GET["nom"])){
+                      $nom=htmlspecialchars(($_GET['nom']));
+                      modifPrenomEtudiant($idEtuMod,$nom);
+                      $modif=True;
+                    }
+                    if(isset($_GET["prenom"]) & !empty($_GET["prenom"])){
+                      $prenom=htmlspecialchars(($_GET['prenom']));
+                      modifPrenomEtudiant($idEtuMod,$prenom);
+                      $modif=True;
                     }
                     include ("../view/modifierEtudiant.php");
                   }
-                  else{
-                    echo "Erreur l'étudiant n'appartient pas à cette prom ...<br/>";
-                    sleep(2);
+                  else{//L'étudiant n'appartient pas à cette promo
                     header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
                   }
                 }
-                else{
-                  echo "Erreur l'étudiant n'éxiste pas ... <br/>";
-                  sleep(2);
+                else{//La référence étudiant n'existe pas
                   header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
                 }
               }
-              else{
-                echo "Erreur l'étudiant n'éxiste pas ... <br/>";
-                sleep(2);
+              else{//La référence étudiant n'est pas définie
                 header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
               }
             }
-            else{
-              echo "Erreur la promo n'existe pas ... <br/>";
-              sleep(2);
+            else{//La référence promo n'éxiste pas 
               header('Location:../controller/administrerPromo.controller.php');
             }
           }
-          else{
-            echo "Erreur la promo n'existe pas ... <br/>";
-            sleep(2);
+          else{//La référence promo n'est pas définie
             header('Location:../controller/administrerPromo.controller.php');
           }
         }
-        else{
-            echo "On vous redirige... <br/>";
-            sleep(2);
+        else{//On est sur la page admin alors qu'on n'est pas admin
             header('Location:../controller/redirection.php');
           }
       }
-      else {
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-        sleep(2);
-        header('Location:../controller/connexionAdmin.controller.php');
+      else {//Mauvais token
+        header('Location:../controller/redirection.php');
       }
     }
 ?>

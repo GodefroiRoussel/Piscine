@@ -184,7 +184,7 @@
         }
       }
       else {//Mauvais token
-        header('Location:../controller/connexionAdmin.controller.php');
+        header('Location:../controller/redirection.php');
       }
     }
 ?>

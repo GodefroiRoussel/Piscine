@@ -37,18 +37,13 @@
           //On a dans $propositions toutes les propositions du groupe x. C'est un array
           $propositions=getPropositionsGroupe($i);
 
-
           include('../view/afficherQuestionnaire.php');
         }//endif admin
         else{
-          echo "On vous redirige <br/>";
+          header('Location:../controller/redirection.php');
         }
-
       }
-
-      else {
-
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-
+      else {//Mauvais token
+        header('Location:../controller/redirection.php');
       }
     }

@@ -266,6 +266,7 @@
 										?>
 											</tr>
 									</table>
+									<!-- /.table-responsive -->
 								</div>
 							</div>
 						</div>
@@ -275,8 +276,7 @@
 					<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 				</div>
 			</div>
-		</div>		
-				<!-- /.table-responsive -->
+		</div>
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<!-- JQUERY SCRIPTS -->
 		<script src="../vendor/jquery/jquery.min.js"></script>
