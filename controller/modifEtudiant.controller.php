@@ -32,12 +32,12 @@
               if(isset($_GET['refEtuMod'])){
                 //Protection contre les failles XSS
                 $idEtuMod=htmlspecialchars(($_GET['refEtuMod']));
-                //Vérification que la référence promo correspond à une promo éxistante 
+                //Vérification que la référence promo correspond à une promo éxistante
                 if(existeEtudiantId($idEtuMod)){
                   if(getIdPromo($idEtuMod)==$id){
                     if(isset($_POST["email"]) & !empty($_POST["email"])){
                       $newEmail=htmlspecialchars($_POST['email']);
-                      if(existeEtudiantMail($newEmail)){
+                      if(!existeEtudiantMail($newEmail)){
                         modifMailEtudiant($idEtuMod,$newEmail);
                       }
                       else{
@@ -56,10 +56,11 @@
                       $prenom=htmlspecialchars(($_POST['prenom']));
                       modifPrenomEtudiant($idEtuMod,$prenom);
                     }
-                    if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"])){
+                    if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"]) && $_POST["codePromo"]!=getCode(getIdPromo($idEtuMod)) ){
                       $codePromo=htmlspecialchars(($_POST['codePromo']));
                       $idPromo=getID($codePromo);
                       modifIdPromoEtudiant($idEtuMod,$idPromo);
+                      header('Location:administrerPromo.controller.php');
                     }
                     $idPromo=getIdPromo($idEtuMod);
                     $codePromo=getCode($idPromo);
@@ -80,7 +81,7 @@
                 header('Location::../controller/gererPromo.controller.php?$refPromo=$id');
               }
             }
-            else{//La référence promo n'éxiste pas 
+            else{//La référence promo n'éxiste pas
               header('Location:../controller/administrerPromo.controller.php');
             }
           }

@@ -13,7 +13,7 @@
 		<link href="../assets/css/general.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-		
+
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script type="text/javascript" src="../controller/js/modifEtudiant.js"></script>
 	</head>
@@ -31,19 +31,19 @@
 					<hr />
 					<form action="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $idEtuMod ?>" method="post" onsubmit="return informationsCorrecte();">
 						<label>Adresse mail :</label>
-						<input type="text" value="<?php echo $email ?>"  id="email" />
+						<input type="text" value="<?php echo $email ?>"  name="email" />
 						<br/>
 						<label>Nom :</label>
-						<input type="text" value="<?php echo $nom ?>"  id="nom" />
+						<input type="text" value="<?php echo $nom ?>"  name="nom" />
 						<br/>
 						<label>Prénom :</label>
-						<input type="text" value="<?php echo $prenom ?>"  id="prenom" />
+						<input type="text" value="<?php echo $prenom ?>"  name="prenom" />
 						<br/>
 						<label>Code promo :</label>
-						<input type="text" value="<?php echo $codePromo ?>"  id="codePromo" />
+						<input type="text" value="<?php echo $codePromo ?>"  name="codePromo" />
 						<div class="form-group">
 							<label>Mot de passe : </label>
-							
+
 							<div id="new">
 								<label>Nouveau :</label>
 								<input type="password" name="passwd" id="passwd" />

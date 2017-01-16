@@ -3,10 +3,10 @@
 
 
 function getMailEtudiant($idEtudiant){
-	//donnée : id de l'étudiant 
+	//donnée : id de l'étudiant
 	//pre : idEtudiant : entier >0
-	//resultat : mail de l'étudiant 
-	//post : mail : String 
+	//resultat : mail de l'étudiant
+	//post : mail : String
 
 	global $pdo;
 	try{
@@ -23,10 +23,10 @@ function getMailEtudiant($idEtudiant){
 
 function modifPasswordEtudiant($idEtudiant,$newmdp){
 	//donnée : id de l'étudiant qui veut modifier son mdp et nouveau mdp
-	//pré : idEtudiant : entier >0 / newmdp : String 
+	//pré : idEtudiant : entier >0 / newmdp : String
 	//résultat : modifie le mot de passe actuel avec le nouveau mdp
-	
-	
+
+
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE etudiant SET password= :newMdp WHERE id=:idEt');
@@ -42,13 +42,13 @@ function modifPasswordEtudiant($idEtudiant,$newmdp){
 
 function modifMailEtudiant($idEtudiant,$newMail){
 	//donnée : id de l'étudiant qui veut modifier son mail et nouveau mail
-	//pré : idEtudiant : entier >0 / newMail : String 
+	//pré : idEtudiant : entier >0 / newMail : String
 	//résultat : modifie le mail actuel avec le nouveau mail
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE etudiant SET email= :newMail WHERE id=:idEt');
 		$req->execute(array(
-			'newEmail' => $newMail,
+			'newMail' => $newMail,
 			'idEt' => $idEtudiant
 			));
   	} catch(PDOException $e){
@@ -59,7 +59,7 @@ function modifMailEtudiant($idEtudiant,$newMail){
 
 function modifNomEtudiant($idEtudiant,$newNom){
 	//donnée : id de l'étudiant qui veut modifier son nom et nouveau nom
-	//pré : id : entier >0 / newNom : String 
+	//pré : id : entier >0 / newNom : String
 	//résultat : modifie le nom actuel avec le nouveau nom
 	global $pdo;
 	try{
@@ -76,7 +76,7 @@ function modifNomEtudiant($idEtudiant,$newNom){
 
 function modifPrenomEtudiant($idEtudiant,$newPrenom){
 	//donnée : id de l'étudiant qui veut modifier son prenom et nouveau prenom
-	//pré : idEtudiant : entier >0 / newPrenom : String 
+	//pré : idEtudiant : entier >0 / newPrenom : String
 	//résultat : modifie le prénom actuel avec le nouveau prénom
 	global $pdo;
 	try{
@@ -110,7 +110,7 @@ function modifIdPromoEtudiant($idEtudiant,$newIdPromo){
 
 function existeEtudiantMail($email){
 	//donnée : email de l'étudiant
-	//pré : email : String 
+	//pré : email : String
 	//résultat : bool : True si l'étudiant éxiste, False sinon
 	global $pdo;
 	try{
@@ -132,7 +132,7 @@ function existeEtudiantMail($email){
 
 function existeEtudiantId($idEtudiant){
 	//donnée : id de l'étudiant
-	//pré : idEtudiant : entier >0 
+	//pré : idEtudiant : entier >0
 	//résultat : bool : True si l'étudiant éxiste, False sinon
 	global $pdo;
 	try{
@@ -156,7 +156,7 @@ function existeEtudiantId($idEtudiant){
 function getAllChoix($idetudiant){
 	//donnée : id de l'élève
 	//pré : idetudiant : entier >0
-	//résultat : résultat de l'élève passé en paramètre 
+	//résultat : résultat de l'élève passé en paramètre
 	//post : resultat : array :  2 colonnes(id fiche, score de l'étudiant) et 6 lignes (une pour chaque type RIASEC))
 
 	global $pdo;
@@ -176,7 +176,7 @@ function premierTest($idetudiant){
 	//donnée : id de l'élève
 	//pré : idEtudiant : entier >0
 	//résultat : bool, false si l'élève a déjà fait un vrai test, true sinon
-	
+
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT premierTest FROM etudiant WHERE id=?');
@@ -223,7 +223,7 @@ function resetpremierTest($idetudiant){
 }
 
 function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
-	//données : id de l'étudiant concerné, id du groupe de proposition concerné et les id des propositions choisies pour ce groupe 
+	//données : id de l'étudiant concerné, id du groupe de proposition concerné et les id des propositions choisies pour ce groupe
 	//pré : idEtudiant : entier >0 / idGroupe : entier [1,12] / choix : entier [1-72]
 	//résultat : insertion d'un nouveau choix dans la base de données
 	global $pdo;
@@ -254,7 +254,7 @@ function getPrenomEtudiant($id){
 	//donnée : id de l'étudiant
 	//pré : id : entier >0
 	//résultat : renvoie le prénom de l'étudiant
-	//post : prenom : String 
+	//post : prenom : String
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT prenom FROM etudiant WHERE id=?');
@@ -271,7 +271,7 @@ function getNomEtudiant($id){
 	//donnée : id de l'étudiant
 	//pré : id : entier >0
 	//résultat : renvoie le nom de l'étudiant
-	//post : nom : String 
+	//post : nom : String
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT nom FROM etudiant WHERE id=?');
@@ -285,9 +285,9 @@ function getNomEtudiant($id){
 }
 
 function getIdPromo($idEtudiant){
-	//donnée : id de l'étudiant 
+	//donnée : id de l'étudiant
 	//pré : idEtudiant : entier >0
-	//resultat : l'id de la promo à laquelle appartient l'étudiant 
+	//resultat : l'id de la promo à laquelle appartient l'étudiant
 	//post : idPromo : entier >0
 	global $pdo;
 	try{
