@@ -26,6 +26,7 @@
         $departs=getAllDepartement(); //On récupère tous les départements dans le tableau de tableau
 				if (isset($_POST["depart"])){ //On regarde si une information a été envoyée via le formulaire
 					$resultDepart=calculResultatDepartement($_POST["depart"]); //On récupère le résultat des départements calculé par la fonction calculResultatDepart()
+					$NomDep=getNomDepartement($_POST["depart"]);
 				}
 				/*
         else{
