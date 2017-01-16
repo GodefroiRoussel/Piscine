@@ -37,13 +37,7 @@
           $resultPromo1=calculResultatPromo($_POST["promo1"]);
 					$resultPromo2=calculResultatPromo($_POST["promo2"]); //on calcul les résultats de la promo selectionnée
 				}
-        /*
-				else{ //Si le formulaire n'a pas été rempli alors on attribu des valeurs de promo par défault
-					$promos=getAllPromo();
-					$resultPromo1= calculResultatPromo($promos[0]['id']);
-          $resultPromo2= calculResultatPromo($promos[0]['id']);
-				}
-        */
+       
 				include('../view/statistiques.php');
 
 			}

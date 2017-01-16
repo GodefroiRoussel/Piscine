@@ -74,7 +74,14 @@
 			<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
 				 <canvas id="chart-area" />
 			</div>
+			<?php
+					if(isset($resultDepart)){
+					?>
 			<p> <strong><?php echo $NomDep ?> </strong></p>
+			<?php
+					}
+					?>
+
 		</center>
 				</div>
 			</div>
@@ -91,74 +98,7 @@
 	<script src="../assets/js/custom.js"></script>
 	<script src="../Formulaire/Resultat/Chart.bundle.js"></script>
 	<script src="../Formulaire/Resultat/utils.js"></script>
-	<!--<script type="text/javascript" src="../assets/js/departement.js"></script> -->
-	<script>
+	<script type="text/javascript" src="../controller/js/departement.js"></script>
 	
-	var rDepart = document.getElementById("rDepart").value;
-	var iDepart = document.getElementById("iDepart").value;
-	var aDepart = document.getElementById("aDepart").value;
-	var sDepart = document.getElementById("sDepart").value;
-	var eDepart = document.getElementById("eDepart").value;
-	var cDepart = document.getElementById("cDepart").value;
-
-	Chart.defaults.global.defaultFontColor = '#000000';
-	Chart.defaults.global.defaultFontSize= 15;
-    var config = {
-        type: 'pie',
-		pointDot: false,
-		pointLabelFontSize: 40,
-
-        data: {
-            datasets: [{
-                data: [
-                    rDepart,
-                    iDepart,
-                    aDepart,
-                    sDepart,
-                    eDepart,
-					cDepart
-                ],
-                backgroundColor: [
-                    window.chartColors.red,
-                    window.chartColors.orange,
-                    "#8D47F5",
-                    window.chartColors.green,
-                    "#01BFF5",
-					"#F0F501",
-                ],
-				hoverBackgroundColor: [
-                "#36436F",
-                "#36436F",
-                "#36436F",
-				"#36436F",
-                "#36436F",
-                "#36436F"
-            ],
-                label: 'IG2019'
-            }],
-            labels: [
-                "Realiste",
-                "Investigatif",
-                "Artistique",
-                "Social",
-                "Entrepreneur",
-				"Conventionnel"
-            ]
-        },
-        options: {
-            responsive: true
-        },
-		animation:{
-			animateRotate:true
-		}
-
-    };
-
-    window.onload = function() {
-        var ctx = document.getElementById("chart-area").getContext("2d");
-        window.myPie = new Chart(ctx, config);
-	};
-
-	</script>
 	</body>
 </html>
