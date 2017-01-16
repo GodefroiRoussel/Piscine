@@ -29,7 +29,7 @@
 				<div id="page-inner">
 					<h2>Informations de l'étudiant <?php echo $prenom," ",$nom ?></h2>
 					<hr />
-					<form action="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $idEtuMod ?>" method="post" onsubmit="return informationsCorrecte();">
+					<form action="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $idEtuMod ?>" method="post" onsubmit="return informationsCorrectes();">
 						<label>Adresse mail :</label>
 						<input type="text" value="<?php echo $email ?>"  name="email" />
 						<br/>

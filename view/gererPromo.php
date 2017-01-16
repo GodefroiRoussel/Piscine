@@ -48,7 +48,7 @@
 						<!-- ce qui va être affiché lors de l'appuie sur le bouton Modifier -->
 						<div id="newAnnee">
 							<span>Nouveau :</span>
-							<input type="text" name="anneePromo" id="anneePromo"/>
+							<input type="number" name="anneePromo" id="anneePromo"/>
 							<input type="submit" class="btn btn-success" value="Enregistrer"/>
 						</div>
 					</form>

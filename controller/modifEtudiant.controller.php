@@ -54,7 +54,7 @@
                     }
                     if(isset($_POST["nom"]) & !empty($_POST["nom"])){
                       $nom=htmlspecialchars(($_POST['nom']));
-                      modifPrenomEtudiant($idEtuMod,$nom);
+                      modifNomEtudiant($idEtuMod,$nom);
                     }
                     if(isset($_POST["prenom"]) & !empty($_POST["prenom"])){
                       $prenom=htmlspecialchars(($_POST['prenom']));
