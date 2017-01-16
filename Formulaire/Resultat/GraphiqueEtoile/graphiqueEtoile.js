@@ -34,7 +34,7 @@ window.onload = function() {
               label: "Moyenne Classe",
               borderColor: window.chartColors.grey,
               backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
-              pointBackgroundColor: window.chartColors.red,
+              pointBackgroundColor: window.chartColors.blue,
       pointLabelFontSize: 20,
               data: [rPromo, iPromo, aPromo, sPromo, ePromo, cPromo]
           }]

@@ -25,8 +25,8 @@
 	</head>
 	<body>
 		<div id="wrapper">
-      <!--  <?php include("menu/menuTop.php"); ?>
-         /. NAV TOP  -->
+        <?php include("menu/menuTop.php"); ?>
+        <!-- /. NAV TOP  -->
         <!-- NAV SIDE only if we are connected -->
 	<!--Vérification de la validité du cookie -->
         <?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){

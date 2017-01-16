@@ -18,16 +18,16 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="redirection.php"><i class="fa fa-home" aria-hidden="true"></i>Accueil</a></li>
+                      <li><a href="redirection.php">Accueil</a></li>
                       <?php
                       if(!isset($_COOKIE["token"])){
                       ?>
-                          <li><a href="inscription.controller.php"><i class="fa fa-user-plus" aria-hidden="true"></i>Inscription</a></li>
-                          <li><a href="connexionEtudiant.controller.php"><i class="fa fa-user" aria-hidden="true"></i>Connexion</a></li>
+                          <li><a href="inscription.controller.php">Inscription</a></li>
+                          <li><a href="connexionEtudiant.controller.php">Connexion</a></li>
                       <?php
                       }
                       ?>
-                      <li><a href="contact.controller.php"><i class="fa-address-book" aria-hidden="true"></i>Contact</a></li>
+                      <li><a href="contact.controller.php">Contact</a></li>
                     </ul>
                 </div>
 
