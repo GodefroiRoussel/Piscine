@@ -55,7 +55,7 @@
                 $existeRecherche=True; 
                 $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']);
                 //Récupère toutes les promos vérifiant que le type de recherche soit égal au texte de la recherche 
-                $etudiants=getAllPromoRecherche($id,$typeRecherche,$rechercheTexte); 
+                $promos=getAllPromoRecherche($typeRecherche,$rechercheTexte); 
               } 
               else{
                 $promos=getAllPromo();

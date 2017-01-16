@@ -69,7 +69,7 @@ else{
             $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
             if($existeTri){
                 $tri=htmlspecialchars($_GET['tri']);
-                $triPossible=array('prenomCroissant','prenomDecroissant','nomCroissant','nomDecroissant');
+                $triPossible=array('prenomCroissant','prenomDecroissant','nomCroissant','nomDecroissant','emailCroissant','emailDecroissant');
                 if(in_array($tri, $triPossible)){
                   //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
                   foreach ($listeAdmins as $key => $row) {
@@ -93,6 +93,14 @@ else{
  
                     case 'nomDecroissant' :
                       array_multisort($nom, SORT_DESC, $listeAdmins);
+                      break;
+
+                    case 'emailCroissant' :
+                      array_multisort($email, SORT_ASC, $listeAdmins);
+                      break;
+ 
+                    case 'emailDecroissant' :
+                      array_multisort($email, SORT_DESC, $listeAdmins);
                       break;
                   }
                 }  

@@ -77,12 +77,21 @@
                                             }
                                         }
                                     }
-                                    else{?>
+                                    else{
+                                        //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+                                        if($existeRecherche){?>
+                                            <th>Prénom <a href="../controller/consulterAdmin.controller.php?tri=prenomCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                        <?php 
+                                        }
+                                        else{?>
                                         <th>Prénom <a href="../controller/consulterAdmin.controller.php?tri=prenomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
                                     <?php
+                                        }
                                     }?>
                                     <?php
+                                    //S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri
                                     if($existeTri){
+                                        //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
                                         if($existeRecherche){
                                             if($tri=="nomCroissant"){?>
                                                 <th>Nom <a href="../controller/consulterAdmin.controller.php?tri=nomDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
@@ -112,11 +121,61 @@
                                             }
                                         }
                                     }   
-                                    else{?>
+                                    else{
+                                        //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+                                        if($existeRecherche){?>
+                                            <th>Nom <a href="../controller/consulterAdmin.controller.php?tri=nomCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                        <?php
+                                        }
+                                        else{?>
                                         <th>Nom <a href="../controller/consulterAdmin.controller.php?tri=nomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
                                     <?php
+                                        }
                                     }?>
-                                    <th>email</th>
+                                    <?php
+                                    //S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri
+                                    if($existeTri){
+                                        //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+                                        if($existeRecherche){
+                                            if($tri=="emailCroissant"){?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+                                            <?php
+                                            }
+                                            elseif($tri=="emailDecroissant"){?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+                                            <?php
+                                            }
+                                            else{?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                            <?php
+                                            }
+                                        }
+                                        else{
+                                            if($tri=="emailCroissant"){?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailDecroissant"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th>
+                                            <?php
+                                            }
+                                            elseif($tri=="emailDecroissant"){?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th>
+                                            <?php
+                                            }
+                                            else{?>
+                                                <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                            <?php
+                                            }
+                                        }
+                                    }   
+                                    else{
+                                        //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+                                        if($existeRecherche){?>
+                                            <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                        <?php
+                                        }
+                                        else{?>
+                                        <th>Email <a href="../controller/consulterAdmin.controller.php?tri=emailCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+                                    <?php
+                                        }
+                                    }?>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -128,7 +187,7 @@
                                         <option value="sansTri" >Sans tri</option>
                                         <option value="prenom" >Prénom</option>
                                         <option value="nom" >Nom</option>
-                                        <option value="premierTest" >Test effectué</option>
+                                        <option value="email" >Email</option>
                                     </select>
                                     <!-- ce qui va être affiché lors de la seléction d'une option -->
                                     <div id="newRecherche">

@@ -26,9 +26,15 @@
       	if($decoded_array['role']==="admin"){
         	$email=getMailAdmin($decoded_array['id']);
           //Si on a une refPromo alors on peut afficher la page. Sinon on redirige vers la page administrerPromo
-          if(isset($_POST['refPromo'])){
-            //Protéction contre les injections SQL
-            $id=htmlspecialchars(($_POST['refPromo']));
+          if(isset($_GET['refPromo'])||isset($_POST['refPromo'])){
+            if(isset($_GET['refPromo'])){
+              //Protection contre les failles XSS
+              $id=htmlspecialchars(($_GET['refPromo']));
+            }
+            if(isset($_POST['refPromo'])){
+              //Protection contre les failles XSS
+              $id=htmlspecialchars(($_POST['refPromo']));
+            }
             //Vérification que la référence promo correspond à une promo éxistante
             if(existePromoId($id)){
               //On récupère ces infos pour les afficher dans la view              
@@ -47,7 +53,7 @@
               }
               $codePromo=getCode($id);
               if(isset($_POST['anneePromo'])){
-                //Protéction contre les injections SQL
+                //Protection contre les failles XSS
                 $anneePromo=htmlspecialchars($_POST['anneePromo']);
                 //On convertit en int
                 $anneePromo=intval($anneePromo);
@@ -61,7 +67,7 @@
               }
               else{
                 if(isset($_GET['refEtuTest'])){
-                  //Protéction contre les injections SQL
+                  //Protection contre les failles XSS
                   $refEtuTest=htmlspecialchars(($_GET['refEtuTest']));
                   if(existeEtudiantId($refEtuTest)){
                     resetPremierTest($refEtuTest);
@@ -72,7 +78,7 @@
                   }
                 }
                 if(isset($_GET['refEtuSupp'])){
-                  //Protéction contre les injections SQL
+                  //Protection contre les failles XSS
                   $refEtuSupp=htmlspecialchars(($_GET['refEtuSupp']));
                   if(existeEtudiantId($refEtuSupp)){
                     //on stocke le nom et prénom pour informer l'utilisateur de l'étudiant qui a été supprimé

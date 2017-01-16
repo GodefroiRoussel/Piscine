@@ -94,11 +94,21 @@
 								                        }
 								                    }
 								                }
-								                else{?>
+								                else{
+								                	//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+								                	if($existeRecherche){?>
+								                	<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+								                	<?php
+								                	}
+								                	else{?>
 													<th>Prénom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=prenomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+													<?php
+													}
+												}?>
 												<?php
-												}
+												//S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri
 												if($existeTri){
+													//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
 													if($existeRecherche){ 
 								                        if($tri=="nomCroissant"){?> 
 								                          <th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
@@ -128,12 +138,21 @@
 										                } 
 													}
 												}
-												else{?>
+												else{
+													//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+													if($existeRecherche){?>
+														 <th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+													<?php
+													}
+													else{?>	
 													<th>Nom <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=nomCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
 												<?php
+													}
 												}?>
 												<?php
+												//S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri
 												if($existeTri){
+													//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
 													if($existeRecherche){ 
 									                    if($tri=="testCroissant"){?> 
 									                      <th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
@@ -163,9 +182,16 @@
 								                        } 
 													}
 												}
-												else{?>
+												else{
+													//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+													if($existeRecherche){?>
+														<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
+													<?php 
+													}
+													else{?>
 													<th>Premier test effectué <a href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&tri=testCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
 												<?php
+													}
 												}?>
 												<th></th>
 												<th></th>

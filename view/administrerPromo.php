@@ -13,14 +13,14 @@
 		<!-- DataTables Responsive CSS -->
 		<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 		<!-- CUSTOM STYLES-->
-		<link href="../assets/css/general.css" />
+		<link rel="stylesheet" href="../assets/css/general.css" />
 		<link href="../assets/css/custom.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 		</head>
 		<body>
 			<div id="wrapper">
-				<?php include("menu/menuTop.php"); ?>
+				<!-- <?php include("menu/menuTop.php"); ?> -->
 				<!-- /. NAV TOP  -->
 				<!-- NAV SIDE only if we are connected -->
 				<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
@@ -77,9 +77,16 @@
 				                              } 
 				                            } 
 				                          } 
-				                          else{?> 
+				                          else{
+				                          	//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+				                          	if($existeRecherche){?>
+				                          		<th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				                          	<?php }
+				                          	else{
+				                          	?> 
 				                            <th>Département <a href="../controller/administrerPromo.controller.php?tri=departementCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
 				                          <?php 
+				                          	}
 				                          }?> 
 				                          <?php 
 				                          //S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri 
@@ -114,9 +121,15 @@
 				                              } 
 				                            } 
 				                          } 
-				                          else{?> 
+				                          else{
+				                          	//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+				                          	if($existeRecherche){?>
+				                          		<th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
+				                          	<?php }
+				                          	else{?> 
 				                            <th>Année <a href="../controller/administrerPromo.controller.php?tri=anneeCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
-				                          <?php 
+				                          <?php
+				                          	} 
 				                          }?> 
 				                          <?php 
 				                          //S'il éxiste un tri, on doit afficher ou non une flèche pour indiquer le tri actuel et stocker dans le lien de la flèche le prochain tri 
@@ -124,36 +137,43 @@
 				                            //Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri 
 				                            if($existeRecherche){ 
 				                              if($tri=="clefPromoCroissant"){?> 
-				                              <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
+				                              <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
 				                              <?php 
 				                              } 
 				                              elseif($tri=="clefPromoDecroissant"){?> 
-				                                <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th> 
+				                                <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th> 
 				                              <?php 
 				                              } 
 				                              else{?> 
-				                                <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
+				                                <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
 				                              <?php 
 				                              } 
 				                            } 
 				                            else{ 
 				                              if($tri=="clefPromoCroissant"){?> 
-				                              <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant&typeRecherche=&texteRecherche="><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
+				                              <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoDecroissant&typeRecherche=&texteRecherche="><img src="../assets/images/flecheBas.jpg" width=9 height=11 alt="flecheBas"/></a></th> 
 				                              <?php 
 				                              } 
 				                              elseif($tri=="clefPromoDecroissant"){?> 
-				                                <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th> 
+				                                <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheHaut.jpg" width=9 height=11 alt="flecheHaut"/></a></th> 
 				                              <?php 
 				                              } 
 				                              else{?> 
-				                                <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
+				                                <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
 				                              <?php 
 				                              } 
 				                            } 
 				                          } 
-				                          else{?> 
-				                            <th>Clef de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
-				                          <?php 
+				                          else{
+				                          	//Si une recherche est déjà présente, on la stocke dans le lien de la flèche pour pouvoir l'appliquer en plus du tri
+				                          	if($existeRecherche){?>
+				                          		 <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant&typeRecherche=<?php echo $typeRecherche ?>&rechercheTexte=<?php echo $rechercheTexte ?>"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th>
+				                          	<?php
+				                          	}
+				                          	else{?> 
+				                            <th>Code de la promo <a href="../controller/administrerPromo.controller.php?tri=clefPromoCroissant"><img src="../assets/images/flecheBasGrise.jpg" width=9 height=11 alt="flecheBasGrise"/></a></th> 
+				                          <?php
+				                          	} 
 				                          }?> 
 				                          <th></th> 
 				                          <th></th> 
