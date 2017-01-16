@@ -74,7 +74,14 @@
 			<div id="canvas-holder" style="width:40%"> <!--permet d'afficher le graphique-->
 				 <canvas id="chart-area" />
 			</div>
+			<?php
+					if(isset($resultDepart)){
+					?>
 			<p> <strong><?php echo $NomDep ?> </strong></p>
+			<?php
+					}
+					?>
+
 		</center>
 				</div>
 			</div>
