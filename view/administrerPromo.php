@@ -159,22 +159,23 @@
 				                          <th></th> 
 				                        </tr> 
 			                    	</thead> 
-				                    <br/> 
+				                    <br/>
+				                    <!-- Formulaire de recherche --> 
 				                    <form action="../controller/administrerPromo.controller.php<?php if($existeTri){?>?tri=<?php echo $tri;}?>"; method="post"> 
-				                        <!-- Bouton qui va afficher la saisie de la recherche --> 
+				                        <!-- Liste déroulante qui va afficher la saisie de la recherche suivant l'option séléctionnée--> 
 				                        <select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()"> 
 				                          <option value="default" selected >Rechercher selon...</option>
 				                          <option value="sansTri" >Sans tri</option>
 				                          <option value="d.nom" >Département</option> 
 				                          <option value="anneePromo" >Année</option> 
-				                          <option value="clefPromo" >Clef de la promo</option> 
+				                          <option value="codePromo" >Code de la promo</option> 
 				                        </select> 
-				                        <!-- ce qui va être affiché lors de la seléction d'une option --> 
+				                        <!-- ce qui va être affiché lors de la seléction d'options particulières --> 
 				                        <div id="newRecherche"> 
 				                          <input type="search" name="rechercheTexte" id="rechercheTexte"/> 
 				                          <input type="submit" value="Chercher" id="chercherNew"/> 
 										</div>
-										<!-- permet de transmettre par POST au controller le type de la recherche  -->
+										<!-- permet de transmettre par POST au controller le type de la recherche (la valeur de l'option séléctionnée) -->
 										<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> /> 
 				                    </form> 
 				                    <tbody> 
@@ -186,8 +187,10 @@
 				                            <td><?php echo $i; $i+=1; ?></td> 
 				                            <td><?php echo $promo["nom"]?></td> 
 				                            <td><?php echo $promo["anneePromo"]?></td> 
-				                            <td><?php echo $promo["codePromo"] ?></td> 
+				                            <td><?php echo $promo["codePromo"] ?></td>
+				                            <!-- Bouton gerer la promo --> 
 				                            <td><a class="btn btn-primary btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $promo['id']?>"><i class="fa fa-table "></i> Gérer la promo</a></td> 
+				                            <!-- Bouton supprimer la promo -->
 				                            <td><a class="btn btn-danger btn-block" href="../controller/administrerPromo.controller.php?refPromoSupp=<?php echo $promo['id'];?><?php if($existeTri){?>&tri=<?php echo $tri;}?>"><i class="icon-remove-sign"></i></a></td> 
 				                          </tr> 
 				                      <?php 
@@ -195,6 +198,7 @@
 				                     </tbody> 
 				                </table> 
 				                <!-- /.table-responsive --> 
+				                <!-- Bouton ajouter une promo -->
 				                <a href="../controller/ajouterPromo.controller.php" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une promo</a> 
 				                </div> 
 							</div>
@@ -215,10 +219,6 @@
 	<script src="../assets/js/jquery.metisMenu.js"></script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="../assets/js/custom.js"></script>
-	<!-- DataTables JavaScript -->
-	<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-	<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 	<script src="../controller/js/rechercheAdministrerPromo.js"></script>
 
 	<!-- Custom Theme JavaScript -->

@@ -245,16 +245,4 @@ function getIdPromo($idEtudiant){
 	return $idPromo[0];
 }
 
-
-/* Normalement n'a pas besoin de constructeur ici, dans promo cela est suffisant"
-function creerEtudiant($mail,$codePromo){
-
-	global $pdo;
-	 $req=$pdo->prepare('INSERT INTO etudiant(email,premierTest,codePromo) VALUES (?,True,?)');
-	 $req=execute(array($mail,$codePromo));
-
-}
-*/
-
-
 ?>

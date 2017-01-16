@@ -182,20 +182,6 @@ function ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp){
 	}
 
 	}
-	/*
-function testMail($codepromo,$mail){
-	//donnée : code promo et eleve
-	//resultat : bool true si l'élève appartient a la promo, false sinon
-
-	global $pdo;
-	$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE codePromo=? AND email=?');
-	$req->execute(array($codepromo,$mail));
-	$compteur=$req->fetch();
-	if($compteur[0]>0){return true;}
-	else{return false;}
-}
-*/
-
 
 function getAllPromo(){
 	//résultat : renvoie les codePromo de toutes les promos de la BD

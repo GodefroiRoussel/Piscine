@@ -34,8 +34,8 @@
             }
           }
           $existeRecherche=False; //variable pour savoir si on devra ou non transmettre la recherche en cours
-          $typeRecherche="default";//variable qui gardera la valeur de l'option dans tous les cas 
-          $rechercheTexte="";
+          $typeRecherche="default";//variable qui gardera la valeur de l'option
+          $rechercheTexte="";//variable qui gardera le texte de la recherche
           if(isset($_POST['typeRecherche'])||isset($_GET['typeRecherche'])){ 
             if(isset($_POST['typeRecherche'])){//Si le type de recherche a été transmis par un POST (donc par la recherche directement)
               $typeRecherche=htmlspecialchars($_POST['typeRecherche']); 
@@ -46,30 +46,34 @@
             if($typeRecherche!="default" && $typeRecherche!="sansTri"){
               if(isset($_POST['rechercheTexte'])){
                 $existeRecherche=True;
+                //Protection contre les failles XSS
                 $rechercheTexte=htmlspecialchars($_POST['rechercheTexte']);
+                //Récupère toutes les promos vérifiant que le type de recherche soit égal au texte de la recherche
                 $promos=getAllPromoRecherche($typeRecherche,$rechercheTexte);
               }
               else if(isset($_GET['rechercheTexte'])){ 
                 $existeRecherche=True; 
-                $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']); 
+                $rechercheTexte=htmlspecialchars($_GET['rechercheTexte']);
+                //Récupère toutes les promos vérifiant que le type de recherche soit égal au texte de la recherche 
                 $etudiants=getAllPromoRecherche($id,$typeRecherche,$rechercheTexte); 
               } 
               else{
-                $promos=getAllPromo();//récupère toutes les promos
+                $promos=getAllPromo();
               }
             }
             else{
-              $promos=getAllPromo();//récupère toutes les promos
+              $promos=getAllPromo();
             }
           }
           else{
-            $promos=getAllPromo();//récupère toutes les promos
+            $promos=getAllPromo();
           }
           $existeTri=isset($_GET['tri']);//Permet de pouvoir transporter le tri séléctionné d'une page à l'autre dans le cas d'une mise à jour de la page autre que par le tri
           if($existeTri){
+            //Protection contre les injections SQL
             $tri=htmlspecialchars($_GET['tri']);
             $triPossible=array('departementCroissant','departementDecroissant','anneeCroissant','anneeDecroissant','clefPromoCroissant','clefPromoDecroissant');
-            if(in_array($tri, $triPossible)){
+            if(in_array($tri, $triPossible)){//Si c'est un tri que l'on peut réaliser
               //On a un tableau de lignes et la fonction array_multisort() prend un tableau de colonnes
               foreach ($promos as $key => $row) {
                   $idPromo[$key] = $row['id'];
@@ -77,7 +81,7 @@
                   $nom[$key] = $row['nom'];
                   $anneePromo[$key] = $row['anneePromo'];
               }
-              switch($tri){
+              switch($tri){//Tri selon le champ renseigné par $tri
                 case 'departementCroissant' :
                   array_multisort($nom, SORT_ASC, $promos);
                   break;
@@ -111,14 +115,10 @@
           include("../view/administrerPromo.php");
         }
         else{
-            echo "On vous redirige... <br/>";
-            sleep(2);
             header('Location:../controller/redirection.php');
         }
       }
       else {
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-        sleep(2);
         header('Location:../controller/connexionAdmin.controller.php');
       }
     }

@@ -25,10 +25,10 @@
      	if (verificationToken($decoded_array)){
       	if($decoded_array['role']==="admin"){
         	$email=getMailAdmin($decoded_array['id']);
-          //Vérification que la référence promo correspond à une promo éxistante
-          if(isset($_GET['refPromo'])){
+          //Si on a une refPromo alors on peut afficher la page. Sinon on redirige vers la page administrerPromo
+          if(isset($_POST['refPromo'])){
             //Protéction contre les injections SQL
-            $id=htmlspecialchars(($_GET['refPromo']));
+            $id=htmlspecialchars(($_POST['refPromo']));
             //Vérification que la référence promo correspond à une promo éxistante
             if(existePromoId($id)){
               //On récupère ces infos pour les afficher dans la view              
@@ -132,7 +132,7 @@
                     $prenomEtu[$key] = $row['prenom'];
                     $premierTest[$key] = $row['premierTest'];
                   }
-                  switch($tri){
+                  switch($tri){//Tri selon le champ renseigné par $tri
                     case 'prenomCroissant' :
                       array_multisort($prenomEtu, SORT_ASC, $etudiants);
                       break;
@@ -165,27 +165,19 @@
               }
             include("../view/gererPromo.php");
             }
-            else{
-              echo "Erreur la promo n'existe pas ... <br/>";
-              sleep(2);
+            else{//Cas ou la référence promo correspond à aucune promo
               header('Location:../controller/administrerPromo.controller.php');
             }
           }
-          else{
-              echo "Erreur la promo n'existe pas ... <br/>";
-              sleep(2);
+          else{//Cas ou le get est vide (pas de référence promo)
               header('Location:../controller/administrerPromo.controller.php');
             }
         }
-        else{
-            echo "On vous redirige... <br/>";
-            sleep(2);
+        else{//On est sur la page admin alors qu'on n'est pas admin
             header('Location:../controller/redirection.php');
         }
       }
-      else {
-        echo "Mauvais token, veuillez vous reconnecter<br/>";
-        sleep(2);
+      else {//Mauvais token
         header('Location:../controller/connexionAdmin.controller.php');
       }
     }

@@ -172,8 +172,8 @@
 												<th></th>
 											</tr>
 										</thead>
-										<form id="formRecherche" action="../controller/gererPromo.controller.php?refPromo=<?php echo $id; if($existeTri){?>&tri=<?php echo $tri;}?>"; method="post">
-											<!-- Bouton qui va afficher la saisie de la recherche -->
+										<form id="formRecherche" action="../controller/gererPromo.controller.php?<?php if($existeTri){?>tri=<?php echo $tri;}?>"; method="post">
+											<!-- Liste déroulante qui va afficher la saisie de la recherche suivant l'option séléctionnée-->
 											<select name="listeRecherche" id="listeRecherche" onchange="afficherRecherche()">
 												<option value="default" selected >Rechercher selon...</option>
 												<option value="sansTri" >Sans tri</option> 
@@ -181,14 +181,14 @@
 												<option value="nom" >Nom</option>
 												<option value="premierTest" >Test effectué</option>
 											</select>
-											<!-- ce qui va être affiché lors de la seléction d'une option -->
+											<!-- ce qui va être affiché lors de la seléction d'options particulières -->
 											<div id="newRecherche">
 												<input type="search" name="rechercheTexte" id="rechercheTexte"/>
 												<input type="submit" value="Chercher" id="chercherNew"/>
 											</div>
-											<!-- permet de transmettre par POST au controller le type de la recherche  -->
+											<!-- permet de transmettre par POST au controller le type de la recherche (la valeur de l'option séléctionnée) -->
 											<input type="hidden" name="typeRecherche" id="typeRecherche" value=<?php echo $typeRecherche ?> />
-											<!-- permet de transmettre par POST au controller l'id de la promo mais surtout de pouvoir accéder à l'id de la promo via javascript -->
+											<!-- permet de transmettre par POST au controller l'id de la promo -->
 											<input type="hidden" name="refPromo" id="refPromo" value=<?php echo $id ?> />
 										</form>
 										<?php
@@ -221,15 +221,17 @@
 												<?php
 												}
 												?>
-												<td><a class="btn btn-primary btn-block" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td><!-- bouton modifier -->
+												<!-- bouton modifier -->
+												<td><a class="btn btn-primary btn-block" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td>
+												<!-- bouton supprimer -->
 												<?php if($existeTri){
 														?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->
-															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>"><i class="icon-remove-sign"></i></a></td><!-- bouton supprimer -->
+															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>&tri=<?php echo $tri ?>"><i class="icon-remove-sign"></i></a></td>
 														<?php
 														}
 														else{
 														?>
-															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>"><i class="icon-remove-sign"></i></a></td><!-- bouton supprimer -->
+															<td><a class="btn btn-danger btn-block" href="../controller/gererPromo.controller.php?refPromo=<?php echo $id ?>&refEtuSupp=<?php echo $etudiant['id']?>"><i class="icon-remove-sign"></i></a></td>
 														<?php
 														}
 														?>
@@ -243,6 +245,7 @@
 						</div>
 					</div>
 					<hr />
+					<!-- Bouton Retour -->
 					<a href="../controller/administrerPromo.controller.php?" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour</a>
 				</div>
 			</div>
@@ -257,15 +260,12 @@
 		<script src="../assets/js/jquery.metisMenu.js"></script>
 		<!-- CUSTOM SCRIPTS -->
 		<script src="../assets/js/custom.js"></script>
-		<!-- DataTables JavaScript -->
-		<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-		<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-		<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-		<!-- Custom Theme JavaScript -->
-		<script src="../dist/js/sb-admin-2.js"></script>
 		<script type="text/javascript" src="../controller/js/modifCodePromo.js"></script>
 		<script type="text/javascript" src="../controller/js/rechercheGererPromo.js"></script>
 		<script type="text/javascript" src="../controller/js/modifAnneePromo.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="../dist/js/sb-admin-2.js"></script>
+		
 	</body>
 </html>
