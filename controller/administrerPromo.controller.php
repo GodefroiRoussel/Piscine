@@ -25,6 +25,7 @@
       	if($decoded_array['role']==="admin"){
           //cas où on veut supprimer une promo, on récupère l'id de la promo
           if(isset($_GET['refPromoSupp'])){
+            //Protection contre les failles XSS
             $refPromoSupp=htmlspecialchars($_GET['refPromoSupp']);
             if(existePromoId($refPromoSupp)){//Si une promo avec l'id récupéré existe, on appelle la fonction sql SupprimerPromo()
               supprimerPromo($refPromoSupp);

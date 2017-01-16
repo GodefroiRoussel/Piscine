@@ -248,7 +248,7 @@
 												}
 												?>
 												<!-- bouton modifier -->
-												<td><a class="btn btn-primary btn-block" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td>
+												<td><a class="btn btn-primary btn-block" href="../controller/modifEtudiant.controller.php?refPromo=<?php echo $id ?>&refEtuMod=<?php echo $etudiant['id']?>"><i class="fa fa-edit "></i></a></td>
 												<!-- bouton supprimer -->
 												<?php if($existeTri){
 														?> <!-- on renseigne par quoi on tri seulement si ça a déjà été renseigné auparavant -->

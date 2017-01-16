@@ -30,7 +30,7 @@
             $id=htmlspecialchars($_GET['refPromo']);
             if(existePromoId($id)){
               if(isset($_GET['refEtuMod'])){
-                //Protéction contre les injections SQL
+                //Protection contre les failles XSS
                 $idEtuMod=htmlspecialchars(($_GET['refEtuMod']));
                 //Vérification que la référence promo correspond à une promo éxistante 
                 if(existeEtudiantId($idEtuMod)){
@@ -41,28 +41,23 @@
                     if(isset($_GET["email"]) & !empty($_GET["email"])){
                       $newEmail=htmlspecialchars($_GET['email']);
                       if(existeEtudiantMail($newEmail)){
-                        modifMailEtudiant($idEtuMod,$newEmail):
-                        $modif=True;
+                        modifMailEtudiant($idEtuMod,$newEmail);
                       }
                       else{
-                        $modif=False;
-                        echo "Erreur, mail déjà utilisé par un autre étudiant";
+                        echo "Erreur, l'email est déjà utilisé";
                       }
                     }
-                    if(isset($_GET["passwd"]) & !empty($_GET["passwd"])){
+                    if(isset($_POST["passwd"]) & !empty($_POST["passwd"])){
                       $passwd=htmlspecialchars(($_GET['passwd']));
                       modifPasswordEtudiant($idEtuMod,$passwd);
-                      $modif=True;
                     }
-                    if(isset($_GET["nom"]) & !empty($_GET["nom"])){
+                    if(isset($_POST["nom"]) & !empty($_POST["nom"])){
                       $nom=htmlspecialchars(($_GET['nom']));
                       modifPrenomEtudiant($idEtuMod,$nom);
-                      $modif=True;
                     }
-                    if(isset($_GET["prenom"]) & !empty($_GET["prenom"])){
+                    if(isset($_POST["prenom"]) & !empty($_POST["prenom"])){
                       $prenom=htmlspecialchars(($_GET['prenom']));
                       modifPrenomEtudiant($idEtuMod,$prenom);
-                      $modif=True;
                     }
                     include ("../view/modifierEtudiant.php");
                   }
