@@ -11,7 +11,8 @@ function afficherRecherche(){
 	else if(listeRecherche.options[listeRecherche.selectedIndex].value=='sansTri'){ 		
 		document.getElementById("newRecherche").style.display="none";
 		//on redirige vers la page pour réinitialiser le tri
-		window.location="gererPromo.controller.php";
+		var refPromo=document.getElementById("refPromo");
+		window.location="gererPromo.controller.php?refPromo="+refPromo;
   	} 
   	else{
   		//on rend visible le champ de recherche

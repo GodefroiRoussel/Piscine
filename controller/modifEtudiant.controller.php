@@ -35,8 +35,8 @@
                 //Vérification que la référence promo correspond à une promo éxistante 
                 if(existeEtudiantId($idEtuMod)){
                   if(getIdPromo($idEtuMod)==$id){
-                    if(isset($_GET["email"]) & !empty($_GET["email"])){
-                      $newEmail=htmlspecialchars($_GET['email']);
+                    if(isset($_POST["email"]) & !empty($_POST["email"])){
+                      $newEmail=htmlspecialchars($_POST['email']);
                       if(existeEtudiantMail($newEmail)){
                         modifMailEtudiant($idEtuMod,$newEmail);
                       }
@@ -45,19 +45,19 @@
                       }
                     }
                     if(isset($_POST["passwd"]) & !empty($_POST["passwd"])){
-                      $passwd=htmlspecialchars(($_GET['passwd']));
+                      $passwd=htmlspecialchars(($_POST['passwd']));
                       modifPasswordEtudiant($idEtuMod,$passwd);
                     }
                     if(isset($_POST["nom"]) & !empty($_POST["nom"])){
-                      $nom=htmlspecialchars(($_GET['nom']));
+                      $nom=htmlspecialchars(($_POST['nom']));
                       modifPrenomEtudiant($idEtuMod,$nom);
                     }
                     if(isset($_POST["prenom"]) & !empty($_POST["prenom"])){
-                      $prenom=htmlspecialchars(($_GET['prenom']));
+                      $prenom=htmlspecialchars(($_POST['prenom']));
                       modifPrenomEtudiant($idEtuMod,$prenom);
                     }
                     if(isset($_POST["codePromo"]) & !empty($_POST["codePromo"])){
-                      $codePromo=htmlspecialchars(($_GET['codePromo']));
+                      $codePromo=htmlspecialchars(($_POST['codePromo']));
                       $idPromo=getID($codePromo);
                       modifIdPromoEtudiant($idEtuMod,$idPromo);
                     }
