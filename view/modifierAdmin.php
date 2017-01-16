@@ -28,15 +28,6 @@
 				<div class="col-md-12">
 					<h1 class="page-header">Modifier Admin</h1>
 				</div>
-				<?php
-				if($affichageMessage && !is_null($modifReussiMail) && !is_null($modifReussiNom) && !is_null($modifReussiPrenom)){
-					?>
-					<div class="col-md-12">
-						<h5>Modification enregistrée</h5>
-					</div>
-					<?php
-				}
-				?>
 			</div>
 			<!-- /. ROW  -->
 			<hr />
