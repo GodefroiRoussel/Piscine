@@ -1,5 +1,9 @@
 <?php
 function getNomFiche($idFiche){
+	//donnée : id de la fiche 
+	//pré : idFiche : entier >0
+	//résultat : nom de la fiche 
+	//post : nomFiche : String 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT nom FROM fiche WHERE id=?');
@@ -14,6 +18,10 @@ function getNomFiche($idFiche){
 }
 
 function getValeurFiche($idFiche){
+	//donnée : id de la fiche 
+	//pré : idFiche : entier >0
+	//résultat : description rapide de la fiche concernée 
+	//post : valeurFiche : String 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT descValeurs FROM fiche WHERE id=?');

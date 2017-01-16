@@ -63,7 +63,7 @@ function getAllPromoByDepartement($idDep){
   //donnée: l'id d'un département
   //pré : idDep : entier >0
   //résultat : Toutes les promotions qui font partie de ce département
-  //post : promos : array : une promo par ligne, (id,) pour les colonnes 
+  //post : promos : array : une promo par ligne, (id,codePromo,anneePromo,idDep) pour les colonnes 
 
   global $pdo;
   try{
@@ -82,7 +82,7 @@ function getAllPromoByAnnee($annee){
   //donnée: année dont on souhaite affichée les promos 
   //prec : année : int > 2016 
   //résultat : Toutes les promotions qui font partie de l'année passée en paramètre
-  //post : promos : array : une promo par ligne, (id, ) pour les colonnes 
+  //post : promos : array : une promo par ligne, (id,codePromo,anneePromo,idDep) pour les colonnes 
 
   global $pdo;
   try{

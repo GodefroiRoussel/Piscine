@@ -3,8 +3,10 @@
 
 
 function getPasswordAdmin($idAdmin){
-	//donnée: l'admin concerné
-	//résultat: l'id de l'admin concerné
+	//donnée: id de l'admin 
+	//pré : idAdmin : entier >0
+	//résultat: lt de passe crypté de l'admin concerné 
+	//post : mdp : String 
 
 	global $pdo;
 	try{
@@ -22,8 +24,10 @@ function getPasswordAdmin($idAdmin){
 }
 
 function getMailAdmin($idAdmin){
-	//donnée: l'admin concerné
-	//résultat: l'id de l'admin concerné
+	//donnée: id de l'admin 
+	//pré : idAdmin : entier >0	
+	//résultat: mail de l'admin concerné
+	//post : email : String 
 
 	global $pdo;
 	try{
@@ -40,8 +44,10 @@ function getMailAdmin($idAdmin){
 }
 
 function getPrenomAdmin($idAdmin){
-	//donnée: l'admin concerné
+	//donnée: id de l'admin
+	//pré : idAdmin : entier >0
 	//résultat: le prénom de l'admin concerné
+	//post : prenom : String
 
 	global $pdo;
 	try{
@@ -56,8 +62,11 @@ function getPrenomAdmin($idAdmin){
 }
 
 function getNomAdmin($idAdmin){
-	//donnée: l'admin concerné
-	//résultat: l'id de l'admin concerné
+	//donnée: id de l'admin
+	//pré : idAdmin : entier >0
+	//résultat: le nom de l'admin concerné
+	//post : nom : String 
+	
 
 	global $pdo;
 	try{
@@ -72,6 +81,10 @@ function getNomAdmin($idAdmin){
 }
 
 function existeAdmin($email,$password){
+	//données : email et mot de passe crypté de l'admin
+	//pré : email : String / password : String
+	//résultat : id de l'admin s'il existe, NULL sinon 
+	//post : id : entier >0
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT id FROM admin WHERE email=? AND password=?');
@@ -86,8 +99,9 @@ function existeAdmin($email,$password){
 }
 
 function existeAdminId($id){
-	//donnée : code promo de la promo
-	//résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
+	//donnée: id de l'admin
+	//pré : id : entier >0
+	//résultat : bool true s'il existe un admin avec cet id, false sinon 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM admin WHERE id=?');
@@ -103,7 +117,8 @@ function existeAdminId($id){
 }
 
 function creerAdmin($nomdeCompte,$mdp,$nom,$prenom){
-	//donnée : nom de compte et mot de passe de l'admin
+	//donnée : nom de compte, mot de passe crypté, nom et prénom de l'admin 
+	//pré : nomdeCompte,mdp,nom,prenom : String 
 	//résultat : ajout de l'admin dans la base de données
 
 	global $pdo;
@@ -117,7 +132,9 @@ function creerAdmin($nomdeCompte,$mdp,$nom,$prenom){
 }
 
 function supprimerAdmin($id){
-	//donnée : id de la promo à supprimer
+	//donnée: id de l'admin
+	//pré : idAdmin : entier >0
+	//résultat : suppression de l'admin de la base de données 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('DELETE FROM admin WHERE id=?');
@@ -132,6 +149,7 @@ function supprimerAdmin($id){
 
 function modifPasswordAdmin($idAdmin,$newmdp){
 	//donnée : id de l'admin qui veut modifier son mdp et nouveau mdp
+	//pré : idAdmin : entier > 0 / newMdp : String 
 	//résultat : modifie le mot de passe actuel avec le nouveau mdp
 	global $pdo;
 	try{
@@ -149,6 +167,7 @@ function modifPasswordAdmin($idAdmin,$newmdp){
 
 function modifMailAdmin($idAdmin,$newMail){
 	//données : id de l'admin qui veut modifier son mail et nouveau mail
+	//pré : idAdmin : entier > 0 / newMail : String
 	//résultat : modifie l'email actuel avec le nouveau mail
 	global $pdo;
 	try{$req=$pdo->prepare('UPDATE Admin SET email= :newMail WHERE id=:idAd');
@@ -163,8 +182,9 @@ function modifMailAdmin($idAdmin,$newMail){
 }
 
 function modifNomAdmin($idAdmin,$newNom){
-	//données : id de l'admin qui veut modifier son mail et nouveau mail
-	//résultat : modifie l'email actuel avec le nouveau mail
+	//données : id de l'admin qui veut modifier son nom et nouveau nom
+	//pre : idAdmin : entier > 0 / newNom : String
+	//résultat : modifie le nom avec le nouveau nom dans la base de données 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE Admin SET nom= :newNom WHERE id=:idAd');
@@ -179,8 +199,9 @@ function modifNomAdmin($idAdmin,$newNom){
 }
 
 function modifPrenomAdmin($idAdmin,$newPrenom){
-	//données : id de l'admin qui veut modifier son mail et nouveau mail
-	//résultat : modifie l'email actuel avec le nouveau mail
+	//données : id de l'admin qui veut modifier son prenom et nouveau prenom
+	//pré : idAdmin : entier > 0/newPrenom : String 
+	//résultat : modifie le prenom actuel avec le nouveau prenom
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE Admin SET prenom= :newPrenom WHERE id=:idAd');
@@ -195,6 +216,8 @@ function modifPrenomAdmin($idAdmin,$newPrenom){
 }
 
 function getNbAdmin(){
+	//résultat :  nombre d'admins dans la base de données 
+	//post : ndAdmin : entier >=0
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM admin');
@@ -208,7 +231,11 @@ function getNbAdmin(){
 }
 
 function getAllOtherAdmin($id){
-	//résultat : renvoie les codePromo de toutes les promos de la BD
+	//données : id de l'admin 
+	//pré : idAdmin : entier > 0
+	//résultat : tous les admins autres que celui passé en paramètre 
+	//post : admins : array : une ligne par admin,(id,prenom,nom,email) pour les colonnes 
+	
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT id,prenom,nom,email FROM admin WHERE id!=?');
@@ -222,7 +249,8 @@ function getAllOtherAdmin($id){
 }
 
 function getAllOtherAdminRecherche($id,$typeRecherche,$rechercheTexte){ 
-  //donnée : id d'un admin, le type de la recherche (prenom,nom,email) et le texte à rechercher 
+  //donnée : id d'un admin, le type de la recherche  et le texte à rechercher 
+  //pre : idAdmin : entier > 0 / typeRecherche : String (prenom ou nom ou email )/rechercheTexte : String 
   //resultat : liste des admins sauf l'admin avec l'id passé en paramètre dont la valeur du type de recherche contient au moins le texte à rechercher 
  
   global $pdo; 

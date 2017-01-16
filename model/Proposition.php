@@ -2,37 +2,11 @@
 //fonctions du type proposition
 
 
-/* Je pense que ces fonctions seront inutiles
-function getNumProposition($proposition){
-    //Recoit la proposition
-    //Retourne le num de proposition
-    global $pdo;
-
-    $req = $pdo->prepare('SELECT num FROM proposition WHERE description=? ');
-    $req = execute(array($proposition));
-    $num=$req->fetch();
-
-	return $num[0];
-
-}
-
-
-function getAllProposition()
-{
-    global $pdo;
-
-
-    $req = $pdo->prepare('SELECT id, description, idGroup, idFiche FROM proposition');
-    $req->execute();
-    $propositions = $req->fetchAll();
-
-    return $propositions;
-}
-*/
-
 function getContenuProposition($idProposition){
-    //recoit la proposition
+    //données : id de la proposition 
+	//pre : idProposition : entier [1-72]
     //retourne le texte de la proposition
+	//post : contenu : String 
     global $pdo;
 	try{
     //$req=$pdo->prepare('SELECT contenu FROM (SELECT GroupeDeProposition FROM GroupeDePropositions WHERE NumGroupPos= WHERE proposition=?')
@@ -47,8 +21,12 @@ function getContenuProposition($idProposition){
 
 }
 
-// Renvoie le numéro de fiche associé à cette proposition
+
 function getFicheAssociee($idProposition){
+	//données : id de la proposition 
+	//pre : idProposition : entier [1-72]
+	//résultat : id de la fiche associée à la proposition 
+	//post : idFiche : entier >0
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT idFiche FROM proposition WHERE id=?');
@@ -64,7 +42,9 @@ function getFicheAssociee($idProposition){
 }
 
 function modifProposition($idP,$newCont){
-
+	//données : id de la proposition
+	//pre : idProposition : entier [1-72]
+	//résultat : modification de la proposition avec son nouveau contenu 
 
 	global $pdo;
 	try{
@@ -80,31 +60,5 @@ function modifProposition($idP,$newCont){
 }
 
 
-/* normalement fonction inutile
-function creerProposition($num,$contenu,$typeAssoc){
-    //reçoit num un entier comprit entre 1 et 6 et un contenu (phrase de la proposition) de type string
-    //insert la proposition dans la base de donnees
-
-
-    global $pdo;
-
-    $req=$pdo->prepare('INSERT INTO groupeprop (num, contenu) VALUES (?,?,?)');
-    $red->execute(array($num,$contenu,$typeAssoc));
-}
-
-global $pdo;
-$req=$pdo->prepare('UPDATE Admin SET password= :newMdp WHERE id=:idAd');
-  if(!$req->execute(array(
-  'newMdp' => $newmdp,
-  'idAd' => $idAdmin
-  ))){
-    return False;
-  }
-  else{
-    return True;
-  }
-
-Vous aimez avoir des activités à l'extérieur, travailler en plein air
-*/
 
 ?>

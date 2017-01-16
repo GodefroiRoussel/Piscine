@@ -23,7 +23,10 @@ function getMailEtudiant($idEtudiant){
 
 function modifPasswordEtudiant($idEtudiant,$newmdp){
 	//donnée : id de l'étudiant qui veut modifier son mdp et nouveau mdp
+	//pré : idEtudiant : entier >0 / newmdp : String 
 	//résultat : modifie le mot de passe actuel avec le nouveau mdp
+	
+	
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE etudiant SET password= :newMdp WHERE id=:idEt');
@@ -39,6 +42,7 @@ function modifPasswordEtudiant($idEtudiant,$newmdp){
 
 function modifMailEtudiant($idEtudiant,$newMail){
 	//donnée : id de l'étudiant qui veut modifier son mail et nouveau mail
+	//pré : idEtudiant : entier >0 / newMail : String 
 	//résultat : modifie le mail actuel avec le nouveau mail
 	global $pdo;
 	try{
@@ -55,6 +59,7 @@ function modifMailEtudiant($idEtudiant,$newMail){
 
 function modifNomEtudiant($idEtudiant,$newNom){
 	//donnée : id de l'étudiant qui veut modifier son nom et nouveau nom
+	//pré : id : entier >0 / newNom : String 
 	//résultat : modifie le nom actuel avec le nouveau nom
 	global $pdo;
 	try{
@@ -71,6 +76,7 @@ function modifNomEtudiant($idEtudiant,$newNom){
 
 function modifPrenomEtudiant($idEtudiant,$newPrenom){
 	//donnée : id de l'étudiant qui veut modifier son prenom et nouveau prenom
+	//pré : idEtudiant : entier >0 / newPrenom : String 
 	//résultat : modifie le prénom actuel avec le nouveau prénom
 	global $pdo;
 	try{
@@ -87,6 +93,7 @@ function modifPrenomEtudiant($idEtudiant,$newPrenom){
 
 function modifIdPromoEtudiant($idEtudiant,$newIdPromo){
 	//donnée : id de l'étudiant qui veut modifier son idPromo et son nouvel idPromo
+	//pré : idEtudiant : entier >0 / newIdPromo: entier > 0
 	//résultat : modifie l'idPromo actuel avec le nouvel id de la promo passé en paramètre
 	global $pdo;
 	try{
@@ -103,7 +110,8 @@ function modifIdPromoEtudiant($idEtudiant,$newIdPromo){
 
 function existeEtudiantMail($email){
 	//donnée : email de l'étudiant
-	//résultat : True si l'étudiant éxiste, False sinon
+	//pré : email : String 
+	//résultat : bool : True si l'étudiant éxiste, False sinon
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE email=?');
@@ -124,7 +132,8 @@ function existeEtudiantMail($email){
 
 function existeEtudiantId($idEtudiant){
 	//donnée : id de l'étudiant
-	//résultat : True si l'étudiant éxiste, False sinon
+	//pré : idEtudiant : entier >0 
+	//résultat : bool : True si l'étudiant éxiste, False sinon
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE id=?');
@@ -146,7 +155,9 @@ function existeEtudiantId($idEtudiant){
 
 function getAllChoix($idetudiant){
 	//donnée : id de l'élève
-	//résultat : résultat de l'élève passé en paramètre (tableau avec 2 colonnes(id fiche, score de l'étudiant) et 6 ligne (une pour chaque type))
+	//pré : idetudiant : entier >0
+	//résultat : résultat de l'élève passé en paramètre 
+	//post : resultat : array :  2 colonnes(id fiche, score de l'étudiant) et 6 lignes (une pour chaque type RIASEC))
 
 	global $pdo;
 	try{
@@ -163,8 +174,9 @@ function getAllChoix($idetudiant){
 
 function premierTest($idetudiant){
 	//donnée : id de l'élève
+	//pré : idEtudiant : entier >0
 	//résultat : bool, false si l'élève a déjà fait un vrai test, true sinon
-
+	
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT premierTest FROM etudiant WHERE id=?');
@@ -180,6 +192,7 @@ function premierTest($idetudiant){
 
 function passerTest($idEtudiant){
 	//donnée : id de l'élève
+	//pré : idEtudiant : entier >0
 	//résultat : Passe le premierTest a false pour dire : Ce n'est pas le premier test de l'étudiant
 	global $pdo;
 	try{
@@ -193,6 +206,7 @@ function passerTest($idEtudiant){
 
 function resetpremierTest($idetudiant){
 	//donnée : id de l'étudiant
+	//pré : idEtudiant : entier >0
 	//résultat: réinitialise le premierTest de l'élève à true
 
 	global $pdo;
@@ -209,7 +223,9 @@ function resetpremierTest($idetudiant){
 }
 
 function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
-
+	//données : id de l'étudiant concerné, id du groupe de proposition concerné et les id des propositions choisies pour ce groupe 
+	//pré : idEtudiant : entier >0 / idGroupe : entier [1,12] / choix : entier [1-72]
+	//résultat : insertion d'un nouveau choix dans la base de données
 	global $pdo;
 	try{
 		$req=$pdo->prepare('INSERT INTO choix(idEtudiant,idGroupe,choix1,choix2,choix3) VALUES (?,?,?,?,?)');
@@ -222,6 +238,7 @@ function ajouterChoix($idEtudiant,$idGroupe,$choix1,$choix2,$choix3){
 
 function supprimerEtudiant($id){
 	//donnée : id de l'étudiant
+	//pré : id : entier >0
 	//résultat : supprime l'étudiant ayant cet id
 	global $pdo;
 	try{
@@ -235,7 +252,9 @@ function supprimerEtudiant($id){
 
 function getPrenomEtudiant($id){
 	//donnée : id de l'étudiant
+	//pré : id : entier >0
 	//résultat : renvoie le prénom de l'étudiant
+	//post : prenom : String 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT prenom FROM etudiant WHERE id=?');
@@ -250,7 +269,9 @@ function getPrenomEtudiant($id){
 
 function getNomEtudiant($id){
 	//donnée : id de l'étudiant
+	//pré : id : entier >0
 	//résultat : renvoie le nom de l'étudiant
+	//post : nom : String 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT nom FROM etudiant WHERE id=?');
@@ -264,8 +285,10 @@ function getNomEtudiant($id){
 }
 
 function getIdPromo($idEtudiant){
-	//donnée : le code de la promo (entier)
-	//resultat : l'id de la promo dans laquelle appartient l'étudiant (string)
+	//donnée : id de l'étudiant 
+	//pré : idEtudiant : entier >0
+	//resultat : l'id de la promo à laquelle appartient l'étudiant 
+	//post : idPromo : entier >0
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT idPromo FROM etudiant WHERE id=?');

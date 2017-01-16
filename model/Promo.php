@@ -2,8 +2,10 @@
 //fonctions d'accès a la base de données du type Promo
 
 function getCode($idPromo){
-	//donnée: le code de la promo du département de la promo
-	//résuluat : la clef Promo permettant de s'authentifier dans une promo
+	//donnée: id de la promo
+	//pré : idPromo : entier > 0 
+	//résultat : la clef Promo permettant de s'authentifier dans une promo
+	//post : codePromo : String 
 
 
 	global $pdo;
@@ -19,8 +21,8 @@ function getCode($idPromo){
 }
 
 function getAnneePlusAnciennePromo(){
-	//donnée: le code de la promo du département de la promo
-	//résuluat : la clef Promo permettant de s'authentifier dans une promo
+		//résultat : l'année de la plus ancienne promo
+		//post : annee : entier > 2016 
 
 
 	global $pdo;
@@ -37,8 +39,11 @@ function getAnneePlusAnciennePromo(){
 }
 
 function getNomDepartementPromo($idPromo){
-		//donnée : le code de la promo (entier)
-		//resultat : le nom du département departement de la promo (string)
+		//donnée : id de la promo 
+		//pré : idPromo : entier > 0 
+		//resultat : le nom du départementde la promo 
+		//post : nom : String
+		
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT nom FROM departement d, promo p WHERE d.id=idDep AND p.id=?');
@@ -53,6 +58,10 @@ function getNomDepartementPromo($idPromo){
 }
 
 function existeEtudiant($email,$password){
+	//donnée : email de l'étudiant et son mot de passe crypté 
+	//pré : email : String / password : String 
+	//résultat : id de l'étudiant s'il existe, NULL sinon 
+	//post : id : entier >0
 		global $pdo;
 		try{
 			$req=$pdo->prepare('SELECT e.id FROM etudiant e, promo p WHERE email=? AND password=? AND p.id=idPromo');
@@ -65,15 +74,17 @@ function existeEtudiant($email,$password){
 		return $id[0];
 }
 
-function getAllChoixPromo($codePromo){
-		//donnée : un code promo entier
-		//resultat :un tableau de 6 cases chacune correspondant a la moyenne des types RIASEC de la promo
+function getAllChoixPromo($idPromo){
+		//donnée : id de la promon
+		//pré : idPromo : entier > 0 
+		//resultat : moyenne des résultat de la promo
+		//post : moyResultat : array : une ligne par groupe de proposition par étudiant (12*nombre étudiants),les trois choix de chaque étudiant à chaque question pour les colonnes 
 
 	global $pdo;
 
 	try{
 		$req=$pdo->prepare('SELECT choix1, choix2, choix3 FROM choix, etudiant e WHERE e.id=idEtudiant AND e.idPromo=?');
-		$req->execute(array($codePromo));
+		$req->execute(array($idPromo));
 		$moyResultat=$req->fetchAll();
 	} catch(PDOException $e){
 			echo($e->getMessage());
@@ -86,6 +97,10 @@ function getAllChoixPromo($codePromo){
 
 
 function getNbTestEffectue($idPromo){
+	//donnée : id de la promo
+	//pré : idPromo : entier > 0 
+	//résultat : nombre de tests effectués par les élèves de la promo 
+	//post : compteur : entier [0,nombre étudiants de la promo]
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM etudiant WHERE idPromo=? && premierTest=false ');
@@ -101,7 +116,9 @@ function getNbTestEffectue($idPromo){
 
 function getAllEtudiant($idPromo){
 		//donnée : id d'une promo
-		//resultat : la liste des élèves(id, mail et premierTest) de la promo
+		//pré : idPromo : entier > 0 
+		//resultat : la liste des élèves de la promo
+		//post : etudiants : array : un étudiant par ligne, (id,nom,prenom,premierTest) pour les colonnes 
 	try{
 	global $pdo;
 		$req=$pdo->prepare('SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=?');
@@ -118,6 +135,7 @@ function getAllEtudiant($idPromo){
 
 function getAllEtudiantAyantTest($idPromo){
 		//donnée : id d'une promo
+		//pré : idPromo : entier >0 
 		//resultat : la liste des élèves(id, mail et premierTest) ayant passé le test
 
 	global $pdo;
@@ -135,9 +153,10 @@ function getAllEtudiantAyantTest($idPromo){
 }
 
 function getAllEtudiantRecherche($idPromo,$typeRecherche,$rechercheTexte){
-	//donnée : id d'une promo, le type de la recherche (prenom,nom,premierTest) et le texte à rechercher
+	//donnée : id d'une promo, le type de la recherche  et le texte à rechercher
+	//pré : idPromo : entier >0  / typeRecherche : String : prenom ou nom ou premierTest /rechercheTexte : String
 	//resultat : liste des étudiants dont la valeur du type de recherche contient au moins le texte à rechercher
-
+	//post : etudiants : array : un étudiant par ligne, (id,nom,prenom,premierTest) pour les colonnes 
 	global $pdo;
 	try{
 		$requete='SELECT id,nom,prenom,premierTest FROM etudiant WHERE idPromo=? AND '.$typeRecherche.' LIKE ?';
@@ -155,6 +174,7 @@ function getAllEtudiantRecherche($idPromo,$typeRecherche,$rechercheTexte){
 
 function creerPromo($codePromo,$idDep,$datePromo){
 			//donnée : la clef promo, le département et l'année où sera diplomée la promo
+			//pré : codePromo : String / idDeo : entier >0 / datePromo : entier > 2016
 			//resultat : la promo insérée dans la base de données
 
 	global $pdo;
@@ -170,6 +190,7 @@ function creerPromo($codePromo,$idDep,$datePromo){
 
 function ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp){
 	//données : l'id de la promo, le mail de l'étudiant, le nom, le prénom de l'étudiant et le mdp crypté
+	//pré : idPromo : entier >0 / mail : String / nom : String / prenom : String / mdp : String 
 	//résultat : l'étudiant est ajouté à la base de donnée avec sa promo correspondante
 
 	global $pdo;
@@ -184,7 +205,8 @@ function ajoutEtudiant($idPromo,$mail,$nom,$prenom,$mdp){
 	}
 
 function getAllPromo(){
-	//résultat : renvoie les codePromo de toutes les promos de la BD
+	//résultat : toutes les promos 
+	//post : promos : array : une ligne par promo, (id,codePromo,nom,anneePromo) pour les colonnes 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT p.id,codePromo,nom,anneePromo FROM promo p,departement d WHERE d.id=idDep');
@@ -199,8 +221,10 @@ function getAllPromo(){
 }
 
 function getAllPromoRecherche($typeRecherche,$rechercheTexte){
-	//donnée : le type de la recherche (departement,anneePromo,codePromo) et le texte à rechercher
+	//donnée : le type de la recherche et le texte à rechercher
+	//pre : typeRecherche : String (département ou anneePromo ou codePromo) //rechercheTexte : String 
 	//resultat : liste des promos dont la valeur du type de recherche contient au moins le texte à rechercher
+	//post : promos : array : une ligne par promo, (id,nom,anneePromo) pour les colonnes 
 
 	global $pdo;
 	try{
@@ -219,6 +243,7 @@ function getAllPromoRecherche($typeRecherche,$rechercheTexte){
 
 function existePromoId($idPromo){
 	//donnée : id promo de la promo
+	//pré : idPromo : entier >0 
 	//résultat : bool true si la promo éxiste, false sinon
 	global $pdo;
 	try{
@@ -237,7 +262,8 @@ function existePromoId($idPromo){
 
 function existePromo($codePromo){
 	//donnée : code promo de la promo
-	//résultat : bool true s'il éxiste une promo avec ce code promo, false sinon
+	//pré : codePromo : String 
+	//résultat : bool true s'il existe une promo avec ce code promo, false sinon
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM promo WHERE codePromo=?');
@@ -255,7 +281,9 @@ function existePromo($codePromo){
 
 function getAnnee($idPromo){
 	//donnée : id de la promo
+	//pré : idPromo : entier >0 
 	//résultat : année de la promo
+	//post : annee : entier > 2016 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT anneePromo FROM promo WHERE id=?');
@@ -270,6 +298,8 @@ function getAnnee($idPromo){
 
 function changerCode($idPromo,$nouveauCodePromo){
 	//donnée : id de la promo et le nouveau code promo à mettre
+	//pré : idPromo : entier >0 / nouveauCodePromo : String 
+	//résultat : modification du codePromo de la promo concernée 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('UPDATE Promo SET codePromo=? WHERE id=?');
@@ -282,6 +312,8 @@ function changerCode($idPromo,$nouveauCodePromo){
 
 function supprimerPromo($idPromo){
 	//donnée : id de la promo à supprimer
+	//pré : idPromo : entier >0 
+	//résultat : suppression de la promo de la base de données 
 	global $pdo;
 	try{
 		$req=$pdo->prepare('DELETE FROM promo WHERE id=?');
@@ -293,7 +325,8 @@ function supprimerPromo($idPromo){
 }
 
 function getNbPromo(){
-	//résultat : renvoie le nomnbre de promo créé
+	//résultat : renvoie le nomnbre de promo créées
+	//post : compteur : entier >=0
 	global $pdo;
 	try{
 		$req=$pdo->prepare('SELECT COUNT(*) FROM promo');
@@ -307,7 +340,9 @@ function getNbPromo(){
 }
 function getID($codePromo){
 	//donnée : code de la promo
+	//pré : codePromo : String 
 	//resultat : id de la promo correspondant au code
+	//post : id : entier >0
 
 	global $pdo;
 	try{
@@ -325,6 +360,7 @@ function getID($codePromo){
 
 function setAnneePromo($idPromo,$nouvelleAnneePromo){
 	//donnée : id de la promo et la nouvelle année de la promo
+	//pré : idPromo : entier >0  / nouvelleAnneePromo : entier > 2016 
 
 	global $pdo;
 	try{
