@@ -9,6 +9,7 @@
 
   //TODO: mettre dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
+  $keyCryptage= "P0lyP1sCinE";
 
    //On vérifie que l'utilisateur est déjà connecté sinon on le redirige vers la connexion étudiant
    if(!isset($_COOKIE["token"])){
@@ -45,8 +46,11 @@
                       }
                     }
                     if(isset($_POST["passwd"]) & !empty($_POST["passwd"])){
-                      $passwd=htmlspecialchars(($_POST['passwd']));
-                      modifPasswordEtudiant($idEtuMod,$passwd);
+                      $password= htmlspecialchars ($_POST['passwd']);
+                      $_POST["futur"]= htmlspecialchars($_POST["futur"]);
+                      // On cripte le password avant de le rentrer dans la BD
+                      $password = crypt($password,$keyCryptage);
+                      modifPasswordEtudiant($idEtuMod,$password);
                     }
                     if(isset($_POST["nom"]) & !empty($_POST["nom"])){
                       $nom=htmlspecialchars(($_POST['nom']));
