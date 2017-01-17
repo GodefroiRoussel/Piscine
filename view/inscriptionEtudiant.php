@@ -9,14 +9,11 @@
 		<!-- FONTAWESOME STYLES-->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
-		<!-- DataTables CSS -->
-		<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-		<!-- DataTables Responsive CSS -->
-		<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 		<!-- CUSTOM STYLES-->
 		<link href="../assets/css/custom.css" rel="stylesheet" !important/>
 		<!-- GOOGLE FONTS-->
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />	</head>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+	</head>
 
 	<body>
 		<div id="wrapper">
@@ -38,30 +35,29 @@
 															<fieldset>
 																	<div class="form-group">
 																			<label>Nom : </label>
-																			<input type="text" class="form-control" name="nom" placeholder="Nom" autofocus/>
+																			<input type="text" class="form-control" name="nom" value="Durand" placeholder="Nom" autofocus/>
 																	</div>
 																	<div class="form-group">
 																			<label>Prénom : </label>
-																			<input type="text" class="form-control" name="prenom" placeholder="Prénom">
+																			<input type="text" class="form-control" name="prenom" value="Pierre" placeholder="Prénom">
 																	</div>
 																	<div class="form-group">
 																			<label>Email universitaire : </label>
-																			<input type="text" class="form-control" name="email" placeholder="prenom.nom">
+																			<input type="text" class="form-control" name="email" value="pierre.durand" placeholder="prenom.nom">
 																			@etu.umontpellier.fr
 																	</div>
 																	<div class="form-group">
 																			<label>Mot de passe : </label>
-																			<input type="password" class="form-control" name="passwd">
+																			<input type="password" class="form-control" name="passwd" value="azerty">
 																	</div>
 																	<div class="form-group">
 																			<label>Confirmation mot de passe : </label>
-																			<input type="password" class="form-control" name="passwdconf">
+																			<input type="password" class="form-control" name="passwdconf" value="azerty">
 																	</div>
 																	<div class="form-group">
 																			<label>Code de la promo : </label>
-																			<input type="text" class="form-control" name="clefPromo">
+																			<input type="text" class="form-control" name="clefPromo" value="IG2020">
 																	</div>
-																	<!-- Change this to a button or input when using this as a form -->
 																	<input type="submit" class="btn btn-lg btn-success btn-block" value="Je m'inscris" />
 															</fieldset>
 													</form>

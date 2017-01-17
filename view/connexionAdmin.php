@@ -3,9 +3,6 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Test de Hollande</title>
-		<link rel="stylesheet" href="style.css" />
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script type="text/javascript" src="../controller/js/connexionVerificationInfo.js"></script>
 		<!-- BOOTSTRAP STYLES-->
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- FONTAWESOME STYLES-->
@@ -36,16 +33,15 @@
 	                            <fieldset>
 	                                <div class="form-group">
 																			<label>Email : </label>
-	                                    <input class="form-control" id="email" placeholder="@" name="email" type="email" autofocus>
+	                                    <input class="form-control" id="email" placeholder="@" name="email" type="email" value="admin@etu" autofocus>
 	                                </div>
 	                                <div class="form-group">
 																			<label>Mot de passe : </label>
-	                                    <input class="form-control" id="passwd" placeholder="Password" name="passwd" type="password" value="">
+	                                    <input class="form-control" id="passwd" placeholder="Password" name="passwd" type="password" value="azerty">
 	                                </div>
 	                                <div class="checkbox">
 	                                    <a href="connexionEtudiant.controller.php">Etudiant?</a>
 	                                </div>
-	                                <!-- Change this to a button or input when using this as a form -->
 																	<input type="submit" class="btn btn-lg btn-success btn-block" value="Connexion" />
 	                            </fieldset>
 	                        </form>
@@ -57,13 +53,12 @@
 	</div>
 	<!-- /. WRAPPER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-	<!-- JQUERY SCRIPTS -->
-	<script src="../assets/js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
 	<script src="../assets/js/bootstrap.min.js"></script>
 	<!-- METISMENU SCRIPTS -->
 	<script src="../assets/js/jquery.metisMenu.js"></script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="../assets/js/custom.js"></script>
+	<script type="text/javascript" src="../controller/js/connexionVerificationInfo.js"></script>
 	</body>
 </html>

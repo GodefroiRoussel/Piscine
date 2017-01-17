@@ -9,7 +9,6 @@
     <meta name="author" content="">
 
 		<title>Connexion Etudiant</title>
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<!-- BOOTSTRAP STYLES-->
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- MetisMenu CSS -->
@@ -42,11 +41,11 @@
 	                            <fieldset>
 	                                <div class="form-group">
 																			<label>Email : </label>
-	                                    <input class="form-control" id="email" placeholder="prenom.nom@etu.umontpellier.fr" name="email" type="email" autofocus>
+	                                    <input class="form-control" id="email" placeholder="prenom.nom@etu.umontpellier.fr" name="email" value="pierre.durand@etu.umontpellier.fr" type="email" autofocus>
 	                                </div>
 	                                <div class="form-group">
 																			<label>Mot de passe : </label>
-	                                    <input class="form-control" id="passwd" placeholder="Password" name="passwd" type="password" value="">
+	                                    <input class="form-control" id="passwd" placeholder="Password" name="passwd" type="password" value="azerty">
 	                                </div>
 	                                <div class="checkbox">
 	                                    <a href="connexionAdmin.controller.php">Administrateur?</a>
