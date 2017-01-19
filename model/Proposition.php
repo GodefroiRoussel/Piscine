@@ -3,10 +3,10 @@
 
 
 function getContenuProposition($idProposition){
-    //données : id de la proposition 
+    //données : id de la proposition
 	//pre : idProposition : entier [1-72]
     //retourne le texte de la proposition
-	//post : contenu : String 
+	//post : contenu : String
     global $pdo;
 	try{
     //$req=$pdo->prepare('SELECT contenu FROM (SELECT GroupeDeProposition FROM GroupeDePropositions WHERE NumGroupPos= WHERE proposition=?')
@@ -23,9 +23,9 @@ function getContenuProposition($idProposition){
 
 
 function getFicheAssociee($idProposition){
-	//données : id de la proposition 
+	//données : id de la proposition
 	//pre : idProposition : entier [1-72]
-	//résultat : id de la fiche associée à la proposition 
+	//résultat : id de la fiche associée à la proposition
 	//post : idFiche : entier >0
 	global $pdo;
 	try{
@@ -44,7 +44,7 @@ function getFicheAssociee($idProposition){
 function modifProposition($idP,$newCont){
 	//données : id de la proposition
 	//pre : idProposition : entier [1-72]
-	//résultat : modification de la proposition avec son nouveau contenu 
+	//résultat : modification de la proposition avec son nouveau contenu
 
 	global $pdo;
 	try{

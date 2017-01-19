@@ -7,6 +7,7 @@
 		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
 		<!-- FONTAWESOME STYLES-->
 		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
+		<script src="https://use.fontawesome.com/1ab5ac683d.js"></script>
 		<!-- CUSTOM STYLES-->
 		<link href="../assets/css/custom.css" rel="stylesheet" />
 		<!-- GOOGLE FONTS-->
@@ -75,7 +76,7 @@
 															<h3>Tu es plutôt... <?php echo $nomFiche; ?> !</h3>
 															<br/>
 													<div class="panel-footer">
-													Ici vous pouvez voir vos différents scores et vous comparer à votre promotion 
+													Ici vous pouvez voir vos différents scores et vous comparer à votre promotion
 													<br/>
 													<br/>
 													<a href="resultat.controller.php" class="btn btn-primary">Voir ses résultats</a>

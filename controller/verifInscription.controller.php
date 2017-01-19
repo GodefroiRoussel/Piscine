@@ -3,14 +3,6 @@ require_once('../model/connexionBD.php');
 require_once('../model/Promo.php');
 
 
- //Sécurisation des données saisies
-  $nom = htmlspecialchars ($_POST['nom']);
-  $prenom = htmlspecialchars ($_POST['prenom']);
-  $email = htmlspecialchars ($_POST['email']);
-  $passwd = htmlspecialchars ($_POST['passwd']);
-  $passwdconf = htmlspecialchars ($_POST['passwdconf']);
-  $clefPromo = htmlspecialchars ($_POST['clefPromo']);
-
    //TODO : mettre ces variables dans un fichier .env
   $key = "ceSera1cLERiasEcP0UrP1Sc1nE";
   $keyCryptage= "P0lyP1sCinE";
@@ -20,6 +12,13 @@ require_once('../model/Promo.php');
 	 //vérifie que tous les champs sont non vides et non NULL
 	 if (isset($nom) && isset($prenom) && isset($passwd) && isset($passwdconf) && isset($email) &&isset($clefPromo) &&
    !empty($nom) && !empty($prenom) && !empty($passwd) && !empty($passwdconf) && !empty($email) && !empty($clefPromo)){
+     //Sécurisation des données saisies
+      $nom = htmlspecialchars ($_POST['nom']);
+      $prenom = htmlspecialchars ($_POST['prenom']);
+      $email = htmlspecialchars ($_POST['email']);
+      $passwd = htmlspecialchars ($_POST['passwd']);
+      $passwdconf = htmlspecialchars ($_POST['passwdconf']);
+      $clefPromo = htmlspecialchars ($_POST['clefPromo']);
 		//vérifie que le mot de passe et sa confirmation son égaux
 		if($passwd==$passwdconf){
 			$verifemail=strtolower($prenom.'.'.$nom) ;

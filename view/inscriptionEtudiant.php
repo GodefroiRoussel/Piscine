@@ -56,7 +56,7 @@
 																	</div>
 																	<div class="form-group">
 																			<label>Code de la promo : </label>
-																			<input type="text" class="form-control" name="clefPromo" value="IG2020">
+																			<input type="text" class="form-control" name="clefPromo" value="MI2019">
 																	</div>
 																	<input type="submit" class="btn btn-lg btn-success btn-block" value="Je m'inscris" />
 															</fieldset>
