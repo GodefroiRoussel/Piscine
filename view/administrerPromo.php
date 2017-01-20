@@ -8,10 +8,6 @@
 		<!-- FONTAWESOME STYLES-->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 		<link href="../assets/css/font-awesome.css" rel="stylesheet" />
-		<!-- DataTables CSS -->
-		<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-		<!-- DataTables Responsive CSS -->
-		<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 		<!-- CUSTOM STYLES-->
 		<link rel="stylesheet" href="../assets/css/general.css" />
 		<link href="../assets/css/custom.css" rel="stylesheet" />
@@ -20,7 +16,7 @@
 		</head>
 		<body>
 			<div id="wrapper">
-				<!-- <?php include("menu/menuTop.php"); ?> -->
+			 	<?php include("menu/menuTop.php"); ?>
 				<!-- /. NAV TOP  -->
 				<!-- NAV SIDE only if we are connected -->
 				<?php if (isset($_COOKIE["token"]) && verificationToken($decoded_array)){
@@ -232,7 +228,6 @@
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
 	<script src="../assets/js/jquery-1.10.2.js"></script>
-	<script src="../vendor/jquery/jquery.min.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
 	<script src="../assets/js/bootstrap.min.js"></script>
 	<!-- METISMENU SCRIPTS -->

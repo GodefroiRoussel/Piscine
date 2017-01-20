@@ -1,5 +1,6 @@
-/* Ceci ne servira que pour la page modifierCompte.php */
-
+/**
+ * Quelques ajouts pour compléter le template bootstrap utilisé
+ */
 #actuel{
   display:none;
 }
